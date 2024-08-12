@@ -5,8 +5,7 @@ import './NimuSoftProduct.css'
 
 const NimuSoftProduct = () => {
     const bgImg = {
-        backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723464811/1-new_xuoqca.png")',
-       
+        backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723464811/1-new_xuoqca.png")', 
         backgroundSize: 'cover',
         borderRadius: '10px',
         overflow: 'hidden',
