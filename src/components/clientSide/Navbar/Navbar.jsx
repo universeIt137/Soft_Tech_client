@@ -1,5 +1,5 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 import { useState } from "react";
@@ -26,9 +26,7 @@ const Navbar = () => {
           <div className="hidden md:hidden lg:block">
             <ul className="flex gap-8 *:text-xl *:font-medium">
               <li>
-                <a href="#" className="text-[#0079b3] ">
-                  Home
-                </a>
+                <Link to={`/`} className="text-[#0079b3]">Home</Link>
               </li>
 
               <div className="dropdown-container">
@@ -66,7 +64,7 @@ const Navbar = () => {
               </div>
 
               <li>
-                <a href="#">About Us</a>
+                <Link to={"/about-us"}>About Us</Link>
               </li>
               <li>
                 <a href="#">Contact Us</a>
