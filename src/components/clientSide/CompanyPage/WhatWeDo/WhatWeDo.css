@@ -1,0 +1,9 @@
+
+
+.active > div {
+    background-color: #FFC107;
+    width: 450px;
+    padding: 16px;
+    color: black;
+    border-radius: 10px;
+}
