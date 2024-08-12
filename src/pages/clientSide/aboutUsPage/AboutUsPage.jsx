@@ -4,6 +4,7 @@ import About from '../../../components/clientSide/About/About';
 import Blogs from '../../../components/clientSide/Blogs/Blogs';
 import BluePage from '../../../components/clientSide/BluePage/BluePage';
 import { Helmet } from 'react-helmet-async';
+import WhatWeDo from '../../../components/clientSide/CompanyPage/WhatWeDo/WhatWeDo';
 
 const AboutUsPage = () => {
     return (
@@ -15,6 +16,7 @@ const AboutUsPage = () => {
             <About></About>
             <Blogs></Blogs>
             <BluePage></BluePage>
+            <WhatWeDo></WhatWeDo>
         </>
     );
 };
