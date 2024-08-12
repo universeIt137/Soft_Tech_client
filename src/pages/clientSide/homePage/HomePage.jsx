@@ -1,6 +1,6 @@
+import Banner from "../../../components/clientSide/HomeComponent/Banner/Banner";
 
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+
 
 
 
@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet-async';
 const HomePage = () => {
     return (
         <div>
+            <Banner></Banner>
+           
             
             
             

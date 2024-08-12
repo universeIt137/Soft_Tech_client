@@ -26,9 +26,7 @@ const Navbar = () => {
           <div className="hidden md:hidden lg:block">
             <ul className="flex gap-8 *:text-xl *:font-medium">
               <li>
-                <a href="#" className="text-[#0079b3] ">
-                  Home
-                </a>
+                <Link to={`/`} className="text-[#0079b3]">Home</Link>
               </li>
 
               <div className="dropdown-container">

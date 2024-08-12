@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Banner from '../../../components/clientSide/Banner/Banner';
 import About from '../../../components/clientSide/About/About';
 import Blogs from '../../../components/clientSide/Blogs/Blogs';
