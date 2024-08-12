@@ -1,3 +1,8 @@
+import Banner from "../../../components/clientSide/HomeComponent/Banner/Banner";
+
+
+
+
 
 import React from 'react';
 import Banner from '../../../components/clientSide/CompanyPage/Banner/Banner';
@@ -7,13 +12,13 @@ import BluePage from '../../../components/clientSide/CompanyPage/BluePage/BluePa
 import WhatWeDo from '../../../components/clientSide/CompanyPage/WhatWeDo/WhatWeDo';
 
 
-import Navbar from "../../../components/clientSide/Navbar/Navbar";
 
 
 
 const HomePage = () => {
     return (
         <div>
+
             
             <Navbar></Navbar>
             <p>This is homepage</p>
@@ -22,6 +27,12 @@ const HomePage = () => {
             <Blogs></Blogs>
             <BluePage></BluePage>
             <WhatWeDo></WhatWeDo>
+            <Banner></Banner>
+           
+            
+            
+            
+
             
         </div>
     );
