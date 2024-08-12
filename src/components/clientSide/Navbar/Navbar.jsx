@@ -1,5 +1,5 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 import { useState } from "react";
@@ -66,7 +66,7 @@ const Navbar = () => {
               </div>
 
               <li>
-                <a href="#">About Us</a>
+                <Link to={"/about-us"}>About Us</Link>
               </li>
               <li>
                 <a href="#">Contact Us</a>
