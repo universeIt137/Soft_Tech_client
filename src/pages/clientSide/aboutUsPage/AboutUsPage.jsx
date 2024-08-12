@@ -6,6 +6,7 @@ import BluePage from '../../../components/clientSide/BluePage/BluePage';
 import { Helmet } from 'react-helmet-async';
 import WhatWeDo from '../../../components/clientSide/WhatWeDo/WhatWeDo';
 import History from '../../../components/clientSide/History/History';
+import Mission from '../../../components/clientSide/Mission/Mission';
 
 const AboutUsPage = () => {
     return (
@@ -19,6 +20,7 @@ const AboutUsPage = () => {
             <BluePage></BluePage>
             <WhatWeDo></WhatWeDo>
             <History></History>
+            <Mission></Mission>
         </>
     );
 };
