@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import WhatWeDo from '../../../components/clientSide/WhatWeDo/WhatWeDo';
 import History from '../../../components/clientSide/History/History';
 import Mission from '../../../components/clientSide/Mission/Mission';
+import Services from './Services/Services';
 
 const AboutUsPage = () => {
     return (
@@ -21,6 +22,7 @@ const AboutUsPage = () => {
             <WhatWeDo></WhatWeDo>
             <History></History>
             <Mission></Mission>
+            <Services></Services>
             
         </>
     );
