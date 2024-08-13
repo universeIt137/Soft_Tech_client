@@ -2,9 +2,9 @@ import React from 'react';
 
 const Partners = () => {
     return (
-        <div className=' shadow-xl mb-20'>
+        <div className=' shadow-xl'>
             <div className='w-11/12 mx-auto py-14'>
-                <h1 className='text-3xl md:text-4xl'>Membership & <span className='text-blue-800 underline'>Partners</span></h1>
+                <h1 className='text-3xl md:text-4xl font-bold'>Membership & <span className='text-blue-800 underline'>Partners</span></h1>
                 
                 <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6'>
                     <div className='w-44 border rounded-lg flex flex-col items-center justify-center px-3 py-4 sm:w-40 lg:w-36 xl:w-48 mt-10'>

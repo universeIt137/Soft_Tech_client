@@ -6,7 +6,7 @@ const Services = () => {
     return (
         <div className='bg-[#F5F5F5]'>
             <div className=' w-11/12 mx-auto '>
-                <h1 className='text-center text-3xl md:text-4xl pt-14 uppercase mb-10'> Alpha Net <span className='underline text-blue-800'>Services</span></h1>
+                <h1 className='text-center text-3xl md:text-4xl pt-14 uppercase mb-10 font-bold'> Alpha Net <span className='underline text-blue-800'>Services</span></h1>
                 <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-6 pb-10'>
                     <div className='flex flex-col justify-center items-center w-48 lg:w-72 xl:w-48 border py-6 shadow-xl '>
                         <img className='w-10 items-center' src="https://res.cloudinary.com/dgamcpb88/image/upload/v1723532163/soft%20tech/alpha%20net%20service/jhw6i2gble2qnz07snmu.png" alt="" />
