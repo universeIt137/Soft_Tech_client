@@ -11,6 +11,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [otherOpen, setOtherOpen] = useState(false);
 
+  const mainLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png";
+
+
   return (
     <div className="bg-gradient-to-r from-white to-[#aed6f1]">
       <header className="container mx-auto py-4 px-3">
@@ -19,7 +22,7 @@ const Navbar = () => {
             <Link to={"/"}>
               <img
                 className="w-[150px]"
-                src={`https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png`}
+                src={mainLogo}
                 alt=""
               />
             </Link>
