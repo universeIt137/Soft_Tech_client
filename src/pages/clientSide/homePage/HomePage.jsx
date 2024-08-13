@@ -3,6 +3,7 @@ import Banner from "../../../components/clientSide/HomeComponent/Banner/Banner";
 import NimuHRM from "../../../components/clientSide/HomeComponent/NimuHRM/NimuHRM";
 import NimuSoftProduct from "../../../components/clientSide/HomeComponent/NimuSoftProduct/NimuSoftProduct";
 import Service from "../../../components/clientSide/HomeComponent/Service/Service";
+import Technology from "../../../components/clientSide/HomeComponent/Technology/Technology";
 
 
 
@@ -21,6 +22,7 @@ const HomePage = () => {
             <NimuHRM></NimuHRM>
             <NimuSoftProduct></NimuSoftProduct>
             <Service></Service>
+            <Technology></Technology>
            
             
             
