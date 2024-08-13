@@ -16,11 +16,13 @@ const Navbar = () => {
       <header className="container mx-auto py-4 px-3">
         <nav className="flex gap-10 items-center justify-between md:justify-between lg:justify-start">
           <div className=" ">
-            <img
-              className="w-[150px]"
-              src={`https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png`}
-              alt=""
-            />
+            <Link to={"/"}>
+              <img
+                className="w-[150px]"
+                src={`https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png`}
+                alt=""
+              />
+            </Link>
           </div>
 
           <div className="hidden md:hidden lg:block">
@@ -88,9 +90,8 @@ const Navbar = () => {
 
       {/* sidebar */}
       <div
-        className={`mt-12   h-auto absolute z-50 right-0   overflow-auto touch-auto hover:will-change-scroll ${
-          toggleMenu ? "" : " top-0 hidden "
-        }  lg:w-80 md:w-80 w-60 bg-white p-2  top-0`}
+        className={`mt-12   h-auto absolute z-50 right-0   overflow-auto touch-auto hover:will-change-scroll ${toggleMenu ? "" : " top-0 hidden "
+          }  lg:w-80 md:w-80 w-60 bg-white p-2  top-0`}
       >
         <ul>
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
@@ -111,12 +112,11 @@ const Navbar = () => {
           </p>
 
           <div
-            className={`${
-              open ? "block" : "hidden"
-            } py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]`}
+            className={`${open ? "block" : "hidden"
+              } py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]`}
           >
-          
-           
+
+
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
               <NavLink>Nimu HRM</NavLink>
@@ -155,7 +155,7 @@ const Navbar = () => {
           </li>
 
           <div className={`${otherOpen ? "block" : "hidden"}`}>
-            
+
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
               <NavLink>ERP Solution</NavLink>

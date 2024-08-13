@@ -21,6 +21,7 @@ const AboutUsPage = () => {
             <WhatWeDo></WhatWeDo>
             <History></History>
             <Mission></Mission>
+            
         </>
     );
 };
