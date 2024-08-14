@@ -4,7 +4,7 @@ const Blogs = () => {
     return (
         <div className='w-11/12 mx-auto flex flex-col-reverse lg:flex lg:flex-row my-20 gap-10'>
             <div className="lg:w-3/5 text-justify mr-10 mt-5">
-                <h1 className="text-4xl mb-6 uppercase font-semibold">Who<span className="text-[#168de8] underline "> we </span> are</h1>
+                <h1 className="text-3xl md:text-4xl mb-6 uppercase font-semibold">Who<span className="text-blue-800 underline "> we </span> are</h1>
                 <h3 className="text-xl mb-6">Alpha Net is one of the top 10 IT industries in Bangladesh.</h3>
                 <p className="text-xl mb-6">Alpha Net is dedicated IT specialists who recognize that a successful technology implementation requires more than just getting the proper hardware and applications. It must begin with a thorough understanding of each customer's strategy and business needs.</p>
 
