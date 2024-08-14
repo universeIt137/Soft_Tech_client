@@ -6,7 +6,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 
 const Mission = () => {
     return (
-        <div className='bg-[#F5F5F5] border mb-6'>
+        <div className='bg-[#F5F5F5] border'>
             <div className='xl:px-20 px-4 flex'>
                 <div className='hero lg:h-[1000px] xl:h-[800px] xl:w-1/3 bg-cover bg-center hidden lg:block ' style={{backgroundImage:"url('https://i.ibb.co/whpBZQ5/vission-and-mission.jpg')"}}>
 

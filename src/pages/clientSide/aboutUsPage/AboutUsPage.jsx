@@ -8,6 +8,8 @@ import WhatWeDo from '../../../components/clientSide/WhatWeDo/WhatWeDo';
 import History from '../../../components/clientSide/History/History';
 import Mission from '../../../components/clientSide/Mission/Mission';
 import Services from './Services/Services';
+import Partners from './Partners/Partners';
+import Awards from './Awards/Awards';
 
 const AboutUsPage = () => {
     return (
@@ -23,6 +25,8 @@ const AboutUsPage = () => {
             <History></History>
             <Mission></Mission>
             <Services></Services>
+            <Partners></Partners>
+            <Awards></Awards>
             
         </>
     );
