@@ -10,7 +10,6 @@ import { FaYoutube } from "react-icons/fa";
 
 
 
-
 const Footer = () => {
     const subLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723539361/UniverseIT/Logo/vg7riirvaqfi2vuo9xvl.png";
     return (
