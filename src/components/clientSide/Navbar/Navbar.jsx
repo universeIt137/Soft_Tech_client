@@ -11,6 +11,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [otherOpen, setOtherOpen] = useState(false);
 
+  const mainLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png";
+
+
   return (
     <div className="bg-gradient-to-r from-white to-[#aed6f1]">
       <header className="container mx-auto py-4 px-3">
@@ -19,7 +22,7 @@ const Navbar = () => {
             <Link to={"/"}>
               <img
                 className="w-[150px]"
-                src={`https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png`}
+                src={mainLogo}
                 alt=""
               />
             </Link>
@@ -33,7 +36,7 @@ const Navbar = () => {
 
               <div className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/country`} className={`active:text-violet-500`}>
+                  <NavLink to={`/`} className={`active:text-violet-500`}>
                     Products{" "}
                   </NavLink>
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
@@ -50,7 +53,7 @@ const Navbar = () => {
 
               <div className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/country`} className={`active:text-violet-500`}>
+                  <NavLink to={`/`} className={`active:text-violet-500`}>
                     Services{" "}
                   </NavLink>
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
@@ -69,7 +72,7 @@ const Navbar = () => {
                 <Link to={"/about-us"}>About Us</Link>
               </li>
               <li>
-                <a href="#">Contact Us</a>
+                <Link to={`/contact-us`}>Contact Us</Link>
               </li>
               <li>
                 <a href="#">Career</a>

@@ -10,15 +10,15 @@ import { FaYoutube } from "react-icons/fa";
 
 
 
-
 const Footer = () => {
+    const subLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723539361/UniverseIT/Logo/vg7riirvaqfi2vuo9xvl.png";
     return (
         <div className='bg-[#154360]'>
             <div className='container mx-auto py-10 px-10 text-white'>
                 <div className='grid grid-cols-1 lg:grid-cols-12 justify-center '>
                     {/* 1st */}
                     <div className="lg:col-span-4 ">
-                        <img className='w-[200px]' src="https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png" alt="" />
+                        <img className='w-[200px] border ' src={subLogo} alt="" />
 
                         <div className="mt-5">
                             <p className="flex items-center gap-2"><FaLocationDot></FaLocationDot> 5/A, Ga-130/B, Progoti Sharani, Middle</p>
