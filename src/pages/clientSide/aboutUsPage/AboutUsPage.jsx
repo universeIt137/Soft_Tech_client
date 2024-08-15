@@ -15,7 +15,7 @@ import HelpPage from './HelpPage/HelpPage';
 
 const AboutUsPage = () => {
     return (
-        <>
+        <div className='mt-12'>
             <Helmet>
                 <title>About Us | Soft Tech</title>
             </Helmet>
@@ -32,7 +32,7 @@ const AboutUsPage = () => {
             <News></News>
             <HelpPage></HelpPage>
             
-        </>
+        </div>
     );
 };
 

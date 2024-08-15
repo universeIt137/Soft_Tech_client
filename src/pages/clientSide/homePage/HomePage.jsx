@@ -15,7 +15,7 @@ import NewsLetter from "../../../components/clientSide/HomeComponent/NewsLetter/
 
 const HomePage = () => {
     return (
-        <div>
+        <div className="mt-12">
             <Helmet>
                 <title>Soft Tech | HomePage</title>
             </Helmet>
