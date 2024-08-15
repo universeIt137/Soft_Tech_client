@@ -11,15 +11,18 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [otherOpen, setOtherOpen] = useState(false);
 
+  const mainLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png";
+
+
   return (
-    <div className="bg-gradient-to-r from-white to-[#aed6f1]">
+    <div className="bg-gradient-to-r from-white fixed top-0 w-full z-50 to-[#aed6f1]">
       <header className="container mx-auto py-4 px-3">
         <nav className="flex gap-10 items-center justify-between md:justify-between lg:justify-start">
           <div className=" ">
             <Link to={"/"}>
               <img
                 className="w-[150px]"
-                src={`https://res.cloudinary.com/dqescabbl/image/upload/v1723395731/download__3_-removebg-preview_j6elrg.png`}
+                src={mainLogo}
                 alt=""
               />
             </Link>
@@ -39,29 +42,29 @@ const Navbar = () => {
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
                 </div>
                 <div className="dropdown-content   shadow-xl p-2 opacity-80">
-                  <a href="#">Nimu HRM</a>
-                  <a href="#">Nimu Attendence</a>
-                  <a href="#">Nimu CRM</a>
-                  <a href="#">Nimu inventory</a>
-                  <a href="#">Nimu POS</a>
-                  <a href="#">Nimu Education</a>
+                  <Link to={`/`}>Nimu HRM</Link>
+                  <Link to={`/`}>Nimu Attendence</Link>
+                  <Link to={`/`}>Nimu CRM</Link>
+                  <Link to={`/`}>Nimu inventory</Link>
+                  <Link to={`/`}>Nimu POS</Link>
+                  <Link to={`/`}>Nimu Education</Link>
                 </div>
               </div>
 
               <div className="dropdown-container">
                 <div className="flex gap-2 items-center">
                   <NavLink to={`/`} className={`active:text-violet-500`}>
-                    Services{" "}
+                    Services
                   </NavLink>
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
                 </div>
                 <div className="dropdown-content   shadow-xl p-2 opacity-80">
-                  <a href="#">ERP Solution</a>
-                  <a href="#">Medical Solution</a>
-                  <a href="#">Mobile App Development</a>
-                  <a href="#">E-commerse Solution</a>
-                  <a href="#">Data Analytics</a>
-                  <a href="#">IOT & Virtual Reality</a>
+                  <Link to={`/`}>ERP Solution</Link>
+                  <Link to={`/`}>Medical Solution</Link>
+                  <Link to={`/`}>Mobile App Development</Link>
+                  <Link to={`/`}>E-commerse Solution</Link>
+                  <Link to={`/`}>Data Analytics</Link>
+                  <Link to={`/`}>IOT & Virtual Reality</Link>
                 </div>
               </div>
 
@@ -72,7 +75,7 @@ const Navbar = () => {
                 <Link to={`/contact-us`}>Contact Us</Link>
               </li>
               <li>
-                <a href="#">Career</a>
+                <Link to={`/career`}>Career</Link>
               </li>
             </ul>
           </div>
@@ -98,7 +101,7 @@ const Navbar = () => {
             <NavLink>Home</NavLink>
           </li>
 
-          <p className=" border-b flex items-center border-b-gray-400 text-base">
+          <div className=" border-b flex items-center border-b-gray-400 text-base">
             <div className="hover:bg-[#F3F4F6] w-4/5 py-3 px-2 h-full">
               <NavLink to={`/country`}>Products </NavLink>
             </div>
@@ -109,7 +112,7 @@ const Navbar = () => {
                 <IoIosArrowDown onClick={() => setOpen(!open)}></IoIosArrowDown>
               )}
             </div>
-          </p>
+          </div>
 
           <div
             className={`${open ? "block" : "hidden"
@@ -180,15 +183,15 @@ const Navbar = () => {
           </div>
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
-            <NavLink>About US</NavLink>
+            <NavLink to={`/about-us`}>About US</NavLink>
           </li>
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
-            <NavLink>Contact US</NavLink>
+            <NavLink to={`/contact-us`}>Contact US</NavLink>
           </li>
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
-            <NavLink>Carrer</NavLink>
+            <NavLink to={`/career`}>Carrer</NavLink>
           </li>
         </ul>
       </div>

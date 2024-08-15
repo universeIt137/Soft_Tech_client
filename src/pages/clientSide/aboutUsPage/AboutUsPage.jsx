@@ -11,10 +11,11 @@ import Services from './Services/Services';
 import Partners from './Partners/Partners';
 import Awards from './Awards/Awards';
 import News from './News/News';
+import HelpPage from './HelpPage/HelpPage';
 
 const AboutUsPage = () => {
     return (
-        <>
+        <div className='mt-12'>
             <Helmet>
                 <title>About Us | Soft Tech</title>
             </Helmet>
@@ -29,8 +30,9 @@ const AboutUsPage = () => {
             <Partners></Partners>
             <Awards></Awards>
             <News></News>
+            <HelpPage></HelpPage>
             
-        </>
+        </div>
     );
 };
 

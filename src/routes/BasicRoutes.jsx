@@ -5,7 +5,9 @@ import {
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/clientSide/homePage/HomePage";
 import AboutUsPage from "../pages/clientSide/aboutUsPage/AboutUsPage";
-import ContactUsPage from "../pages/ContactUsPage/ContactUsPage";
+import ContactUsPage from "../pages/clientSide/ContactUsPage/ContactUsPage";
+import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
+
 
 
 
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: '/contact-us',
                 element: <ContactUsPage></ContactUsPage>
+            },
+            {
+                path: '/career',
+                element: <CareerPage></CareerPage>
             }
         ]
     },
