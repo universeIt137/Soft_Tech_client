@@ -10,6 +10,7 @@ import Mission from '../../../components/clientSide/Mission/Mission';
 import Services from './Services/Services';
 import Partners from './Partners/Partners';
 import Awards from './Awards/Awards';
+import News from './News/News';
 
 const AboutUsPage = () => {
     return (
@@ -27,6 +28,7 @@ const AboutUsPage = () => {
             <Services></Services>
             <Partners></Partners>
             <Awards></Awards>
+            <News></News>
             
         </>
     );

@@ -36,7 +36,7 @@ const Navbar = () => {
 
               <div className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/country`} className={`active:text-violet-500`}>
+                  <NavLink to={`/`} className={`active:text-violet-500`}>
                     Products{" "}
                   </NavLink>
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
@@ -53,7 +53,7 @@ const Navbar = () => {
 
               <div className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/country`} className={`active:text-violet-500`}>
+                  <NavLink to={`/`} className={`active:text-violet-500`}>
                     Services{" "}
                   </NavLink>
                   <IoIosArrowDown className="text-xl"></IoIosArrowDown>
@@ -72,7 +72,7 @@ const Navbar = () => {
                 <Link to={"/about-us"}>About Us</Link>
               </li>
               <li>
-                <a href="#">Contact Us</a>
+                <Link to={`/contact-us`}>Contact Us</Link>
               </li>
               <li>
                 <a href="#">Career</a>
