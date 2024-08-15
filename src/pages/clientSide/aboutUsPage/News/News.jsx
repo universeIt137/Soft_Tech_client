@@ -149,7 +149,7 @@ const News = () => {
                 </div>
 
                 <div className='views w-full shadow-lg border'>
-                    <div className='figure'>   
+                    <div className='figure '>   
                         <img className='image views'src="https://res.cloudinary.com/dgamcpb88/image/upload/v1723656777/soft%20tech/News/dsdgwgaxomfjezr6ugjt.jpg" alt="" />                   
                     </div>
 
