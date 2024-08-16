@@ -1,11 +1,15 @@
 
-import { useLoaderData, useParams } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import { IoIosStar } from "react-icons/io";
 import { IoMdShare } from "react-icons/io";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsappSquare } from "react-icons/fa";
-import { FaPrint } from "react-icons/fa";
+import { FaPrint } from "react-icons/fa" 
+import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
+
+
 
 
 
@@ -49,6 +53,27 @@ const CareerDetailsPage = () => {
                             <FaPrint className='text-2xl '></FaPrint>
                          </button>
                     </div>
+                </div>
+
+                <div className='flex justify-between items-center py-10'>
+                    
+                    <div>
+                        <FaChevronLeft className='bg-[#F4F4F4] p-4 text-6xl rounded-full cursor-pointer'></FaChevronLeft>
+                    </div>
+                    <div>
+                        <div className='bg-[#F4F4F4] py-2.5 cursor-pointer'>
+                            <Link className='hover:bg-[#CCE7FF] px-5 py-2.5 text-2xl text-[#2F64A3] border border-[#DDD]'>All</Link>
+                            <Link className='hover:bg-[#CCE7FF] px-5 py-2.5 text-2xl text-[#2F64A3] border border-[#DDD]'>Requirements</Link>
+                            <Link className='hover:bg-[#CCE7FF] px-5 py-2.5 text-2xl text-[#2F64A3] border border-[#DDD]'>Responsibilities</Link>
+                            <Link className='hover:bg-[#CCE7FF] px-5 py-2.5 text-2xl text-[#2F64A3] border border-[#DDD]'>Salary & Benefits</Link>
+                            <Link className='hover:bg-[#CCE7FF] px-5 py-2.5 text-2xl text-[#2F64A3] border border-[#DDD]'>Company Information</Link>
+                        </div>
+                    </div>
+
+                    <div>
+                        <FaChevronRight className='bg-[#F4F4F4] p-4 text-6xl rounded-full cursor-pointer'></FaChevronRight>
+                    </div>
+
                 </div>
                 
 
