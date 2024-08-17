@@ -12,6 +12,7 @@ import Partners from './Partners/Partners';
 import Awards from './Awards/Awards';
 import News from './News/News';
 import HelpPage from './HelpPage/HelpPage';
+import SlidePage from './SlidePage/SlidePage';
 
 const AboutUsPage = () => {
     return (
@@ -31,6 +32,7 @@ const AboutUsPage = () => {
             <Awards></Awards>
             <News></News>
             <HelpPage></HelpPage>
+            <SlidePage></SlidePage>
             
         </div>
     );
