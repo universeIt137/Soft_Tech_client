@@ -8,6 +8,7 @@ import AboutUsPage from "../pages/clientSide/aboutUsPage/AboutUsPage";
 import ContactUsPage from "../pages/clientSide/ContactUsPage/ContactUsPage";
 import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
 import CareerDetailsPage from "../pages/clientSide/CareerDetailsPage/CareerDetailsPage";
+import ServicePage from "../components/clientSide/ServiceComponent/Service/Service";
 
 
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
                 path: '/career/:id',
                 element: <CareerDetailsPage></CareerDetailsPage>,
                 loader: ()=> fetch('jobs.json')
+            },
+            {
+                path: '/services',
+                element: <ServicePage></ServicePage>
             }
         ]
     },

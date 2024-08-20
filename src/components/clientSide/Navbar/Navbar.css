@@ -15,8 +15,8 @@
   background: white;
 
   text-align: left;
-  padding: 20px;
-  min-width: 250px;
+  padding: 10px;
+  min-width: 600px;
   display: none;
 }
 
@@ -24,8 +24,8 @@
   display: block;
 }
 .dropdown-container:hover .dropdown-content {
-  display: block;
-  top: 50px;
+  display: flex;
+  top: 60px;
   left: -30%;
   transition: all 3s ease-in-out;
 }
