@@ -9,6 +9,7 @@ import ContactUsPage from "../pages/clientSide/ContactUsPage/ContactUsPage";
 import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
 import CareerDetailsPage from "../pages/clientSide/CareerDetailsPage/CareerDetailsPage";
 import ServicePage from "../components/clientSide/ServiceComponent/Service/Service";
+import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
 
 
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <ServicePage></ServicePage>
+            },
+            {
+                path: '/serviceDetails',
+                element: <ServiceDetailsPage></ServiceDetailsPage>
             }
         ]
     },
