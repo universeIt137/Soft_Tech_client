@@ -1,15 +1,15 @@
 import React from 'react';
 import { IoIosArrowForward } from "react-icons/io";
-import "./Services.css";
+import './Service.css'
 
 const Services = () => {
     return (
-        <div className='bg-[#F5F5F5]'>
+        <div className='bg-[#F5F5F5] mt-12'>
             <div className=' w-11/12 mx-auto '>
-                <h1 className='text-center text-3xl md:text-4xl pt-14 uppercase mb-10 font-bold'> Alpha Net <span className='underline text-blue-800'>Services</span></h1>
+                <h1 className='text-center text-3xl md:text-4xl pt-14 uppercase mb-10 font-bold'> Universe soft tech <span className='underline text-blue-800'>Services</span></h1>
                 <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-6 pb-10'>
                     <div className='flex flex-col justify-center items-center w-48 lg:w-72 xl:w-48 border py-6 shadow-xl '>
-                        <img className='w-10 items-center' src="https://res.cloudinary.com/dgamcpb88/image/upload/v1723532163/soft%20tech/alpha%20net%20service/jhw6i2gble2qnz07snmu.png" alt="" />
+                        <img className='w-10 items-center' src="https://res.cloudinary.com/dqescabbl/image/upload/v1724165213/images_2_fogwoe.png" alt="" />
                         <h1 className='my-3 text-lg text-blue-900 font-semibold cursor-pointer'>Dedicated Server</h1>
                         <div className='flex items-center text-sm cursor-pointer'>
                             <p className='flex items-center gap-2 view'>View Details <IoIosArrowForward className='icon'></IoIosArrowForward></p>
