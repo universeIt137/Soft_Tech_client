@@ -250,6 +250,9 @@ const Navbar = () => {
               <li>
                 <Link to={`/career`}>Career</Link>
               </li>
+              <li>
+                <Link to={`/login`}>Login</Link>
+              </li>
             </ul>
           </div>
 
