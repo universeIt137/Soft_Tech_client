@@ -58,7 +58,7 @@ const router = createBrowserRouter([
                 element: <LoginPage></LoginPage>
             },
             {
-                path: '/deshboard',
+                path: '/dashboard',
                 element: <DeshBoard></DeshBoard>
             },
             {
