@@ -82,13 +82,13 @@ const Login = () => {
             Login to your account
           </h2>
           <p className=" text-center ">
-            Dont have account?
+            Dont have account ? 
             <Link
               to="/register"
-              className="focus:underline hover:underline hover:text-blue-500"
+              className="focus:underline hover:underline pl-1 hover:text-blue-500"
             >
               
-              Register
+               Register
             </Link>
           </p>
           <div className="my-6 space-y-4">
@@ -139,8 +139,8 @@ const Login = () => {
                 </label>
                 <input
                  
-                  placeholder="leroy@jenkins.com"
-                  className="w-full px-3 py-2 border rounded-md text-gray-500 border-gray-700 " required
+                  placeholder="info@gmail.com"
+                  className="w-full px-3 py-2  outline-none focus:border focus:border-universe_primary  border rounded-md text-gray-500  " required
                 />
               </div>
               <div className="space-y-2 relative">
@@ -160,7 +160,7 @@ const Login = () => {
                 <input
                   type={showpass ? "text" : "password"}
                  
-                  className="w-full  px-3 py-2 border rounded-md text-gray-500 border-gray-700 " required
+                className="w-full  px-3 py-2 border rounded-md text-gray-500 border-gray-700 outline-none focus:border focus:border-universe_primary " required placeholder="Enter your password"
                 />
                 <span
                   onClick={() => setShowPass(!showpass)}

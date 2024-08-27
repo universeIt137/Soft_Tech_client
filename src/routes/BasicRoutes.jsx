@@ -12,6 +12,7 @@ import ServicePage from "../components/clientSide/ServiceComponent/Service/Servi
 import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
 import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
 import DeshBoard from "../components/clientSide/DeshBoard/DeshBoard";
+import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
 
 
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: '/deshboard',
                 element: <DeshBoard></DeshBoard>
+            },
+            {
+                    path: '/register',
+                    element: <RegisterPage></RegisterPage>
             }
 
         ]
