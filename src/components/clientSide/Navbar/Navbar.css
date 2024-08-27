@@ -33,3 +33,6 @@ li {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+a.active {
+  color: #0079b3;
+}
