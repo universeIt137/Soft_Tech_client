@@ -13,6 +13,9 @@ import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDe
 import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
 import DeshBoard from "../components/clientSide/DeshBoard/DeshBoard";
 import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
+import Register from "../components/clientSide/Register/Register";
+import DeshBoardHome from "../components/clientSide/DeshBoardHome/DeshBoardHome";
+import AddUser from "../pages/clientSide/AddUser/AddUser";
 
 
 
@@ -59,7 +62,18 @@ const router = createBrowserRouter([
             },
             {
                 path: '/deshboard',
-                element: <DeshBoard></DeshBoard>
+                element: <DeshBoard></DeshBoard>,
+                children: [
+                    {
+                        path: '/deshboard',
+                        element: <DeshBoardHome></DeshBoardHome>
+                    },
+                    {
+                        path: '/deshboard/add-users',
+                        element: <AddUser></AddUser>
+                    }
+                ]
+
             },
             {
                     path: '/register',
