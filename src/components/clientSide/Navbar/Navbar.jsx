@@ -406,6 +406,9 @@ const Navbar = () => {
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
             <NavLink to={`/career`}>Carrer</NavLink>
           </li>
+          <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
+            <NavLink to={`/login`}>Login</NavLink>
+          </li>
         </ul>
       </div>
     </div>
