@@ -10,6 +10,9 @@ import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
 import CareerDetailsPage from "../pages/clientSide/CareerDetailsPage/CareerDetailsPage";
 import ServicePage from "../components/clientSide/ServiceComponent/Service/Service";
 import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
+import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
+import DeshBoard from "../components/clientSide/DeshBoard/DeshBoard";
+import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
 
 
 
@@ -49,7 +52,20 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetails',
                 element: <ServiceDetailsPage></ServiceDetailsPage>
+            },
+            {
+                path: "/login",
+                element: <LoginPage></LoginPage>
+            },
+            {
+                path: '/deshboard',
+                element: <DeshBoard></DeshBoard>
+            },
+            {
+                    path: '/register',
+                    element: <RegisterPage></RegisterPage>
             }
+
         ]
     },
 ]);
