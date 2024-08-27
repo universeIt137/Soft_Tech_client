@@ -8,7 +8,7 @@ const Register = () => {
     return (
         <div>
              <div className=" py-5 bg-[#AED6F1] ">
-            <div className=" container mx-auto p-8 my-10  max-w-xl  space-y-3 rounded-xl bg-universe_primary   text-universe_secendary">
+            <div className=" container mx-auto p-8 my-10  max-w-xl  space-y-3 rounded-xl text-universe_primary   bg-universe_secendary">
               <h1 className="text-2xl font-bold text-center">
                 Register to your account
               </h1>
@@ -102,7 +102,7 @@ const Register = () => {
                 <button
                   aria-label="Login with Google"
                   type="button"
-                  className="flex items-center justify-center w-full p-4 space-x-4 border border-universe_secendary rounded-md focus:ring-2 focus:ring-offset-1  focus:dark:ring-violet-600"
+                  className="flex items-center justify-center w-full p-4 space-x-4 border border-universe_primary rounded-md focus:ring-2 focus:ring-offset-1  focus:dark:ring-violet-600"
                  
                 >
                   <svg
@@ -117,7 +117,7 @@ const Register = () => {
                 <button
                   aria-label="Login with GitHub"
                   role="button"
-                  className="flex items-center justify-center w-full p-4 space-x-4 border border-universe_secendary rounded-md focus:ring-2 focus:ring-offset-1  focus:dark:ring-violet-600"
+                  className="flex items-center justify-center w-full p-4 space-x-4 border border-universe_primary rounded-md focus:ring-2 focus:ring-offset-1  focus:dark:ring-violet-600"
                  
                 >
                   <svg
@@ -136,7 +136,7 @@ const Register = () => {
                   to="/login"
                   rel="noopener noreferrer"
                   href="#"
-                  className="underline text-universe_secendary  px-3"
+                  className="underline text-universe_primary  px-3"
                 >
                   login
                 </Link>

@@ -14,6 +14,32 @@ const Navbar = () => {
   const [upDown, setUpDown] = useState(false);
   const [upDownService, setUpDownService] = useState(false);
 
+
+  const [isDropdownVisibleProduct, setIsDropdownVisibleProduct] = useState(false);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  let hideTimeoutProduct;
+  let hideTimeout;
+
+  const handleMouseEnterProduct = () => {
+    clearTimeout(hideTimeoutProduct);
+    setIsDropdownVisibleProduct(true);
+  };
+  const handleMouseEnter = () => {
+    clearTimeout(hideTimeout);
+    setIsDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    hideTimeout = setTimeout(() => {
+      setIsDropdownVisible(false);
+    }, 300); // 300ms delay before hiding the dropdown
+  };
+  const handleMouseLeaveProduct = () => {
+    hideTimeoutProduct = setTimeout(() => {
+      setIsDropdownVisibleProduct(false);
+    }, 300); // 300ms delay before hiding the dropdown
+  };
+
   const mainLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png";
 
 
@@ -37,8 +63,9 @@ const Navbar = () => {
                 <NavLink to={`/`} className="active:text-[#0079b3]">Home</NavLink>
               </li>
 
-              <div className="dropdown-container">
-                <div className="flex gap-2 items-center">
+              <div onMouseEnter={handleMouseEnterProduct}
+                    onMouseLeave={handleMouseLeaveProduct}  className="dropdown-container">
+                <div    className="flex gap-2 items-center">
                   <NavLink to={`/products`} className={`active:text-violet-500`}>
                     Products
                   </NavLink>
@@ -52,91 +79,94 @@ const Navbar = () => {
                  </span>
                 </div>
 
-                <div className={`  flex shadow-xl ${upDown ? 'block top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white' : 'dropdown-content hidden'} `}>
-                   <div>
-                      <NavLink to={`/nimu-hrm`}  className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu HRM</h2>
-                                  <small title="Nimu HRM dashboard centralizes HR activities, offering real-time data and empowering data-driven workforce management."  className="text-ellipsis text-[#9F73B1] block">Nimu HRM dashboard... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/nimu-attendencs`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu Attendance</h2>
-                                  <small title="Transform attendance management with Nimu Attendance, enhancing monitoring, analysis, and efficiency for medium to large businesses"  className="text-ellipsis text-[#D189B5] block">Transform attendance... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/nimu-crm`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu CRM</h2>
-                                  <small title="Boost customer relationships and sales with Nimu CRM, offering comprehensive data and automation facility"  className="text-ellipsis text-[#7691B6] block">Boost customer... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                   </div>
-                      
-
-                   <div>
-                        <NavLink to={`/nimu-inventory`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu Inventory </h2>
-                                  <small title="Nimu Inventory software streamlines financial transactions, integrates with business systems, and optimizes inventory management for all sizes"  className="text-ellipsis text-[#D66F70] block">Nimu Inventory software... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/nimu-education`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu Education</h2>
-                                  <small title="Revolutionize learning with Nimu Education, providing advanced tools for efficient educational management system"  className="text-ellipsis text-[#60A283] block">Revolutionize learning... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/nimu-pos`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>Nimu POS</h2>
-                                  <small title="Streamline sales and inventory management with Nimu POS, enhancing efficiency and customer experience"  className="text-ellipsis text-[#04B7C7] block"> Streamline sales... </small>
-                                </div>
-                            </div>
-                        
-                      </NavLink>
-                   
-                     </div>
-                   
+               {
+                isDropdownVisibleProduct && <div className={`  flex shadow-xl   top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white   `} >
+                <div>
+                   <NavLink to={`/nimu-hrm`}  className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu HRM</h2>
+                               <small title="Nimu HRM dashboard centralizes HR activities, offering real-time data and empowering data-driven workforce management."  className="text-ellipsis text-[#9F73B1] block">Nimu HRM dashboard... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
+                   <NavLink to={`/nimu-attendencs`} className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu Attendance</h2>
+                               <small title="Transform attendance management with Nimu Attendance, enhancing monitoring, analysis, and efficiency for medium to large businesses"  className="text-ellipsis text-[#D189B5] block">Transform attendance... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
+                   <NavLink to={`/nimu-crm`} className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu CRM</h2>
+                               <small title="Boost customer relationships and sales with Nimu CRM, offering comprehensive data and automation facility"  className="text-ellipsis text-[#7691B6] block">Boost customer... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
                 </div>
+                   
+
+                <div>
+                     <NavLink to={`/nimu-inventory`} className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu Inventory </h2>
+                               <small title="Nimu Inventory software streamlines financial transactions, integrates with business systems, and optimizes inventory management for all sizes"  className="text-ellipsis text-[#D66F70] block">Nimu Inventory software... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
+                   <NavLink to={`/nimu-education`} className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu Education</h2>
+                               <small title="Revolutionize learning with Nimu Education, providing advanced tools for efficient educational management system"  className="text-ellipsis text-[#60A283] block">Revolutionize learning... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
+                   <NavLink to={`/nimu-pos`} className="hover:bg-[#F2F2F2] p-4 block">
+                       <div className="flex gap-3 ">
+                           <div>
+                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
+                           </div>
+                             <div className="text-base">
+                               <h2>Nimu POS</h2>
+                               <small title="Streamline sales and inventory management with Nimu POS, enhancing efficiency and customer experience"  className="text-ellipsis text-[#04B7C7] block"> Streamline sales... </small>
+                             </div>
+                         </div>
+                     
+                   </NavLink>
+                
+                  </div>
+                
+                </div>
+               } 
               </div>
 
-              <div className="dropdown-container">
+              <div onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}  className="dropdown-container">
                 <div className="flex gap-2 items-center">
                   <NavLink to={`/services`} className={`active:text-violet-500`}>
                     Services
@@ -150,95 +180,98 @@ const Navbar = () => {
                     
                  </span>
                 </div>
-                <div className={`  flex shadow-xl ${upDownService ? 'block top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white' : 'dropdown-content hidden'} `}>
+                 {
+                  isDropdownVisible &&   <div className={`  flex shadow-xl  top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white`}>
 
-                <div>
-                      <NavLink to={`/erp-solution`}  className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
-                              </div>
-                                <div className="text-base">
-                                  <h2>ERP Solution</h2>
-                                  <small title=""  className="text-ellipsis text-[#9F73B1] block">ERP Solution dashboard... </small>
+                  <div>
+                        <NavLink to={`/erp-solution`}  className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
                                 </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/madical-solution`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
+                                  <div className="text-base">
+                                    <h2>ERP Solution</h2>
+                                    <small title=""  className="text-ellipsis text-[#9F73B1] block">ERP Solution dashboard... </small>
+                                  </div>
                               </div>
-                                <div className="text-base">
-                                  <h2>Medical Solution</h2>
-                                  <small title=""  className="text-ellipsis `text-[#D189B5]` block">Medical Solution attendance... </small>
+                          
+                        </NavLink>
+                        <NavLink to={`/madical-solution`} className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
                                 </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/mobile-app-development`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
+                                  <div className="text-base">
+                                    <h2>Medical Solution</h2>
+                                    <small title=""  className="text-ellipsis `text-[#D189B5]` block">Medical Solution attendance... </small>
+                                  </div>
                               </div>
-                                <div className="text-base">
-                                  <h2>Mobile App Development</h2>
-                                  <small   className="text-ellipsis text-[#7691B6] block">App Development customer... </small>
+                          
+                        </NavLink>
+                        <NavLink to={`/mobile-app-development`} className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
                                 </div>
-                            </div>
-                        
-                      </NavLink>
-                </div>
-                      
-
-                   <div>
-                        <NavLink to={`/e-commerse-solution`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
+                                  <div className="text-base">
+                                    <h2>Mobile App Development</h2>
+                                    <small   className="text-ellipsis text-[#7691B6] block">App Development customer... </small>
+                                  </div>
                               </div>
-                                <div className="text-base">
-                                  <h2>E-commerse Solution </h2>
-                                  <small title=""  className="text-ellipsis text-[#D66F70] block">E-commerse Solution Inventory ... </small>
-                                </div>
-                            </div>
+                          
+                        </NavLink>
+                  </div>
                         
-                      </NavLink>
-                      <NavLink to={`/data-analytics`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
+  
+                     <div>
+                          <NavLink to={`/e-commerse-solution`} className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
+                                </div>
+                                  <div className="text-base">
+                                    <h2>E-commerse Solution </h2>
+                                    <small title=""  className="text-ellipsis text-[#D66F70] block">E-commerse Solution Inventory ... </small>
+                                  </div>
                               </div>
-                                <div className="text-base">
-                                  <h2>Data Analytics</h2>
-                                  <small title="Revolutionize learning with Nimu Education, providing advanced tools for efficient educational management system"  className="text-ellipsis text-[#60A283] block">Data Analytics learning... </small>
+                          
+                        </NavLink>
+                        <NavLink to={`/data-analytics`} className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
                                 </div>
-                            </div>
-                        
-                      </NavLink>
-                      <NavLink to={`/virtual-reality`} className="hover:bg-[#F2F2F2] p-4 block">
-                          <div className="flex gap-3 ">
-                              <div>
-                                <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
+                                  <div className="text-base">
+                                    <h2>Data Analytics</h2>
+                                    <small title="Revolutionize learning with Nimu Education, providing advanced tools for efficient educational management system"  className="text-ellipsis text-[#60A283] block">Data Analytics learning... </small>
+                                  </div>
                               </div>
-                                <div className="text-base">
-                                  <h2>IOT & Virtual Reality</h2>
-                                  <small title=""  className="text-ellipsis text-[#04B7C7] block"> Streamline sales... </small>
+                          
+                        </NavLink>
+                        <NavLink to={`/virtual-reality`} className="hover:bg-[#F2F2F2] p-4 block">
+                            <div className="flex gap-3 ">
+                                <div>
+                                  <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
                                 </div>
-                            </div>
-                        
-                      </NavLink>
-                   
-                   </div>
-
-                
-       
-         
-             
-              
+                                  <div className="text-base">
+                                    <h2>IOT & Virtual Reality</h2>
+                                    <small title=""  className="text-ellipsis text-[#04B7C7] block"> Streamline sales... </small>
+                                  </div>
+                              </div>
+                          
+                        </NavLink>
+                     
+                     </div>
+  
                   
-                </div>
+         
+           
+               
+                
+                    
+                  </div>
+                 }
+                
               </div>
 
               <li>
