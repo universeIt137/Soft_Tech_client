@@ -60,21 +60,7 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
-            {
-                path: '/deshboard',
-                element: <DeshBoard></DeshBoard>,
-                children: [
-                    {
-                        path: '/deshboard',
-                        element: <DeshBoardHome></DeshBoardHome>
-                    },
-                    {
-                        path: '/deshboard/add-users',
-                        element: <AddUser></AddUser>
-                    }
-                ]
-
-            },
+           
             {
                     path: '/register',
                     element: <RegisterPage></RegisterPage>
