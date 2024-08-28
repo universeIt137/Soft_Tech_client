@@ -13,7 +13,7 @@ import { FaYoutube } from "react-icons/fa";
 const Footer = () => {
     const subLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723539361/UniverseIT/Logo/vg7riirvaqfi2vuo9xvl.png";
     return (
-        <div className='bg-[#154360]'>
+        <div className='bg-[#154360] mt-3'>
             <div className='container mx-auto py-10 px-10 text-white'>
                 <div className='grid grid-cols-1 lg:grid-cols-12 justify-center '>
                     {/* 1st */}

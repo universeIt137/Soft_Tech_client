@@ -13,6 +13,9 @@ import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDe
 import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
 import DeshBoard from "../components/clientSide/DeshBoard/DeshBoard";
 import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
+import Register from "../components/clientSide/Register/Register";
+import DeshBoardHome from "../components/clientSide/DeshBoardHome/DeshBoardHome";
+import AddUser from "../pages/clientSide/AddUser/AddUser";
 
 
 
@@ -57,10 +60,7 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
-            {
-                path: '/dashboard',
-                element: <DeshBoard></DeshBoard>
-            },
+           
             {
                     path: '/register',
                     element: <RegisterPage></RegisterPage>
