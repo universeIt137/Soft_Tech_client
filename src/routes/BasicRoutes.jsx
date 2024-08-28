@@ -1,6 +1,6 @@
 import {
     createBrowserRouter,
-    
+
 } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/clientSide/homePage/HomePage";
@@ -16,6 +16,7 @@ import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
 import Register from "../components/clientSide/Register/Register";
 import DeshBoardHome from "../components/clientSide/DeshBoardHome/DeshBoardHome";
 import AddUser from "../pages/clientSide/AddUser/AddUser";
+import DashboardLayout from "../layout/DashboardLayout";
 
 
 
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
             {
                 path: '/career/:id',
                 element: <CareerDetailsPage></CareerDetailsPage>,
-                loader: ()=> fetch('jobs.json')
+                loader: () => fetch('jobs.json')
             },
             {
                 path: '/services',
@@ -60,14 +61,31 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
-           
+
             {
-                    path: '/register',
-                    element: <RegisterPage></RegisterPage>
-            }
+                path: '/register',
+                element: <RegisterPage></RegisterPage>
+            },
+            
+
 
         ]
     },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "/dashboard",
+                element:<DeshBoardHome></DeshBoardHome>
+            },
+            {
+                path:"/dashboard/add-user",
+                element: <AddUser></AddUser>
+            }
+        ]
+
+    }
 ]);
 
 export default router;
