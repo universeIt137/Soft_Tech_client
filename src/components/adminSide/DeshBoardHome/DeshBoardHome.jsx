@@ -1,9 +1,9 @@
 import React from 'react';
-import { IoCardOutline } from "react-icons/io5";
 import { FaPaypal } from "react-icons/fa";
+import { IoCardOutline } from "react-icons/io5";
 import { VscIssueDraft } from "react-icons/vsc";
-import ReactBarChart from "../ReactBarChart/ReactBarChart";
-import ReactPieChart from "../ReactPieChart/ReactPieChart";
+import ReactBarChart from "../../clientSide/ReactBarChart/ReactBarChart";
+import ReactPieChart from "../../clientSide/ReactPieChart/ReactPieChart";
 
 const DeshBoardHome = () => {
     return (

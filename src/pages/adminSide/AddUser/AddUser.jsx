@@ -8,10 +8,10 @@ const AddUser = () => {
             </div>
 
             <form className="mt-12">
-            <div className="grid lg:grid-cols-2 gap-5 grid-cols-1 container mx-auto">
+               <div className="grid lg:grid-cols-2 gap-5 grid-cols-1 container mx-auto">
               <div className="col-span-1 space-y-3">
                 <div className="space-y-2">
-                  <label className="text-xl font-medium mb-2" htmlFor="image">
+                  <label className="lg:text-xl font-medium mb-2" htmlFor="image">
                     User Name:
                   </label>
                   <br />
@@ -24,7 +24,7 @@ const AddUser = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xl font-medium mb-2" htmlFor="image">
+                  <label className="lg:text-xl font-medium mb-2" htmlFor="image">
                     Image URL:
                   </label>
                   <br />
@@ -38,7 +38,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="tourist_spot_name"
                   >
                     Tourists Spot Name:
@@ -56,7 +56,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="country_name"
                   >
                     Country Name:
@@ -72,7 +72,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="location"
                   >
                     Location:
@@ -91,7 +91,7 @@ const AddUser = () => {
 
               <div className="col-span-1 space-y-3">
                 <div className="space-y-2">
-                  <label className="text-xl font-medium mb-2" htmlFor="image">
+                  <label className="lg:text-xl font-medium mb-2" htmlFor="image">
                     User Email :
                   </label>
                   <br />
@@ -105,7 +105,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="average_cost"
                   >
                     Average Cost:
@@ -121,7 +121,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="seasonality"
                   >
                     Seasonality:
@@ -140,7 +140,7 @@ const AddUser = () => {
 
                 <div className="space-y-2">
                   <label
-                    className="text-xl font-medium mb-2"
+                    className="lg:text-xl font-medium mb-2"
                     htmlFor="total_visitors_per_year"
                   >
                     Total Visitors Per Year:
@@ -157,7 +157,7 @@ const AddUser = () => {
 
                 <div className="space-y-3">
                 <label
-                  className="text-xl font-medium"
+                  className="lg:text-xl font-medium"
                   htmlFor="short_description"
                 >
                   Short Description:
@@ -174,7 +174,7 @@ const AddUser = () => {
               </div>
 
               </div>
-            </div>
+               </div>
 
             <input
                 className="bg-green-400 w-full mx-auto h-[50px] text-2xl mt-10 rounded-lg"

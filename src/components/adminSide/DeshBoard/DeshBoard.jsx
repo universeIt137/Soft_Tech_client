@@ -15,22 +15,30 @@ import { FaPlusCircle } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
-
-
-
-
-
 import './DeshBoard.css'
 
 
-const Sidebar = () => {
+
+
+
+
+
+
+
+
+const DeshBoard = () => {
     const [showUser, setShowUser] = useState(false);
-    return (
-        <>
-            <div className="leftSide w-[22%] h-[100vh]  shadow-xl">
+
+  
+
+  return (
+    <div className="">
+       <div className="mt-16 py-3  lg:h-[100vh] bg-[#F5F7FA]">
+          <div className="flex max-w-screen-2xl mx-auto gap-3 lg:gap-5">
+              <div className="leftSide w-[22%] h-[100vh]  shadow-xl">
                 <div className="px-5 py-5  space-y-6 text-start">
                     <Link
-                        to={`/deshboard`}
+                        to={`/dashboard`}
                         className="flex px-8 items-center gap-5                                    hover:border-l-4 border-l-4 border-l-transparent hover:border-l-universe_secendary active:border-l-4 active:border-l-universe_secendary rounded-tl-md rounded-bl-md hover:text-universe_secendary "
                     >
                         <div>
@@ -52,7 +60,7 @@ const Sidebar = () => {
 
                     <div className={`${showUser ? 'space-y-6 bg-gray-200 rounded-lg py-2' : 'hidden'}`}>
                         <Link
-                            to={`/deshboard/add-users`}
+                            to={`/dashboard/add-users`}
                             className="flex px-8 items-center gap-5                                    hover:border-l-4 border-l-4 border-l-transparent hover:border-l-universe_secendary active:border-l-4 active:border-l-universe_secendary rounded-tl-md rounded-bl-md hover:text-universe_secendary "
                         >
                             <div>
@@ -62,7 +70,7 @@ const Sidebar = () => {
                         </Link>
 
                         <Link
-                            to={`/deshboard/manage-user`}
+                            to={`/dashboard/manage-user`}
                             className="flex px-8 items-center gap-5                                    hover:border-l-4 border-l-4 border-l-transparent hover:border-l-universe_secendary active:border-l-4 active:border-l-universe_secendary rounded-tl-md rounded-bl-md hover:text-universe_secendary "
                         >
                             <div>
@@ -153,9 +161,15 @@ const Sidebar = () => {
                         <p className="text-xl  ml-5 ">Setting</p>
                     </Link>
                 </div>
-            </div>
-        </>
-    );
+             </div>
+             <div className="px-5">
+                <Outlet></Outlet>
+             </div>
+
+      </div>
+      </div>
+    </div>
+  );
 };
 
-export default Sidebar;
+export default DeshBoard;
