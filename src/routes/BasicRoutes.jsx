@@ -1,21 +1,19 @@
 import {
     createBrowserRouter,
-
 } from "react-router-dom";
-import MainLayout from "../layout/MainLayout";
-import HomePage from "../pages/clientSide/homePage/HomePage";
-import AboutUsPage from "../pages/clientSide/aboutUsPage/AboutUsPage";
-import ContactUsPage from "../pages/clientSide/ContactUsPage/ContactUsPage";
-import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
-import CareerDetailsPage from "../pages/clientSide/CareerDetailsPage/CareerDetailsPage";
+// import DeshBoard from "../components/adminSide/DeshBoard/DeshBoard";
+import DeshBoardHome from "../components/adminSide/DeshBoardHome/DeshBoardHome";
 import ServicePage from "../components/clientSide/ServiceComponent/Service/Service";
-import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
+import MainLayout from "../layout/MainLayout";
+import AddUser from "../pages/adminSide/AddUser/AddUser";
+import AboutUsPage from "../pages/clientSide/aboutUsPage/AboutUsPage";
+import CareerDetailsPage from "../pages/clientSide/CareerDetailsPage/CareerDetailsPage";
+import CareerPage from "../pages/clientSide/CareerPage/CareerPage";
+import ContactUsPage from "../pages/clientSide/ContactUsPage/ContactUsPage";
+import HomePage from "../pages/clientSide/homePage/HomePage";
 import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
-import DeshBoard from "../components/clientSide/DeshBoard/DeshBoard";
 import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
-import Register from "../components/clientSide/Register/Register";
-import DeshBoardHome from "../components/clientSide/DeshBoardHome/DeshBoardHome";
-import AddUser from "../pages/clientSide/AddUser/AddUser";
+import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
 import DashboardLayout from "../layout/DashboardLayout";
 
 
@@ -61,6 +59,22 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
+            // {
+            //     path: '/dashboard',
+            //     element: <DeshBoard></DeshBoard>,
+          
+            //     children: [
+            //         {
+            //             path: '/dashboard',
+            //             element: <DeshBoardHome></DeshBoardHome>
+            //         },
+            //         {
+            //             path: '/dashboard/add-users',
+            //             element: <AddUser></AddUser>
+            //         }
+            //     ]
+
+            // },
 
             {
                 path: '/register',
@@ -80,7 +94,7 @@ const router = createBrowserRouter([
                 element:<DeshBoardHome></DeshBoardHome>
             },
             {
-                path:"/dashboard/add-user",
+                path:"/dashboard/add-users",
                 element: <AddUser></AddUser>
             }
         ]
