@@ -10,9 +10,6 @@ import NewsLetter from "../../../components/clientSide/HomeComponent/NewsLetter/
 
 
 
-
-
-
 const HomePage = () => {
     return (
         <div className="mt-12">

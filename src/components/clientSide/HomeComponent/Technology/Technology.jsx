@@ -2,7 +2,7 @@
 
 const Technology = () => {
     return (
-        <div className="bg-[#F8F9FA]">
+        <div className="">
             <div className="container mx-auto py-20 px-10 lg:px-0">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold ">Technology Partners</h2>
