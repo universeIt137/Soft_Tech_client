@@ -6,12 +6,15 @@ const ContactUs = () => {
     return (
         <div className="bg-cover bg-center min-h-screen flex items-center justify-center">
             <div className="container mx-auto py-20 px-6 lg:px-0 bg-white bg-opacity-80 rounded-lg">
-                <h2 className="text-center text-2xl lg:text-4xl font-bold text-universe_secondary mb-10">&quot;Let&apos;s connect and create something amazing&quot;</h2>
+                {/* <h2 className="text-center text-2xl lg:text-4xl font-bold text-universe_secondary mb-10">&quot;Let&apos;s connect and create something amazing&quot;</h2> */}
 
                 <div className="flex flex-col lg:flex-row items-center lg:space-x-10 space-y-10 lg:space-y-0">
                     {/* Left Section */}
                     <div className="flex-1 space-y-6 lg:space-y-10">
-                        <h2 className="text-3xl lg:text-4xl font-semibold text-text_hover">Want to start a project with us?</h2>
+                        {/* <h2 className="text-3xl lg:text-4xl font-semibold text-text_hover">Want to start a project with us?</h2> */}
+                        <h2 className=" text-2xl lg:text-4xl font-bold text-universe_secondary mb-10">Let's connect and create something amazing</h2>
+
+                        
                         <h1 className="text-text_primari text-4xl lg:text-6xl font-bold">Let's talk!</h1>
                     </div>
 
