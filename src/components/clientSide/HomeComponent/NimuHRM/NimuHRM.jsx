@@ -5,7 +5,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const NimuHRM = () => {
     return (
-        <div className="bg-[#2980B9] py-24 px-10">
+        <div className="bg-bg_btn_hover py-24 px-10">
             <div className="container mx-auto flex gap-5 flex-col lg:flex-row  text-white">
                 {/* left side */}
                 <div className="flex flex-col lg:flex-row md:flex-row gap-5 pr-5 pt-5 justify-center items-center lg:items-start md:items-start ">

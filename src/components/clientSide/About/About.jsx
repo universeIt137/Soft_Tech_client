@@ -18,31 +18,31 @@ const About = () => {
             </div>
 
             <div className="lg:w-3/5 text-justify mr-10 mt-5">
-                <h1 className="text-3xl md:text-4xl mb-6 uppercase font-semibold"><span className="text-blue-800 underline ">About</span> Alpha Net</h1>
+                <h1 className="text-3xl md:text-4xl mb-6 uppercase font-semibold"><span className="text-text_blue underline ">About</span> Alpha Net</h1>
                 <h3 className="text-xl mb-6">Alpha Net's commitment to serving quality service has gained the respect of customers and partners worldwide.</h3>
                 <p className="text-xl mb-6">Alpha Net has been serving Enterprise IT Solutions in Bangladesh since 2001. Currently serving thousands of customers worldwide including Bangladesh and the USA. All services are using many Government and Corporate organization. Alpha Net builds and manages own Server infrastructure in Bangladesh and the USA. At present, Alpha Net is working to extend infrastructure in India, Canada, South Africa, Singapore and Mexico.</p>
                 <div className="lg:flex justify-between gap-6">
                     <div className="">
                         <div className="flex items-center gap-3 text-lg">
-                            <FaCheckDouble className="text-[#3691d6]"></FaCheckDouble>
-                            <h1 className="mb-4">Worked with high-end clientele.</h1>
+                            <FaCheckDouble className="text-text_primari"></FaCheckDouble>
+                            <h1 className="mb-4 text-text_blue">Worked with high-end clientele.</h1>
                         </div>
 
                         <div className="flex items-center gap-3 text-lg">
-                            <FaCheckDouble className="text-[#3691d6] "></FaCheckDouble>
-                            <h1 className="mb-4">5000+ Customers in 50+ Countries</h1>
+                            <FaCheckDouble className="text-text_primari "></FaCheckDouble>
+                            <h1 className="mb-4 text-text_blue">5000+ Customers in 50+ Countries</h1>
                         </div>
                     </div>
 
                      <div>
                         <div className="flex items-center gap-3 text-lg">
-                            <FaCheckDouble className="text-[#3691d6]"></FaCheckDouble>
-                            <h1 className="mb-4">Over 23 years on the market</h1>
+                            <FaCheckDouble className="text-text_primari"></FaCheckDouble>
+                            <h1 className="mb-4 text-text_blue">Over 23 years on the market</h1>
                         </div>
                                           
                         <div className="flex items-center gap-3 text-lg">
-                            <FaCheckDouble className="text-[#3691d6]"></FaCheckDouble>
-                            <h1>100% client satisfaction</h1>
+                            <FaCheckDouble className="text-text_primari"></FaCheckDouble>
+                            <h1 className="text-text_blue">100% client satisfaction</h1>
                         </div>  
                     </div>                   
                 </div>

@@ -2,7 +2,7 @@
 
 const NewsLetter = () => {
     return (
-        <div className="bg-[#AED6F1]">
+        <div className="bg-bg_btn_light">
             <div className="container mx-auto py-20 px-10 lg:px-0">
                 <div className="text-center space-y-4">
                    <div className="w-32 text-center mx-auto">

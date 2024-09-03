@@ -44,7 +44,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="bg-gradient-to-r from-white to-[#aed6f1] fixed top-0 w-full z-50 ">
+    <div className="bg-gray-50 fixed top-0 w-full z-50 ">
       <header className="container mx-auto py-4 px-3">
         <nav className="flex gap-10 items-center justify-between md:justify-between lg:justify-start">
           <div className=" ">
@@ -60,13 +60,13 @@ const Navbar = () => {
           <div className="hidden md:hidden lg:block">
             <ul className="flex gap-8 *:text-xl *:font-medium">
               <li>
-                <NavLink to={`/`} className="active:text-[#0079b3]">Home</NavLink>
+                <NavLink to={`/`} className="active:text-text_primari">Home</NavLink>
               </li>
 
               <div onMouseEnter={handleMouseEnterProduct}
                     onMouseLeave={handleMouseLeaveProduct}  className="dropdown-container">
                 <div    className="flex gap-2 items-center">
-                  <NavLink to={`/products`} className={`active:text-violet-500`}>
+                  <NavLink to={`/products`} className={`active:text-text_primari `}>
                     Products
                   </NavLink>
                  <span onClick={()=>setUpDown(!upDown)}>

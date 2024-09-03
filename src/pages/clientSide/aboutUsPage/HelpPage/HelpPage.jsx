@@ -1,41 +1,38 @@
 import React from 'react';
-import "./HelpPage.css";
-import { IoIosText,IoMdMail } from "react-icons/io";
+import { IoIosText, IoMdMail } from "react-icons/io";
 import { MdOutlineWifiCalling3 } from "react-icons/md";
 
-
 const HelpPage = () => {
-    return (
-        <div className='mb-14'>
-            <div className='h-[500px] sm:h-[450px] bg-cover bg-center px-2 py-14 sm:px-5 sm:py-20 lg:px-32 lg:py-20 xl:px-52 xl:py-20' style={{backgroundImage: "url('https://www.alpha.net.bd/Content/img/bg_dedicatedserver.jpg')"}}>
-             
-             <div className=''>
-                <div className='home  h-[390px] sm:h-[280px] flex flex-col justify-center items-center rounded-lg]'>
-                    <h1 className='text-4xl text-white font-semibold mb-6'>Need Help?</h1>
-                    <p className='text-justify px-10 text-md text-gray-300 mb-4'>If you need any help to select the right solution for your business, please call us at 09613-250250 within 9:00AM- 9:00PM or you can start a live chat. Alpha Net's support team is available 24/7 via live chat.</p>
-
-                    <div className='flex gap-1 flex-wrap'>
-                        <div className='bttn2 bttn2 flex items-center'>
-                            <IoIosText className=' text-xl mr-1'></IoIosText>
-                            <button >Start Live Chat</button>
-                        </div>
-
-                        <div className='bttn3 bttn3 flex items-center'>
-                            <IoMdMail className=' text-xl mr-1'></IoMdMail>
-                            <button>Mail Now</button>
-                        </div>
-                        
-                        <div className='bttn4 bttn4 flex items-center'>
-                            <MdOutlineWifiCalling3 className=' text-xl mr-1'></MdOutlineWifiCalling3>
-                            <button>Call Now</button>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-            </div>
+  return (
+    <div className="min-h-screen bg-gray-300 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full">
+        <h1 className="text-4xl font-bold text-text_primari mb-6 text-center">Need Help?</h1>
+        
+        <p className="text-gray-700 mb-8 text-center">
+          If you need any help to select the right solution for your business, please call us at 
+          <span className="font-semibold text-text_blue"> 09613-250250 </span> 
+          within 9:00AM- 9:00PM or you can start a live chat. Alpha Net's support team is available 24/7 via live chat.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <button className="flex items-center justify-center bg-bg_btn_primary hover:bg-bg_btn_hover focus:bg-bg_btn_focus text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out">
+            <IoIosText className="mr-2 text-xl" />
+            <span>Start Live Chat</span>
+          </button>
+          
+          <button className="flex items-center justify-center bg-bg_btn_light hover:bg-bg_btn_hover hover:text-white text-text_primari font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out">
+            <IoMdMail className="mr-2 text-xl" />
+            <span>Mail Now</span>
+          </button>
+          
+          <button className="flex items-center justify-center bg-text_blue hover:bg-text_hover text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out">
+            <MdOutlineWifiCalling3 className="mr-2 text-xl" />
+            <span>Call Now</span>
+          </button>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default HelpPage;

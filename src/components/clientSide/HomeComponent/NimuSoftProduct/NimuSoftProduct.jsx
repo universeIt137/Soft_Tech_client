@@ -11,7 +11,7 @@ const NimuSoftProduct = () => {
         overflow: 'hidden',
     }
     return (
-        <div className="bg-[#F8F9FA] py-20">
+        <div className="bg-[#ffffff] py-20">
             <div className='container mx-auto px-5 flex-grow'>
                   <div>
                     <h1 className="text-3xl font-semibold text-center py-10">Learn what Nimusoft products can do for you</h1>
