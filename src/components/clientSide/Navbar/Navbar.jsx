@@ -2,7 +2,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { IoMenuSharp } from "react-icons/io5";
 
@@ -41,6 +41,13 @@ const Navbar = () => {
   };
 
   const mainLogo = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png";
+
+useEffect(() => {
+    window.history.replaceState(null, null, window.location.href);
+    window.scrollTo(0, 0);
+}, []);
+
+window.scrollTo(0,0)
 
 
   return (

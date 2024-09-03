@@ -6,6 +6,9 @@ const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
 
+  window.scrollTo(0,0)
+
+
   return (
     <div className="py-5 flex items-center justify-center min-h-screen bg-gray-100">
       <div className="lg:w-[60vw] w-[90vw] bg-white shadow-lg rounded-lg overflow-hidden">
