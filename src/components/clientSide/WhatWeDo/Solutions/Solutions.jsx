@@ -8,29 +8,29 @@ const Solutions = () => {
     const [showingSolutions, setShowingSolutions] = useState('Solutions')
 
     const solutionsStyle = (name) => `transition-all duration-300 md:flex items-center gap-10 mt-12  ${showingSolutions === name ? 'opacity-100 z-10' : 'opacity-0'}`
-    const buttonStyle = `flex items-center gap-2 my-10 ml-[10%] mr-[-70px] py-4 rounded-lg  hover:bg-yellow-500 transition-all duration-300 active:scale-90 cursor-pointer`
+    const buttonStyle = `flex items-center px-4 gap-2 my-10 ml-[10%] mr-[-70px] py-4 rounded-lg  hover:bg-text_primari transition-all duration-300 active:scale-90 cursor-pointer`
 
     return (
 
 
         <div className='w-11/12 grid grid-cols-1 lg:grid-cols-3 mx-auto shadow-2xl  lg:gap-5 p-2 xl:pb-10'>
             <div className='bg-[#004080]   w-[85%] relative -top-12 -left-6 text-white md:-top-10 md:-left-10 rounded-lg '>
-                <div onClick={() => setShowingSolutions('Solutions')} className={`${buttonStyle} ${showingSolutions ==='Solutions' && 'bg-yellow-500'}`}>
+                <div onClick={() => setShowingSolutions('Solutions')} className={`${buttonStyle} ${showingSolutions ==='Solutions' && 'bg-text_primari'}`}>
                     <GiGemChain className='text-2xl'></GiGemChain>
                     <button className='text-xl'>Solutions</button>
                 </div>
 
-                <div onClick={() => setShowingSolutions('Infrastructure')} className={`${buttonStyle} ${showingSolutions ==='Infrastructure' && 'bg-yellow-500'}`}>
+                <div onClick={() => setShowingSolutions('Infrastructure')} className={`${buttonStyle} ${showingSolutions ==='Infrastructure' && 'bg-text_primari'}`}>
                     <GiBrainTentacle className='text-2xl'></GiBrainTentacle>
                     <button className='text-xl'>Infrastructure</button>
                 </div>
 
-                <div onClick={() => setShowingSolutions('Platforms')} className={`${buttonStyle} ${showingSolutions ==='Platforms' && 'bg-yellow-500'}`}>
+                <div onClick={() => setShowingSolutions('Platforms')} className={`${buttonStyle} ${showingSolutions ==='Platforms' && 'bg-text_primari'}`}>
                     <FaComputer className='text-2xl'></FaComputer>
                     <button className='text-xl'>Platforms</button>
                 </div>
 
-                <div onClick={() => setShowingSolutions('Friendly Support')} className={`${buttonStyle} ${showingSolutions ==='Friendly Support' && 'bg-yellow-500'}`}>
+                <div onClick={() => setShowingSolutions('Friendly Support')} className={`${buttonStyle} ${showingSolutions ==='Friendly Support' && 'bg-text_primari'}`}>
                     <IoPersonAdd className='text-2xl'></IoPersonAdd>
                     <button className='text-xl text-start'>Friendly Support</button>
                 </div>

@@ -17,14 +17,8 @@ module.exports = {
         text_blue: '#004cae',
         text_hover: '#00449d'
       },
-      keyframes: {
-        gradientX: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
-      },
-      animation: {
-        'gradient-x': 'gradientX 10s ease infinite',
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(135deg, #004cad 0%, #f78230 100%)',
       },
     },
   },

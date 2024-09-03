@@ -6,11 +6,11 @@ const Awards = () => {
             <div className='w-11/12 mx-auto mb-20'>
                 <div className='lg:flex gap-10'>
                     <div className='lg:w-1/2 flex flex-col justify-center'>
-                        <h1 className='text-2xl sm:text-3xl uppercase mb-5 font-bold'>Industry <span className='text-blue-800 underline '>Awards</span> and Recognition</h1>
+                        <h1 className='text-2xl sm:text-3xl uppercase mb-5 font-bold'>Industry <span className='text-text_primari underline '>Awards</span> and Recognition</h1>
                         <p className='text-lg text-justify'>Alpha Net sincerely feel that all service is unique, and Alpha Net has achieve honors to prove it. Every year, Alpha Net has been recognized by industry leaders and awarded for everything from outstanding in-house support to being an eco-friendly IT Solutions Company.</p>
                     </div>                    
 
-                        <div className='lg:w-1/2 lg:bg-[#175089]'>
+                        <div className='lg:w-1/2 lg:bg-text_primari'>
                             <div className='flex gap-8 sm:py-12 sm:px-12'>
                                 <div className='hero lg:w-[900px] xl:w-full'>
                                     <img src="https://res.cloudinary.com/dgamcpb88/image/upload/v1723545955/soft%20tech/alpha%20net%20service/partnars/jixykyme6jih1r0jdpzp.jpg" alt="" />

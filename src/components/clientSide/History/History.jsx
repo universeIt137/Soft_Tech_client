@@ -3,7 +3,7 @@ import React from 'react';
 const History = () => {
     return (
         <div className='bg-[#F5F5F5] py-10'>
-            <div className='py-14 px-10 bg-[#18528C] mx-4 lg:mx-48 xl:mx-60 text-white'>
+            <div className='py-14 px-10 bg-text_primari mx-4 lg:mx-48 xl:mx-60 text-white'>
                 <h1 className='text-center text-2xl lg:text-4xl uppercase mb-5'><span className='underline'>History</span> of Alpha Net</h1>
 
                 <p className='text-justify text-xl mb-5'>Alpha Net was founded in 2001 by Abu Sufian Haider from USA Orlando Florida. From the establishment of Alpha Net with a goal to serve the highest quality Hosting Solutions in Bangladesh & Worldwide.</p>
