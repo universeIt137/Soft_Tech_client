@@ -10,12 +10,8 @@ const ContactUs = () => {
 
                 <div className="flex flex-col lg:flex-row items-center lg:space-x-10 space-y-10 lg:space-y-0">
                     {/* Left Section */}
-                    <div className="flex-1 space-y-6 lg:space-y-10">
-                        {/* <h2 className="text-3xl lg:text-4xl font-semibold text-text_hover">Want to start a project with us?</h2> */}
-                        <h2 className=" text-2xl lg:text-4xl font-bold text-universe_secondary mb-10">Let's connect and create something amazing</h2>
-
-                        
-                        <h1 className="text-text_primari text-4xl lg:text-6xl font-bold">Let's talk!</h1>
+                    <div className="flex-1 hidden lg:block space-y-6 lg:space-y-10">
+                        <img src="https://i.postimg.cc/CLDQgBNM/contact-img.png" alt="contactImg" className="w-full" />
                     </div>
 
                     {/* Right Section */}
@@ -61,7 +57,7 @@ const ContactUs = () => {
                             <div className="mt-6">
                                 <label className="inline-flex items-center">
                                     <input type="checkbox" defaultChecked className="checkbox" />
-                                    <span className="text-gray-800">By submitting, you agree to receive marketing emails from Nimusoft Technologies Ltd. Unsubscribe anytime. View our <Link to="/privacy-policy" className="text-bg_btn_primary hover:text-bg_btn_hover">Privacy Policy.</Link>.</span>
+                                    <span className="text-gray-800 ml-2">By submitting, you agree to receive marketing emails from Nimusoft Technologies Ltd. Unsubscribe anytime. View our <Link to="/privacy-policy" className="text-bg_btn_primary hover:text-bg_btn_hover">Privacy Policy.</Link>.</span>
                                 </label>
                             </div>
 
