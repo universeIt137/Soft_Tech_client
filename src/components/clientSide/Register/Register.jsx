@@ -7,7 +7,7 @@ const Register = () => {
   const [isLoader, setIsLoader] = useState(false);
 
   return (
-    <div className="min-h-screen flex py-5  items-center justify-center bg-[#F4F6F9] ">
+    <div className="min-h-screen flex py-5  items-center justify-center  ">
       <div className="container mx-auto  w-3/5 bg-white rounded-lg shadow-lg my-8">
       <div className="bg-custom-gradient p-4 rounded-t-md text-center">
           <h2 className="text-3xl font-semibold text-white">Register to your account</h2>
