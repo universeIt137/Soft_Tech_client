@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const slideInVariants = {
+  hidden: { x: '100%', opacity: 0 },
+  visible: { x: 0, opacity: 1 },
+};
 
 const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
@@ -12,12 +18,28 @@ const Login = () => {
     <div className="py-5 flex items-center justify-center min-h-screen">
       <div className="lg:w-[70vw] w-[90vw] bg-white shadow-lg rounded-lg overflow-hidden flex flex-col lg:flex-row">
         {/* Left side with image */}
-        <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-gray-100 p-6">
-          <img src='https://i.postimg.cc/CLDQgBNM/contact-img.png' alt="LoginIllustration" className="max-w-full h-auto" />
-        </div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={slideInVariants}
+          transition={{ duration: 0.5 }}
+          className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
+        >
+          <img
+            src="https://i.postimg.cc/RFZ24H5Y/11073076-copy.png"
+            alt="LoginIllustration"
+            className="max-w-full h-auto"
+          />
+        </motion.div>
 
         {/* Right side with form */}
-        <div className="lg:w-1/2 w-full p-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={slideInVariants}
+          transition={{ duration: 0.5 }}
+          className="lg:w-1/2 w-full p-6"
+        >
           <div className="bg-custom-gradient p-4 text-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg">
             <h2 className="text-3xl font-semibold text-white">Login to your account</h2>
             <p className="text-white mt-2">
@@ -109,7 +131,7 @@ const Login = () => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

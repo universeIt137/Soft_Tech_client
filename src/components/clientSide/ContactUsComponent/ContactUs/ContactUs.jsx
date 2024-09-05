@@ -1,21 +1,42 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import './ContactUs.css'; // Importing the custom CSS file
 import { FaAnglesRight } from "react-icons/fa6";
+
+const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+};
+
+const slideInVariants = {
+    hidden: { x: '-100%', opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+};
 
 const ContactUs = () => {
     return (
         <div className="bg-cover bg-center min-h-screen flex items-center justify-center">
             <div className="container mx-auto py-20 px-6 lg:px-0 bg-white bg-opacity-80 rounded-lg">
-                {/* <h2 className="text-center text-2xl lg:text-4xl font-bold text-universe_secondary mb-10">&quot;Let&apos;s connect and create something amazing&quot;</h2> */}
-
                 <div className="flex flex-col lg:flex-row items-center lg:space-x-10 space-y-10 lg:space-y-0">
                     {/* Left Section */}
-                    <div className="flex-1 hidden lg:block space-y-6 lg:space-y-10">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={slideInVariants}
+                        transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
+                        className="flex-1 hidden lg:block space-y-6 lg:space-y-10"
+                    >
                         <img src="https://i.postimg.cc/CLDQgBNM/contact-img.png" alt="contactImg" className="w-full" />
-                    </div>
+                    </motion.div>
 
                     {/* Right Section */}
-                    <div className="flex-1 bg-white p-8 lg:p-12 rounded-lg shadow-md">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeInVariants}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="flex-1 bg-white p-8 lg:p-12 rounded-lg shadow-md"
+                    >
                         <div className="space-y-8">
                             <h2 className="text-3xl font-bold text-text_hover mb-6">Personal Information</h2>
 
@@ -66,7 +87,7 @@ const ContactUs = () => {
                                 <FaAnglesRight className="text-2xl" /> Submit
                             </button>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
