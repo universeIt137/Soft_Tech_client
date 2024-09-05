@@ -294,16 +294,8 @@ const Navbar = () => {
 
               </div>
 
-              {/* <li>
-                <NavLink to={"/about-us"}>About Us</NavLink>
-              </li>
-
-              <li>
-                <NavLink to={`/contact-us`}>Contact Us</NavLink>
-              </li> */}
-              <li>
-                <NavLink to={`/protfolio`}>Protfolio</NavLink>
-              </li>
+          
+             
               <li>
                 <NavLink to={`/login`}>Portfolio</NavLink>
               </li>
