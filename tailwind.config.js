@@ -15,7 +15,9 @@ module.exports = {
         bg_btn_focus: '#c25203', 
         bg_btn_light: '#fde8d9',
         text_blue: '#004cae',
-        text_hover: '#00449d'
+        text_hover: '#00449d',
+        dashboard_color: '#ee6403',
+        dashboard_hover:'#d65a03',
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(135deg, #004cad 0%, #f78230 100%)',

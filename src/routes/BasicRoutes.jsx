@@ -15,6 +15,7 @@ import LoginPage from "../pages/clientSide/LoginPage/LoginPage";
 import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
 import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
 import DashboardLayout from "../layout/DashboardLayout";
+import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 
 
 
@@ -76,28 +77,22 @@ const router = createBrowserRouter([
 
             // },
 
+
             {
                 path: '/register',
                 element: <RegisterPage></RegisterPage>
             },
-            
+            {
+                path: '/portfolio',
+                element: <PortfolioPage></PortfolioPage>
+            }
 
 
         ]
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
-        children: [
-            {
-                path: "/dashboard",
-                element:<DeshBoardHome></DeshBoardHome>
-            },
-            {
-                path:"/dashboard/add-users",
-                element: <AddUser></AddUser>
-            }
-        ]
+        element: <DashboardLayout></DashboardLayout>
 
     }
 ]);
