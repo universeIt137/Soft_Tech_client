@@ -19,7 +19,7 @@ const JobCard = ({job}) => {
         <Link to={`/career/${id}`} >
            <div className="border-y border-gray-400 hover:bg-slate-200 duration-75 px-2 cursor-pointer py-4">
                             <div className="flex items-center justify-between">
-                                <h1 className="text-text_blue text-3xl font-semibold">{job_title}</h1>
+                                <h1 className="text-text_primari text-3xl font-semibold">{job_title}</h1>
                                 <CiBookmark />
                             </div>
                             <div className="flex items-center text-sm gap-2 pt-2">

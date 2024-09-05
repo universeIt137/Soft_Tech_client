@@ -153,7 +153,7 @@ const Career = () => {
                         {/* badge */}
                         <div className="flex justify-between md:flex-row flex-col lg:flex-row space-y-2 lg:space-y-0 px-5 py-6">
                            <div className="flex gap-4 items-center">
-                                <CiBadgeDollar className="text-yellow-500 text-2xl"></CiBadgeDollar>
+                                <CiBadgeDollar className="text-text_primari text-2xl"></CiBadgeDollar>
                                     <h2 className="text-xl font-bold">Featured</h2>
                            </div>
 

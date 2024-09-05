@@ -16,6 +16,7 @@ const Navbar = () => {
 
 
   const [isDropdownVisibleProduct, setIsDropdownVisibleProduct] = useState(false);
+  
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   let hideTimeoutProduct;
   let hideTimeout;
@@ -24,6 +25,30 @@ const Navbar = () => {
     clearTimeout(hideTimeoutProduct);
     setIsDropdownVisibleProduct(true);
   };
+  const handleMouseLeaveProduct = () => {
+    hideTimeoutProduct = setTimeout(() => {
+      setIsDropdownVisibleProduct(false);
+    }, 300); // 300ms delay before hiding the dropdown
+  };
+
+  //get in touch
+  const [isDropdownVisibleGetInTouch, setIsDropdownVisibleGetInTouch] = useState(false);
+  let hideTimeoutGetInTouch;
+  
+  const handleMouseEnterGetInTouch = () => {
+    clearTimeout(hideTimeoutGetInTouch);
+    setIsDropdownVisibleGetInTouch(true);
+  };
+  
+  const handleMouseLeaveGetInTouch = () => {
+    hideTimeoutGetInTouch = setTimeout(() => {
+      setIsDropdownVisibleGetInTouch(false);
+    }, 300); // Delay before hiding the dropdown
+  };
+
+
+
+
   const handleMouseEnter = () => {
     clearTimeout(hideTimeout);
     setIsDropdownVisible(true);
@@ -32,11 +57,6 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     hideTimeout = setTimeout(() => {
       setIsDropdownVisible(false);
-    }, 300); // 300ms delay before hiding the dropdown
-  };
-  const handleMouseLeaveProduct = () => {
-    hideTimeoutProduct = setTimeout(() => {
-      setIsDropdownVisibleProduct(false);
     }, 300); // 300ms delay before hiding the dropdown
   };
 
@@ -274,19 +294,63 @@ const Navbar = () => {
 
               </div>
 
-              <li>
+              {/* <li>
                 <NavLink to={"/about-us"}>About Us</NavLink>
               </li>
 
               <li>
                 <NavLink to={`/contact-us`}>Contact Us</NavLink>
-              </li>
+              </li> */}
               <li>
-                <NavLink to={`/career`}>Career</NavLink>
+                <NavLink to={`/protfolio`}>Protfolio</NavLink>
               </li>
               <li>
                 <NavLink to={`/login`}>Portfolio</NavLink>
               </li>
+
+
+
+
+              <div
+    onMouseEnter={handleMouseEnterGetInTouch}
+    onMouseLeave={handleMouseLeaveGetInTouch}
+    className="dropdown-container relative"
+  >
+    <div className="flex gap-2 items-center">
+      <NavLink className={`active:text-violet-500`}>
+        Get in Touch
+      </NavLink>
+      <span onClick={() => setUpDownService(!upDownService)}>
+        {upDownService ? (
+          <IoIosArrowUp className="text-xl" />
+        ) : (
+          <IoIosArrowDown className="text-xl" />
+        )}
+      </span>
+    </div>
+
+    {isDropdownVisibleGetInTouch && (
+      <div className="shadow-xl top-[60px] left-0 absolute min-w-[400px] p-3 z-50 bg-white">
+        {/* Dropdown content for Get in Touch */}
+        <NavLink to="/about-us" className="hover:bg-[#F2F2F2] p-4 block">
+          About Us            
+        </NavLink>
+        <NavLink to="/contact-us" className="hover:bg-[#F2F2F2] p-4 block">
+          Contact Us            
+        </NavLink>
+        <NavLink to="/career" className="hover:bg-[#F2F2F2] p-4 block">
+          Carrer            
+        </NavLink>
+        {/* Add more NavLinks for Get in Touch options... */}
+      </div>
+    )}
+  </div>
+
+
+
+
+
+              
             </ul>
           </div>
 
@@ -430,6 +494,9 @@ const Navbar = () => {
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
             <NavLink to={`/about-us`}>About US</NavLink>
+          </li>
+          <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
+            <NavLink to={`/about-us`}>Get In touch</NavLink>
           </li>
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
