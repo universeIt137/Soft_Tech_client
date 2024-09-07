@@ -337,7 +337,10 @@ const Navbar = () => {
                       Contact Us
                     </NavLink>
                     <NavLink to="/career" className="hover:bg-[#F2F2F2] p-4 block">
-                      Carrer
+                      Career
+                    </NavLink>
+                    <NavLink to="/career" className="hover:bg-[#F2F2F2] p-4 block">
+                      Company Profile
                     </NavLink>
                     {/* Add more NavLinks for Get in Touch options... */}
                   </div>

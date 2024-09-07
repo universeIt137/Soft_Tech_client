@@ -19,17 +19,34 @@ const OurTeam = () => {
                     <p className="lg:text-xl pt-5">Meet the Innovators Behind Our Cutting-Edge Solutions</p>
                 </div>
 
-                
+
 
                 <div className="pb-20">
                     <Swiper
-                        slidesPerView={3}
+                        
                         spaceBetween={30}
                         freeMode={true}
                         navigation={true}
                         pagination={true}
                         modules={[FreeMode, Pagination, Navigation]}
                         className="mySwiper"
+                        breakpoints={{
+                            // when window width is >= 640px (mobile view)
+                            640: {
+                                slidesPerView: 1,
+                                spaceBetween: 20,
+                            },
+                            // when window width is >= 768px (tablet view)
+                            768: {
+                                slidesPerView: 1,
+                                spaceBetween: 30,
+                            },
+                            // when window width is >= 1024px (desktop view)
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 30,
+                            },
+                        }}
                     >
                         <SwiperSlide>
                             <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-10">
@@ -103,9 +120,6 @@ const OurTeam = () => {
                                 </div>
                             </div>
                         </SwiperSlide>
-
-                        
-                        
                     </Swiper>
                 </div>
             </div>

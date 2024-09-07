@@ -20,7 +20,7 @@ const Footer = () => {
                             <p className="flex items-center gap-2"><FaLocationDot /> 5/A, Ga-130/B, Progoti Sharani, Middle</p>
                             <p>Badda, Gulshan, Badda, Dhaka-1212.</p>
                             <p className="flex items-center gap-2"><IoCall />  +88 01616 500515</p>
-                            <p className="flex items-center gap-2"> <IoMdMailUnread /> info@nimusoft.com</p>
+                            <p className="flex items-center gap-2"> <IoMdMailUnread /> info@softTech.com</p>
                         </div>
                     </div>
 
@@ -40,11 +40,11 @@ const Footer = () => {
                         <div className="lg:col-span-2 col-span-1 mt-10 lg:mt-0">
                             <h2 className="text-xl text-[#f78230]">Products</h2>
                             <div className="mt-5 leading-4">
-                                <li><Link to="/nimu-hrm" className="hover:text-[#f78230]">Nimu HRM</Link></li>
-                                <li><Link to="/nimu-attendance" className="hover:text-[#f78230]">Nimu Attendance</Link></li>
-                                <li><Link to="/nimu-crm" className="hover:text-[#f78230]">Nimu CRM</Link></li>
-                                <li><Link to="/nimu-pos" className="hover:text-[#f78230]">Nimu POS</Link></li>
-                                <li><Link to="/nimu-inventory" className="hover:text-[#f78230]">Nimu Inventory</Link></li>
+                                <li><Link to="/nimu-hrm" className="hover:text-[#f78230]">SoftTech HRM</Link></li>
+                                <li><Link to="/nimu-attendance" className="hover:text-[#f78230]">SoftTech Attendance</Link></li>
+                                <li><Link to="/nimu-crm" className="hover:text-[#f78230]">SoftTech CRM</Link></li>
+                                <li><Link to="/nimu-pos" className="hover:text-[#f78230]">SoftTech POS</Link></li>
+                                <li><Link to="/nimu-inventory" className="hover:text-[#f78230]">SoftTech Inventory</Link></li>
                             </div>
                         </div>
                         {/* 4th */}
@@ -85,7 +85,7 @@ const Footer = () => {
                 </div>
 
                 <div className="my-5 text-center">
-                    <p>© 2024 Nimusoft Technologies Ltd.</p>
+                    <p>© 2024 SoftTech Technologies Ltd.</p>
                 </div>
             </div>
         </div>
