@@ -4,108 +4,52 @@ import { Link } from "react-router-dom";
 import './NimuSoftProduct.css'
 
 const NimuSoftProduct = () => {
-    const bgImg = {
-        backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723464811/1-new_xuoqca.png")', 
-        backgroundSize: 'cover',
-        borderRadius: '10px',
-        overflow: 'hidden',
-    }
-    return (
-        <div className="bg-[#ffffff] py-20">
-            <div className='container mx-auto px-5 flex-grow'>
-                  <div>
-                    <h1 className="text-3xl font-semibold text-center py-10">Learn what Nimusoft products can do for you</h1>
-                    <p className="text-center">Explore how Nimu HRM, Nimu Attendance, and Nimu Inventory streamline and enhance your business operations</p>
-                  </div>
+  const bgImg = {
+    backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723464811/1-new_xuoqca.png")',
+    backgroundSize: 'cover',
+    borderRadius: '10px',
+    overflow: 'hidden',
+  }
+  return (
+    <>
 
-                  {/* nimusogt product card */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10">
-                    {/* nimu HRM */}
-                    <div style={bgImg} className="h-[500px] shadow-2xl bg-white relative ">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="Nimu HRM" />
-                            <h2 className="text-2xl font-bold">Nimu HRM</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Nimu HRM dashboard centralizes HR activities, offering real-time data and empowering data-driven workforce management.</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
 
-                      </div>
-                    </div>
+      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex justify-end px-4 pt-4">
+          <button id="dropdownButton" data-dropdown-toggle="dropdown" className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+            <span className="sr-only">Open dropdown</span>
+            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+              <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+            </svg>
+          </button>
 
-                    {/* Nimu Attendence */}
-                   
-                    <div style={{backgroundImage:'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467095/3-new_ig9cph.png")'}} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt=" Nimu Attendance" />
-                            <h2 className="text-2xl font-bold">Nimu Attendance</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Transform attendance management with Nimu Attendance, enhancing monitoring, analysis, and efficiency for medium to large businesses</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
-
-                      </div>
-                    </div>
-                    {/* Nimu Inventory */}
-                    <div style={{backgroundImage:'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723466812/2-new_x1kznc.png")'}} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="Nimu Inventory" />
-                            <h2 className="text-2xl font-bold">Nimu Inventory</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Nimu Inventory software streamlines financial transactions, integrates with business systems, and optimizes inventory management for all sizes</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
-
-                      </div>
-                    </div>
-                    {/* Nimu CRM*/}
-                    <div style={{backgroundImage:'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467662/5-new_rwohsk.png")'}} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="Nimu CRM" />
-                            <h2 className="text-2xl font-bold">Nimu Inventory</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Boost customer relationships and sales with Nimu CRM, offering comprehensive data and automation facility</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
-
-                      </div>
-                    </div>
-                     {/* Nimu Education*/}
-                     <div style={{backgroundImage:'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467891/6-new_dt9xqr.png")'}} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="Nimu Education" />
-                            <h2 className="text-2xl font-bold">Nimu Education</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Revolutionize learning with Nimu Education, providing advanced tools for efficient educational management system</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
-
-                      </div>
-                    </div>
-                     {/* Nimu POS*/}
-                     <div style={{backgroundImage:'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723468003/4-new_g12ugt.png")'}} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
-                        <div className="text-center py-5">
-                            <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="Nimu POS" />
-                            <h2 className="text-2xl font-bold">Nimu POS</h2>
-                            <p className="absolute top-1/2 text-xl pt-5 px-5">Streamline sales and inventory management with Nimu POS, enhancing efficiency and customer experience</p>
-                        </div>
-                        {/* link */}
-                      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                         <Link  className="flex items-center gap-2 text-white linkHover">Learn More <GoArrowRight    className=" rightArrow font-bold text-xl"></GoArrowRight></Link>
-
-                      </div>
-                    </div>
-
-                  </div>
-            </div>
-            
+          <div id="dropdown" className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul className="py-2" aria-labelledby="dropdownButton">
+              <li>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+              </li>
+              <li>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+              </li>
+              <li>
+                <a href="#" className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    );
+        <div className="flex flex-col items-center pb-10">
+          <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
+          <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+          <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+          <div className="flex mt-4 md:mt-6">
+            <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+            <a href="#" className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a>
+          </div>
+        </div>
+      </div>
+
+    </>
+  );
 };
 
 export default NimuSoftProduct;
