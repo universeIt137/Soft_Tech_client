@@ -6,7 +6,7 @@ const RegisterPage = () => {
     return (
         <div className='mt-12'>
              <Helmet>
-                <title>Soft Tech | Ragister</title>
+                <title>Soft Tech | Register</title>
             </Helmet>
             <Register></Register>
         </div>

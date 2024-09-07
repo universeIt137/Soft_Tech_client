@@ -16,6 +16,9 @@ import RegisterPage from "../pages/clientSide/RegisterPage/RegisterPage";
 import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDetailsPage";
 import DashboardLayout from "../layout/DashboardLayout";
 import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
+import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
+import RegisterComponent from './../pages/adminSide/admin-registration/RegisterComponent';
+import LoginComponent from './../pages/adminSide/admin-login/LoginComponent';
 
 
 
@@ -92,8 +95,15 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>
-
+        element: <DashboardLayout></DashboardLayout>,
+    },
+    {
+        path : "/admin-registration",
+        element : <AdminRegistration></AdminRegistration>
+    },
+    {
+        path : "/admin-login",
+        element : <LoginComponent></LoginComponent>
     }
 ]);
 

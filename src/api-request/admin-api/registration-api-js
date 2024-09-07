@@ -1,0 +1,15 @@
+import axios from 'axios';
+const baseUrl = `http://localhost:5000`;
+
+export const registration = async (postBody) =>{
+    try {
+        let res = await axios.post(`${baseUrl}/CreateAdmin`,postBody);
+        if(res.data.status==="Success"){
+            return res.data.status;
+        }else {
+            return false;
+        }
+    } catch (error) {
+        return [false, error.response.data.msg ]
+    }
+}
