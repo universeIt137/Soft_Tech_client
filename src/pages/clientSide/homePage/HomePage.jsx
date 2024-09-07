@@ -7,6 +7,9 @@ import Service from "../../../components/clientSide/HomeComponent/Service/Servic
 import Technology from "../../../components/clientSide/HomeComponent/Technology/Technology";
 import NewsLetter from "../../../components/clientSide/HomeComponent/NewsLetter/NewsLetter";
 import { motion } from 'framer-motion'
+import AllinOne from "./AllinOne.jsx";
+import OurProductsSection from "./OurProductsSection.jsx";
+import OurTeam from "./OurTeam.jsx";
 
 
 
@@ -44,21 +47,22 @@ const HomePage = () => {
                 whileInView="visible"
                 variants={scrollAnimationVariants}
                 viewport={{ once: true, amount: 0.2 }}>
-                <NimuHRM></NimuHRM>
+               <AllinOne></AllinOne>
+            </motion.div>
+
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: true, amount: 0.2 }}>
+                <OurProductsSection></OurProductsSection>
             </motion.div>
             <motion.div
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
                 viewport={{ once: true, amount: 0.2 }}>
-                <NimuSoftProduct></NimuSoftProduct>
-            </motion.div>
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: true, amount: 0.2 }}>
-                <Service></Service>
+                <OurTeam></OurTeam>
             </motion.div>
 
 

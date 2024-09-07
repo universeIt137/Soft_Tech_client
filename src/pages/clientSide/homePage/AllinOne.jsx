@@ -1,9 +1,8 @@
+import React from 'react';
 import { FaAngleRight } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
 
-
-
-const NimuHRM = () => {
+const AllinOne = () => {
     return (
         <div className="bg-bg_btn_hover py-24 px-10">
             <div className="container mx-auto flex gap-5 flex-col lg:flex-row  text-white">
@@ -54,4 +53,4 @@ const NimuHRM = () => {
     );
 };
 
-export default NimuHRM;
+export default AllinOne;
