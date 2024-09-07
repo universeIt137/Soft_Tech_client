@@ -297,7 +297,7 @@ const Navbar = () => {
           
              
               <li>
-                <NavLink to={`/login`}>Portfolio</NavLink>
+                <NavLink to={`/portfolio`}>Portfolio</NavLink>
               </li>
 
 
