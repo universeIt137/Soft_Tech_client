@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import toast, {Toaster} from "react-hot-toast"
+import { registrationApi } from "../../../api-request/admin-api/registration-api-js";
 
 const RegisterComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,11 +48,17 @@ const RegisterComponent = () => {
       [name]: value,
     }));
   };
+
+  const navigate = useNavigate();
   const submitData = async (e) => {
     e.preventDefault();
-
-    if (name == "") {
-      
+    let res = await registrationApi(data);
+    console.log(res);
+    if(res){
+      toast.success("user create successfully");
+      navigate("/admin-login");
+    }else{
+      toast.error(`something went wrong`)
     }
   };
 
@@ -110,7 +118,6 @@ const RegisterComponent = () => {
                     type="text"
                     placeholder="Your Name"
                     className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
-                    required
                   />
                 </div>
                 <div className="space-y-2">

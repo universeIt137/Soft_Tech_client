@@ -1,7 +1,7 @@
 import axios from 'axios';
-const baseUrl = `http://localhost:5000`;
+const baseUrl = `http://localhost:3000/api/v1`;
 
-export const registration = async (postBody) =>{
+export const registrationApi = async (postBody) =>{
     try {
         let res = await axios.post(`${baseUrl}/CreateAdmin`,postBody);
         if(res.data.status==="Success"){
@@ -10,6 +10,15 @@ export const registration = async (postBody) =>{
             return false;
         }
     } catch (error) {
-        return [false, error.response.data.msg ]
+        console.log(error);
+        return false;
+    }
+};
+
+export const loginApi = async (postBody)=>{
+    try {
+        let res = axios.post(`${baseUrl}/adminLogin`,postBody);
+    } catch (error) {
+        
     }
 }

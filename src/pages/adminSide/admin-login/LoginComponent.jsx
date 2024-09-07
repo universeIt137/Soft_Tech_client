@@ -11,6 +11,24 @@ const LoginComponent = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
 
+  const [data,setData] = useState({
+    email : "",
+    password : ""
+  });
+
+  const {email,password} = data;
+
+  const getInputValue = (name,value)=>{
+    setData((prev)=>({
+      ...prev,
+      [name] : value
+    }))
+  };
+
+  const submitValue = (e) =>{
+    e.preventDefault();
+  }
+
   window.scrollTo(0, 0);
   return (
     <div>
@@ -54,7 +72,7 @@ const LoginComponent = () => {
               </p>
             </div>
             <div className="p-6">
-              <form className="space-y-8">
+              <form onSubmit={submitValue} className="space-y-8">
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label
@@ -64,6 +82,8 @@ const LoginComponent = () => {
                       Email address
                     </label>
                     <input
+                      value={email}
+                      onChange={(e)=>{getInputValue("email",e.target.value)}}
                       placeholder="info@gmail.com"
                       className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                       required
@@ -86,6 +106,9 @@ const LoginComponent = () => {
                       </a>
                     </div>
                     <input
+                    
+                      value={password}
+                      onChange={(e)=>{getInputValue("password",e.target.value)}}
                       type={showpass ? "text" : "password"}
                       className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                       required
