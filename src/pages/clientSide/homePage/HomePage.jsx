@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import AllinOne from "./AllinOne.jsx";
 import OurProductsSection from "./OurProductsSection.jsx";
 import OurTeam from "./OurTeam.jsx";
+import ExpandableCards from "./ExpandableCards.jsx";
 
 
 
@@ -54,6 +55,7 @@ const HomePage = () => {
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
+                className="lg:block hidden"
                 viewport={{ once: true, amount: 0.2 }}>
                 <OurProductsSection></OurProductsSection>
             </motion.div>
@@ -75,6 +77,14 @@ const HomePage = () => {
                 <AtGlance></AtGlance>
             </motion.div>
 
+            
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: true, amount: 0.2 }}>
+                <ExpandableCards></ExpandableCards>
+            </motion.div>
 
 
             
