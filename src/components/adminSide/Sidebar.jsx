@@ -7,6 +7,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 import { GiStairsGoal } from "react-icons/gi";
 import { GrServices } from "react-icons/gr";
+import { SlEnvolopeLetter } from "react-icons/sl";
 
 const Sidebar = () => {
 
@@ -99,7 +100,7 @@ const Sidebar = () => {
                             <ul className="ml-8 hidden peer-checked:block">
                                 <li>
                                     <NavLink
-                                        to="/manage-service"
+                                        to="/dashboard/manage-career"
                                         className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Manage Career
@@ -108,7 +109,7 @@ const Sidebar = () => {
                                 
                                 <li>
                                     <NavLink
-                                        to="/manage-service"
+                                        to="/dashboard/add-career"
                                         className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Add Career
@@ -163,7 +164,7 @@ const Sidebar = () => {
                               htmlFor="add-application-toggle"
                               className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
                           >
-                               <IoMdAddCircle />
+                               <SlEnvolopeLetter />
                               <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
                                  Application
                               </span>
