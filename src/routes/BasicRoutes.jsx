@@ -20,6 +20,8 @@ import InventoryPage from "../pages/clientSide/productsPages/inventoryPage/Inven
 import AddServicePage from "../pages/adminSide/servicePage/addServicePage/AddServicePage";
 import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/ManageServicePage";
 import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
+import AddCareerPage from "../pages/adminSide/Career/AddCareerPage";
+import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
 
 
 
@@ -97,6 +99,14 @@ const router = createBrowserRouter([
             {
                 path: "manage-service",
                 element: <ManageServicePage></ManageServicePage>
+            },
+            {
+                path: "add-career",
+                element: <AddCareerPage></AddCareerPage>
+            },
+            {
+                path: "manage-career",
+                element: <ManageCareerPage></ManageCareerPage>
             }
         ]
     },
