@@ -1,8 +1,6 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
-// import DeshBoard from "../components/adminSide/DeshBoard/DeshBoard";
-import DeshBoardHome from "../components/adminSide/DeshBoardHome/DeshBoardHome";
 import ServicePage from "../components/clientSide/ServiceComponent/Service/Service";
 import MainLayout from "../layout/MainLayout";
 import AddUser from "../pages/adminSide/AddUser/AddUser";
@@ -17,9 +15,8 @@ import ServiceDetailsPage from "../pages/clientSide/ServiceDetailsPage/ServiceDe
 import DashboardLayout from "../layout/DashboardLayout";
 import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
-import RegisterComponent from './../pages/adminSide/admin-registration/RegisterComponent';
-import LoginComponent from './../pages/adminSide/admin-login/LoginComponent';
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
+import softTechHrmPage from "../pages/clientSide/productsPages/softTechHrm/softTechHrmPage"
 
 
 
@@ -76,7 +73,11 @@ const router = createBrowserRouter([
             {
                 path: '/products-inventory',
                 
-            }
+            },
+            {
+                path : "/product-hrm",
+                element : <softTechHrmPage></softTechHrmPage>
+            },
 
 
         ]
