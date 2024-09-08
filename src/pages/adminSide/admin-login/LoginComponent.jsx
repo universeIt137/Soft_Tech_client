@@ -41,7 +41,7 @@ const LoginComponent = () => {
           >
             <div className="bg-custom-gradient p-4 text-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg">
               <h2 className="text-3xl font-semibold text-white">
-                Login to your account
+                Login to as Admin
               </h2>
               <p className="text-white mt-2">
                 Don’t have an account?
