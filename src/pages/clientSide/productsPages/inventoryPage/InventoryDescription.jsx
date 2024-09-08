@@ -45,3 +45,4 @@ const InventoryDescription = () => {
 };
 
 export default InventoryDescription;
+
