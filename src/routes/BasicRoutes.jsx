@@ -19,6 +19,7 @@ import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
 import RegisterComponent from './../pages/adminSide/admin-registration/RegisterComponent';
 import LoginComponent from './../pages/adminSide/admin-login/LoginComponent';
+import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
 
 
 
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
     },
     {
         path : "/admin-login",
-        element : <LoginComponent></LoginComponent>
+        element : <AdminLoginPage></AdminLoginPage>
     }
 ]);
 
