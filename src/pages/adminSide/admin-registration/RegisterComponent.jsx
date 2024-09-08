@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import toast, {Toaster} from "react-hot-toast"
+import { registrationApi } from "../../../api-request/admin-api/registration-api.js";
 
 const RegisterComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +32,7 @@ const RegisterComponent = () => {
       },
     },
   };
-
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -48,9 +50,12 @@ const RegisterComponent = () => {
   };
   const submitData = async (e) => {
     e.preventDefault();
-
-    if (name == "") {
-      
+    let res = await registrationApi(data);
+    if(res){
+      toast.success("registration successfully");
+      navigate("/admin-login")
+    }else{
+      toast.error("something went wrong")
     }
   };
 
