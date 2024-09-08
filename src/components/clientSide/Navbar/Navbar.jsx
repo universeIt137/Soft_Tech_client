@@ -94,7 +94,7 @@ const Navbar = () => {
               <div onMouseEnter={handleMouseEnterProduct}
                 onMouseLeave={handleMouseLeaveProduct} className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/products`} className={`active:text-text_primari `}>
+                  <NavLink className={`active:text-text_primari `}>
                     Products
                   </NavLink>
                   <span onClick={() => setUpDown(!upDown)}>
