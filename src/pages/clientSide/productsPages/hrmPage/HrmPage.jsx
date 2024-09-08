@@ -2,8 +2,10 @@ import React from 'react'
 
 const HrmPage = () => {
   return (
-    <div className='my-40' >
-       HrmPage
+    <div className= " max-w-screen-xl mx-auto " >
+       <div className='my-20' >
+            hrm
+       </div>
     </div>
   )
 }
