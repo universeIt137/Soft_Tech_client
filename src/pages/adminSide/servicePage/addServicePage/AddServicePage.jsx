@@ -3,7 +3,8 @@ import React from 'react';
 const AddServicePage = () => {
     return (
         <div>
-            Add service Page.
+            <h1 className="text-3xl font-semibold text-gray-800"> Add Service </h1>
+
         </div>
     );
 };

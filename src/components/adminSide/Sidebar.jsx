@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { BsMenuButtonWideFill } from 'react-icons/bs';
-import { GrMoney } from 'react-icons/gr';
-import { IoIosAddCircleOutline, IoMdAddCircle, IoMdCard } from 'react-icons/io';
-import { MdAddCircleOutline, MdManageHistory, MdMenuOpen, MdOutlineAdminPanelSettings, MdOutlineCategory, MdOutlineDiscount, MdOutlineLockPerson, MdOutlineManageSearch, MdOutlinePeopleOutline } from 'react-icons/md';
+
+import {  IoMdAddCircle } from 'react-icons/io';
+import {  MdManageHistory, MdMenuOpen } from 'react-icons/md';
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
+import { GiStairsGoal } from "react-icons/gi";
+import { GrServices } from "react-icons/gr";
 
 const Sidebar = () => {
 
@@ -53,25 +55,25 @@ const Sidebar = () => {
                                 htmlFor="add-service-toggle"
                                 className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black text-white focus:bg-white cursor-pointer"
                             >
-                                <IoMdAddCircle />
+                                <GrServices  />
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
                                     Add Services
                                 </span>
                             </label>
 
                             {/* Dropdown menu for Add Services, shown when checkbox is checked */}
-                            <ul className="ml-8 hidden peer-checked:block">
+                            <ul className="ml-8 hidden peer-checked:block text-white">
                                 <li>
                                     <NavLink
-                                        to="/dashboard/add-service"
-                                        className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                        to="/dashboard/manage-service"
+                                        className="p-2 block rounded-lg transition  duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Manage Service
                                     </NavLink>
                                 </li>
                                 <li>
                                     <NavLink
-                                        to="/dashboard/manage-service"
+                                        to="/dashboard/add-service"
                                         className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Add Service
@@ -87,7 +89,7 @@ const Sidebar = () => {
                                 htmlFor="add-career-toggle"
                                 className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
                             >
-                                 <MdManageHistory />
+                                 <GiStairsGoal />
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
                                     Manage Career
                                 </span>
@@ -124,7 +126,7 @@ const Sidebar = () => {
                               htmlFor="add-product-toggle"
                               className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
                           >
-                               <IoMdAddCircle />
+                               <MdOutlineProductionQuantityLimits  />
                               <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
                                  Add Product
                               </span>

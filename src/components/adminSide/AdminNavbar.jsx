@@ -9,10 +9,7 @@ const AdminNavbar = () => {
                     <div className="w-10 h-10 rounded-full bg-gray-300"></div>
                     <ul>
                         <li>skfjs</li>
-                        <li>skfjs</li>
-                        <li>skfjs</li>
-                        <li>skfjs</li>
-                        <li>skfjs</li>
+                       
                     </ul>
                 </div>
             </div>
