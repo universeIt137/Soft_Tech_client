@@ -14,7 +14,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "firebase": "^10.13.0",
-    "framer-motion": "^11.3.31",
+    "framer-motion": "^11.5.4",
     "ionicons": "^7.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
