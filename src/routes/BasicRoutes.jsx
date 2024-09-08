@@ -64,23 +64,6 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
-            // {
-            //     path: '/dashboard',
-            //     element: <DeshBoard></DeshBoard>,
-          
-            //     children: [
-            //         {
-            //             path: '/dashboard',
-            //             element: <DeshBoardHome></DeshBoardHome>
-            //         },
-            //         {
-            //             path: '/dashboard/add-users',
-            //             element: <AddUser></AddUser>
-            //         }
-            //     ]
-
-            // },
-
 
             {
                 path: '/register',
@@ -89,6 +72,10 @@ const router = createBrowserRouter([
             {
                 path: '/portfolio',
                 element: <PortfolioPage></PortfolioPage>
+            },
+            {
+                path: '/products-inventory',
+                
             }
 
 
@@ -99,12 +86,12 @@ const router = createBrowserRouter([
         element: <DashboardLayout></DashboardLayout>,
     },
     {
-        path : "/admin-registration",
-        element : <AdminRegistration></AdminRegistration>
+        path: "/admin-registration",
+        element: <AdminRegistration></AdminRegistration>
     },
     {
-        path : "/admin-login",
-        element : <AdminLoginPage></AdminLoginPage>
+        path: "/admin-login",
+        element: <AdminLoginPage></AdminLoginPage>
     }
 ]);
 
