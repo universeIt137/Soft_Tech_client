@@ -16,7 +16,12 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
-import softTechHrmPage from './../pages/clientSide/productsPages/softTechHrmPage.jsx/softTechHrmPage';
+import InventoryPage from "../pages/clientSide/productsPages/inventoryPage/InventoryPage";
+import AddServicePage from "../pages/adminSide/servicePage/addServicePage/AddServicePage";
+import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/ManageServicePage";
+import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
+
+
 
 
 
@@ -59,6 +64,23 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
+            // {
+            //     path: '/dashboard',
+            //     element: <DeshBoard></DeshBoard>,
+          
+            //     children: [
+            //         {
+            //             path: '/dashboard',
+            //             element: <DeshBoardHome></DeshBoardHome>
+            //         },
+            //         {
+            //             path: '/dashboard/add-users',
+            //             element: <AddUser></AddUser>
+            //         }
+            //     ]
+
+            // },
+
 
             {
                 path: '/register',
@@ -70,12 +92,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products-inventory',
-                
+               
             },
             {
-                path:"/product-hrm",
-                element  : <softTechHrmPage></softTechHrmPage>
-            },
+                path : "/product-hrm",
+                element :  <HrmPage></HrmPage>
+            }
 
 
         ]
@@ -83,6 +105,16 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "add-service",
+                element: <AddServicePage></AddServicePage>
+            },
+            {
+                path: "manage-service",
+                element: <ManageServicePage></ManageServicePage>
+            }
+        ]
     },
     {
         path: "/admin-registration",

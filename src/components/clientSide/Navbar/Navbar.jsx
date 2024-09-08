@@ -152,7 +152,7 @@ const Navbar = () => {
 
 
                     <div>
-                      <NavLink to={`/nimu-inventory`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-inventory`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
@@ -421,7 +421,7 @@ const Navbar = () => {
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-inventory`} className={`text-[#D66F70]`}>SoftTech inventory</NavLink>
+              <NavLink to={`/products-inventory`} className={`text-[#D66F70]`}>SoftTech inventory</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>

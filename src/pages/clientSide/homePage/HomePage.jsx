@@ -79,6 +79,7 @@ const HomePage = () => {
 
             
             <motion.div
+                className="lg:block hidden"
                 initial="hidden"
                 whileInView="visible"
                 variants={scrollAnimationVariants}
