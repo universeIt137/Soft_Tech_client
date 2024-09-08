@@ -110,7 +110,7 @@ const Navbar = () => {
                 {
                   isDropdownVisibleProduct && <div className={`  flex shadow-xl   top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white   `} >
                     <div>
-                      <NavLink to={`/nimu-hrm`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/product-hrm`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
