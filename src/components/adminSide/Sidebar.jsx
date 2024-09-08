@@ -51,7 +51,7 @@ const Sidebar = () => {
                                 <IoMdAddCircle />
 
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Add Services</p>
+                                    <p className=''>Add Service</p>
                                 </span>
                             </NavLink>
                         </li>
