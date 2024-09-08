@@ -11,7 +11,7 @@ const AtGlance = () => {
 
       <div className="lg:flex gap-4 pt-7 justify-between w-11/12 space-y-4  mx-auto">
 
-        <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg">
+        <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg  ">
           <div ref={countUpRef} />
           <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725701757/Universe%20Soft%20Tech/Homepage/At%20a%20glance/xogrfzbhpixjz7jyc7vb.png" alt="" className="w-20" />
           <span className="text-xl lg:text-5xl  font-bold">
@@ -20,7 +20,7 @@ const AtGlance = () => {
           <p className="text-xl font-medium">Projects</p>
         </div>
 
-        <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg">
+        <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg  ">
           <div ref={countUpRef} />
           <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725701870/Universe%20Soft%20Tech/Homepage/At%20a%20glance/p5t4rciw9zg26pihildc.png" alt="" className="w-20" />
           <span className="text-xl lg:text-5xl  font-bold">

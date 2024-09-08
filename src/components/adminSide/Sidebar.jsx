@@ -63,7 +63,7 @@ const Sidebar = () => {
                             <ul className="ml-8 hidden peer-checked:block">
                                 <li>
                                     <NavLink
-                                        to="/manage-service"
+                                        to="/dashboard/add-service"
                                         className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Manage Service
@@ -71,7 +71,7 @@ const Sidebar = () => {
                                 </li>
                                 <li>
                                     <NavLink
-                                        to="/add-service"
+                                        to="/dashboard/manage-service"
                                         className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                                     >
                                         Add Service

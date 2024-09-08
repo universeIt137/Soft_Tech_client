@@ -20,6 +20,9 @@ import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegist
 import RegisterComponent from './../pages/adminSide/admin-registration/RegisterComponent';
 import LoginComponent from './../pages/adminSide/admin-login/LoginComponent';
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
+import InventoryPage from "../pages/clientSide/productsPages/inventoryPage/InventoryPage";
+import AddServicePage from "../pages/adminSide/servicePage/addServicePage/AddServicePage";
+import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/ManageServicePage";
 
 
 
@@ -64,7 +67,22 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
+            // {
+            //     path: '/dashboard',
+            //     element: <DeshBoard></DeshBoard>,
           
+            //     children: [
+            //         {
+            //             path: '/dashboard',
+            //             element: <DeshBoardHome></DeshBoardHome>
+            //         },
+            //         {
+            //             path: '/dashboard/add-users',
+            //             element: <AddUser></AddUser>
+            //         }
+            //     ]
+
+            // },
 
 
             {
@@ -74,6 +92,10 @@ const router = createBrowserRouter([
             {
                 path: '/portfolio',
                 element: <PortfolioPage></PortfolioPage>
+            },
+            {
+                path: '/products-inventory',
+                element: <InventoryPage></InventoryPage>
             }
 
 
@@ -82,18 +104,24 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "add-service",
+                element: <AddServicePage></AddServicePage>
+            },
+            {
+                path: "manage-service",
+                element: <ManageServicePage></ManageServicePage>
+            }
+        ]
     },
     {
-        path: "/manage-service",
-        element: <DashboardLayout></DashboardLayout>,
+        path: "/admin-registration",
+        element: <AdminRegistration></AdminRegistration>
     },
     {
-        path : "/admin-registration",
-        element : <AdminRegistration></AdminRegistration>
-    },
-    {
-        path : "/admin-login",
-        element : <AdminLoginPage></AdminLoginPage>
+        path: "/admin-login",
+        element: <AdminLoginPage></AdminLoginPage>
     }
 ]);
 
