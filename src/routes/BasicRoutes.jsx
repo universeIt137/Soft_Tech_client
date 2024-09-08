@@ -16,9 +16,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
-import softTechHrmPage from "../pages/clientSide/productsPages/softTechHrm/softTechHrmPage"
-
-
+import softTechHrmPage from './../pages/clientSide/productsPages/softTechHrmPage.jsx/softTechHrmPage';
 
 
 
@@ -75,8 +73,8 @@ const router = createBrowserRouter([
                 
             },
             {
-                path : "/product-hrm",
-                element : <softTechHrmPage></softTechHrmPage>
+                path:"/product-hrm",
+                element  : <softTechHrmPage></softTechHrmPage>
             },
 
 
