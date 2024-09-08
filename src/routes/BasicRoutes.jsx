@@ -20,6 +20,9 @@ import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegist
 import RegisterComponent from './../pages/adminSide/admin-registration/RegisterComponent';
 import LoginComponent from './../pages/adminSide/admin-login/LoginComponent';
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
+import InventoryPage from "../pages/clientSide/productsPages/inventoryPage/InventoryPage";
+import AddServicePage from "../pages/adminSide/servicePage/addServicePage/AddServicePage";
+import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/ManageServicePage";
 
 
 
@@ -75,7 +78,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products-inventory',
-                
+                element: <InventoryPage></InventoryPage>
             }
 
 
@@ -84,6 +87,16 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "add-service",
+                element: <AddServicePage></AddServicePage>
+            },
+            {
+                path: "manage-service",
+                element: <ManageServicePage></ManageServicePage>
+            }
+        ]
     },
     {
         path: "/admin-registration",
