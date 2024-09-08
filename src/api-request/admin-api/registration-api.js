@@ -1,15 +1,16 @@
 import axios from 'axios';
-const baseUrl = `http://localhost:5000`;
+const baseUrl = "https://soft-tech-server-eight.vercel.app/api/v1";
 
-export const registration = async (postBody) =>{
+export const registrationApi = async (postBody) =>{
     try {
         let res = await axios.post(`${baseUrl}/CreateAdmin`,postBody);
+        console.log(`res is ${res}`);
         if(res.data.status==="Success"){
-            return res.data.status;
+            return res.data["status"]
         }else {
             return false;
         }
     } catch (error) {
-        return [false, error.response.data.msg ]
+        return console.log(error)
     }
 }

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { errorToast, isEmail, isEmpty } from "../../../helper/fromHelper";
+import toast, { Toaster } from "react-hot-toast";
+import { loginApi } from "../../../api-request/admin-api/login-api";
 
 const slideInVariants = {
   hidden: { x: "100%", opacity: 0 },
@@ -10,6 +13,38 @@ const slideInVariants = {
 const LoginComponent = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = data;
+
+  const getInputValue =  (name, value) => {
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const navigate = useNavigate();
+
+  const submitValue = async (e) => {
+    e.preventDefault();
+    if (isEmail(email)) {
+      return toast.error("Please provide your email");
+    } else if (isEmpty(password)) {
+      return toast.error("Please provide your password");
+    }else{
+      let res = await loginApi(data);
+      if(res){
+        navigate("/dashboard")
+        return toast.success("Login successfully");
+      }else{
+        return toast.error("something went wrong");
+      }
+    }
+  };
 
   window.scrollTo(0, 0);
   return (
@@ -54,7 +89,7 @@ const LoginComponent = () => {
               </p>
             </div>
             <div className="p-6">
-              <form className="space-y-8">
+              <form onSubmit={submitValue} className="space-y-8">
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <label
@@ -64,6 +99,11 @@ const LoginComponent = () => {
                       Email address
                     </label>
                     <input
+                      value={email}
+                      onChange={(e) => {
+                        getInputValue("email", e.target.value);
+                      }}
+                      type="email"
                       placeholder="info@gmail.com"
                       className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                       required
@@ -86,6 +126,10 @@ const LoginComponent = () => {
                       </a>
                     </div>
                     <input
+                      value={password}
+                      onChange={(e) => {
+                        getInputValue("password", e.target.value);
+                      }}
                       type={showpass ? "text" : "password"}
                       className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                       required
@@ -152,6 +196,7 @@ const LoginComponent = () => {
           </motion.div>
         </div>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
