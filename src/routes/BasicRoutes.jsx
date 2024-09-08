@@ -67,6 +67,23 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
+            // {
+            //     path: '/dashboard',
+            //     element: <DeshBoard></DeshBoard>,
+          
+            //     children: [
+            //         {
+            //             path: '/dashboard',
+            //             element: <DeshBoardHome></DeshBoardHome>
+            //         },
+            //         {
+            //             path: '/dashboard/add-users',
+            //             element: <AddUser></AddUser>
+            //         }
+            //     ]
+
+            // },
+
 
             {
                 path: '/register',
