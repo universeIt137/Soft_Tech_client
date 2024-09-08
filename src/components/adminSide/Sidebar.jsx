@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import { BsMenuButtonWideFill } from 'react-icons/bs';
 import { GrMoney } from 'react-icons/gr';
 import { IoIosAddCircleOutline, IoMdAddCircle, IoMdCard } from 'react-icons/io';
-import { IoCartOutline, IoCloseCircleOutline } from 'react-icons/io5';
 import { MdAddCircleOutline, MdManageHistory, MdMenuOpen, MdOutlineAdminPanelSettings, MdOutlineCategory, MdOutlineDiscount, MdOutlineLockPerson, MdOutlineManageSearch, MdOutlinePeopleOutline } from 'react-icons/md';
-import { RiAdminLine } from 'react-icons/ri';
-import { RxDashboard } from 'react-icons/rx';
+import { IoCloseCircleOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    const toggleServiceDropdown = () => {
+        setIsServiceDropdownOpen(!isServiceDropdownOpen);
+    };
+
+    
 
 
     return (
@@ -37,118 +42,152 @@ const Sidebar = () => {
                     </button>
                 </div>
                 <nav className=" space-y-4">
-                    <ul>
-                        
-                        
+                    <ul> 
+
+                    
 
                         <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
+                            {/* Use checkbox to control the collapse */}
+                            <input type="checkbox" id="add-service-toggle" className="peer hidden" />
+                            <label
+                                htmlFor="add-service-toggle"
+                                className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black text-white focus:bg-white cursor-pointer"
                             >
-                                
                                 <IoMdAddCircle />
-
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Add Service</p>
+                                    Add Services
                                 </span>
-                            </NavLink>
-                        </li>
+                            </label>
 
-
-                        <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
-                            >
-                                
-                                <MdManageHistory />
-
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Manage Services</p>
-                                </span>
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
-                            >
-                                
-                                <IoMdAddCircle />
-
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Add Career</p>
-                                </span>
-                            </NavLink>
-                        </li>
-
-
-                        <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
-                            >
-                                
-                                <MdManageHistory />
-
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Manage Career</p>
-                                </span>
-                            </NavLink>
+                            {/* Dropdown menu for Add Services, shown when checkbox is checked */}
+                            <ul className="ml-8 hidden peer-checked:block">
+                                <li>
+                                    <NavLink
+                                        to="/manage-service"
+                                        className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                    >
+                                        Manage Service
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/add-service"
+                                        className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                    >
+                                        Add Service
+                                    </NavLink>
+                                </li>
+                            </ul>
                         </li>
 
                         <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
+                          
+                            <input type="checkbox" id="add-career-toggle" className="peer hidden" />
+                            <label
+                                htmlFor="add-career-toggle"
+                                className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
                             >
-                                
-                                <IoMdAddCircle />
-
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Add Product</p>
+                                 <MdManageHistory />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
+                                    Manage Career
                                 </span>
-                            </NavLink>
+                            </label>
+
+                            {/* Dropdown menu for Add Services, shown when checkbox is checked */}
+                            <ul className="ml-8 hidden peer-checked:block">
+                                <li>
+                                    <NavLink
+                                        to="/manage-service"
+                                        className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                    >
+                                        Manage Career
+                                    </NavLink>
+                                </li>
+                                
+                                <li>
+                                    <NavLink
+                                        to="/manage-service"
+                                        className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                    >
+                                        Add Career
+                                    </NavLink>
+                                </li>
+                            </ul>
                         </li>
+
 
 
                         <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
-                            >
-                                
-                                <MdManageHistory />
+                          
+                          <input type="checkbox" id="add-product-toggle" className="peer hidden" />
+                          <label
+                              htmlFor="add-product-toggle"
+                              className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
+                          >
+                               <IoMdAddCircle />
+                              <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
+                                 Add Product
+                              </span>
+                          </label>
 
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Manage Products</p>
-                                </span>
-                            </NavLink>
-                        </li>
+                          {/* Dropdown menu for Add Services, shown when checkbox is checked */}
+                          <ul className="ml-8 hidden peer-checked:block">
+                              <li>
+                                  <NavLink
+                                      to="/manage-service"
+                                      className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                  >
+                                      Add Product
+                                  </NavLink>
+                              </li>
+                              
+                              <li>
+                                  <NavLink
+                                      to="/manage-service"
+                                      className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                  >
+                                      Manage Product
+                                  </NavLink>
+                              </li>
+                          </ul>
+                      </li>
 
 
-                        <li>
-                            <NavLink
-                                to="/order-management"
-                                className="flex items-center space-x-3 p-3 rounded-lg transition duration-200  hover:shadow-md hover:border-b hover:bg-dashboard_hover"
-                                activeClassName="bg-indigo-900 shadow-lg"
-                            >
-                                
-                                <MdManageHistory />
 
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'}`}>
-                                    <p className=''>Manage Applications</p>
-                                </span>
-                            </NavLink>
-                        </li>
+                      <li>
+                          
+                          <input type="checkbox" id="add-application-toggle" className="peer hidden" />
+                          <label
+                              htmlFor="add-application-toggle"
+                              className="flex items-center space-x-3 p-3 w-full text-left rounded-lg transition duration-200 hover:bg-white hover:text-black focus:text-black  focus:bg-white cursor-pointer"
+                          >
+                               <IoMdAddCircle />
+                              <span className={`${isSidebarOpen ? 'block' : 'hidden'} `}>
+                                 Application
+                              </span>
+                          </label>
+
+                          
+                          <ul className="ml-8 hidden peer-checked:block">
+                              <li>
+                                  <NavLink
+                                      to="/manage-service"
+                                      className="p-2 block rounded-lg transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                                  >
+                                      All application
+                                  </NavLink>
+                              </li>
+                              
+                             
+                          </ul>
+                      </li>
+
+
+
+
+                     
+
+                  
 
                     </ul>
                 </nav>
