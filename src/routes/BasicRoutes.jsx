@@ -76,7 +76,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products-inventory',
-               
+                element: <InventoryPage></InventoryPage>
             },
             {
                 path : "/product-hrm",
