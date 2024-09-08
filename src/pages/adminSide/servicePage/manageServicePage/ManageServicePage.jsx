@@ -42,7 +42,7 @@ const ManageServicePage = () => {
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
               <th className="py-3 px-6 text-left">Title</th>
               <th className="py-3 px-6 text-left">Description</th>
-              <th className="py-3 px-6 text-center">Actions</th>
+              <th className="py-3 px-6 text-center">Action</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 text-sm font-light">
@@ -52,13 +52,13 @@ const ManageServicePage = () => {
                 <td className="py-3 px-6 text-left">dfkj</td>
                 <td className="py-3 px-6 text-center">
                   <button
-                    onClick={() => handleUpdate(service._id)}
+                    // onClick={() => handleUpdate(service._id)}
                     className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-600"
                   >
                     Update
                   </button>
                   <button
-                    onClick={() => handleDelete(service._id)}
+                    // onClick={() => handleDelete(service._id)}
                     className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                   >
                     Delete
