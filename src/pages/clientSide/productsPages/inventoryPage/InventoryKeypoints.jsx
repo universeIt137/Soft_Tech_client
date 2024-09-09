@@ -20,23 +20,23 @@ const InventoryKeypoints = () => {
         <div>
              <div className='flex flex-col lg:flex-row text-center lg:gap-12 lg:text-4xl font-bold w-4/5 mx-auto lg:-mt-32 -mt-28  lg:space-y-0'>
                 
-                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-gray-600 py-10" data-aos="fade-up">
-                    <AiOutlineStock className='text-7xl font-bold' />
+                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-universe_primary py-10 text-universe_secondary" data-aos="fade-up">
+                    <AiOutlineStock className='text-5xl font-bold' />
                     <p>Sales</p>
                 </div>
 
-                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-gray-600 py-10" data-aos="fade-up">
-                <FaCartShopping  className='text-7xl font-bold' />
+                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-universe_primary py-10 text-universe_secondary" data-aos="fade-up">
+                <FaCartShopping  className='text-5xl font-bold' />
                     <p>Purchases</p>
                 </div>
 
-                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-gray-600 py-10" data-aos="fade-up">
-                <FaWarehouse className='text-7xl font-bold'/>
+                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-universe_primary py-10 text-universe_secondary" data-aos="fade-up">
+                <FaWarehouse className='text-5xl font-bold'/>
                     <p>Manufacture</p>
                 </div>
 
-                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-gray-600 py-10" data-aos="fade-up">
-                <FaTruckFast className='text-7xl font-bold' />
+                <div className="lg:w-1/4 flex justify-center flex-col items-center rounded-2xl shadow-lg shadow-universe_primary py-10 text-universe_secondary" data-aos="fade-up">
+                <FaTruckFast className='text-5xl font-bold' />
                     <p>Logistics</p>
                 </div>
 

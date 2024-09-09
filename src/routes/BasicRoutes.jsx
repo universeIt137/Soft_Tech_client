@@ -25,6 +25,10 @@ import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
 import AddProductPage from "../pages/adminSide/Product/AddProductPage";
 import ManageProductPage from "../pages/adminSide/Product/ManageProductPage";
 import UpdateServicePage from "../pages/adminSide/servicePage/UpdateServicePage";
+import AttendencePage from "../pages/clientSide/productsPages/attendencePage/AttendencePage";
+import EducationPage from "../pages/clientSide/productsPages/educationPage/EducationPage";
+import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
+import CRMPage from "../pages/clientSide/productsPages/crmPage/CRMPage";
 
 
 
@@ -84,10 +88,26 @@ const router = createBrowserRouter([
                 element: <InventoryPage></InventoryPage>
             },
             {
-                path : "/product-hrm",
+                path: '/products-education',
+                element: <EducationPage></EducationPage>
+            },
+            {
+                path: '/products-pos',
+                element: <PosPage></PosPage>
+            },
+            {
+                path : "/products-hrm",
                 element :  <HrmPage></HrmPage>
+            },
+            {
+                path: "/products-attendance",
+                element: <AttendencePage/>
+            }, 
+            {
+                path: "/products-crm",
+                element: <CRMPage></CRMPage>
             }
-
+            
 
         ]
     },

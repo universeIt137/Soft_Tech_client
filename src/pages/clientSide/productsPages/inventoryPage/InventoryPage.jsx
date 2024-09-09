@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import InventoryDescription from './inventoryDescription';
 
 const InventoryPage = () => {
+    window.scrollTo(0, 0);
 
     useEffect(() => {
         AOS.init({
