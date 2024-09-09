@@ -110,7 +110,7 @@ const Navbar = () => {
                 {
                   isDropdownVisibleProduct && <div className={`  flex shadow-xl   top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white   `} >
                     <div>
-                      <NavLink to={`/product-hrm`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-hrm`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
@@ -123,7 +123,7 @@ const Navbar = () => {
                       </NavLink>
 
 
-                      <NavLink to={`/nimu-attendencs`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-attendance`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
@@ -136,7 +136,7 @@ const Navbar = () => {
 
                       </NavLink>
 
-                      <NavLink to={`/nimu-crm`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-crm`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
@@ -165,7 +165,7 @@ const Navbar = () => {
                       </NavLink>
 
 
-                      <NavLink to={`/product-education`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-education`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
@@ -179,7 +179,7 @@ const Navbar = () => {
                       </NavLink>
 
 
-                      <NavLink to={`/product-pos`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/products-pos`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
@@ -415,7 +415,7 @@ const Navbar = () => {
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
               </div>
 
-              <NavLink to={`/nimu-crm`} className={`text-[#7691B6]`}>SoftTech CRM</NavLink>
+              <NavLink to={`/products-crm`} className={`text-[#7691B6]`}>SoftTech CRM</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
