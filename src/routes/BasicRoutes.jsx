@@ -23,6 +23,9 @@ import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
 import AddCareerPage from "../pages/adminSide/Career/AddCareerPage";
 import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
 import AttendencePage from "../pages/clientSide/productsPages/attendencePage/AttendencePage";
+import EducationPage from "../pages/clientSide/productsPages/educationPage/EducationPage";
+import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
+import CRMPage from "../pages/clientSide/productsPages/crmPage/CRMPage";
 
 
 
@@ -82,14 +85,26 @@ const router = createBrowserRouter([
                 element: <InventoryPage></InventoryPage>
             },
             {
-                path : "/product-hrm",
+                path: '/products-education',
+                element: <EducationPage></EducationPage>
+            },
+            {
+                path: '/products-pos',
+                element: <PosPage></PosPage>
+            },
+            {
+                path : "/products-hrm",
                 element :  <HrmPage></HrmPage>
             },
             {
-                path : "/nimu-attendencs",
-                element : <AttendencePage></AttendencePage>
+                path: "/products-attendance",
+                element: <AttendencePage/>
+            }, 
+            {
+                path: "/products-crm",
+                element: <CRMPage></CRMPage>
             }
-
+            
 
         ]
     },
