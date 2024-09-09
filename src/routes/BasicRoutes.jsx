@@ -29,6 +29,7 @@ import AttendencePage from "../pages/clientSide/productsPages/attendencePage/Att
 import EducationPage from "../pages/clientSide/productsPages/educationPage/EducationPage";
 import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
 import CRMPage from "../pages/clientSide/productsPages/crmPage/CRMPage";
+import DashboardPage from "../pages/adminSide/dashboard/DashboardPage";
 
 
 
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
+            {
+                path:"/dashboard",
+                element:<DashboardPage></DashboardPage>
+            },
             {
                 path: "add-service",
                 element: <AddServicePage></AddServicePage>
