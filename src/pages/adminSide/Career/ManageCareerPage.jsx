@@ -35,7 +35,7 @@ const ManageCareerPage = () => {
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-8">Manage Careers</h1>
-      
+
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead className="bg-gray-800 text-white">
@@ -50,18 +50,18 @@ const ManageCareerPage = () => {
           </thead>
           <tbody>
             {/* {careers.length > 0 ? ( */}
-               {/* careers.map((career, index) => ( */}
-                <tr className="border-b hover:bg-gray-50">
-                  <td className="py-3 px-6">1</td>
-                  <td className="py-3 px-6">Software developer</td>
-                  <td className="py-3 px-6">70000</td>
-                  <td className="py-3 px-6">
-                    <span
-                      className={`py-1 px-3 rounded-full text-sm bg-green-100 text-green-800 `}
-                    >
-                      Remote
-                    </span>
-                    {/* <span
+            {/* careers.map((career, index) => ( */}
+            <tr className="border-b hover:bg-gray-50">
+              <td className="py-3 px-6">1</td>
+              <td className="py-3 px-6">Software developer</td>
+              <td className="py-3 px-6">70000</td>
+              <td className="py-3 px-6">
+                <span
+                  className={`py-1 px-3 rounded-full text-sm bg-green-100 text-green-800 `}
+                >
+                  Remote
+                </span>
+                {/* <span
                       className={`py-1 px-3 rounded-full text-sm ${
                         career.status === "Active"
                           ? "bg-green-100 text-green-800"
@@ -70,23 +70,40 @@ const ManageCareerPage = () => {
                     >
                       Remote
                     </span> */}
-                  </td>
-                  <td className="py-3 px-6">10</td>
-                  <td className="py-3 px-6 flex space-x-3">
-                    <button
-                      onClick={() => handleUpdate(career._id)}
-                      className="bg-text_blue hover:bg-text_hover text-white font-semibold py-2 px-4 rounded-md"
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => handleDelete(career._id)}
-                      className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+              </td>
+              <td className="py-3 px-6">10</td>
+              <td className="py-3 px-6 flex space-x-3">
+                <button className="bg-text_blue outline-none border-0 hover:bg-text_hover text-white px-4 py-2 rounded-md mr-2" onClick={() => document.getElementById('my_modal_1').showModal()}>Update</button>
+                <dialog id="my_modal_1" className="modal">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Press ESC key or click the button below to close</p>
+                    <div className="modal-action">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn mr-2">Update</button>
+                        <button className="btn">Close</button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+
+                <button className="bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600" onClick={() => document.getElementById('my_modal_2').showModal()}>Delete</button>
+                <dialog id="my_modal_2" className="modal">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Press ESC key or click the button below to close</p>
+                    <div className="modal-action">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn mr-2">Update</button>
+                        <button className="btn">Close</button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </td>
+            </tr>
             {/* //   )) */}
             {/* // ) : (
             //   <tr>
