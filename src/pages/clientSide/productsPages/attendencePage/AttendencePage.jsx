@@ -1,6 +1,15 @@
-import React from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import { RiPresentationFill } from "react-icons/ri";
 
 const AttendencePage = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      delay: 200,
+    });
+  }, []);
   return (
     <>
       <div className="mt-20">
@@ -35,8 +44,42 @@ const AttendencePage = () => {
 
       {/* Attendance  feature */}
 
-      <div className="bg-[#f3f6ff] mt-20  ">
-        <h1>Nimu Attendance Features</h1>
+      <div className=" mt-20  ">
+        <div className="bg-[#f3f6ff] max-w-screen-xl py-20 ">
+          <div>
+            <h1 className="text-center text-4xl  font-bold ">
+              Soft Tech Attendance Features
+            </h1>
+          </div>
+          <div className="flex my-20 mx-10  items-center justify-between gap-10 ">
+            <div className="bg-white px-10 py-12 rounded-xl " data-aos="fade-right">
+              <div>
+                <span>
+                  <RiPresentationFill/>
+                </span>
+              </div>
+              <h1 className="text-3xl font-bold ">
+                Time and Attendance Tracking
+              </h1>
+              <p className="my-8 text-xl ">
+                Recording and tracking the attendance of individuals, including
+                clock-in and clock-out times, break durations, and total hours
+                worked.
+              </p>
+            </div>
+            <div
+              data-aos="fade-left"
+              className="bg-white px-10 py-12 rounded-xl "
+            >
+              <h1 className="text-3xl font-bold ">Biometric Authentication</h1>
+              <p className="my-8 text-xl ">
+                Integrating biometric technologies like fingerprint or facial
+                recognition for accurate and secure identification of
+                individuals during the attendance process.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
