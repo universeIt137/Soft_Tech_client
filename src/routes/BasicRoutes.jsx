@@ -22,6 +22,7 @@ import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/
 import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
 import AddCareerPage from "../pages/adminSide/Career/AddCareerPage";
 import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
+import AttendencePage from "../pages/clientSide/productsPages/attendencePage/AttendencePage";
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path : "/product-hrm",
                 element :  <HrmPage></HrmPage>
+            },
+            {
+                path : "/nimu-attendencs",
+                element : <AttendencePage></AttendencePage>
             }
 
 
