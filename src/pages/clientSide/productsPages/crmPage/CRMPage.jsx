@@ -3,6 +3,7 @@ import { CiLaptop } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 
 const CRMPage = () => {
+  window.scrollTo(0, 0);
   return (
     <>
       <div className="mt-20">
@@ -46,24 +47,111 @@ const CRMPage = () => {
               and more. Our solutions are designed to seamlessly integrate and
               provide a holistic view of your business operations.
             </p>
-            <div className=" flex " >
-              <div className="" >
-                <button class="btn btn-active btn-primary  block  mx-auto   ">
+            <div className=" flex flex-wrap md:flex-row md:justify-center md:gap-6 gap-4 ">
+              <div className=" ">
+                <button class="btn btn-active btn-primary  block  mx-auto text-xl    ">
                   Fully Automated
                 </button>
               </div>
               <div>
-                <button class="btn btn-active btn-secondary block mx-auto ">
+                <button class="btn btn-active btn-secondary block mx-auto text-xl ">
                   Centralized
                 </button>
               </div>
               <div>
-                <button class="btn btn-active btn-accent block mx-auto ">Global Fully</button>
+                <button class="btn btn-active btn-accent block mx-auto text-xl ">
+                  Global Fully
+                </button>
               </div>
               <div>
-                <button class="btn btn-active btn-neutral block mx-auto ">
+                <button class="btn btn-active btn-neutral block mx-auto text-xl ">
                   Integrated Customizable
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* service area  */}
+
+      <div className=" bg-[#479FC9] ">
+        <div className="max-w-screen-xl mx-auto ">
+          <div className="py-20">
+            <div>
+              <h1 className="text-center text-white text-4xl font-bold  ">
+                Features of Our Software
+              </h1>
+              <p className="text-center my-4 text-lg text-white ">
+                Our softwares include impressive features
+              </p>
+            </div>
+            <div className="grid grid-cols-5 py-12 gap-8 ">
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" >Contact & Lead Management </h1>
+                </div>
+              </div>
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" >Business Intelligence (BI) </h1>
+                </div>
+              </div>
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" >Customer Relationship Management (CRM) </h1>
+                </div>
+              </div>
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" > E-commerce Integration </h1>
+                </div>
+              </div>
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" > Workflow Automation </h1>
+                </div>
+              </div>
+              <div className="card card-compact bg-base-100 py-6  shadow-xl">
+                <figure>
+                  <img className=""
+                    src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725880053/erp-image_ntoidc.avif"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div className="card-body">
+                    <h1 className="" >Contact & Lead Management </h1>
+                </div>
               </div>
             </div>
           </div>
