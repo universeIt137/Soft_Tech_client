@@ -3,6 +3,7 @@ import Sidebar from '../components/adminSide/Sidebar';
 import AdminNavbar from '../components/adminSide/AdminNavbar';
 import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import DashboardPage from '../components/adminSide/DashboardPage';
 
 const DashboardLayout = () => {
 
@@ -24,6 +25,7 @@ const DashboardLayout = () => {
                 <main className="flex-1 p-8 overflow-auto">
                     <Outlet></Outlet>
                 </main>
+                    <DashboardPage/>
             </div>
         </div>
     );
