@@ -217,7 +217,7 @@ const Navbar = () => {
                   isDropdownVisible && <div className={`  flex shadow-xl  top-[60px] -left-[30%] absolute min-w-[600px] p-3 z-50 bg-white`}>
 
                     <div>
-                      <NavLink to={`/erp-solution`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-erp`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
@@ -229,7 +229,7 @@ const Navbar = () => {
                         </div>
 
                       </NavLink>
-                      <NavLink to={`/madical-solution`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-medical`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
@@ -241,7 +241,7 @@ const Navbar = () => {
                         </div>
 
                       </NavLink>
-                      <NavLink to={`/mobile-app-development`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-mobile`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
@@ -257,19 +257,19 @@ const Navbar = () => {
 
 
                     <div>
-                      <NavLink to={`/e-commerse-solution`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-ecommerce`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
                           </div>
                           <div className="text-base">
-                            <h2>E-commerse Solution </h2>
-                            <small title="" className="text-ellipsis text-[#D66F70] block">E-commerse Solution Inventory ... </small>
+                            <h2>E-commerce Solution </h2>
+                            <small title="" className="text-ellipsis text-[#D66F70] block">E-commerce Solution Inventory ... </small>
                           </div>
                         </div>
 
                       </NavLink>
-                      <NavLink to={`/data-analytics`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-data-analyist`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
@@ -281,7 +281,7 @@ const Navbar = () => {
                         </div>
 
                       </NavLink>
-                      <NavLink to={`/virtual-reality`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/service-iot`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />

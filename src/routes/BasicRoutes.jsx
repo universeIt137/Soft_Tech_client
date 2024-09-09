@@ -30,6 +30,12 @@ import EducationPage from "../pages/clientSide/productsPages/educationPage/Educa
 import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
 import CRMPage from "../pages/clientSide/productsPages/crmPage/CRMPage";
 import DashboardPage from "../pages/adminSide/dashboard/DashboardPage";
+import ServiceERP from "../pages/clientSide/servicesPage/erpService/ServiceERP";
+import MedicalServicePage from "../pages/clientSide/servicesPage/medicalPage/MedicalServicePage";
+import MobileAppPage from "../pages/clientSide/servicesPage/mobileAppPage/MobileAppPage";
+import EcommercePage from "../pages/clientSide/servicesPage/ecommercePage/EcommercePage";
+import DataAnalistPage from "../pages/clientSide/servicesPage/dataAnalistPage/DataAnalistPage";
+import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
 
 
 
@@ -107,6 +113,30 @@ const router = createBrowserRouter([
             {
                 path: "/products-crm",
                 element: <CRMPage></CRMPage>
+            },
+            {
+                path: "/service-erp",
+                element: <ServiceERP></ServiceERP>
+            },
+            {
+                path: "/service-medical",
+                element: <MedicalServicePage></MedicalServicePage>
+            },
+            {
+                path: "/service-mobile",
+                element: <MobileAppPage></MobileAppPage>
+            },
+            {
+                path: "/service-ecommerce",
+                element: <EcommercePage></EcommercePage>
+            },
+            {
+                path: "/service-data-analyist",
+                element: <DataAnalistPage></DataAnalistPage>
+            },
+            {
+                path: "/service-iot",
+                element: <IOTpage></IOTpage>
             }
             
 
