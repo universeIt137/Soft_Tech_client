@@ -22,6 +22,8 @@ import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/
 import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
 import AddCareerPage from "../pages/adminSide/Career/AddCareerPage";
 import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
+import EducationPage from "../pages/clientSide/productsPages/educationPage/EducationPage";
+import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
 
 
 
@@ -83,6 +85,14 @@ const router = createBrowserRouter([
             {
                 path : "/product-hrm",
                 element :  <HrmPage></HrmPage>
+            },
+            {
+                path: "/product-education",
+                element: <EducationPage></EducationPage>
+            },
+            {
+                path: "/product-pos",
+                element: <PosPage></PosPage>
             }
 
 

@@ -165,7 +165,7 @@ const Navbar = () => {
                       </NavLink>
 
 
-                      <NavLink to={`/nimu-education`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/product-education`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
@@ -179,7 +179,7 @@ const Navbar = () => {
                       </NavLink>
 
 
-                      <NavLink to={`/nimu-pos`} className="hover:bg-[#F2F2F2] p-4 block">
+                      <NavLink to={`/product-pos`} className="hover:bg-[#F2F2F2] p-4 block">
                         <div className="flex gap-3 ">
                           <div>
                             <img className="w-[50px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
