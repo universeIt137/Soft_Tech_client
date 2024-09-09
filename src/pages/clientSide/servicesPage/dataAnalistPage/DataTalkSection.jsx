@@ -1,10 +1,10 @@
 import Aos from 'aos';
 import React, { useEffect } from 'react';
 
-const TalkSection = () => {
+const DataTalkSection = () => {
     useEffect(() => {
-        Aos.init({ duration: 1000, delay: 100 });
-    }, [])
+        Aos.init({ duration: 600, delay: 100 });
+    }, []);
     return (
         <div>
             <div className='w-10/12 mx-auto space-y-3 text-center lg:my-20' data-aos="fade-up">
@@ -18,4 +18,4 @@ const TalkSection = () => {
     );
 };
 
-export default TalkSection;
+export default DataTalkSection;
