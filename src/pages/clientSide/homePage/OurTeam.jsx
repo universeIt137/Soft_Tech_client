@@ -12,7 +12,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard, FreeMode } from 'swiper/m
 
 const OurTeam = () => {
     return (
-        <div className="bg-universe_primary">
+        <div className="bg-universe_primary my-aos-element" data-aos="fade-up">
             <div className="container mx-auto">
                 <div className="py-10 text-white text-center">
                     <h2 className="lg:text-5xl text-2xl font-bold">The Visionary Team</h2>

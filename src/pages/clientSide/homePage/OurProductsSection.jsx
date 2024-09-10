@@ -26,9 +26,9 @@ const OurProductsSection = () => {
                 </div>
 
                 {/* nimusogt product card */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 my-aos-element">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10" >
                     {/* soft tech HRM */}
-                    <div style={bgImg} className="h-[500px] shadow-2xl bg-white relative" data-aos="fade-right">
+                    <div style={bgImg} className="h-[500px] shadow-2xl bg-white relative"  >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="Nimu HRM" />
                             <h2 className="text-2xl font-bold">Soft Tech HRM</h2>
@@ -43,7 +43,7 @@ const OurProductsSection = () => {
 
                     {/* soft tech Attendence */}
 
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467095/3-new_ig9cph.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467095/3-new_ig9cph.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden"  >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt=" Nimu Attendance" />
                             <h2 className="text-2xl font-bold">Soft Tech Attendance</h2>
@@ -56,7 +56,7 @@ const OurProductsSection = () => {
                         </div>
                     </div>
                     {/* soft tech Inventory */}
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723466812/2-new_x1kznc.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723466812/2-new_x1kznc.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden"  >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="Nimu Inventory" />
                             <h2 className="text-2xl font-bold">Soft Tech Inventory</h2>
@@ -68,9 +68,8 @@ const OurProductsSection = () => {
 
                         </div>
                     </div>
-
                     {/* Soft Tech CRM*/}
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467662/5-new_rwohsk.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467662/5-new_rwohsk.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="Nimu CRM" />
                             <h2 className="text-2xl font-bold">Soft Tech Inventory</h2>
@@ -83,7 +82,7 @@ const OurProductsSection = () => {
                         </div>
                     </div>
                     {/* Soft Tech Education*/}
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467891/6-new_dt9xqr.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467891/6-new_dt9xqr.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="Nimu Education" />
                             <h2 className="text-2xl font-bold">Soft Tech Education</h2>
@@ -96,7 +95,7 @@ const OurProductsSection = () => {
                         </div>
                     </div>
                     {/* Soft Tech POS*/}
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723468003/4-new_g12ugt.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723468003/4-new_g12ugt.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="Nimu POS" />
                             <h2 className="text-2xl font-bold">Soft Tech POS</h2>
