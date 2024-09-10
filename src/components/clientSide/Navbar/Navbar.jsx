@@ -400,7 +400,7 @@ const Navbar = () => {
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-hrm`} className={`text-[#9F73B1]`}>SoftTech HRM</NavLink>
+              <NavLink to={`/products-hrm`} className={`text-[#9F73B1]`}>SoftTech HRM</NavLink>
             </li>
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
