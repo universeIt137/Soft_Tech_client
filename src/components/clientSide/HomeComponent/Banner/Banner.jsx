@@ -26,7 +26,9 @@ const Banner = () => {
                 </div>
                 {/* img */}
                 <div className="flex-1" data-aos="zoom-in">
-                    <img src="https://res.cloudinary.com/dqescabbl/image/upload/v1723447109/home-banner_dnl7fj.webp" alt="Banner Image" />
+                    <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725965939/Universe%20Soft%20Tech/Services/Mobile%20App%20page/thok5jhl8z3o7qgqakjg.svg" alt="Banner Image" />
+
+                    
                 </div>
             </div>
         </div>
