@@ -11,12 +11,18 @@ import AllinOne from "./AllinOne.jsx";
 import OurProductsSection from "./OurProductsSection.jsx";
 import OurTeam from "./OurTeam.jsx";
 import ExpandableCards from "./ExpandableCards.jsx";
+import { useEffect } from "react";
+import Aos from "aos";
 
 
 
 
 
 const HomePage = () => {
+    window.scrollTo(0, 0);
+    useEffect(() => {
+        Aos.init({ duration: 1000, delay:100 });
+    }, []);
 
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 2 },
@@ -36,29 +42,20 @@ const HomePage = () => {
             <Helmet>
                 <title>Soft Tech | HomePage</title>
             </Helmet>
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: true, amount: 0.2 }}>
+            <div>
                 <Banner></Banner>
-            </motion.div>
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: true, amount: 0.2 }}>
-               <AllinOne></AllinOne>
-            </motion.div>
+            </div>
 
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                className="lg:block hidden"
-                viewport={{ once: true, amount: 0.2 }}>
+
+           
+
+            <div className="my-aos-element" data-aos="fade-up">
+               <AllinOne></AllinOne>
+            </div>
+
+            <div>
                 <OurProductsSection></OurProductsSection>
-            </motion.div>
+            </div>
             <motion.div
                 initial="hidden"
                 whileInView="visible"

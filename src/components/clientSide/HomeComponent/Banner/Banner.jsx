@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import './banner.css';
+import Aos from 'aos';
 
 const Banner = () => {
+
+    useEffect(() => {
+        Aos.init({ duration: 8000, delay: 1000 });
+    },[]);
+
     return (
-        <div className="py-16 banner-wave">
-            <div className="container mx-auto flex flex-col md:flex-col lg:flex-row justify-between items-center md:px-8">
+        <div className="py-16 banner-wave my-aos-element">
+            <div className="container mx-auto flex flex-col md:flex-col lg:flex-row justify-between items-center md:px-8" >
                 {/* content */}
-                <div className="flex-1 lg:pb-20 md:pb-2 pb-5 md:leading-10">
+                <div className="flex-1 lg:pb-20 md:pb-2 pb-5 md:leading-10" data-aos="zoom-in">
                     <h1 className="my-3 leading-relaxed lg:text-4xl text-center lg:text-start md:text-start text-text_blue text-2xl font-bold -tracking-[0.044rem]">
                         Get 100% Secure <span className="text-text_primari">Cloud <br className="hidden lg:block" /> Based <br className="block md:block lg:hidden" /> Custom</span> Software <br className="hidden lg:block" /> Solution
                     </h1>
@@ -18,7 +25,7 @@ const Banner = () => {
                     </div>
                 </div>
                 {/* img */}
-                <div className="flex-1">
+                <div className="flex-1" data-aos="zoom-in">
                     <img src="https://res.cloudinary.com/dqescabbl/image/upload/v1723447109/home-banner_dnl7fj.webp" alt="Banner Image" />
                 </div>
             </div>

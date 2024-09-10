@@ -9,7 +9,7 @@ const AtGlance = () => {
       <h1 className=" text-2xl font-semibold">Universe Soft Tech</h1>
       <h1 className="font-bold text-text_primari text-5xl">At a Glance</h1>
 
-      <div className="lg:flex gap-4 pt-7 justify-between w-11/12 space-y-4  mx-auto">
+      <div className="lg:flex gap-4 pt-7 justify-between w-11/12 space-y-4 lg:space-y-0  mx-auto">
 
         <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg  ">
           <div ref={countUpRef} />
