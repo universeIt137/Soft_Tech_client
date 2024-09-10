@@ -2,7 +2,15 @@
 import { GoArrowRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import './HomePageStyle.css'
+import { useEffect } from "react";
+import Aos from "aos";
+
+
 const OurProductsSection = () => {
+    useEffect(() => {
+        Aos.init({ duration: 1000, delay: 200 });
+    }, []);
+
     const bgImg = {
         backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723464811/1-new_xuoqca.png")',
         backgroundSize: 'cover',
@@ -10,17 +18,17 @@ const OurProductsSection = () => {
         overflow: 'hidden',
     }
     return (
-        <div className="bg-[#ffffff] py-20">
+        <div className="bg-[#ffffff] py-20 my-aos-element">
             <div className='container mx-auto px-5 flex-grow'>
                 <div>
                     <h1 className="text-3xl font-semibold text-center py-10">What <span className="text-universe_primary text-5xl">UNIVERSE</span> <span className="text-universe_secondary text-5xl">SOFT TECH</span> offers</h1>
-                    <p className="text-center">Explore how Soft Tech HRM, Soft Tech Attendance, and Soft Tech Inventory streamline and enhance your business operations</p>
+                    <p className="text-center text-xl">Explore how Soft Tech HRM, Soft Tech Attendance, and Soft Tech Inventory streamline and enhance your business operations</p>
                 </div>
 
                 {/* nimusogt product card */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 my-aos-element">
                     {/* soft tech HRM */}
-                    <div style={bgImg} className="h-[500px] shadow-2xl bg-white relative ">
+                    <div style={bgImg} className="h-[500px] shadow-2xl bg-white relative" data-aos="fade-right">
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="Nimu HRM" />
                             <h2 className="text-2xl font-bold">Soft Tech HRM</h2>
@@ -35,7 +43,7 @@ const OurProductsSection = () => {
 
                     {/* soft tech Attendence */}
 
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467095/3-new_ig9cph.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723467095/3-new_ig9cph.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt=" Nimu Attendance" />
                             <h2 className="text-2xl font-bold">Soft Tech Attendance</h2>
@@ -48,7 +56,7 @@ const OurProductsSection = () => {
                         </div>
                     </div>
                     {/* soft tech Inventory */}
-                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723466812/2-new_x1kznc.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden">
+                    <div style={{ backgroundImage: 'url("https://res.cloudinary.com/dqescabbl/image/upload/v1723466812/2-new_x1kznc.png")' }} className="h-[500px] shadow-2xl bg-white relative bg-cover rounded-[10px] overflow-hidden" >
                         <div className="text-center py-5">
                             <img className="w-[80px] mx-auto" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="Nimu Inventory" />
                             <h2 className="text-2xl font-bold">Soft Tech Inventory</h2>
