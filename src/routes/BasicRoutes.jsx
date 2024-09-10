@@ -36,6 +36,7 @@ import MobileAppPage from "../pages/clientSide/servicesPage/mobileAppPage/Mobile
 import EcommercePage from "../pages/clientSide/servicesPage/ecommercePage/EcommercePage";
 import DataAnalistPage from "../pages/clientSide/servicesPage/dataAnalistPage/DataAnalistPage";
 import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
+import OurTeam from "../pages/clientSide/homePage/OurTeam";
 
 
 
@@ -137,8 +138,11 @@ const router = createBrowserRouter([
             {
                 path: "/service-iot",
                 element: <IOTpage></IOTpage>
+            },
+            {
+                path: "/our-team",
+                element: <OurTeam></OurTeam>
             }
-            
 
         ]
     },
