@@ -8,7 +8,7 @@ const IOTBanner = () => {
     return (
         <div>
             <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 w-4/5 mx-auto justify-center items-center">
-                <div className="" data-aos="zoom-in">
+                <div className="my-aos-element" data-aos="zoom-out">
                     <p className='lg:text-7xl text-5xl font-bold'>
                         <span className='text-universe_primary'>Choose Quality</span> <br />
                         IOT & VR

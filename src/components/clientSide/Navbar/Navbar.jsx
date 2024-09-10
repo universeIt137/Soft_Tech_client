@@ -201,7 +201,7 @@ const Navbar = () => {
               <div onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave} className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/services`} className={`active:text-violet-500`}>
+                  <NavLink to={`/services`} className={`active:text-violet-500 text-universe_primary`}>
                     Services
                   </NavLink>
                   <span onClick={() => setUpDownService(!upDownService)}>
@@ -303,7 +303,7 @@ const Navbar = () => {
 
 
               <li>
-                <NavLink to={`/portfolio`}>Portfolio</NavLink>
+                <NavLink className='text-universe_primary' to={`/portfolio`}>Portfolio</NavLink>
               </li>
 
 
@@ -379,7 +379,7 @@ const Navbar = () => {
             <NavLink to={`/`}>Home</NavLink>
           </li>
 
-          <div className=" border-b flex items-center border-b-gray-400 text-base">
+          {/* <div className=" border-b flex items-center border-b-gray-400 text-base">
             <div className="hover:bg-[#F3F4F6] w-4/5 py-3 px-2 h-full">
               <NavLink to={`/products`}>Products </NavLink>
             </div>
@@ -390,7 +390,21 @@ const Navbar = () => {
                 <IoIosArrowDown onClick={() => setOpen(!open)}></IoIosArrowDown>
               )}
             </div>
-          </div>
+          </div> */}
+
+          <li
+            className="py-3 px-2 border-b flex items-center  border-b-gray-400 hover:bg-[#F3F4F6]"
+            onClick={() => setOpen(!open)}
+          >
+            <div className="flex items-center text-[18px] gap-3">
+              <NavLink to={`/products`}>Products</NavLink>
+              {open ? (
+                <IoIosArrowUp></IoIosArrowUp>
+              ) : (
+                <IoIosArrowDown></IoIosArrowDown>
+              )}
+            </div>
+          </li>
 
           <div
             className={`${open ? "block" : "hidden"
@@ -403,14 +417,14 @@ const Navbar = () => {
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-hrm`} className={`text-[#9F73B1]`}>SoftTech HRM</NavLink>
+              <NavLink to={`/products-hrm`} className={`text-[#9F73B1]`}>SoftTech HRM</NavLink>
             </li>
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-attendence`} className={`text-[#D189B5]`}>SoftTech Attendence</NavLink>
+              <NavLink to={`/products-attendance`} className={`text-[#D189B5]`}>SoftTech Attendence</NavLink>
             </li>
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
@@ -430,13 +444,13 @@ const Navbar = () => {
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-pos`} className={`text-[#04B7C7]`}>SoftTech POS</NavLink>
+              <NavLink to={`/products-pos`} className={`text-[#04B7C7]`}>SoftTech POS</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
               </div>
-              <NavLink to={`/nimu-education`} className={`text-[#60A283]`}>SoftTech Education</NavLink>
+              <NavLink to={`/products-education`} className={`text-[#60A283]`}>SoftTech Education</NavLink>
             </li>
           </div>
 
@@ -444,8 +458,8 @@ const Navbar = () => {
             className="py-3 px-2 border-b flex items-center  border-b-gray-400 hover:bg-[#F3F4F6]"
             onClick={() => setOtherOpen(!otherOpen)}
           >
-            <div className="flex items-center text-[18px] gap-3">
-              <NavLink to={`/services`}>Services</NavLink>
+            <div className="flex items-center text-[18px]  gap-3">
+              <NavLink  to={`/services`}>Services</NavLink>
               {otherOpen ? (
                 <IoIosArrowUp></IoIosArrowUp>
               ) : (
@@ -460,46 +474,46 @@ const Navbar = () => {
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp" alt="" />
               </div>
-              <NavLink to={`/erp-solution`} className={`text-[#9F73B1]`}>ERP Solution</NavLink>
+              <NavLink to={`/service-erp`} className={`text-[#9F73B1]`}>ERP Solution</NavLink>
             </li>
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp" alt="" />
               </div>
-              <NavLink to={`/madical-solution`} className={`text-[#D189B5]`}>Medical Solution</NavLink>
+              <NavLink to={`/service-medical`} className={`text-[#D189B5]`}>Medical Solution</NavLink>
             </li>
 
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp" alt="" />
               </div>
-              <NavLink to={`/mobile-app-development`} className={`text-[#7691B6]`}>Mobile App Development</NavLink>
+              <NavLink to={`/service-mobile`} className={`text-[#7691B6]`}>Mobile App Development</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp" alt="" />
               </div>
-              <NavLink to={`/e-commerse-solution`} className={`text-[#D66F70]`}>E-commerse Solution</NavLink>
+              <NavLink to={`/service-ecommerce`} className={`text-[#D66F70]`}>E-commerse Solution</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp" alt="" />
               </div>
-              <NavLink to={`/data-analytics`} className={`text-[#60A283]`}>Data Analytics</NavLink>
+              <NavLink to={`/service-data-analyist`} className={`text-[#60A283]`}>Data Analytics</NavLink>
             </li>
             <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6] flex gap-3 items-center">
               <div>
                 <img className="w-[40px]" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp" alt="" />
               </div>
-              <NavLink to={`/virtual-reality`} className={`text-[#04B7C7]`}>IOT & Virtual Reality</NavLink>
+              <NavLink to={`/service-iot`} className={`text-[#04B7C7]`}>IOT & Virtual Reality</NavLink>
             </li>
           </div>
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
             <NavLink to={`/about-us`}>About US</NavLink>
           </li>
-          
+
 
           <li className="py-3 px-2 border-b border-b-gray-400 hover:bg-[#F3F4F6]">
             <NavLink to={`/contact-us`}>Contact US</NavLink>
