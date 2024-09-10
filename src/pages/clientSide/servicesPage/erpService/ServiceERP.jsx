@@ -1,57 +1,47 @@
-import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useEffect } from "react";
-
+import React from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ServiceERP = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  AOS.init({
+    disable: false, 
+    startEvent: 'DOMContentLoaded', 
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    
+  
+    // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    offset: 120, // offset (in px) from the original trigger point
+    delay: 0, // values from 0 to 3000, with step 50ms
+    duration: 400, // values from 0 to 3000, with step 50ms
+    easing: 'ease', // default easing for AOS animations
+    once: false, // whether animation should happen only once - while scrolling down
+    mirror: false, // whether elements should animate out while scrolling past them
+    anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+  
+  });
   return (
-    <div className="mt-20">
-      <div className="bg-[#F1F4F8]">
-        <div className="max-w-screen-xl mx-auto">
-          <div className="flex flex-col lg:flex-row lg:justify-between gap-5 lg:py-12 py-8">
-            {/* Motion component for fade-up animation */}
-            <motion.div
-              initial={{ opacity: 0, y: 150 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9 }}
-              className="flex-1 mt-14 w-full"
-            >
-              <h1 className="text-center text-xl lg:text-4xl font-semibold">
-                Enhance Medical Work <br /> Activity with our medical <br />{" "}
-                solutions.
+    <>
+      <div className="mt-16 md:mt-20 lg:mt-20 ">
+        <div className="max-w-screen-xl">
+          <div >
+            <div data-aos = "fade-down" className="py-10  ">
+              <h1 className="text-center text-2xl md:text-5xl font-semibold ">
+                Develop Your Business{" "}
+                <span className="text-text_blue">ERP</span>{" "}
               </h1>
-              <p className="my-8 md:text-xl text-center font-thin">
-                Welcome to Nimusoft Medical Solution, where we pioneer
-                transformative solutions for the healthcare industry. Our
-                cutting-edge software empowers medical professionals by
-                streamlining operations, enhancing patient care, and
-                facilitating seamless communication.
-              </p>
-              <NavLink to={""}>
-                <button className="btn bg-[#199346] block mx-auto text-md text-white px-8">
-                  Contact
-                </button>
-              </NavLink>
-            </motion.div>
-
-            {/* Image Section */}
-            <div className="flex-1">
-              <motion.img
-                src="https://res.cloudinary.com/dj2edy2rg/image/upload/v1725882814/contact_itz5ni.png"
-                alt="Medical Solutions"
-                className="w-full h-auto"
-                initial={{ opacity: 0, x: -50 }} // Start slightly off the screen to the left
-                animate={{ opacity: 1, x: 0 }} // Fade in and slide to the correct position
-                transition={{ duration: 0.8 }} // Control the duration of the animation
-              />
+              <h2 className="text-center mt-4 md:mt-6 md:text-3xl font-medium text-[#565973] " >
+                Streamline Your Business Operations with our Comprehensive ERP
+                Solutions.
+              </h2>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
