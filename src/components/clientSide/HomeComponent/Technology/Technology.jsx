@@ -1,9 +1,10 @@
 
 
 const Technology = () => {
+    
     return (
         <div className="">
-            <div className="container mx-auto py-20 px-10 lg:px-0">
+            <div className="container mx-auto py-20 px-10 lg:px-0 my-aos-element" data-aos="fade-up">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold ">Technology Partners</h2>
                     <p className="text-xl pt-5">Empowering your business with our trusted technology partners</p>
