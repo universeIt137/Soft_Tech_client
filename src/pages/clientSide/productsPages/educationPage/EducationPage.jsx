@@ -11,9 +11,9 @@ const EducationPage = () => {
             <div className='mt-20 min-h-screen bg-universe_secondary items-center justify-center flex'>
                 <EducationBanner></EducationBanner>
             </div>
-            <EducationKeypoint></EducationKeypoint>
+            {/* <EducationKeypoint></EducationKeypoint> */}
 
-            <DigitalEducation></DigitalEducation>
+            {/* <DigitalEducation></DigitalEducation> */}
         </>
     );
 };
