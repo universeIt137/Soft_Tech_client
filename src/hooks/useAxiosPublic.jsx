@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React from 'react';
 const Url = "https://soft-tech-server-eight.vercel.app/api/v1";
+const localUrl = "http://localhost:3000"
 
 const axiosPublic = axios.create({
-    baseURL: Url
+    baseURL: localUrl
 })
 
 const useAxiosPublic = () => {
