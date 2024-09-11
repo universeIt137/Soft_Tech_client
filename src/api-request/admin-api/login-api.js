@@ -1,12 +1,12 @@
 import axios from "axios";
 import { setToken } from "../../helper/sessionHelper"
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-const baseUrl = "https://soft-tech-server-eight.vercel.app/api/v1";
+// const baseUrl = "https://soft-tech-server-eight.vercel.app/api/v1";
+const baseUrl = `http://localhost:3000/api/v1`;
 
 export const loginApi = async (postBody) => {
-    const axiosPublic = useAxiosPublic();
     try {
-        let res = await axiosPublic.post(`/adminLogin`,postBody);
+        let res = await axios.post(`${baseUrl}/adminLogin`,postBody);
         if(res.data["status"]==="success"){
             setToken(res.data["token"]);
             return res.data["status"];
