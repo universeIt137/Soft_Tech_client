@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AddProductRequest } from "../../../api-request/admin-api/product-api";
+import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 const AddProductPage = () => {
@@ -14,6 +15,11 @@ const AddProductPage = () => {
     let res = await AddProductRequest(data);
     if (res) {
       toast.success("Product added successfully!!!");
+      setData({
+        productName: "",
+        productImage: "", 
+        productDesc: ""
+      })
     } else {
       toast.error("Product can't be added! Please try again");
     }

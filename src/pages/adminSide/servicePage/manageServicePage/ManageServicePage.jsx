@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
+import ProductStore from '../../../../api-request/admin-api/product-api';
 
 const ManageServicePage = () => {
     const [services, setServices] = useState([]);
+    const {productList, getProductRequest} = ProductStore()
 
-    // Fetch services from API
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const response = await axios.get('/api/services'); // Change this to your actual API endpoint
-                setServices(response.data);
-            } catch (error) {
-                console.error('Error fetching services:', error);
-            }
-        };
-
-        fetchServices();
-    }, []);
+        (async() =>{
+            await getProductRequest()
+        })()
+    },[])
+    console.log(productList)
 
     const handleDelete = async (serviceId) => {
         // Delete service logic

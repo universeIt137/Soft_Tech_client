@@ -1,19 +1,37 @@
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import axios from 'axios';
 
 const baseUrl = "https://soft-tech-server-eight.vercel.app/api/v1";
 
+const ProductStore = create((set) => ({
 
-export const AddProductRequest = async(postbody) => {
-   try{
-    const axiosPublic = useAxiosPublic()
-    let res = await axiosPublic.post(`/CreateProduct`, postbody);
-    if(res.data.status === 'success') {
-        return res.data
-    }else{
-        return false
+    AddProductRequest:  async (postBody) => {
+    try {
+        const res = await axios.post(`${baseUrl}/CreateProduct`, postBody);
+        if (res.data.status === 'success') {
+        return res.data;
+        } else {
+        return false;
+        }
+    } catch (e) {
+        console.log(e);
+        return false;
     }
-   }catch(e){
-    return console.log(e)
-   }
+    },
 
+    productList: null,
+    getProductRequest:  async() => {
+    try{
+        const  res = await axios.get(`${baseUrl}/GetProducts`)
+        console.log(res.data)
+        if(res.data.status = 'success'){
+            return res.data
+        }else{
+            return false
+        }
+    }catch(e){
+        console.log(e)
+    }
 }
+}))
+
+export default ProductStore
