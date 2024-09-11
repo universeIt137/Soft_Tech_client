@@ -17,20 +17,7 @@ const AddCareer = () => {
     Benifits: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/careers", formData); // API endpoint for adding careers
-      console.log("Career added successfully:", response.data);
-    } catch (error) {
-      console.error("Error adding career:", error);
-    }
-  };
+  
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
