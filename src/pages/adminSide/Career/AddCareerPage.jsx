@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import careerStore from "../../../api-request/carrer-api/carrerApi";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const AddCareer = () => {
-  const { createCareerApi } = careerStore();
+  const { createCareerApi,careerApiRequest,careerDataList } = careerStore();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     jobTitle: "",
@@ -40,16 +42,21 @@ const AddCareer = () => {
       [name]: value,
     }));
   };
+
   const submitInputValue = async (e) => {
     e.preventDefault();
     let res = await createCareerApi(formData);
-    console.log(res);
     if(res){
+      useNavigate("dashboard/manage-career");
+      setFormData('')
       return toast.success("Career create successfully");
     }else{
       return toast.error("Something went wrong");
     }
   };
+
+
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
@@ -329,7 +336,7 @@ const AddCareer = () => {
           </button>
         </div>
       </form>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center"/>
     </div>
   );
 };

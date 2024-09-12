@@ -11,8 +11,6 @@ const config = {
   },
 };
 
-console.log(`token is ${config}`)
-
 const careerStore = create((set) => ({
   createCareerApi: async (postBody) => {
     try {
@@ -20,7 +18,7 @@ const careerStore = create((set) => ({
       return axios
         .post(url, postBody, config)
         .then((res) => {
-            console.log(res);
+          console.log(res);
           if (res.data["status"] === "success") {
             return true;
           } else {
@@ -28,29 +26,35 @@ const careerStore = create((set) => ({
           }
         })
         .catch((e) => {
-            return false;
+          return false;
         });
     } catch (error) {
       return error;
     }
   },
-  careerStoreDataList: [],
-  careerStoreApiRequest: async () => {
+  careerDataList: [],
+  careerApiDataRequest: async () => {
     let res = await axios.get(`${baseUrl}/getAllCareer`);
     if (res.data["status"] === "success") {
-      set({ serviceDataList: res.data["data"] });
+      set({ careerDataList: res.data["data"] });
     }
   },
-  careerStoreDeleteApi: async (id) => {
+
+  careerDeleteApi: (id) => {
     try {
-      let res = await axios.delete(`${baseUrl}/deleteService/${id}`);
-      if (res) {
-        return res.data.status;
-      } else {
-        return false;
-      }
+      let deleteUrl = `${baseUrl}/deleteCareer/${id}`;
+      return axios
+        .delete(deleteUrl, config)
+        .then((res) => {
+          if (res.data["status"] === "success") {
+            return res.data["status"];
+          }
+        })
+        .catch((e) => {
+          return false
+        });
     } catch (error) {
-      return error;
+      return false;
     }
   },
 }));
