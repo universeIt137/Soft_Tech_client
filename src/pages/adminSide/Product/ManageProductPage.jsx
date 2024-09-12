@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import productStore from "./../../../api-request/product-api/productApi";
+import { deleteAlert } from "../../../helper/deleteHelperAlert";
 
 const ManageProductPage = () => {
-  const { productDataList, productDataListApi } = productStore();
+  const { productDataList, productDataListApi, deleteProductApi } =
+    productStore();
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     (async () => {
@@ -16,6 +19,18 @@ const ManageProductPage = () => {
     })();
   }, []);
 
+  const deleteService = async (id) => {
+    let deleteRes = await deleteAlert(id);
+    if (deleteRes.isConfirmed) {
+      let res = await deleteProductApi(id);
+      if (res) {
+        await productDataListApi()
+        toast.success("Product delete successfully");
+      } else {
+        toast.error("Product delete fail");
+      }
+    }
+  };
 
   return (
     <div className="container mx-auto py-8">
@@ -50,7 +65,7 @@ const ManageProductPage = () => {
                 <td className="py-3 px-4">{i + 1}</td>
                 <td className="py-3 px-4">{item.productName}</td>
                 <td className="py-3 px-4">
-                  <img 
+                  <img
                     src={item.productImg}
                     alt={item.productName}
                     className="w-16 h-16 py-[16px] object-cover"
@@ -65,8 +80,11 @@ const ManageProductPage = () => {
                     </button>
                   </NavLink>
 
-                  <button className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600">
-                    <i title="delete" className="-ml-[8px] block " >
+                  <button
+                    onClick={deleteService.bind(this, item["_id"])}
+                    className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  >
+                    <i title="delete" className="-ml-[8px] block ">
                       <MdDelete />
                     </i>
                   </button>
@@ -76,6 +94,7 @@ const ManageProductPage = () => {
           </tbody>
         </table>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
