@@ -72,7 +72,7 @@ const ManageProductPage = () => {
                   />
                 </td>
                 <td className="py-3 px-4 gap-2">
-                  <NavLink title="update" to={`/product/edit/${item.id}`}>
+                  <NavLink title="update" to={`/dashboard/product/update/${item._id}`}>
                     <button className="w-4 bg-text_blue outline-none border-0 hover:bg-text_hover text-white px-4 py-2 rounded-md mr-2">
                       <i className="-ml-[6px] block ">
                         <FaEdit />
