@@ -38,6 +38,7 @@ import DataAnalistPage from "../pages/clientSide/servicesPage/dataAnalistPage/Da
 import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
 import OurTeam from "../pages/clientSide/homePage/OurTeam";
 import OurTeamPage from "../pages/clientSide/ourTeamPage/OurTeamPage";
+import ProductUpdatePage from "../pages/adminSide/Product/ProductUpdatePage";
 
 
 
@@ -183,6 +184,10 @@ const router = createBrowserRouter([
                 path: "manage-product",
                 element: <ManageProductPage></ManageProductPage>
             },
+            {
+                path : "/dashboard/product/update/:id",
+                element : <ProductUpdatePage></ProductUpdatePage>
+            }
         ]
     },
     {
