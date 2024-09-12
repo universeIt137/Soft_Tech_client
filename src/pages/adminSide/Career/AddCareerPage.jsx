@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
-
+import React, { useEffect, useState } from "react";
+import careerStore from "../../../api-request/carrer-api/carrerApi";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const AddCareer = () => {
+  const { createCareerApi,careerApiRequest,careerDataList } = careerStore();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     jobTitle: "",
     description: "",
@@ -17,34 +21,64 @@ const AddCareer = () => {
     Benifits: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const {
+    jobTitle,
+    description,
+    deadline,
+    vacancy,
+    experience,
+    responsibilities,
+    status,
+    workplace,
+    workingTime,
+    edu,
+    salary,
+    Benifits,
+  } = formData;
+
+  const getInputValue = (name, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const submitInputValue = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/api/careers", formData); // API endpoint for adding careers
-      console.log("Career added successfully:", response.data);
-    } catch (error) {
-      console.error("Error adding career:", error);
+    let res = await createCareerApi(formData);
+    if(res){
+      useNavigate("dashboard/manage-career");
+      setFormData('')
+      return toast.success("Career create successfully");
+    }else{
+      return toast.error("Something went wrong");
     }
   };
 
+
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add Career</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Add Career
+      </h1>
+      <form onSubmit={submitInputValue}>
         {/* Job Title */}
         <div className="mb-4">
-          <label htmlFor="jobTitle" className="block text-lg font-medium text-gray-700 mb-2">Job Title</label>
+          <label
+            htmlFor="jobTitle"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Job Title
+          </label>
           <input
             type="text"
             id="jobTitle"
             name="jobTitle"
-            value={formData.jobTitle}
-            onChange={handleChange}
+            value={jobTitle}
+            onChange={(e) => {
+              getInputValue("jobTitle", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job title"
             required
@@ -53,12 +87,19 @@ const AddCareer = () => {
 
         {/* Description */}
         <div className="mb-4">
-          <label htmlFor="description" className="block text-lg font-medium text-gray-700 mb-2">Job Description</label>
+          <label
+            htmlFor="description"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Job Description
+          </label>
           <textarea
             id="description"
             name="description"
-            value={formData.description}
-            onChange={handleChange}
+            value={description}
+            onChange={(e) => {
+              getInputValue("description", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job description"
             rows="4"
@@ -68,13 +109,20 @@ const AddCareer = () => {
 
         {/* Deadline */}
         <div className="mb-4">
-          <label htmlFor="deadline" className="block text-lg font-medium text-gray-700 mb-2">Application Deadline</label>
+          <label
+            htmlFor="deadline"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Application Deadline
+          </label>
           <input
             type="date"
             id="deadline"
             name="deadline"
-            value={formData.deadline}
-            onChange={handleChange}
+            value={deadline}
+            onChange={(e) => {
+              getInputValue("deadline", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             required
           />
@@ -82,13 +130,20 @@ const AddCareer = () => {
 
         {/* Vacancy */}
         <div className="mb-4">
-          <label htmlFor="vacancy" className="block text-lg font-medium text-gray-700 mb-2">Vacancy</label>
+          <label
+            htmlFor="vacancy"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Vacancy
+          </label>
           <input
             type="number"
             id="vacancy"
             name="vacancy"
-            value={formData.vacancy}
-            onChange={handleChange}
+            value={vacancy}
+            onChange={(e) => {
+              getInputValue("vacancy", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter number of vacancies"
             required
@@ -97,13 +152,20 @@ const AddCareer = () => {
 
         {/* Experience */}
         <div className="mb-4">
-          <label htmlFor="experience" className="block text-lg font-medium text-gray-700 mb-2">Experience</label>
+          <label
+            htmlFor="experience"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Experience
+          </label>
           <input
             type="text"
             id="experience"
             name="experience"
-            value={formData.experience}
-            onChange={handleChange}
+            value={experience}
+            onChange={(e) => {
+              getInputValue("experience", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter required experience"
             required
@@ -112,12 +174,19 @@ const AddCareer = () => {
 
         {/* Responsibilities */}
         <div className="mb-4">
-          <label htmlFor="responsibilities" className="block text-lg font-medium text-gray-700 mb-2">Responsibilities</label>
+          <label
+            htmlFor="responsibilities"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Responsibilities
+          </label>
           <textarea
             id="responsibilities"
             name="responsibilities"
-            value={formData.responsibilities}
-            onChange={handleChange}
+            value={responsibilities}
+            onChange={(e) => {
+              getInputValue("responsibilities", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job responsibilities"
             rows="4"
@@ -127,13 +196,20 @@ const AddCareer = () => {
 
         {/* Status */}
         <div className="mb-4">
-          <label htmlFor="status" className="block text-lg font-medium text-gray-700 mb-2">Status</label>
+          <label
+            htmlFor="status"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Status
+          </label>
           <input
             type="text"
             id="status"
             name="status"
-            value={formData.status}
-            onChange={handleChange}
+            value={status}
+            onChange={(e) => {
+              getInputValue("status", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job status (e.g., Full-Time)"
             required
@@ -142,13 +218,20 @@ const AddCareer = () => {
 
         {/* Workplace */}
         <div className="mb-4">
-          <label htmlFor="workplace" className="block text-lg font-medium text-gray-700 mb-2">Workplace</label>
+          <label
+            htmlFor="workplace"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Workplace
+          </label>
           <input
             type="text"
             id="workplace"
             name="workplace"
-            value={formData.workplace}
-            onChange={handleChange}
+            value={workplace}
+            onChange={(e) => {
+              getInputValue("workplace", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter workplace (e.g., Office, Remote)"
             required
@@ -157,13 +240,20 @@ const AddCareer = () => {
 
         {/* Working Time */}
         <div className="mb-4">
-          <label htmlFor="workingTime" className="block text-lg font-medium text-gray-700 mb-2">Working Time</label>
+          <label
+            htmlFor="workingTime"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Working Time
+          </label>
           <input
             type="text"
             id="workingTime"
             name="workingTime"
-            value={formData.workingTime}
-            onChange={handleChange}
+            value={workingTime}
+            onChange={(e) => {
+              getInputValue("workingTime", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter working time (e.g., 9 AM - 5 PM)"
             required
@@ -172,13 +262,20 @@ const AddCareer = () => {
 
         {/* Education */}
         <div className="mb-4">
-          <label htmlFor="edu" className="block text-lg font-medium text-gray-700 mb-2">Educational Requirements</label>
+          <label
+            htmlFor="edu"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Educational Requirements
+          </label>
           <input
             type="text"
             id="edu"
             name="edu"
-            value={formData.edu}
-            onChange={handleChange}
+            value={edu}
+            onChange={(e) => {
+              getInputValue("edu", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter educational requirements"
             required
@@ -187,13 +284,20 @@ const AddCareer = () => {
 
         {/* Salary */}
         <div className="mb-4">
-          <label htmlFor="salary" className="block text-lg font-medium text-gray-700 mb-2">Salary</label>
+          <label
+            htmlFor="salary"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Salary
+          </label>
           <input
             type="text"
             id="salary"
             name="salary"
-            value={formData.salary}
-            onChange={handleChange}
+            value={salary}
+            onChange={(e) => {
+              getInputValue("salary", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter salary details"
             required
@@ -202,13 +306,20 @@ const AddCareer = () => {
 
         {/* Benefits */}
         <div className="mb-4">
-          <label htmlFor="Benifits" className="block text-lg font-medium text-gray-700 mb-2">Benefits</label>
+          <label
+            htmlFor="Benifits"
+            className="block text-lg font-medium text-gray-700 mb-2"
+          >
+            Benefits
+          </label>
           <input
             type="text"
             id="Benifits"
             name="Benifits"
-            value={formData.Benifits}
-            onChange={handleChange}
+            value={Benifits}
+            onChange={(e) => {
+              getInputValue("Benifits", e.target.value);
+            }}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job benefits"
             required
@@ -225,6 +336,7 @@ const AddCareer = () => {
           </button>
         </div>
       </form>
+      <Toaster position="top-center"/>
     </div>
   );
 };
