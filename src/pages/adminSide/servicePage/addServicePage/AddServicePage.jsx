@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddServicePage = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const AddServicePage = () => {
     image: "",
     liveProjects: [{ projectName: "", projectLink: "" }],
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +44,7 @@ const AddServicePage = () => {
       ); // Change this to your API endpoint
       if (response) {
         toast.success("Service added successfully");
+        navigate("/dashboard/manage-service")
       } else {
         toast.error("Service added fail");
       }
