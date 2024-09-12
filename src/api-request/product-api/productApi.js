@@ -42,6 +42,18 @@ const productStore = create((set) => ({
         console.log(error);
     }
   },
+  deleteProductApi : (id)=>{
+    try {
+        let url = `${baseUrl}/DeleteProduct/${id}`;
+        return axios.delete(url,config).then((res)=>{
+            return res.data["status"];
+        }).catch((err)=>{
+            return false
+        })
+    } catch (error) {
+        return error
+    };
+  }
 }));
 
 export default productStore;
