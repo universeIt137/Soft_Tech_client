@@ -18,7 +18,7 @@ const AddProductPage = () => {
   };
 
   const submitFromData = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let res = await createProductApi(data);
     if (res) {
       toast.success("Product create successfully");
@@ -27,39 +27,41 @@ const AddProductPage = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="w-full min-h-screen">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full">
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Add New Product
         </h2>
 
         <form onSubmit={submitFromData} className="space-y-4">
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-1">
-              Product Name
-            </label>
-            <input
-              type="text"
-              value={productName}
-              onChange={(e) => getInputValue("productName", e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter product name"
-              required
-            />
-          </div>
+          <div className="flex flex-col md:flex-row md:justify-between md:gap-4 " >
+            <div className="md:w-1/2" >
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Product Name
+              </label>
+              <input
+                type="text"
+                value={productName}
+                onChange={(e) => getInputValue("productName", e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter product name"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-1">
-              Product Image URL
-            </label>
-            <input
-              type="text"
-              value={productImage}
-              onChange={(e) => getInputValue("productImage", e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter image URL"
-              required
-            />
+            <div className="md:w-1/2" >
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Product Image URL
+              </label>
+              <input
+                type="text"
+                value={productImage}
+                onChange={(e) => getInputValue("productImage", e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter image URL"
+                required
+              />
+            </div>
           </div>
 
           <div>
