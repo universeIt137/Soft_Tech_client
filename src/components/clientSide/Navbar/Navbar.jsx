@@ -88,7 +88,7 @@ const Navbar = () => {
           <div className="hidden md:hidden lg:block">
             <ul className="flex gap-8 *:text-xl *:font-medium">
               <li>
-                <NavLink to={`/`} className="active:text-text_primari">Home</NavLink>
+                <NavLink to={`/`} className="text-black">Home</NavLink>
               </li>
 
               <div onMouseEnter={handleMouseEnterProduct}
