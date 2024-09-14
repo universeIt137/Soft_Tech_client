@@ -7,8 +7,8 @@ import UpdatedNavbar from '../components/clientSide/Navbar/UpdatedNavbar';
 const MainLayout = () => {
     return (
         <>
-            <Navbar></Navbar>
-            {/* <UpdatedNavbar></UpdatedNavbar> */}
+            {/* <Navbar></Navbar> */}
+            <UpdatedNavbar></UpdatedNavbar>
             <Outlet></Outlet>
             <Footer></Footer>
         </>
