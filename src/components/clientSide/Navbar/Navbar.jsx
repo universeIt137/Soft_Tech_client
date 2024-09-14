@@ -201,7 +201,7 @@ const Navbar = () => {
               <div onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave} className="dropdown-container">
                 <div className="flex gap-2 items-center">
-                  <NavLink to={`/services`} className={`active:text-violet-500 text-universe_primary`}>
+                  <NavLink to={`/services`} className={`active:text-text_primari text-text_primari`}>
                     Services
                   </NavLink>
                   <span onClick={() => setUpDownService(!upDownService)}>
@@ -303,7 +303,7 @@ const Navbar = () => {
 
 
               <li>
-                <NavLink className='text-universe_primary' to={`/portfolio`}>Portfolio</NavLink>
+                <NavLink className='text-text_primari' to={`/portfolio`}>Portfolio</NavLink>
               </li>
 
 
@@ -459,7 +459,7 @@ const Navbar = () => {
             onClick={() => setOtherOpen(!otherOpen)}
           >
             <div className="flex items-center text-[18px]  gap-3">
-              <NavLink  to={`/services`}>Services</NavLink>
+              <NavLink to={`/services`}>Services</NavLink>
               {otherOpen ? (
                 <IoIosArrowUp></IoIosArrowUp>
               ) : (
