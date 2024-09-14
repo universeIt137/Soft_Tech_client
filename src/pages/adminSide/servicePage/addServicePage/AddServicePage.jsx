@@ -44,7 +44,7 @@ const AddServicePage = () => {
       ); // Change this to your API endpoint
       if (response) {
         toast.success("Service added successfully");
-        navigate("/dashboard/manage-service")
+        navigate("/dashboard/manage-service");
       } else {
         toast.error("Service added fail");
       }
@@ -54,29 +54,50 @@ const AddServicePage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="w-full m-0 p-6 bg-white  ">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add Service
       </h1>
       <form onSubmit={handleSubmit}>
-        {/* Title */}
-        <div className="mb-4">
-          <label
-            htmlFor="title"
-            className="block text-lg font-medium text-gray-700 mb-2"
-          >
-            Service Title
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-            placeholder="Enter service title"
-            required
-          />
+        <div className=" flex flex-col md:flex-row md:justify-between gap-x-4 ">
+          {/* Title */}
+          <div className=" w-1/2 mb-4">
+            <label
+              htmlFor="title"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Service Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter service title"
+              required
+            />
+          </div>
+          {/* Image */}
+          <div className=" w-1/2 mb-4">
+            <label
+              htmlFor="image"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Image URL
+            </label>
+            <input
+              type="text"
+              id="image"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter image URL"
+              required
+            />
+          </div>
         </div>
 
         {/* Description */}
@@ -99,26 +120,6 @@ const AddServicePage = () => {
           />
         </div>
 
-        {/* Image */}
-        <div className="mb-4">
-          <label
-            htmlFor="image"
-            className="block text-lg font-medium text-gray-700 mb-2"
-          >
-            Image URL
-          </label>
-          <input
-            type="text"
-            id="image"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-            placeholder="Enter image URL"
-            required
-          />
-        </div>
-
         {/* Live Projects */}
         <div className="mb-4">
           <h2 className="text-lg font-medium text-gray-700 mb-2">
@@ -126,42 +127,44 @@ const AddServicePage = () => {
           </h2>
           {formData.liveProjects.map((project, index) => (
             <div key={index} className="mb-4 border p-4 rounded-lg">
-              <div className="mb-2">
-                <label
-                  htmlFor={`projectName-${index}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Project Name
-                </label>
-                <input
-                  type="text"
-                  id={`projectName-${index}`}
-                  name="projectName"
-                  value={project.projectName}
-                  onChange={(e) => handleProjectChange(index, e)}
-                  className="w-full px-3 py-2  rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter project name"
-                  required
-                />
-              </div>
+              <div className="flex flex-col md:flex-row md:justify-between gap-x-4 " >
+                <div className="mb-2 w-1/2 ">
+                  <label
+                    htmlFor={`projectName-${index}`}
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Project Name
+                  </label>
+                  <input
+                    type="text"
+                    id={`projectName-${index}`}
+                    name="projectName"
+                    value={project.projectName}
+                    onChange={(e) => handleProjectChange(index, e)}
+                    className="w-full px-3 py-2  rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+                    placeholder="Enter project name"
+                    required
+                  />
+                </div>
 
-              <div>
-                <label
-                  htmlFor={`projectLink-${index}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Project Link
-                </label>
-                <input
-                  type="text"
-                  id={`projectLink-${index}`}
-                  name="projectLink"
-                  value={project.projectLink}
-                  onChange={(e) => handleProjectChange(index, e)}
-                  className="w-full px-3 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter project link"
-                  required
-                />
+                <div className="w-1/2" >
+                  <label
+                    htmlFor={`projectLink-${index}`}
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Project Link
+                  </label>
+                  <input
+                    type="text"
+                    id={`projectLink-${index}`}
+                    name="projectLink"
+                    value={project.projectLink}
+                    onChange={(e) => handleProjectChange(index, e)}
+                    className="w-full px-3 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+                    placeholder="Enter project link"
+                    required
+                  />
+                </div>
               </div>
             </div>
           ))}

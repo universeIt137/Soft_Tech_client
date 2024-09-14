@@ -3,7 +3,7 @@ import productStore from "./../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
 
 const AddProductPage = () => {
-  const { createProductApi } = productStore;
+  const { createProductApi } = productStore();
   const [data, setData] = useState({
     productName: "",
     productImage: "",
@@ -17,13 +17,13 @@ const AddProductPage = () => {
     }));
   };
 
-  const submitFromData = async () => {
-    console.log(`product submitted`)
+  const submitFromData = async (e) => {
+    e.preventDefault()
     let res = await createProductApi(data);
     if (res) {
-      return toast.success("Product create successfully");
+      toast.success("Product create successfully");
     } else {
-      return toast.error("Something went wrong");
+      toast.error("Something went wrong");
     }
   };
   return (
