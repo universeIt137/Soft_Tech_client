@@ -54,7 +54,7 @@ const AddServicePage = () => {
   };
 
   return (
-    <div className="w-full m-0 p-6 bg-white  ">
+    <div className="w-full min-h-screen m-0 p-6 bg-white  ">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add Service
       </h1>
