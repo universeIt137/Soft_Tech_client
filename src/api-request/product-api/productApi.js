@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
 
+
 const baseUrl = `http://localhost:3000/api/v1`;
 
 const config = {
@@ -10,7 +11,6 @@ const config = {
     token: getToken(),
   },
 };
-
 const productStore = create((set) => ({
   createProductApi: (postBody) => {
     let createUrl = `${baseUrl}/CreateProduct`;
@@ -19,14 +19,14 @@ const productStore = create((set) => ({
         .post(createUrl, postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
-            console.log(res.data.status);
+            return res.data["status"];
           }
         })
         .catch((err) => {
-          console.log(err);
+          return true
         });
     } catch (error) {
-      console.log(error);
+      return false;
     }
   },
   productDataList: [],
@@ -53,6 +53,38 @@ const productStore = create((set) => ({
     } catch (error) {
         return error
     };
+  },
+  productUpdateApi : (id,postBody) =>{
+    try {
+      let url = `${baseUrl}/UpdateProduct/${id}`;
+      return   axios.put(url,postBody,config).then((res)=>{
+        if(res.data["status"]==="success"){
+          console.log(res.data["status"]);
+          return res.data.status;
+        }
+      }).catch((err)=>{
+        return err;
+      })
+    } catch (error) {
+      return [false, error.response.msg] ;
+    }
+  },
+  singleProductData : [],
+  singleProductDataApi : (id) =>{
+    try {
+      let url = `${baseUrl}/single-product/${id}`;
+      return axios.get(url).then((res)=>{
+        if(res.data["status"]==="success"){
+          set({singleProductData:res.data["data"]});
+        }else{
+          return false;
+        }
+      }).catch((err)=>{
+        return err
+      })
+    } catch (error) {
+      return error
+    }
   }
 }));
 
