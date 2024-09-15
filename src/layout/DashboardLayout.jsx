@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 <AdminNavbar></AdminNavbar>
 
                 {/* Main Dashboard Content */}
-                <main className="flex-1 overflow-auto">
+                <main className="flex-1 overflow-auto m-5">
                    
                     <Outlet></Outlet>
                 </main>
