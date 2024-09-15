@@ -8,10 +8,13 @@ import { GiStairsGoal } from "react-icons/gi";
 import { GrServices } from "react-icons/gr";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { AiOutlineProduct } from "react-icons/ai";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [openService, setOpenService] = useState(true);
+  const [openCareer, setOpenCareer] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState(null); // Single state to track active dropdown
 
   const toggleSidebar = () => {
@@ -26,9 +29,8 @@ const Sidebar = () => {
   return (
     <Fragment>
       <div
-        className={`bg-dashboard_color h-screen text-white transition-all duration-300 ${
-          isSidebarOpen ? "w-64" : "w-14"
-        }`}
+        className={`bg-universe_secondary h-screen text-white transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-14"
+          }`}
       >
         <div className="flex justify-between items-center p-4 gap-4">
           <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
@@ -56,21 +58,27 @@ const Sidebar = () => {
           <ul>
             <li>
               <label
-                onClick={() => handleDropdownToggle("service")}
-                className={` mt-2 flex items-center space-x-3 p-3 w-full text-left  transition duration-200 hover:bg-white   rounded-none hover:text-black ${
-                  isSidebarOpen ? "text-white" : "text-center"
-                }`}
+                onClick={() => {
+                  handleDropdownToggle("service");
+                  setOpenService(!openService)
+                }}
+                className={` mt-2 flex items-center space-x-3 p-3 w-full text-left  transition duration-200 hover:   rounded-none  ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
               >
-                <GrServices />
+                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png" className="w-9" alt="" />
                 <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
-                  Services
+                  <p className="flex justify-center items-center gap-4">
+                    Services
+                    {
+                     openService ? <FaAngleDown /> : <FaAngleUp />
+                    }
+                  </p>
                 </span>
               </label>
 
               <ul
-                className={`ml-8 ${activeDropdown !== "service" && "hidden"} ${
-                  !isSidebarOpen && "text-center"
-                } ${isSidebarOpen ? "block" : "hidden"}`}
+                className={`ml-8 ${activeDropdown !== "service" && "hidden"} ${!isSidebarOpen && "text-center"
+                  } ${isSidebarOpen ? "block" : "hidden"}`}
               >
                 <li>
                   <NavLink
@@ -93,21 +101,27 @@ const Sidebar = () => {
 
             <li>
               <label
-                onClick={() => handleDropdownToggle("career")}
-                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black ${
-                  isSidebarOpen ? "text-white" : "text-center"
-                }`}
+                onClick={() => {
+                  handleDropdownToggle("career");
+                  setOpenCareer(!openCareer)
+                }}
+                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
               >
-                <GiStairsGoal />
+                <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png" className="w-9" alt="" />
                 <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-                  Career
+                <p className="flex justify-center items-center gap-4">
+                    Career
+                    {
+                     openCareer ? <FaAngleDown /> : <FaAngleUp />
+                    }
+                  </p>
                 </span>
               </label>
 
               <ul
-                className={`ml-8 ${activeDropdown !== "career" && "hidden"} ${
-                  !isSidebarOpen && "text-center"
-                } ${isSidebarOpen ? "block" : "hidden"}`}
+                className={`ml-8 ${activeDropdown !== "career" && "hidden"} ${!isSidebarOpen && "text-center"
+                  } ${isSidebarOpen ? "block" : "hidden"}`}
               >
                 <li>
                   <NavLink
@@ -131,9 +145,8 @@ const Sidebar = () => {
             <li>
               <label
                 onClick={() => handleDropdownToggle("product")}
-                className={` flex items-center space-x-3 p-3 w-full text-left   border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black ${
-                  isSidebarOpen ? "text-white" : "text-center"
-                }`}
+                className={` flex items-center space-x-3 p-3 w-full text-left   border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
               >
                 <AiOutlineProduct />
                 <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
@@ -142,9 +155,8 @@ const Sidebar = () => {
               </label>
 
               <ul
-                className={`ml-8 ${activeDropdown !== "product" && "hidden"} ${
-                  !isSidebarOpen && "text-center"
-                } ${isSidebarOpen ? "block" : "hidden"}`}
+                className={`ml-8 ${activeDropdown !== "product" && "hidden"} ${!isSidebarOpen && "text-center"
+                  } ${isSidebarOpen ? "block" : "hidden"}`}
               >
                 <li>
                   <NavLink
@@ -168,9 +180,8 @@ const Sidebar = () => {
             <li>
               <label
                 onClick={() => handleDropdownToggle("application")}
-                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left   rounded-none transition duration-200 hover:bg-white hover:text-black ${
-                  isSidebarOpen ? "text-white" : "text-center"
-                }`}
+                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left   rounded-none transition duration-200 hover:bg-white hover:text-black ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
               >
                 <SlEnvolopeLetter />
                 <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
@@ -179,11 +190,9 @@ const Sidebar = () => {
               </label>
 
               <ul
-                className={`ml-8 ${
-                  activeDropdown !== "application" && "hidden"
-                } ${!isSidebarOpen && "text-center"} ${
-                  isSidebarOpen ? "block" : "hidden"
-                }`}
+                className={`ml-8 ${activeDropdown !== "application" && "hidden"
+                  } ${!isSidebarOpen && "text-center"} ${isSidebarOpen ? "block" : "hidden"
+                  }`}
               >
                 <li>
                   <NavLink

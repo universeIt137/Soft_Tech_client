@@ -3,11 +3,11 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 const AdminNavbar = () => {
     return (
-        <div className='bg-white py-2 px-3'>
-            <div className='flex justify-between items-center'>
+        <div className='bg-universe_primary py-2 px-3'>
+            <div className='flex justify-between items-center w-11/12 mx-auto'>
                 {/* Dashboard text aligned to the left */}
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+                    <h1 className="text-2xl font-bold text-white">Dashboard</h1>
                 </div>
 
                 {/* Notification icon and profile image aligned to the right */}
