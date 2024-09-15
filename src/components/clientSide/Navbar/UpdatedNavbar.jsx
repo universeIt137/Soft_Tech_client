@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Fade as Hamburger } from 'hamburger-react';
 import { motion } from 'framer-motion';
 import { IoMdArrowDropdown } from 'react-icons/io';
@@ -12,18 +12,19 @@ const UpdatedNavbar = () => {
 
 
     // Course data (logo and title)
-    const courses = [
+    const products = [
         {
             id: 1,
             title: 'ERP Solution',
             subtitle: 'ERP Solution dashboard...',
-            url: '/courseDetails/3423', logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
+            url: '/products-education',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
         },
 
 
         {
             id: 2,
-            title: 'Medical Solution',
+            title: 'Medical Services',
             subtitle: 'Medical Solution attendance... ',
             url: '/courseDetails/3423',
             logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp'
@@ -60,6 +61,57 @@ const UpdatedNavbar = () => {
         },
     ];
 
+    // Course data (logo and title)
+    const services = [
+        {
+            id: 1,
+            title: 'IOT Services',
+            subtitle: 'IOT services dashboard...',
+            url: '/service-iot',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
+        },
+
+
+        {
+            id: 2,
+            title: 'Medical Services',
+            subtitle: 'Medical Solution attendance... ',
+            url: '/courseDetails/3423',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp'
+        },
+
+        {
+            id: 3,
+            title: 'ERP Solution',
+            subtitle: 'ERP Solution dashboard...',
+            url: '/courseDetails/3425',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp'
+        },
+
+        {
+            id: 4,
+            title: 'E-commerce Solution',
+            subtitle: 'E-commerce Solution Inventory ...',
+            url: '/courseDetails/3423',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp'
+        },
+        {
+            id: 5,
+            title: 'Data Analytics',
+            subtitle: 'Revolutionize learning with Nimu...',
+            url: '/courseDetails/3424',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp'
+        },
+        {
+            id: 3,
+            title: 'IOT & Virtual Reality',
+            subtitle: 'Streamline sales...',
+            url: '/courseDetails/3425',
+            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp'
+        },
+    ];
+
+
     const handleDropdownToggle = () => {
         setDropdownOpen(!isDropdownOpen);
         setDropdownOpen2(false);
@@ -95,7 +147,7 @@ const UpdatedNavbar = () => {
     const navNavLinks = (
         <>
 
-            <NavLink to="/aboutUs" onClick={handleHideDrawer} className={`${NavLinkStyle} `}>
+            <NavLink to="/" onClick={handleHideDrawer} className={`${NavLinkStyle} `}>
                 Home
             </NavLink>
 
@@ -119,8 +171,9 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                    {courses.map((course) => (
+                    {products.map((course) => (
                         <NavLink
+
                             key={course.id}
                             to={course.url}
                             onClick={handleHideDrawer}
@@ -155,7 +208,7 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                    {courses.map((course) => (
+                    {services.map((course) => (
                         <NavLink
                             key={course.id}
                             to={course.url}
@@ -173,7 +226,7 @@ const UpdatedNavbar = () => {
                 </div>
             </div>
 
-            <NavLink to="/aboutUs" onClick={handleHideDrawer} className={`${NavLinkStyle} `}>
+            <NavLink to="/portfolio" onClick={handleHideDrawer} className={`${NavLinkStyle} `}>
                 Portfolio
             </NavLink>
 
@@ -195,24 +248,24 @@ const UpdatedNavbar = () => {
                 style={{ width: '80px', minWidth: '150px', maxWidth: '150px' }} // Adjust width if needed
             >
                 <div className='flex flex-col items-center justify-center text-center'>
-                    <NavLink to="/aboutUs" className={`${NavLinkStyle} `}>
+                    <NavLink to="/about-us" className={`${NavLinkStyle} `}>
                         About Us
                     </NavLink>
 
-                    <NavLink to="/aboutUs" className={`${NavLinkStyle} `}>
+                    <NavLink to="/contact-us" className={`${NavLinkStyle} `}>
                         Contact Us
                     </NavLink>
 
-                    <NavLink to="/aboutUs" className={`${NavLinkStyle} `}>
+                    <NavLink to="/career" className={`${NavLinkStyle} `}>
                         Career
                     </NavLink>
 
-                    
-                    <NavLink to="/aboutUs" className={`${NavLinkStyle} `}>
+
+                    <NavLink to="/company-profile" className={`${NavLinkStyle} `}>
                         Company Profile
                     </NavLink>
 
-                    <NavLink to="/aboutUs" className={`${NavLinkStyle} `}>
+                    <NavLink to="/our-team" className={`${NavLinkStyle} `}>
                         Our Team
                     </NavLink>
 
@@ -226,18 +279,19 @@ const UpdatedNavbar = () => {
     const navNavLinksForDrawer = (
         <>
             <NavLink to="/" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
-                Home
+                <p className='text-white'>Home</p>
             </NavLink>
-            <NavLink to="/aboutUs" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
-                About Us
+            <NavLink to="/about-us" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
+                <p className='text-white'>About Us</p>
             </NavLink>
 
             {/* Mobile Drawer Dropdown */}
+            {/* Products  */}
             <p
                 onClick={handleDropdownToggle}
-                className={`text-base hover:text-blue-500 rounded-md py-[5px] transition-all duration-300 flex justify-between items-center cursor-pointer`}
+                className={`text-xl hover:text-white rounded-md py-[5px] transition-all duration-300 flex justify-between items-center cursor-pointer`}
             >
-                Course
+                Products
                 <span className={`transition-all duration-300 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}>
                     <IoMdArrowDropdown />
                 </span>
@@ -247,25 +301,102 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isDropdownOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                {courses.map((course) => (
+                {products.map((course) => (
                     <NavLink
                         key={course.id}
                         to={course.url}
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
-                        <img src={course.logo} alt={`${course.title} Logo`} className="w-8 h-8" />
-                        <span className="text-black">{course.title}</span>
+                        <img src={course.logo} alt={`${course.title} Logo`} className="w-8 h-8 bg-white rounded-lg" />
+                        <span className="text-white">{course.title}</span>
                     </NavLink>
                 ))}
             </div>
 
-            <NavLink to="/onlineAdmission" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
-                Online Admission
+
+            {/* Mobile Drawer Dropdown */}
+            {/* Services  */}
+            <p
+                onClick={handleDropdownToggle2}
+                className={`text-xl hover:text-white rounded-md py-[5px] transition-all duration-300 flex justify-between items-center cursor-pointer`}
+            >
+                Services
+                <span className={`transition-all duration-300 ${isDropdownOpen2 ? 'rotate-180' : 'rotate-0'}`}>
+                    <IoMdArrowDropdown />
+                </span>
+            </p>
+
+            <div
+                className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isDropdownOpen2 ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
+                    } gap-2`}
+            >
+                {services.map((course) => (
+                    <NavLink
+                        key={course.id}
+                        to={course.url}
+                        onClick={handleHideDrawer}
+                        className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
+                    >
+                        <img src={course.logo} alt={`${course.title} Logo`} className="w-8 h-8 bg-white rounded-lg" />
+                        <span className="text-white">{course.title}</span>
+                    </NavLink>
+                ))}
+            </div>
+
+
+            {/* Mobile Drawer Dropdown */}
+            {/* Get in touch  */}
+            <p
+                onClick={handleDropdownToggle3}
+                className={`text-xl hover:text-white rounded-md py-[5px] transition-all duration-300 flex justify-between items-center cursor-pointer`}
+            >
+                Get In Touch
+                <span className={`transition-all duration-300 ${isGetInTouchOpen ? 'rotate-180' : 'rotate-0'}`}>
+                    <IoMdArrowDropdown />
+                </span>
+            </p>
+
+            <div
+                className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isGetInTouchOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
+                    } gap-2`}
+            >
+                <div className='flex flex-col text-white items-center justify-center text-center'>
+                    <NavLink to="/about-us" className={`${NavLinkStyle} text-white`}>
+                        About Us
+                    </NavLink>
+
+                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-white`}>
+                        Contact Us
+                    </NavLink>
+
+                    <NavLink to="/career" className={`${NavLinkStyle} text-white`}>
+                        Career
+                    </NavLink>
+
+
+                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-white`}>
+                        Company Profile
+                    </NavLink>
+
+                    <NavLink to="/our-team" className={`${NavLinkStyle} text-white`}>
+                        Our Team
+                    </NavLink>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <NavLink to="/portfolio" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
+                <p className="text-white">Portfolio</p>
             </NavLink>
-            <NavLink to="/freeSeminar" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
-                Free Seminar
-            </NavLink>
+
         </>
     );
 
@@ -298,7 +429,9 @@ const UpdatedNavbar = () => {
                     {/* Laptop view */}
                     <div className="text-sm hidden lg:flex container mx-auto ">
                         <div className='flex justify-center gap-24'>
-                            <img src={logo} alt="Logo" className="w-32" />
+                            <Link to="/">
+                                <img src={logo} alt="Logo" className="w-32" />
+                            </Link>
                             <nav className="relative md:ml-auto flex flex-wrap items-center justify-center font-bold navbarUl gap-x-4 gap-y-1">
                                 {navNavLinks}
                             </nav>

@@ -4,8 +4,9 @@ import QualitySection from './QualitySection';
 import IOTtalk from './IOTtalk';
 
 const IOTpage = () => {
+    window.scrollTo(0, 0);
     return (
-        <div className='mt-20'>
+        <div className=''>
             <div className="">
                 <IOTBanner></IOTBanner>
                 <QualitySection></QualitySection>

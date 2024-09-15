@@ -39,6 +39,7 @@ import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
 import OurTeam from "../pages/clientSide/homePage/OurTeam";
 import OurTeamPage from "../pages/clientSide/ourTeamPage/OurTeamPage";
 import ProductUpdatePage from "../pages/adminSide/Product/ProductUpdatePage";
+import CompanyProfilePage from "../pages/clientSide/companyProfilePage/CompanyProfilePage";
 
 
 
@@ -144,6 +145,10 @@ const router = createBrowserRouter([
             {
                 path: "/our-team",
                 element: <OurTeamPage></OurTeamPage>
+            },
+            {
+                path: "/company-profile",
+                element: <CompanyProfilePage></CompanyProfilePage>
             }
 
         ]
