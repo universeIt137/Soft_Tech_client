@@ -187,7 +187,7 @@ const Sidebar = () => {
               >
                 <li>
                   <NavLink
-                    to="/manage-application"
+                    to="/dashboard/all-application"
                     className="p-2 block mt-1    border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                   >
                     All Application

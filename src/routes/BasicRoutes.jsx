@@ -39,6 +39,8 @@ import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
 import OurTeam from "../pages/clientSide/homePage/OurTeam";
 import OurTeamPage from "../pages/clientSide/ourTeamPage/OurTeamPage";
 import ProductUpdatePage from "../pages/adminSide/Product/ProductUpdatePage";
+import AllApplication from "../components/adminSide/Application/AllApplication";
+import GetSingleApplication from "../components/adminSide/Application/GetSingleApplication";
 
 
 
@@ -181,13 +183,21 @@ const router = createBrowserRouter([
                 element: <AddProductPage></AddProductPage>
             },
             {
+                path: "all-application",
+                element: <AllApplication></AllApplication>
+            },
+            {
+                path: "getSingleApplication/:id",
+                element: <GetSingleApplication></GetSingleApplication>
+            },
+            {
                 path: "manage-product",
                 element: <ManageProductPage></ManageProductPage>
             },
             {
                 path : "/dashboard/product/update/:id",
                 element : <ProductUpdatePage></ProductUpdatePage>
-            }
+            },
         ]
     },
     {

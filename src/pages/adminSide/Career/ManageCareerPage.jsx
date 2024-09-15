@@ -8,6 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const ManageCareerPage = () => {
   const { careerApiDataRequest, careerDataList, careerDeleteApi } = careerStore();
+  
   const { id } = useParams();
   const [careers, setCareers] = useState([]);
   const navigate = useNavigate();
