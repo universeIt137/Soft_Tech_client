@@ -4,179 +4,130 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const AddServicePage = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    image: "",
-    liveProjects: [{ projectName: "", projectLink: "" }],
-  });
-
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleProjectChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedProjects = [...formData.liveProjects];
-    updatedProjects[index][name] = value;
-    setFormData({ ...formData, liveProjects: updatedProjects });
-  };
-
-  const handleAddProject = () => {
-    setFormData({
-      ...formData,
-      liveProjects: [
-        ...formData.liveProjects,
-        { projectName: "", projectLink: "" },
-      ],
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/createService",
-        formData
-      ); // Change this to your API endpoint
-      if (response) {
-        toast.success("Service added successfully");
-        navigate("/dashboard/manage-service");
-      } else {
-        toast.error("Service added fail");
-      }
-    } catch (error) {
-      toast.error("Something went wrong");
-    }
-  };
-
   return (
     <div className="w-full min-h-screen m-0 p-6 bg-white  ">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add Service
       </h1>
-      <form onSubmit={handleSubmit}>
-        <div className=" flex flex-col md:flex-row md:justify-between gap-x-4 ">
-          {/* Title */}
+      <form>
+
+        <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
+          {/* nav_logo */}
           <div className=" w-1/2 mb-4">
             <label
               htmlFor="title"
               className="block text-lg font-medium text-gray-700 mb-2"
             >
-              Service Title
+              Nav logo
             </label>
             <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
+              type="file"
+              id="nav_logo"
+              name="nav_logo"
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              placeholder="Enter service title"
+              placeholder="nav logo"
               required
             />
           </div>
-          {/* Image */}
+
+          {/* nav_title */}
           <div className=" w-1/2 mb-4">
             <label
-              htmlFor="image"
+              htmlFor="nav_title"
               className="block text-lg font-medium text-gray-700 mb-2"
             >
-              Image URL
+              Nav Title
             </label>
             <input
               type="text"
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
+              id="nav_title"
+              name="nav_title"
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              placeholder="Enter image URL"
+              placeholder="nav title"
               required
             />
           </div>
         </div>
 
-        {/* Description */}
+        {/* nav_description */}
+
         <div className="mb-4">
           <label
-            htmlFor="description"
+            htmlFor="nav_description"
             className="block text-lg font-medium text-gray-700 mb-2"
           >
-            Description
+            Nav Description
           </label>
           <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
+            id="nav_description"
+            name="nav_description"
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-            placeholder="Enter service description"
+            placeholder="Enter nav description"
             rows="4"
             required
           />
         </div>
 
-        {/* Live Projects */}
-        <div className="mb-4">
-          <h2 className="text-lg font-medium text-gray-700 mb-2">
-            Live Projects
-          </h2>
-          {formData.liveProjects.map((project, index) => (
-            <div key={index} className="mb-4 border p-4 rounded-lg">
-              <div className="flex flex-col md:flex-row md:justify-between gap-x-4 " >
-                <div className="mb-2 w-1/2 ">
-                  <label
-                    htmlFor={`projectName-${index}`}
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Project Name
-                  </label>
-                  <input
-                    type="text"
-                    id={`projectName-${index}`}
-                    name="projectName"
-                    value={project.projectName}
-                    onChange={(e) => handleProjectChange(index, e)}
-                    className="w-full px-3 py-2  rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                    placeholder="Enter project name"
-                    required
-                  />
-                </div>
 
-                <div className="w-1/2" >
-                  <label
-                    htmlFor={`projectLink-${index}`}
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Project Link
-                  </label>
-                  <input
-                    type="text"
-                    id={`projectLink-${index}`}
-                    name="projectLink"
-                    value={project.projectLink}
-                    onChange={(e) => handleProjectChange(index, e)}
-                    className="w-full px-3 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                    placeholder="Enter project link"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
+          {/*main_title */}
+          <div className=" w-1/2 mb-4">
+            <label
+              htmlFor="main_title"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Main Title
+            </label>
+            <input
+              type="text"
+              id="main_title"
+              name="main_title"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter main title"
+              required
+            />
+          </div>
 
-          <button
-            type="button"
-            onClick={handleAddProject}
-            className="bg-text_blue text-white px-4 py-2 rounded-md hover:bg-text_hover"
-          >
-            Add Another Project
-          </button>
+          {/* banner_img*/}
+          <div className=" w-1/2 mb-4">
+            <label
+              htmlFor="banner_img"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Banner Img
+            </label>
+            <input
+              type="file"
+              id="banner_img"
+              name="banner_img"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter banner img"
+              required
+            />
+          </div>
+
         </div>
+
+        <div className=" w-1/2 mb-4">
+            <label
+              htmlFor="tag_line"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Tag Line
+            </label>
+            <input
+              type="text"
+              id="tag_line"
+              name="tag_line"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter tag line"
+              required
+            />
+          </div>
+        <div>
+        </div>
+
+        {/* Live Projects */}
 
         {/* Submit Button */}
         <div className="mt-6 text-center">
