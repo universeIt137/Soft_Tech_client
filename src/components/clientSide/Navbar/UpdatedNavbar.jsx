@@ -179,7 +179,7 @@ const UpdatedNavbar = () => {
                             onClick={handleHideDrawer}
                             className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
                         >
-                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" />
+                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" /> 
 
                             <div className="text-xs">
                                 <h2>{course.title}</h2>
