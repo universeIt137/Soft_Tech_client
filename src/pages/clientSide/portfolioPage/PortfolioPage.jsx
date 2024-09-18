@@ -4,18 +4,21 @@ import { Link } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 const PortfolioPage = () => {
-    useEffect(()=>{
-        AOS.init({
-            delay : 300,
-            duration:1000
-        })
+
+  window.scrollTo(0, 0);
+
+  useEffect(() => {
+    AOS.init({
+      delay: 300,
+      duration: 1000
     })
+  })
   return (
     <>
       <Helmet>
         <title>UST | Portfolio</title>
       </Helmet>
-      <div className="w-10/12 mt-20 mx-auto ">
+      <div className="w-10/12 mb-20 mx-auto ">
         <p className="text-2xl font-bold text-center py-5 text-universe_primary">
           PORTFOLIO
         </p>
@@ -60,7 +63,7 @@ const PortfolioPage = () => {
             </div>
           </div>
 
-          <div  data-aos="zoom-out-right" className=" shadow-2xl border rounded-lg p-5">
+          <div data-aos="zoom-out-right" className=" shadow-2xl border rounded-lg p-5">
             <div>
               <img
                 src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"

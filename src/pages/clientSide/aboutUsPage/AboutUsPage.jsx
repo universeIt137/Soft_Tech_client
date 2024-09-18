@@ -14,6 +14,7 @@ import HelpPage from './HelpPage/HelpPage';
 import SlidePage from './SlidePage/SlidePage';
 
 const AboutUsPage = () => {
+    window.scrollTo(0, 0);
     return (
         <div className='mt-12'>
             <Helmet>
@@ -29,7 +30,7 @@ const AboutUsPage = () => {
             <Partners></Partners>
             <Awards></Awards>
             <News></News>
-            <HelpPage></HelpPage>
+            {/* <HelpPage></HelpPage> */}
             <SlidePage></SlidePage>
             
         </div>
