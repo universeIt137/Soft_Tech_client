@@ -5,14 +5,30 @@ import { MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import serviceStore from "./../../../../api-request/service-api/serviceApi";
+import { deleteAlert } from "../../../../helper/deleteHelperAlert";
 
 const ManageServicePage = () => {
-  const { getAllServiceData, getAllServiceApi } = serviceStore();
+  const { getAllServiceData, getAllServiceApi, deleteServiceApi } =
+    serviceStore();
+  const { id } = useParams();
   useEffect(() => {
     (async () => {
       await getAllServiceApi();
     })();
   }, []);
+  const handleDeleteService = async (id) => {
+    console.log(id);
+    const deleteRes = await deleteAlert(id);
+    console.log(deleteRes);
+    if (deleteRes.isConfirmed) {
+      let res = await deleteServiceApi(id);
+      if (res) {
+        await getAllServiceApi();
+      } else {
+        alert("delete fail");
+      }
+    }
+  };
   return (
     <div className="p-8">
       <h1 className="text-3xl font-semibold text-gray-800 mb-6">
@@ -44,7 +60,7 @@ const ManageServicePage = () => {
                   </td>
                   <td className="py-3 px-6 text-left">
                     <img
-                      className="w-20 rounded-full text-[16px]"
+                      className="w-10 rounded-md text-[16px] transition-transform duration-300 ease-in-out hover:scale-105"
                       src={item.banner_img}
                       alt=""
                     />
@@ -61,7 +77,12 @@ const ManageServicePage = () => {
                       </button>
                     </NavLink>
                     <NavLink className="" title="delete">
-                      <button className="bg-red-500 outline-none border-0 text-white px-2 py-2 rounded-md hover:bg-red-600">
+                      <button
+                        onClick={() => {
+                          handleDeleteService(item["_id"]);
+                        }}
+                        className="bg-red-500 outline-none border-0 text-white px-2 py-2 rounded-md hover:bg-red-600"
+                      >
                         <i className="block">
                           <MdDelete />
                         </i>
