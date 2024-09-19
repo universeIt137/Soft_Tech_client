@@ -29,6 +29,19 @@ const serviceStore = create((set) => ({
       return false;
     }
   },
+  getAllServiceData : [],
+  getAllServiceApi : async () =>{
+    try {
+      let res = await axios.get(`${baseUrl}/get-all-service`);
+      if(res.data.status==="success"){
+        set({getAllServiceData:res.data["data"]});
+      }else{
+        return false;
+      }
+    } catch (error) {
+      return error
+    }
+  }
 }));
 
 export default serviceStore;

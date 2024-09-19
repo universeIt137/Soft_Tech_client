@@ -249,7 +249,7 @@ const AddServicePage = () => {
 
         <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
           {/*main_title */}
-          {/* problem */}
+          
           <div className=" w-1/2 mb-4">
             <label
               htmlFor="main_title"
