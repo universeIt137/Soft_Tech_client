@@ -20,7 +20,7 @@ module.exports = {
         dashboard_hover:'#d65a03',
       },
       backgroundImage: {
-        'custom-gradient': 'linear-gradient(135deg, #004cad 0%, #f78230 100%)',
+        'custom-gradient': 'linear-gradient(135deg, #f26604 0%, #004cae 100%)',
       },
     },
   },

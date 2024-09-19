@@ -42,6 +42,7 @@ import ProductUpdatePage from "../pages/adminSide/Product/ProductUpdatePage";
 import CompanyProfilePage from "../pages/clientSide/companyProfilePage/CompanyProfilePage";
 import AllApplication from "../components/adminSide/Application/AllApplication";
 import GetSingleApplication from "../components/adminSide/Application/GetSingleApplication";
+import RequestDemo from "../pages/clientSide/servicesPage/iotPage/RequestDemo";
 
 
 
@@ -143,6 +144,10 @@ const router = createBrowserRouter([
             {
                 path: "/service-iot",
                 element: <IOTpage></IOTpage>
+            },
+            {
+                path: "/request-demo",
+                element: <RequestDemo></RequestDemo>
             },
             {
                 path: "/our-team",

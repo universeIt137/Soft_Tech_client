@@ -16,7 +16,7 @@ const IOTBanner = () => {
                     </p>
                     <p className='text-xl'>Connect Your Business to the Future with Our IOT & VR Services.</p>
                     
-                    <Link to='' className='btn mt-4 border-none bg-text_primari hover:bg-bg_btn_hover text-white font-bold text-lg '>Add Service</Link>
+                    <Link to='/request-demo' className='btn mt-4 border-none bg-text_primari hover:bg-bg_btn_hover text-white font-bold text-lg '>Request Demo</Link>
                 </div> 
                 <div className="" data-aos="zoom-in">
                     <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725885805/Universe%20Soft%20Tech/Services/E-commerce/zymewy0ghvdavgrs50sz.png" alt="" />
