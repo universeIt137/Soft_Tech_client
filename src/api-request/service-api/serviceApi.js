@@ -46,14 +46,29 @@ const serviceStore = create((set) => ({
     return axios
       .delete(url, config)
       .then((res) => {
-        if(res.data.status==="success"){
+        if (res.data.status === "success") {
           return true;
-        }else{
+        } else {
           return false;
         }
       })
       .catch((e) => {
         return e;
+      });
+  },
+  updateServiceApi: async (id,payload) => {
+    const url = `${baseUrl}/update-service/${id}`;
+    return await axios
+      .put(url,payload, config)
+      .then((res) => {
+        if(res.data["status"]==="success"){
+          return true;
+        }else{
+          return false;
+        }
+      })
+      .catch((err) => {
+        return false;
       });
   },
 }));

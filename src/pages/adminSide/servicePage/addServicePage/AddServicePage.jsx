@@ -386,7 +386,7 @@ const AddServicePage = () => {
           </div>
         ))}
         <button
-          className="btn btn-accent text-lg mb-3  "
+          className="btn bg-text_blue text-white transition-transform duration-300 ease-in-out hover:scale-105 hover:text-black text-lg mb-3  "
           type="button"
           onClick={addDescriptionFeature}
         >

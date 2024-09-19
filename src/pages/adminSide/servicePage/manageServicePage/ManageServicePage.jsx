@@ -17,9 +17,7 @@ const ManageServicePage = () => {
     })();
   }, []);
   const handleDeleteService = async (id) => {
-    console.log(id);
     const deleteRes = await deleteAlert(id);
-    console.log(deleteRes);
     if (deleteRes.isConfirmed) {
       let res = await deleteServiceApi(id);
       if (res) {
@@ -69,7 +67,7 @@ const ManageServicePage = () => {
                     <p>{item.tag_line}</p>
                   </td>
                   <td className="py-3 px-6 flex justify-center items-center space-x-2">
-                    <NavLink>
+                    <NavLink to={`/dashboard/update-service/${item._id}`} >
                       <button className="bg-text_blue outline-none border-0 hover:bg-text_hover text-white px-2 py-2 rounded-md">
                         <i className="block">
                           <FaEdit />
@@ -93,30 +91,6 @@ const ManageServicePage = () => {
               ))}
           </tbody>
         </table>
-
-        {/* Reusable Delete Modal */}
-        {/* {selectedServiceId && (
-          <dialog id="delete-modal" className="modal">
-            <div className="modal-box">
-              <h3 className="font-bold text-lg">Confirm Delete</h3>
-              <p>Are you sure you want to delete this service?</p>
-              <div className="modal-action">
-                <button
-                  
-                  className="btn bg-red-500 text-white"
-                >
-                  Yes, Delete
-                </button>
-                <button
-                  onClick={() => setSelectedServiceId(null)}
-                  className="btn"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </dialog>
-        )} */}
       </div>
     </div>
   );

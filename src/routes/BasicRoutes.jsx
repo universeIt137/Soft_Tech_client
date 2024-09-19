@@ -172,7 +172,7 @@ const router = createBrowserRouter([
                 element: <ManageServicePage></ManageServicePage>
             },
             {
-                path: "update-service",
+                path: "update-service/:id",
                 element: <UpdateServicePage></UpdateServicePage>
             },
             {
