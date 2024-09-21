@@ -2,8 +2,9 @@ import { create } from "zustand";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
+const axiosPublic = useAxiosPublic();
 
-const baseUrl = `http://localhost:3000/api/v1`;
+// const baseUrl = `http://localhost:3000/api/v1`;
 
 const config = {
   headers: {
@@ -14,9 +15,9 @@ const config = {
 const careerStore = create((set) => ({
   createCareerApi: async (postBody) => {
     try {
-      let url = `${baseUrl}/createCareer`;
-      return axios
-        .post(url, postBody, config)
+      // let url = `${baseUrl}/createCareer`;
+      return axiosPublic
+        .post(`/createCareer`, postBody, config)
         .then((res) => {
           console.log(res);
           if (res.data["status"] === "success") {
@@ -34,7 +35,7 @@ const careerStore = create((set) => ({
   },
   careerDataList: [],
   careerApiDataRequest: async () => {
-    let res = await axios.get(`${baseUrl}/getAllCareer`);
+    let res = await axiosPublic.get(`/getAllCareer`);
     if (res.data["status"] === "success") {
       set({ careerDataList: res.data["data"] });
     }
@@ -43,8 +44,8 @@ const careerStore = create((set) => ({
   careerDeleteApi: (id) => {
     try {
       let deleteUrl = `${baseUrl}/deleteCareer/${id}`;
-      return axios
-        .delete(deleteUrl, config)
+      return axiosPublic
+        .delete(`/deleteCareer/${id}`, config)
         .then((res) => {
           if (res.data["status"] === "success") {
             return res.data["status"];
