@@ -1,9 +1,11 @@
 import axios from 'axios';
-const Url = "https://soft-tech-server-eight.vercel.app/api/v1";
-const localUrl = "http://localhost:3000"
+
+// const backendUrl = `http://localhost:3000/api/v1`;
+const backendUrl = `https://soft-tech-server-liart.vercel.app/api/v1`;
+
 
 const axiosPublic = axios.create({
-    baseURL: localUrl
+    baseURL: backendUrl
 })
 
 const useAxiosPublic = () => {

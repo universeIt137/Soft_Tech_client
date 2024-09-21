@@ -6,6 +6,7 @@ import { getToken } from "../../helper/sessionHelper";
 
 const baseUrl = `http://localhost:3000/api/v1`;
 
+const axiosPublic = useAxiosPublic();
 const config = {
   headers: {
     token: getToken(),
@@ -13,10 +14,10 @@ const config = {
 };
 const productStore = create((set) => ({
   createProductApi: (postBody) => {
-    let createUrl = `${baseUrl}/CreateProduct`;
+    // let createUrl = `${baseUrl}/create-product`;
     try {
-      return axios
-        .post(createUrl, postBody, config)
+      return axiosPublic
+        .post(`/create-product`, postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
             return res.data["status"];
@@ -32,7 +33,7 @@ const productStore = create((set) => ({
   productDataList: [],
   productDataListApi: async () => {
     try {
-      let res = await axios.get(`${baseUrl}/GetProducts`);
+      let res = await axiosPublic.get(`/get-products`);
       if (res.data["status"] === "success") {
         set({ productDataList: res.data.data });
       }else{
@@ -44,8 +45,8 @@ const productStore = create((set) => ({
   },
   deleteProductApi : (id)=>{
     try {
-        let url = `${baseUrl}/DeleteProduct/${id}`;
-        return axios.delete(url,config).then((res)=>{
+        // let url = `${baseUrl}/delete-product/${id}`;
+        return axiosPublic.delete(`/delete-product/${id}`,config).then((res)=>{
             return res.data["status"];
         }).catch((err)=>{
             return false
@@ -56,8 +57,8 @@ const productStore = create((set) => ({
   },
   productUpdateApi : (id,postBody) =>{
     try {
-      let url = `${baseUrl}/UpdateProduct/${id}`;
-      return   axios.put(url,postBody,config).then((res)=>{
+      // let url = `${baseUrl}/update-product/${id}`;
+      return   axiosPublic.put(`/update-product/${id}`,postBody,config).then((res)=>{
         if(res.data["status"]==="success"){
           console.log(res.data["status"]);
           return res.data.status;
@@ -72,8 +73,8 @@ const productStore = create((set) => ({
   singleProductData : [],
   singleProductDataApi : (id) =>{
     try {
-      let url = `${baseUrl}/single-product/${id}`;
-      return axios.get(url).then((res)=>{
+      // let url = `${baseUrl}/single-product/${id}`;
+      return axiosPublic.get(`single-product/${id}`).then((res)=>{
         if(res.data["status"]==="success"){
           set({singleProductData:res.data["data"]});
         }else{

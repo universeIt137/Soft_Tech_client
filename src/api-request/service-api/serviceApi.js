@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-let baseUrl = `https://soft-tech-server-liart.vercel.app/api/v1`;
+// let baseUrl = `https://soft-tech-server-liart.vercel.app/api/v1`;
+const axiosPublic = useAxiosPublic();
 
 const config = {
   headers: {
@@ -14,8 +16,8 @@ const serviceStore = create((set) => ({
   createServiceApi: (postBody) => {
     let createUrl = `${baseUrl}/create-service`;
     try {
-      return axios
-        .post(createUrl, postBody, config)
+      return axiosPublic
+        .post('/create-service', postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
             return res.data["status"];
@@ -31,7 +33,7 @@ const serviceStore = create((set) => ({
   getAllServiceData: [],
   getAllServiceApi: async () => {
     try {
-      let res = await axios.get(`${baseUrl}/get-all-service`);
+      let res = await axiosPublic.get(`/get-all-service`);
       if (res.data.status === "success") {
         set({ getAllServiceData: res.data["data"] });
       } else {
@@ -42,9 +44,9 @@ const serviceStore = create((set) => ({
     }
   },
   deleteServiceApi: (id) => {
-    let url = `${baseUrl}/delete-service/${id}`;
-    return axios
-      .delete(url, config)
+    // let url = `${baseUrl}/delete-service/${id}`;
+    return axiosPublic
+      .delete(`/delete-service/${id}`, config)
       .then((res) => {
         if (res.data.status === "success") {
           return true;
@@ -57,9 +59,9 @@ const serviceStore = create((set) => ({
       });
   },
   updateServiceApi: async (id,payload) => {
-    const url = `${baseUrl}/update-service/${id}`;
-    return await axios
-      .put(url,payload, config)
+    // const url = `${baseUrl}/update-service/${id}`;
+    return await axiosPublic
+      .put(`/update-service/${id}`,payload, config)
       .then((res) => {
         if(res.data["status"]==="success"){
           return true;
