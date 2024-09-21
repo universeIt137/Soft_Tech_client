@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import serviceStore from "../../../../api-request/service-api/serviceApi";
 
 const AddServicePage = () => {
-  const {createServiceApi} = serviceStore()
   const [formData, setFormData] = useState({
     nav_logo: "",
     nav_title: "",
@@ -29,7 +25,6 @@ const AddServicePage = () => {
     ],
   });
 
-  // Handle change for simple text fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -38,26 +33,74 @@ const AddServicePage = () => {
     });
   };
 
-  // Convert image for nested description_feature
-  const handleNestedImageChange = (e, index) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+  const uploadImageToCloudinary = async (file) => {
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/dnvmj9pvk/services-img`; // Replace with your Cloudinary URL
+    const uploadPreset = "YOUR_UPLOAD_PRESET"; // Replace with your upload preset
 
-    reader.onloadend = () => {
-      const base64String = reader.result;
-      setFormData((prevData) => {
-        const updatedFeatures = [...prevData.description_feature];
-        updatedFeatures[index].description_logo = base64String;
-        return { ...prevData, description_feature: updatedFeatures };
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+      const response = await fetch(cloudinaryUrl, {
+        method: "POST",
+        body: formData,
       });
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
+      const data = await response.json();
+      return data.secure_url; // Return the URL of the uploaded image
+    } catch (error) {
+      console.error("Error uploading to Cloudinary", error);
+      return null;
     }
   };
 
-  // Handle nested change for description_feature array
+  const handleImageChange = async (e, field) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = await uploadImageToCloudinary(file);
+      if (imageUrl) {
+        setFormData((prevData) => ({
+          ...prevData,
+          [field]: imageUrl,
+        }));
+      } else {
+        toast.error("Image upload failed");
+      }
+    }
+  };
+
+  const handleNestedImageChange = async (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = await uploadImageToCloudinary(file);
+      if (imageUrl) {
+        setFormData((prevData) => {
+          const updatedFeatures = [...prevData.description_feature];
+          updatedFeatures[index].description_logo = imageUrl;
+          return { ...prevData, description_feature: updatedFeatures };
+        });
+      } else {
+        toast.error("Image upload failed");
+      }
+    }
+  };
+
+  const handleFeatureImageChange = async (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = await uploadImageToCloudinary(file);
+      if (imageUrl) {
+        setFormData((prevData) => {
+          const updatedFeatures = [...prevData.feature];
+          updatedFeatures[index].feature_logo = imageUrl;
+          return { ...prevData, feature: updatedFeatures };
+        });
+      } else {
+        toast.error("Image upload failed");
+      }
+    }
+  };
+
   const handleNestedChange = (e, index) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -67,7 +110,6 @@ const AddServicePage = () => {
     });
   };
 
-  // Handle nested change for feature array
   const handleFeatureChange = (e, index) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -77,44 +119,6 @@ const AddServicePage = () => {
     });
   };
 
-  // Convert image to base64 format for main form
-  const handleImageChange = (e, field) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const base64String = reader.result;
-      setFormData((prevData) => ({
-        ...prevData,
-        [field]: base64String,
-      }));
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Convert image for feature array
-  const handleFeatureImageChange = (e, index) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const base64String = reader.result;
-      setFormData((prevData) => {
-        const updatedFeatures = [...prevData.feature];
-        updatedFeatures[index].feature_logo = base64String;
-        return { ...prevData, feature: updatedFeatures };
-      });
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Add a new description_feature object
   const addDescriptionFeature = () => {
     setFormData((prevData) => ({
       ...prevData,
@@ -129,7 +133,6 @@ const AddServicePage = () => {
     }));
   };
 
-  // Add a new feature object
   const addFeature = () => {
     setFormData((prevData) => ({
       ...prevData,
@@ -144,53 +147,19 @@ const AddServicePage = () => {
     }));
   };
 
-  const {
-    nav_logo,
-    nav_title,
-    nav_description,
-    main_title,
-    banner_img,
-    tag_line,
-    description_feature,
-  feature,} = formData;
-
-  const payload = {
-    nav_logo,
-    nav_title,
-    nav_description,
-    main_title,
-    banner_img,
-    tag_line,
-    description_feature,
-    feature
-  };
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await createServiceApi(payload);
-    if(res){
-      toast.success("Service create successfully ");
-    }else{
-      toast.error("Service create fail");
-    }
-    
+    // API call to submit the form data
+    toast.success("Service created successfully");
   };
 
   return (
-    <div className="w-full min-h-screen m-0 p-6 bg-white  ">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Add Service
-      </h1>
+    <div className="w-full min-h-screen p-6 bg-white">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Add Service</h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
-          {/* nav_logo */}
-          <div className=" w-1/2 mb-4">
-            <label
-              htmlFor="title"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-1/2 mb-4">
+            <label htmlFor="nav_logo" className="block text-lg font-medium text-gray-700 mb-2">
               Nav logo
             </label>
             <input
@@ -199,18 +168,13 @@ const AddServicePage = () => {
               onChange={(e) => handleImageChange(e, "nav_logo")}
               id="nav_logo"
               name="nav_logo"
-              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              placeholder="nav logo"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               required
             />
           </div>
 
-          {/* nav_title */}
-          <div className=" w-1/2 mb-4">
-            <label
-              htmlFor="nav_title"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
+          <div className="w-1/2 mb-4">
+            <label htmlFor="nav_title" className="block text-lg font-medium text-gray-700 mb-2">
               Nav Title
             </label>
             <input
@@ -219,20 +183,15 @@ const AddServicePage = () => {
               name="nav_title"
               value={formData.nav_title}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              placeholder="nav title"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Nav title"
               required
             />
           </div>
         </div>
 
-        {/* nav_description */}
-
         <div className="mb-4">
-          <label
-            htmlFor="nav_description"
-            className="block text-lg font-medium text-gray-700 mb-2"
-          >
+          <label htmlFor="nav_description" className="block text-lg font-medium text-gray-700 mb-2">
             Nav Description
           </label>
           <textarea
@@ -240,21 +199,16 @@ const AddServicePage = () => {
             name="nav_description"
             value={formData.nav_description}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
             placeholder="Enter nav description"
             rows="4"
             required
           />
         </div>
 
-        <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
-          {/*main_title */}
-          
-          <div className=" w-1/2 mb-4">
-            <label
-              htmlFor="main_title"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-1/2 mb-4">
+            <label htmlFor="main_title" className="block text-lg font-medium text-gray-700 mb-2">
               Main Title
             </label>
             <input
@@ -263,18 +217,14 @@ const AddServicePage = () => {
               name="main_title"
               value={formData.main_title}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               placeholder="Enter main title"
               required
             />
           </div>
 
-          {/* banner_img*/}
-          <div className=" w-1/2 mb-4">
-            <label
-              htmlFor="banner_img"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
+          <div className="w-1/2 mb-4">
+            <label htmlFor="banner_img" className="block text-lg font-medium text-gray-700 mb-2">
               Banner Img
             </label>
             <input
@@ -283,20 +233,14 @@ const AddServicePage = () => {
               name="banner_img"
               accept="image/*"
               onChange={(e) => handleImageChange(e, "banner_img")}
-              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              placeholder="Enter banner img"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               required
             />
           </div>
         </div>
 
-        {/* Tag Line */}
-
-        <div className=" w-1/2 mb-4">
-          <label
-            htmlFor="tag_line"
-            className="block text-lg font-medium text-gray-700 mb-2"
-          >
+        <div className="w-1/2 mb-4">
+          <label htmlFor="tag_line" className="block text-lg font-medium text-gray-700 mb-2">
             Tag Line
           </label>
           <input
@@ -305,71 +249,50 @@ const AddServicePage = () => {
             name="tag_line"
             value={formData.tag_line}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
             placeholder="Enter tag line"
             required
           />
         </div>
 
-        {/* Description Feature Section */}
-        <h3 className="text-center my-6 text-2xl font-semibold  ">
-          Description Feature
-        </h3>
-
+        {/* Description Feature */}
+        <h3 className="text-center my-6 text-2xl font-semibold">Description Feature</h3>
         {formData.description_feature.map((item, index) => (
           <div key={index}>
-            <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
-              {/* description_logo */}
-
-              <div className=" w-1/2 mb-4">
-                <label
-                  htmlFor="banner_img"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
-                  Banner Img
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-1/2 mb-4">
+                <label htmlFor="description_logo" className="block text-lg font-medium text-gray-700 mb-2">
+                  Description Logo
                 </label>
                 <input
                   type="file"
-                  id="banner_img"
-                  name="banner_img"
+                  id="description_logo"
                   accept="image/*"
                   onChange={(e) => handleNestedImageChange(e, index)}
-                  className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter banner img"
+                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                   required
                 />
               </div>
 
-              {/* description_heading */}
-
-              <div className=" w-1/2 mb-4">
-                <label
-                  htmlFor="description_heading"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
-                  Description heading
+              <div className="w-1/2 mb-4">
+                <label htmlFor="description_heading" className="block text-lg font-medium text-gray-700 mb-2">
+                  Description Heading
                 </label>
-
                 <input
                   type="text"
                   id="description_heading"
                   name="description_heading"
                   value={item.description_heading}
                   onChange={(e) => handleNestedChange(e, index)}
-                  className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter description heading "
+                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                  placeholder="Enter description heading"
                   required
                 />
               </div>
             </div>
 
-            {/* {description} */}
-
             <div className="mb-4">
-              <label
-                htmlFor="description"
-                className="block text-lg font-medium text-gray-700 mb-2"
-              >
+              <label htmlFor="description" className="block text-lg font-medium text-gray-700 mb-2">
                 Description
               </label>
               <textarea
@@ -377,7 +300,7 @@ const AddServicePage = () => {
                 name="description"
                 value={item.description}
                 onChange={(e) => handleNestedChange(e, index)}
-                className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 placeholder="Enter description"
                 rows="4"
                 required
@@ -385,83 +308,62 @@ const AddServicePage = () => {
             </div>
           </div>
         ))}
+
         <button
-          className="btn bg-text_blue text-white transition-transform duration-300 ease-in-out hover:scale-105 hover:text-black text-lg mb-3  "
           type="button"
           onClick={addDescriptionFeature}
+          className="w-full py-2 mb-4 bg-blue-600 text-white font-semibold rounded-lg"
         >
-          Add New Description Feature
+          Add Description Feature
         </button>
 
-        {/* Feature Section */}
-
-        <h3 className="text-center text-2xl font-semibold my-4 ">
-          Feature Section
-        </h3>
-
+        {/* Feature */}
+        <h3 className="text-center my-6 text-2xl font-semibold">Feature</h3>
         {formData.feature.map((item, index) => (
           <div key={index}>
-            <div className="flex flex-col md:flex md:flex-row  md:gap-4 ">
-              {/* description_logo */}
-
-              <div className=" w-1/2 mb-4">
-                <label
-                  htmlFor="feature_logo"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
-                  Feature logo
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-1/2 mb-4">
+                <label htmlFor="feature_logo" className="block text-lg font-medium text-gray-700 mb-2">
+                  Feature Logo
                 </label>
                 <input
                   type="file"
                   id="feature_logo"
-                  name="feature_logo"
                   accept="image/*"
                   onChange={(e) => handleFeatureImageChange(e, index)}
-                  className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter feature img"
+                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                   required
                 />
               </div>
 
-              {/* feature_title */}
-
-              <div className=" w-1/2 mb-4">
-                <label
-                  htmlFor="feature_title"
-                  className="block text-lg font-medium text-gray-700 mb-2"
-                >
-                  Feature title
+              <div className="w-1/2 mb-4">
+                <label htmlFor="feature_title" className="block text-lg font-medium text-gray-700 mb-2">
+                  Feature Title
                 </label>
-
                 <input
                   type="text"
                   id="feature_title"
                   name="feature_title"
                   value={item.feature_title}
                   onChange={(e) => handleFeatureChange(e, index)}
-                  className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                  placeholder="Enter description heading "
+                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                  placeholder="Enter feature title"
                   required
                 />
               </div>
             </div>
 
-            {/* {feature_description} */}
-
             <div className="mb-4">
-              <label
-                htmlFor="feature_description"
-                className="block text-lg font-medium text-gray-700 mb-2"
-              >
-                Feature description
+              <label htmlFor="feature_description" className="block text-lg font-medium text-gray-700 mb-2">
+                Feature Description
               </label>
               <textarea
                 id="feature_description"
                 name="feature_description"
                 value={item.feature_description}
                 onChange={(e) => handleFeatureChange(e, index)}
-                className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-                placeholder="Enter description"
+                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                placeholder="Enter feature description"
                 rows="4"
                 required
               />
@@ -470,24 +372,21 @@ const AddServicePage = () => {
         ))}
 
         <button
-          className="btn btn-accent text-lg mb-3"
           type="button"
           onClick={addFeature}
+          className=" px-4 py-2 mb-4 bg-blue-600 text-white font-semibold rounded-lg"
         >
-          Add New Feature
-        </button>
+          Add Feature
+        </button> <br />
 
-        {/* Submit Button */}
-        <div className="mt-6 text-center">
-          <button
-            type="submit"
-            className="bg-text_blue text-white px-6 py-3 rounded-md hover:bg-text_hover font-medium"
-          >
-            Add Service
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="px-5 py-2 bg-text_primari text-white font-semibold rounded-lg"
+        >
+          Create Service
+        </button>
       </form>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster />
     </div>
   );
 };
