@@ -63,11 +63,11 @@ const ManageProductPage = () => {
             {productDataList.map((item, i) => (
               <tr key={i} className="border-t border-gray-300">
                 <td className="py-3 px-4">{i + 1}</td>
-                <td className="py-3 px-4">{item.productName}</td>
+                <td className="py-3 px-4">{item.main_title}</td>
                 <td className="py-3 px-4">
                   <img
-                    src={item.productImg}
-                    alt={item.productName}
+                    src={item.nav_logo}
+                    alt={item.nav_title}
                     className="w-16 h-16 py-[16px] object-cover"
                   />
                 </td>

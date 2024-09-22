@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
@@ -14,17 +13,16 @@ const config = {
 
 const serviceStore = create((set) => ({
   createServiceApi: (postBody) => {
-    let createUrl = `${baseUrl}/create-service`;
     try {
-      return axiosPublic
-        .post('/create-service', postBody, config)
+      return axiosPublic.post('/create-service', postBody, config)
         .then((res) => {
-          if (res.data["status"] === "success") {
-            return res.data["status"];
+          if(res.data.status === "success"){
+            return true;
           }
         })
         .catch((err) => {
-          return true;
+          console.log(err);
+          return false;
         });
     } catch (error) {
       return false;

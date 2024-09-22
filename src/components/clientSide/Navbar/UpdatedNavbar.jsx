@@ -247,7 +247,7 @@ const UpdatedNavbar = () => {
                     }`}
                 style={{ width: '80px', minWidth: '150px', maxWidth: '150px' }} // Adjust width if needed
             >
-                <div className='flex flex-col items-center justify-center text-center'>
+                <div className='flex flex-col items-center justify-center text-start'>
                     <NavLink to="/about-us" className={`${NavLinkStyle} `}>
                         About Us
                     </NavLink>

@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
 
 
@@ -20,6 +19,7 @@ const productStore = create((set) => ({
         .post(`/create-product`, postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
+            console.log(config);
             return res.data["status"];
           }
         })
