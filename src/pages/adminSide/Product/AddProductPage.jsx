@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
 const ProductCreateForm = () => {
-  const { createProductApi, } = productStore();
+  const { createProductApi } = productStore();
   const [formData, setFormData] = useState({
     nav_logo: "",
     nav_title: "",
@@ -73,17 +73,16 @@ const ProductCreateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await createProductApi(formData);
-    if(res){
-      toast.success("Product created successfully")
-    }else{
-      toast.error("Failed to create product")
+    if (res) {
+      toast.success("Product created successfully");
+    } else {
+      toast.error("Failed to create product");
     }
-    // API call can be made here with formData
   };
 
   return (
     <div>
-      <h2 className="text-xl text-center my-6 font-bold  " >Create Product</h2>
+      <h2 className="text-xl text-center my-6 font-bold  ">Create Product</h2>
       <form onSubmit={handleSubmit}>
         <div className=" flex flex-col md:grid md:grid-cols-2 md:gap-8 ">
           {/* nav_logo */}
@@ -238,8 +237,8 @@ const ProductCreateForm = () => {
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
-            <div className="flex flex-row md:grid md:grid-cols-2 gap-8 my-4 " >
-            {/* Description Image: */}
+            <div className="flex flex-row md:grid md:grid-cols-2 gap-8 my-4 ">
+              {/* Description Image: */}
               <div>
                 <label className="block text-lg font-medium text-gray-700 mb-2">
                   Description Image:
@@ -270,12 +269,21 @@ const ProductCreateForm = () => {
         ))}
 
         {/* Button to add more extra_data */}
-        <button className="btn font-bold text-lg   bg-primary text-white hover:text-black  " type="button" onClick={addExtraDataField}>
+        <button
+          className="btn font-bold text-lg   bg-primary text-white hover:text-black  "
+          type="button"
+          onClick={addExtraDataField}
+        >
           Add Data
         </button>
 
         <br />
-        <button className="btn my-8 font-bold text-lg mx-auto block bg-text_primari text-white hover:text-black  " type="submit">Create Product</button>
+        <button
+          className="btn my-8 font-bold text-lg mx-auto block bg-text_primari text-white hover:text-black  "
+          type="submit"
+        >
+          Create Product
+        </button>
       </form>
       <Toaster />
     </div>
