@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Fade as Hamburger } from 'hamburger-react';
 import { motion } from 'framer-motion';
@@ -110,6 +110,22 @@ const UpdatedNavbar = () => {
             logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp'
         },
     ];
+
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+          if (!event.target.closest('.navbarUl')) {
+            setDropdownOpen(false);
+            setDropdownOpen2(false);
+            setGetInTouch(false);
+          }
+        };
+    
+    
+        document.addEventListener('click', handleOutsideClick);
+        return () => {
+          document.removeEventListener('click', handleOutsideClick);
+        };
+      }, [setDropdownOpen, setDropdownOpen2, setGetInTouch]);
 
 
     const handleDropdownToggle = () => {
