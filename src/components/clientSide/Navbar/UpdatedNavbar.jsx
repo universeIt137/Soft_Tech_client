@@ -179,7 +179,7 @@ const UpdatedNavbar = () => {
                             onClick={handleHideDrawer}
                             className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
                         >
-                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" /> 
+                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" />
 
                             <div className="text-xs">
                                 <h2>{course.title}</h2>
@@ -247,29 +247,28 @@ const UpdatedNavbar = () => {
                     }`}
                 style={{ width: '80px', minWidth: '150px', maxWidth: '150px' }} // Adjust width if needed
             >
-                <div className='flex flex-col items-center justify-center text-start'>
-                    <NavLink to="/about-us" className={`${NavLinkStyle} `}>
+                <div className='flex flex-col items-center justify-center'>
+                    <NavLink to="/about-us" className={`${NavLinkStyle} text-left w-full`}>
                         About Us
                     </NavLink>
 
-                    <NavLink to="/contact-us" className={`${NavLinkStyle} `}>
+                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-left w-full`}>
                         Contact Us
                     </NavLink>
 
-                    <NavLink to="/career" className={`${NavLinkStyle} `}>
+                    <NavLink to="/career" className={`${NavLinkStyle} text-left w-full`}>
                         Career
                     </NavLink>
 
-
-                    <NavLink to="/company-profile" className={`${NavLinkStyle} `}>
+                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-left w-full`}>
                         Company Profile
                     </NavLink>
 
-                    <NavLink to="/our-team" className={`${NavLinkStyle} `}>
+                    <NavLink to="/our-team" className={`${NavLinkStyle} text-left w-full`}>
                         Our Team
                     </NavLink>
-
                 </div>
+
 
             </div>
 
@@ -361,29 +360,28 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isGetInTouchOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                <div className='flex flex-col text-white items-center justify-center text-center'>
-                    <NavLink to="/about-us" className={`${NavLinkStyle} text-white`}>
+                <div className='flex flex-col items-center justify-center'>
+                    <NavLink to="/about-us" className={`${NavLinkStyle} text-left text-white w-full`}>
                         About Us
                     </NavLink>
 
-                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Contact Us
                     </NavLink>
 
-                    <NavLink to="/career" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/career" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Career
                     </NavLink>
 
-
-                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Company Profile
                     </NavLink>
 
-                    <NavLink to="/our-team" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/our-team" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Our Team
                     </NavLink>
-
                 </div>
+
             </div>
 
 
