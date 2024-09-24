@@ -11,6 +11,9 @@ const config = {
     token: getToken(),
   },
 };
+
+
+
 const productStore = create((set) => ({
   createProductApi: (postBody) => {
     // let createUrl = `${baseUrl}/create-product`;
@@ -19,7 +22,7 @@ const productStore = create((set) => ({
         .post(`/create-product`, postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
-            console.log(config);
+            
             return res.data["status"];
           }
         })
@@ -56,8 +59,10 @@ const productStore = create((set) => ({
     };
   },
   productUpdateApi : (id,postBody) =>{
+    console.log("post body is ",postBody);
+    
     try {
-      // let url = `${baseUrl}/update-product/${id}`;
+      
       return   axiosPublic.put(`/update-product/${id}`,postBody,config).then((res)=>{
         if(res.data["status"]==="success"){
           console.log(res.data["status"]);
