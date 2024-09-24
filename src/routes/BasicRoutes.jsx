@@ -43,6 +43,7 @@ import CompanyProfilePage from "../pages/clientSide/companyProfilePage/CompanyPr
 import AllApplication from "../components/adminSide/Application/AllApplication";
 import GetSingleApplication from "../components/adminSide/Application/GetSingleApplication";
 import RequestDemo from "../pages/clientSide/servicesPage/iotPage/RequestDemo";
+import ApplicationPage from "../pages/clientSide/CareerDetailsPage/ApplicationPage";
 
 
 
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
             {
                 path: '/career/:id',
                 element: <CareerDetailsPage></CareerDetailsPage>,
+                loader: () => fetch('jobs.json')
+            },
+            {
+                path: '/apply-job',
+                element: <ApplicationPage></ApplicationPage>,
                 loader: () => fetch('jobs.json')
             },
             {
