@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Fade as Hamburger } from 'hamburger-react';
 import { motion } from 'framer-motion';
@@ -11,26 +11,7 @@ const UpdatedNavbar = () => {
     const [isGetInTouchOpen, setGetInTouch] = useState(false);
 
 
-    const drawerRef = useRef(null);
-
-    // Function to close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            // Check if the click is outside the drawer menu
-            if (drawerRef.current && !drawerRef.current.contains(event.target)) {
-                setOpenMenu(false); // Close the menu
-            }
-        };
-
-        // Add event listener for clicks
-        document.addEventListener('mousedown', handleClickOutside);
-
-        // Cleanup event listener on unmount
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [drawerRef]);
-
+    // Course data (logo and title)
     const products = [
         {
             id: 1,
@@ -39,6 +20,7 @@ const UpdatedNavbar = () => {
             url: '/products-education',
             logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
         },
+
 
         {
             id: 2,
@@ -78,6 +60,8 @@ const UpdatedNavbar = () => {
             logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp'
         },
     ];
+
+    // Course data (logo and title)
     const services = [
         {
             id: 1,
@@ -145,6 +129,8 @@ const UpdatedNavbar = () => {
         setDropdownOpen2(false);
         setDropdownOpen(false);
     };
+
+
 
     const handleHideDrawer = () => {
         setOpenMenu(false);
@@ -374,29 +360,28 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isGetInTouchOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                <div className='flex flex-col text-white items-center justify-center text-center'>
-                    <NavLink to="/about-us" className={`${NavLinkStyle} text-white`}>
+                <div className='flex flex-col items-center justify-center'>
+                    <NavLink to="/about-us" className={`${NavLinkStyle} text-left text-white w-full`}>
                         About Us
                     </NavLink>
 
-                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/contact-us" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Contact Us
                     </NavLink>
 
-                    <NavLink to="/career" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/career" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Career
                     </NavLink>
 
-
-                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/company-profile" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Company Profile
                     </NavLink>
 
-                    <NavLink to="/our-team" className={`${NavLinkStyle} text-white`}>
+                    <NavLink to="/our-team" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Our Team
                     </NavLink>
-
                 </div>
+
             </div>
 
 
@@ -420,36 +405,28 @@ const UpdatedNavbar = () => {
                     {/* Mobile view */}
                     <div className="text-white w-full flex justify-between items-center lg:hidden">
                         <img src={logo} alt="Logo" className="w-24" />
-                        <div className="block lg:hidden z-50">
-                            <div className="drawer" ref={drawerRef}>
-                                <input
-                                    id="my-drawer"
-                                    type="checkbox"
-                                    className="drawer-toggle"
-                                    checked={isOpen}
-                                    onChange={() => setOpenMenu(!isOpen)}
-                                />
-                                <div className="drawer-content cursor-pointer">
-                                    <label htmlFor="my-drawer" className="z-50 cursor-pointer text-black">
-                                        <Hamburger toggled={isOpen} toggle={setOpenMenu} size={23} duration={0.6} />
-                                    </label>
-                                </div>
-                                <div className="drawer-side">
-                                    <label
-                                        onClick={() => setOpenMenu(false)}
-                                        htmlFor="my-drawer"
-                                        className="drawer-overlay"
-                                    ></label>
-                                    <motion.ul className="menu p-4 w-56 md:w-80 min-h-full bg-universe_secondary text-white space-y-2 rounded-lg z-40 navbarUl">
-                                        {navNavLinksForDrawer}
-                                    </motion.ul>
-                                </div>
+                        <div className="block lg:hidden drawer w-max z-50">
+                            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                            <div className="drawer-content cursor-pointer">
+                                <label htmlFor="my-drawer" className="z-50 cursor-pointer text-black">
+                                    <Hamburger toggled={isOpen} toggle={setOpenMenu} size={23} duration={0.6} />
+                                </label>
+                            </div>
+                            <div className="drawer-side">
+                                <label
+                                    onClick={() => setOpenMenu(false)}
+                                    htmlFor="my-drawer"
+                                    className="drawer-overlay"
+                                ></label>
+                                <motion.ul className="menu p-4 w-56 md:w-80 min-h-full bg-universe_secondary text-white space-y-2 rounded-lg z-40 navbarUl">
+                                    {navNavLinksForDrawer}
+                                </motion.ul>
                             </div>
                         </div>
                     </div>
                     {/* Laptop view */}
-                    <div className="text-sm hidden lg:flex container mx-auto">
-                        <div className="flex justify-center gap-24">
+                    <div className="text-sm hidden lg:flex container mx-auto ">
+                        <div className='flex justify-center gap-24'>
                             <Link to="/">
                                 <img src={logo} alt="Logo" className="w-32" />
                             </Link>
