@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
+
 const ProductCreateForm = () => {
   const { createProductApi } = productStore();
+  
+  // Initial state
   const [formData, setFormData] = useState({
     nav_logo: "",
     nav_title: "",
@@ -18,10 +21,11 @@ const ProductCreateForm = () => {
     ],
   });
 
-  // Handle form field change
+  // Handle text field change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    console.log(name, value);
   };
 
   // Convert file to Base64
@@ -69,6 +73,8 @@ const ProductCreateForm = () => {
     });
   };
 
+  
+
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,11 +86,13 @@ const ProductCreateForm = () => {
     }
   };
 
+
+
   return (
     <div>
-      <h2 className="text-xl text-center my-6 font-bold  ">Create Product</h2>
+      <h2 className="text-xl text-center my-6 font-bold">Create Product</h2>
       <form onSubmit={handleSubmit}>
-        <div className=" flex flex-col md:grid md:grid-cols-2 md:gap-8 ">
+        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
           {/* nav_logo */}
           <div>
             <label className="block text-lg font-medium text-gray-700 mb-2">
@@ -115,7 +123,6 @@ const ProductCreateForm = () => {
 
         <div className="my-4">
           {/* Nav Description */}
-
           <label className="block text-lg font-medium text-gray-700 mb-2">
             Nav Description:
           </label>
@@ -128,10 +135,10 @@ const ProductCreateForm = () => {
           />
         </div>
 
-        <div className="md:grid md:grid-cols-2 md:gap-8 ">
+        <div className="md:grid md:grid-cols-2 md:gap-8">
           {/* Main Title */}
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-2" el>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
               Main Title:
             </label>
             <input
@@ -143,7 +150,7 @@ const ProductCreateForm = () => {
             />
           </div>
           <div>
-            {/* live_links */}
+            {/* Live Link */}
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Live Link:
             </label>
@@ -173,7 +180,7 @@ const ProductCreateForm = () => {
           </div>
         </div>
 
-        <div className="flex flex-row md:grid md:grid-cols-2 gap-8 ">
+        <div className="flex flex-row md:grid md:grid-cols-2 gap-8">
           <div>
             {/* Proposal Link */}
             <label className="block text-lg font-medium text-gray-700 mb-2">
@@ -188,7 +195,7 @@ const ProductCreateForm = () => {
             />
           </div>
           <div>
-            {/* feature */}
+            {/* Feature */}
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Feature:
             </label>
@@ -204,7 +211,7 @@ const ProductCreateForm = () => {
 
         <div>
           <div className="my-4">
-            {/* feature_logo */}
+            {/* Feature Logo */}
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Feature Logo:
             </label>
@@ -221,10 +228,10 @@ const ProductCreateForm = () => {
         {/* Render extra_data fields */}
         {formData.extra_data.map((extra, index) => (
           <div key={index}>
-            <h4 className="text-center my-4 font-bold text-lg ">
+            <h4 className="text-center my-4 font-bold text-lg">
               Add Other Data {index + 1}
             </h4>
-            {/* Extra Description: */}
+            {/* Extra Description */}
             <div>
               <label className="block text-lg font-medium text-gray-700 mb-2">
                 Extra Description:
@@ -237,8 +244,8 @@ const ProductCreateForm = () => {
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
-            <div className="flex flex-row md:grid md:grid-cols-2 gap-8 my-4 ">
-              {/* Description Image: */}
+            <div className="flex flex-row md:grid md:grid-cols-2 gap-8 my-4">
+              {/* Description Image */}
               <div>
                 <label className="block text-lg font-medium text-gray-700 mb-2">
                   Description Image:
@@ -251,8 +258,8 @@ const ProductCreateForm = () => {
                   className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 />
               </div>
-              {/* Description Title: */}
               <div>
+                {/* Description Title */}
                 <label className="block text-lg font-medium text-gray-700 mb-2">
                   Description Title:
                 </label>
@@ -268,23 +275,28 @@ const ProductCreateForm = () => {
           </div>
         ))}
 
-        {/* Button to add more extra_data */}
-        <button
-          className="btn font-bold text-lg   bg-primary text-white hover:text-black  "
-          type="button"
-          onClick={addExtraDataField}
-        >
-          Add Data
-        </button>
+        {/* Add new extra_data fields button */}
+        <div>
+          <button
+            type="button"
+            onClick={addExtraDataField}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+          >
+            Add More Extra Data
+          </button>
+        </div>
 
-        <br />
-        <button
-          className="btn my-8 font-bold text-lg mx-auto block bg-text_primari text-white hover:text-black  "
-          type="submit"
-        >
-          Create Product
-        </button>
+        {/* Submit button */}
+        <div className="mt-6">
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-4 py-2 rounded-lg"
+          >
+            Submit
+          </button>
+        </div>
       </form>
+
       <Toaster />
     </div>
   );

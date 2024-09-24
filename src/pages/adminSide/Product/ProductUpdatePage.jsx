@@ -1,101 +1,257 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
-import productStore from "./../../../api-request/product-api/productApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const ProductUpdatePage = () => {
+const ProductCreateForm = () => {
   const { id } = useParams();
-  const { singleProductDataApi, productUpdateApi, singleProductData } =
+  const { productUpdateApi, singleProductData, singleProductDataApi } =
     productStore();
-    useEffect(()=>{
-      (async()=>{
-        await singleProductDataApi(id);
-      })()
-    },[id]);
-    console.log(`data is ${singleProductData}`)
-  let productNameRef = useRef();
-  let productImgRef = useRef();
-  let productDesRef = useRef();
 
-  const submitValue = async (e) => {
+  // Single product data load
+  useEffect(() => {
+    (async () => {
+      await singleProductDataApi(id);
+    })();
+  }, [id]);
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let productName = productNameRef.current.value;
-    let productImg = productImgRef.current.value;
-    let productDes = productDesRef.current.value;
+    const form = e.target;
 
-    let data = { productName, productImg, productDes };
-    let res = await productUpdateApi(id,data);
-    if(res[0]){
-        toast.success(`${res}`)
-    }else{
-        toast.error(`${res[1]}`)
+    const nav_logo = form.nav_logo.files[0];
+    const description_img = form.description_img.files[0];
+    const feature_logo = form.feature_logo.files[0];
+
+    const nav_title = form.nav_title.value;
+    const nav_description = form.nav_description.value;
+    const main_title = form.main_title.value;
+    const live_link = form.live_link.value;
+    const short_description = form.short_description.value;
+    const proposal_link = form.proposal_link.value;
+    const feature = form.feature.value;
+
+    let base64NavLogo = "",
+      base64FeatureImg = "",
+      base64DescriptionImg = "";
+
+    // Convert images to base64
+    if (nav_logo) base64NavLogo = await convertToBase64(nav_logo);
+    if (feature_logo) base64FeatureImg = await convertToBase64(feature_logo);
+    if (description_img) base64DescriptionImg = await convertToBase64(description_img);
+
+
+    const payload = {
+      nav_logo: base64NavLogo,
+      feature_logo: base64FeatureImg,
+      description_img: base64DescriptionImg,
+
+      nav_title,
+      nav_description,
+      main_title,
+      live_link,
+      short_description,
+      proposal_link,
+      feature,
+    };
+
+    let res = await productUpdateApi(id, payload);
+    if (res) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been updated successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      toast.error("Failed to update product");
     }
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full">
-          <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
-            Update Product
-          </h2>
-
-          <form onSubmit={submitValue} className="space-y-4">
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-1">
-                Product Name
-              </label>
-              <input
-                ref={productNameRef}
-                key={Date.now()}
-                defaultValue={singleProductData.productName}
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter product name"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-1">
-                Product Image URL
-              </label>
-              <input
-                ref={productImgRef}
-                key={Date.now}
-                defaultValue={singleProductData.productImage}
-                type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter image URL"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 text-sm font-medium mb-1">
-                Product Description
-              </label>
-              <textarea
-                ref={productDesRef}
-                key={Date.now()}
-                defaultValue={singleProductData.productDesc}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2"
-                placeholder="Enter product description"
-                rows="4"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-text_blue hover:bg-text_hover text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-            >
-              Update Product
-            </button>
-          </form>
+    <div>
+      <h2 className="text-xl text-center my-6 font-bold">Update Product</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Nav Logo:
+            </label>
+            <input
+              type="file"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Nav Title:
+            </label>
+            <input
+              type="text"
+              defaultValue={singleProductData.nav_title}
+              name="nav_title"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
         </div>
-        <Toaster position="top-right" reverseOrder={false} />
-      </div>
-    </>
+
+        <div className="my-4">
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+            Nav Description:
+          </label>
+          <textarea
+            defaultValue={singleProductData.nav_description}
+            name="nav_description"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            rows="4"
+          />
+        </div>
+
+        <div className="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Main Title:
+            </label>
+            <input
+              type="text"
+              defaultValue={singleProductData.main_title}
+              name="main_title"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Live Link:
+            </label>
+            <input
+              type="text"
+              defaultValue={singleProductData.live_link}
+              name="live_link"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
+        </div>
+
+        <div className="my-4">
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+            Short Description:
+          </label>
+          <textarea
+            defaultValue={singleProductData.short_description}
+            name="short_description"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            rows="4"
+          />
+        </div>
+
+        <div className="flex flex-row md:grid md:grid-cols-2 gap-8">
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Proposal Link:
+            </label>
+            <input
+              type="text"
+              defaultValue={singleProductData.proposal_link}
+              name="proposal_link"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Feature:
+            </label>
+            <input
+              type="text"
+              defaultValue={singleProductData.feature}
+              name="feature"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
+        </div>
+
+        <div className="my-4">
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+            Feature Logo:
+          </label>
+          <input
+            name="feature_logo"
+            type="file"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+          />
+        </div>
+
+        {singleProductData?.extra_data &&
+          singleProductData?.extra_data.map((item, i) => {
+            return (
+              <div className="my-10" key={i}>
+                <div className="my-4">
+                  {/* extra_description */}
+                  <label className="block text-lg font-medium text-gray-700 mb-2">
+                    Extra description:
+                  </label>
+                  <textarea
+                    name="extra_description"
+                    defaultValue={item["extra_description"]}
+                    className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                    rows={"4"}
+                  />
+                </div>
+                <div className=" flex flex-col md:grid md:grid-cols-2 md:gap-8 ">
+                  {/* Description img */}
+                  <div>
+                    <label className="block text-lg font-medium text-gray-700 mb-2">
+                      Description img
+                    </label>
+                    <input
+                      type="file"
+                      name="description_img"
+                      accept="image/*"
+                      className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                    />
+                  </div>
+                  <div>
+                    {/* description_title */}
+                    <label className="block text-lg font-medium text-gray-700 mb-2">
+                      Description title
+                    </label>
+                    <input
+                      type="text"
+                      name="description_title"
+                      defaultValue={item["description_title"]}
+                      className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+        <div className="text-center mt-4">
+          <button
+            type="submit"
+            className="bg-text_primari text-white px-4 py-2 rounded-lg"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+      <Toaster />
+    </div>
   );
 };
 
-export default ProductUpdatePage;
+export default ProductCreateForm;

@@ -55,6 +55,7 @@ const ManageProductPage = () => {
             <tr className="w-full bg-gray-800 text-white">
               <th className="text-left py-3 px-4">SL No</th>
               <th className="text-left py-3 px-4">Product Name</th>
+              <th className="text-left py-3 px-4">feature</th>
               <th className="text-left py-3 px-4">Product Image</th>
               <th className="text-left py-3 px-4">Actions</th>
             </tr>
@@ -70,6 +71,10 @@ const ManageProductPage = () => {
                     alt={item.nav_title}
                     className="w-16 h-16 py-[16px] object-cover"
                   />
+                </td>
+                <td className="py-3 px-4">
+                  <p> { item.feature } </p>
+                  <td/>
                 </td>
                 <td className="py-3 px-4 gap-2">
                   <NavLink title="update" to={`/dashboard/product/update/${item._id}`}>

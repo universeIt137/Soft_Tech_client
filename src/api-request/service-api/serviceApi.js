@@ -71,6 +71,19 @@ const serviceStore = create((set) => ({
         return false;
       });
   },
+  getSingleServiceData : [],
+  getSingleServiceApi: async (id) => {
+    try {
+      let res = await axiosPublic.get(`/get-service-by-id/${id}`);
+      if (res.data.status === "success") {
+        set({ getSingleServiceData: res.data["data"] });
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return error;
+    }
+  }
 }));
 
 export default serviceStore;
