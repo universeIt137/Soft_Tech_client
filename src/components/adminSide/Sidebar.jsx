@@ -178,12 +178,13 @@ const Sidebar = () => {
     } ${isSidebarOpen ? "block" : "hidden"}`}
   >
     <li>
-      <NavLink
-        to="/dashboard/add-product"
-        className="p-2 block border-bg_btn_hover rounded-none transition duration-200  hover:bg-white hover:text-black focus:bg-white focus:text-black"
-      >
-        Add Product
-      </NavLink>
+    <NavLink
+  to="/dashboard/add-product"
+  className="p-2 block rounded-none transition duration-200 text-white hover:bg-white hover:text-black focus:bg-white focus:text-black"
+>
+  Add Product
+</NavLink>
+
     </li>
     <li>
       <NavLink
@@ -212,7 +213,7 @@ const Sidebar = () => {
     <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
       <p className="flex justify-center items-center gap-4">
         Application
-        <span className="ml-[26px]" >{openApplication ? <FaAngleDown /> : <FaAngleUp />}</span>
+        <span className="ml-[25px]" >{openApplication ? <FaAngleDown /> : <FaAngleUp />}</span>
       </p>
     </span>
   </label>

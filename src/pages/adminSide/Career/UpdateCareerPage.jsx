@@ -1,69 +1,69 @@
-import React, { useEffect, useState } from "react";
-import careerStore from "../../../api-request/carrer-api/carrerApi";
-import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-const AddCareer = () => {
-  const { createCareerApi, careerApiRequest, careerDataList } = careerStore();
-  const navigate = useNavigate();
+import toast, { Toaster } from 'react-hot-toast';
+import careerStore from './../../../api-request/carrer-api/carrerApi';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
-  const [formData, setFormData] = useState({
-    jobTitle: "",
-    description: "",
-    deadline: "",
-    vacancy: "",
-    experience: "",
-    responsibilities: "",
-    status: "",
-    workplace: "",
-    workingTime: "",
-    edu : "",
-    salary: "",
-    Benifits: "",
+
+const UpdateCareerPage = () => {
+  const {SingleCareerData,SingleCareerDataApi,updateCareerApi} = careerStore();
+    const {id} = useParams();
+    useEffect(()=>{
+      (async()=>{
+        await SingleCareerDataApi(id);
+      })()
+    },[id]);
     
-  });
-
-  const {
-    jobTitle,
-    description,
-    deadline,
-    vacancy,
-    experience,
-    responsibilities,
-    status,
-    workplace,
-    workingTime,
-    edu,
-    salary,
-    Benifits,
-  } = formData;
-
-  const getInputValue = (name, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const submitInputValue = async (e) => {
-    e.preventDefault();
-    let res = await createCareerApi(formData);
-    if (res) {
-      useNavigate("dashboard/manage-career");
-      setFormData("");
-      return toast.success("Career create successfully");
-    } else {
-      return toast.error("Something went wrong");
-    }
-  };
-
+    const handleSubmitValue =async (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const jobTitle = form.jobTitle.value;
+        const description = form.description.value;
+        const deadline = form.deadline.value;
+        const vacancy = form.vacancy.value;
+        const experience = form.experience.value;
+        const responsibilities = form.responsibilities.value;
+        const status = form.status.value;
+        const workplace = form.workplace.value;
+        const workingTime = form.workingTime.value;
+        const edu = form.edu.value;
+        const salary = form.salary.value;
+        const Benifits = form.Benifits.value;
+        const payload = {
+          jobTitle,
+          description,
+          deadline,
+          vacancy,
+          experience,
+          responsibilities,
+          status,
+          workplace,
+          workingTime,
+          edu,
+          salary,
+          Benifits,
+        };
+        let res = await updateCareerApi(id, payload);
+      if (res) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Career updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        toast.error("Failed to update career");
+      }
+    };
   return (
     <div className="max-w-full mx-auto p-6 bg-white ">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-        Add Career
+        Update Career
       </h1>
-      <form onSubmit={submitInputValue}>
+      <form onSubmit={handleSubmitValue}>
         <div className="flex flex-col md:flex-row md:justify-between gap-4 ">
-          {/* Job Title */}
+          {/* jobTitle */}
           <div className="mb-4 md:w-1/2 ">
             <label
               htmlFor="jobTitle"
@@ -75,13 +75,11 @@ const AddCareer = () => {
               type="text"
               id="jobTitle"
               name="jobTitle"
-              value={jobTitle}
-              onChange={(e) => {
-                getInputValue("jobTitle", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.jobTitle}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter job title"
-              required
+              
             />
           </div>
           {/* Deadline */}
@@ -96,12 +94,10 @@ const AddCareer = () => {
               type="date"
               id="deadline"
               name="deadline"
-              value={deadline}
-              onChange={(e) => {
-                getInputValue("deadline", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.deadline}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
-              required
+              
             />
           </div>
         </div>
@@ -117,17 +113,14 @@ const AddCareer = () => {
           <textarea
             id="description"
             name="description"
-            value={description}
-            onChange={(e) => {
-              getInputValue("description", e.target.value);
-            }}
+            defaultValue={SingleCareerData[0]?.description}
+            key={Date.now()}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job description"
             rows="4"
-            required
           />
         </div>
-
+        {/* Vacancy */}
         <div className="flex flex-col md:flex-row md:justify-between md:gap-4 ">
           {/* Vacancy */}
           <div className="mb-4 md:w-1/2 ">
@@ -141,13 +134,10 @@ const AddCareer = () => {
               type="number"
               id="vacancy"
               name="vacancy"
-              value={vacancy}
-              onChange={(e) => {
-                getInputValue("vacancy", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.vacancy}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter number of vacancies"
-              required
             />
           </div>
 
@@ -163,13 +153,11 @@ const AddCareer = () => {
               type="text"
               id="experience"
               name="experience"
-              value={experience}
-              onChange={(e) => {
-                getInputValue("experience", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.experience}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter required experience"
-              required
+              
             />
           </div>
         </div>
@@ -185,19 +173,16 @@ const AddCareer = () => {
           <textarea
             id="responsibilities"
             name="responsibilities"
-            value={responsibilities}
-            onChange={(e) => {
-              getInputValue("responsibilities", e.target.value);
-            }}
+            defaultValue={SingleCareerData[0]?.responsibilities}
+            key={Date.now()}
             className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
             placeholder="Enter job responsibilities"
             rows="4"
-            required
           />
         </div>
-
+        
         <div className="flex flex-col md:flex-row md:justify-between md:gap-4 ">
-          {/* Status */}
+        {/* status */}
           <div className="mb-4 md:w-1/2 ">
             <label
               htmlFor="status"
@@ -209,13 +194,12 @@ const AddCareer = () => {
               type="text"
               id="status"
               name="status"
-              value={status}
-              onChange={(e) => {
-                getInputValue("status", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.status}
+              key={Date.now()}
+              
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter job status (e.g., Full-Time)"
-              required
+              
             />
           </div>
 
@@ -231,17 +215,15 @@ const AddCareer = () => {
               type="text"
               id="workplace"
               name="workplace"
-              value={workplace}
-              onChange={(e) => {
-                getInputValue("workplace", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.workplace}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter workplace (e.g., Office, Remote)"
-              required
+              
             />
           </div>
         </div>
-
+        
         <div className="flex flex-col md:flex-row md:justify-between md:gap-4 ">
           {/* Working Time */}
           <div className="mb-4 md:w-1/2 ">
@@ -255,17 +237,15 @@ const AddCareer = () => {
               type="text"
               id="workingTime"
               name="workingTime"
-              value={workingTime}
-              onChange={(e) => {
-                getInputValue("workingTime", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.workingTime}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter working time (e.g., 9 AM - 5 PM)"
-              required
+              
             />
           </div>
 
-          {/* Education */}
+          {/* edu */}
           <div className="mb-4 md:w-1/2 ">
             <label
               htmlFor="edu"
@@ -277,13 +257,10 @@ const AddCareer = () => {
               type="text"
               id="edu"
               name="edu"
-              value={edu}
-              onChange={(e) => {
-                getInputValue("edu", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.edu}
+              key={Date.now()}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter educational requirements"
-              required
             />
           </div>
         </div>
@@ -301,13 +278,11 @@ const AddCareer = () => {
               type="text"
               id="salary"
               name="salary"
-              value={salary}
-              onChange={(e) => {
-                getInputValue("salary", e.target.value);
-              }}
+              defaultValue={SingleCareerData[0]?.salary}
+              key={Date.now()}              
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter salary details"
-              required
+              
             />
           </div>
 
@@ -323,19 +298,15 @@ const AddCareer = () => {
               type="text"
               id="Benifits"
               name="Benifits"
-              value={Benifits}
-              onChange={(e) => {
-                getInputValue("Benifits", e.target.value);
-              }}
+              key={Date.now()}
+              defaultValue={SingleCareerData[0]?.Benifits}
               className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
               placeholder="Enter job benefits"
-              required
+              
             />
           </div>
         </div>
 
-        
-        
 
         {/* Submit Button */}
         <div className="mt-6 text-center">
@@ -343,13 +314,13 @@ const AddCareer = () => {
             type="submit"
             className="bg-text_blue text-white px-6 py-3 rounded-md hover:text-text_hover font-medium"
           >
-            Add Career
+            Update Career
           </button>
         </div>
       </form>
       <Toaster position="top-center" />
     </div>
-  );
-};
+  )
+}
 
-export default AddCareer;
+export default UpdateCareerPage

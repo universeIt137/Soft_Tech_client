@@ -44,6 +44,7 @@ import AllApplication from "../components/adminSide/Application/AllApplication";
 import GetSingleApplication from "../components/adminSide/Application/GetSingleApplication";
 import RequestDemo from "../pages/clientSide/servicesPage/iotPage/RequestDemo";
 import ApplicationPage from "../pages/clientSide/CareerDetailsPage/ApplicationPage";
+import UpdateCareerPage from "../pages/adminSide/Career/UpdateCareerPage";
 
 
 
@@ -189,6 +190,10 @@ const router = createBrowserRouter([
             {
                 path: "add-career",
                 element: <AddCareerPage></AddCareerPage>
+            },
+            {
+                path : "career-update/:id",
+                element : <UpdateCareerPage></UpdateCareerPage>
             },
             {
                 path: "manage-career",
