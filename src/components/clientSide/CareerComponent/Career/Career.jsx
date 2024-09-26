@@ -15,11 +15,21 @@ import { FaSearch } from "react-icons/fa";
 import JobCard from "../JobCard/JobCard";
 import { ImLocation2 } from "react-icons/im";
 import { AiFillDollarCircle } from "react-icons/ai";
+import careerStore from "../../../../api-request/carrer-api/carrerApi";
 
 
 
 
 const Career = () => {
+
+    const {careerDataList, careerApiDataRequest} = careerStore()
+    console.log(careerDataList)
+
+    useEffect(()=>{
+         (async ()=>{
+            await careerApiDataRequest()
+         })()
+    },[])
 
     const [jobs, setJobs] = useState([]);
     useEffect(() => {

@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { BiError } from "react-icons/bi";
 import { MdCall } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
+import careerStore from '../../../api-request/carrer-api/carrerApi';
 
 
 
@@ -32,6 +33,8 @@ const CareerDetailsPage = () => {
         return <div>No career details found</div>
     }
    
+   
+
     
     return (
         <div className='bg-[#EEEEEE] py-24 inter'>
@@ -42,7 +45,7 @@ const CareerDetailsPage = () => {
                 <div className='flex justify-between flex-col lg:flex-row gap-5 my-5'>
                     <p>Application Deadline : <span className='text-[#B5377D] font-bold'>{application_deadline}</span></p>
                     <div className='flex gap-5 flex-wrap-reverse'>
-                         <NavLink to={`/apply-job`}  className='bg-[#008020]  text-white font-bold rounded-md px-5 py-2.5'>Apply Now</NavLink>
+                         <NavLink to={`/apply-job/${id}`}  className='bg-[#008020]  text-white font-bold rounded-md px-5 py-2.5'>Apply Now</NavLink>
                          <button className='flex items-center gap-2 text-xl border border-[#95CDFF] px-5 py-2.5 rounded-md'>
                             <IoIosStar></IoIosStar>
                             <p>shortlist</p>

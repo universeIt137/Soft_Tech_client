@@ -33,6 +33,7 @@ const careerStore = create((set) => ({
       return error;
     }
   },
+  
   careerDataList: [],
   careerApiDataRequest: async () => {
     let res = await axiosPublic.get(`/getAllCareer`);
