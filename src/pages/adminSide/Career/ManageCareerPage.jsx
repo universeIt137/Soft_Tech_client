@@ -60,7 +60,7 @@ const ManageCareerPage = () => {
                 </td>
                 <td className="py-3 ml-6  px-6"> {item.vacancy} </td>
                 <td className="py-3 px-6 flex space-x-3">
-                  <NavLink title="update" to={`${item["_id"]}/career-update`}>
+                  <NavLink title="update" to={`/dashboard/career-update/${item["_id"]}`}>
                     <button className="w-4 bg-text_blue outline-none border-0 hover:bg-text_hover text-white px-4 py-2 rounded-md mr-2">
                       <i className="block -ml-[6px] ">
                         <FaEdit />

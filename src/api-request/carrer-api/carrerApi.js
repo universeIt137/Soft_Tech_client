@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import axios from "axios";
 import { getToken } from "../../helper/sessionHelper";
 const axiosPublic = useAxiosPublic();
 
@@ -12,12 +11,14 @@ const config = {
   },
 };
 
+
+
 const careerStore = create((set) => ({
   createCareerApi: async (postBody) => {
     try {
       // let url = `${baseUrl}/createCareer`;
       return axiosPublic
-        .post(`/createCareer`, postBody, config)
+        .post(`/createCareer`,postBody,config)
         .then((res) => {
           console.log(res);
           if (res.data["status"] === "success") {
@@ -33,6 +34,7 @@ const careerStore = create((set) => ({
       return error;
     }
   },
+
   careerDataList: [],
   careerApiDataRequest: async () => {
     let res = await axiosPublic.get(`/getAllCareer`);
@@ -58,6 +60,35 @@ const careerStore = create((set) => ({
       return false;
     }
   },
+
+  SingleCareerData: [],
+  SingleCareerDataApi: async (id) => {
+    try {
+      let res = await axiosPublic.get(`/getSingleCareer/${id}`);
+      if (res.data["status"] === "success") {
+        set({ SingleCareerData: res.data["data"] });
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
+
+  updateCareerApi: async (id,postBody) => {
+    try {
+      let res = await axiosPublic.put(`/updateCareer/${id}`,postBody,config);
+      if (res.data["status"] === "success") {
+        return res.data["status"];
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return [false, error.response.msg] ;
+    }
+  }
+  
 }));
 
 export default careerStore;

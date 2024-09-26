@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { getToken } from "../../helper/sessionHelper";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-// let baseUrl = `https://soft-tech-server-liart.vercel.app/api/v1`;
+
 const axiosPublic = useAxiosPublic();
 
 const config = {
