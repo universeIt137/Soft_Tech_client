@@ -25,7 +25,7 @@ const ProductCreateForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    console.log(name, value);
+    
   };
 
   // Convert file to Base64
@@ -79,10 +79,10 @@ const ProductCreateForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await createProductApi(formData);
-    if (res) {
-      toast.success("Product created successfully");
-    } else {
-      toast.error("Failed to create product");
+    if(res){
+      return true;
+    }else{
+      toast.error(`product was not created`);
     }
   };
 
@@ -296,8 +296,6 @@ const ProductCreateForm = () => {
           </button>
         </div>
       </form>
-
-      <Toaster />
     </div>
   );
 };

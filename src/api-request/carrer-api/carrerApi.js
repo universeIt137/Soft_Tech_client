@@ -45,7 +45,7 @@ const careerStore = create((set) => ({
 
   careerDeleteApi: (id) => {
     try {
-      let deleteUrl = `${baseUrl}/deleteCareer/${id}`;
+      
       return axiosPublic
         .delete(`/deleteCareer/${id}`, config)
         .then((res) => {
@@ -86,6 +86,16 @@ const careerStore = create((set) => ({
       }
     } catch (error) {
       return [false, error.response.msg] ;
+    }
+  },
+
+  allCareersData : [],
+  allCareersDataApi: async () => {
+    let res = await axiosPublic.get(`/getAllCareer`);
+    if (res.data["status"] === "success") {
+      set({ allCareersData: res.data["data"] });
+    } else {
+      return false;
     }
   }
   

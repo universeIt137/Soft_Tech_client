@@ -19,6 +19,8 @@ const AddCareer = () => {
     edu : "",
     salary: "",
     Benifits: "",
+    skill : "",
+    location : "",
     
   });
 
@@ -35,6 +37,8 @@ const AddCareer = () => {
     edu,
     salary,
     Benifits,
+    location,
+    skill,
   } = formData;
 
   const getInputValue = (name, value) => {
@@ -50,7 +54,7 @@ const AddCareer = () => {
     if (res) {
       useNavigate("dashboard/manage-career");
       setFormData("");
-      return toast.success("Career create successfully");
+      toast.success("Career create successfully");
     } else {
       return toast.error("Something went wrong");
     }
@@ -288,8 +292,9 @@ const AddCareer = () => {
           </div>
         </div>
 
-        {/* Salary */}
+        
         <div className="flex flex-col md:flex-row md:justify-between md:gap-4 " >
+          {/* Salary */}
           <div className="mb-4 md:w-1/2 ">
             <label
               htmlFor="salary"
@@ -333,6 +338,55 @@ const AddCareer = () => {
             />
           </div>
         </div>
+
+        <div className="flex flex-col md:flex-row md:justify-between md:gap-4 " >
+          {/* skill */}
+          <div className="mb-4 md:w-1/2 ">
+            <label
+              htmlFor="skill"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Skill
+            </label>
+            <input
+              type="text"
+              id="skill"
+              name="skill"
+              value={skill}
+              onChange={(e) => {
+                getInputValue("skill", e.target.value);
+              }}
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter skill  name "
+              required
+            />
+          </div>
+
+          {/* location */}
+          <div className="mb-4 md:w-1/2 ">
+            <label
+              htmlFor="location"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Company location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={location}
+              onChange={(e) => {
+                getInputValue("location", e.target.value);
+              }}
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter company location "
+              required
+            />
+          </div>
+
+        </div>
+
+       
 
         
         
