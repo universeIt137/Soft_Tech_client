@@ -56,27 +56,30 @@ const Sidebar = () => {
             )}
           </button>
         </div>
-        <nav className="">
+        <nav>
           <ul>
+            {/* Services */}
             <li>
               <label
                 onClick={() => {
                   handleDropdownToggle("service");
                   setOpenService(!openService);
                 }}
-                className={` mt-2 flex items-center space-x-3 p-3 w-full text-left  transition duration-200 hover:   rounded-none  ${
+                className={` mt-2 flex items-center space-x-3 p-3 w-full text-left  transition duration-200 hover: rounded-none ${
                   isSidebarOpen ? "text-white" : "text-center"
                 }`}
               >
                 <img
                   src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png"
                   className="w-9"
-                  alt=""
+                  alt="Services"
                 />
                 <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
                   <p className="flex justify-center items-center gap-4">
                     Services
-                    <span className="ml-10" >{openService ? <FaAngleDown /> : <FaAngleUp />}</span>
+                    <span className="ml-10">
+                      {openService ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
                   </p>
                 </span>
               </label>
@@ -88,23 +91,24 @@ const Sidebar = () => {
               >
                 <li>
                   <NavLink
-                    to="/dashboard/manage-service"
-                    className="p-2 -my-4 block transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black  border-bg_btn_hover rounded-none"
+                    to="/dashboard/add-service"
+                    className="p-2 block -my-2 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                   >
-                    Manage Service
+                    Add Service
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/add-service"
-                    className="p-2 block -my-2  border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                    to="/dashboard/manage-service"
+                    className="p-2 -my-4 block transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black border-bg_btn_hover rounded-none"
                   >
-                    Add Service
+                    Manage Service
                   </NavLink>
                 </li>
               </ul>
             </li>
 
+            {/* Career */}
             <li>
               <label
                 onClick={() => {
@@ -118,12 +122,14 @@ const Sidebar = () => {
                 <img
                   src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
                   className="w-9"
-                  alt=""
+                  alt="Career"
                 />
                 <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
                   <p className="flex justify-center items-center gap-4">
                     Career
-                    <span className="ml-[53px]" >{openCareer ? <FaAngleDown /> : <FaAngleUp />}</span>
+                    <span className="ml-[53px]">
+                      {openCareer ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
                   </p>
                 </span>
               </label>
@@ -136,7 +142,7 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/add-career"
-                    className="p-2 block   border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                   >
                     Add Career
                   </NavLink>
@@ -144,100 +150,100 @@ const Sidebar = () => {
                 <li>
                   <NavLink
                     to="/dashboard/manage-career"
-                    className="p-2 block -my-4  border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                   >
-                    Manage career
+                    Manage Career
                   </NavLink>
                 </li>
               </ul>
-            </li> 
+            </li>
 
+            {/* Product */}
             <li>
-  <label
-    onClick={() => {
-      handleDropdownToggle("product");
-      setOpenProduct(!openProduct);
-    }}
-    className={`-my-4 flex items-center space-x-3 p-3 w-full text-left border-bg_btn_hover rounded-none transition duration-200 hover:text-white ${
-      isSidebarOpen ? "text-white" : "text-center"
-    }`}
-  >
-    <AiOutlineProduct size={"40px"} />
-    
-    <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-      <p className="flex justify-center my-4 -ml-1 items-center gap-4  ">
-        Product
-        <span className="block ml-[47px] -mt-1 " >{openProduct ? <FaAngleDown />  :<FaAngleUp /> }</span>
-      </p>
-    </span>
-  </label>
+              <label
+                onClick={() => {
+                  handleDropdownToggle("product");
+                  setOpenProduct(!openProduct);
+                }}
+                className={`-my-4 flex items-center space-x-3 p-3 w-full text-left border-bg_btn_hover rounded-none transition duration-200 hover:text-white ${
+                  isSidebarOpen ? "text-white" : "text-center"
+                }`}
+              >
+                <AiOutlineProduct size={"40px"} />
 
-  <ul
-    className={`ml-8 ${activeDropdown !== "product" && "hidden"} ${
-      !isSidebarOpen && "text-center"
-    } ${isSidebarOpen ? "block" : "hidden"}`}
-  >
-    <li>
-    <NavLink
-  to="/dashboard/add-product"
-  className="p-2 block rounded-none transition duration-200 text-white hover:bg-white hover:text-black focus:bg-white focus:text-black"
->
-  Add Product
-</NavLink>
+                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
+                  <p className="flex justify-center my-4 -ml-1 items-center gap-4">
+                    Product
+                    <span className="block ml-[47px] -mt-1">
+                      {openProduct ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
+                  </p>
+                </span>
+              </label>
 
-    </li>
-    <li>
-      <NavLink
-        to="/dashboard/manage-product"
-        className="p-2  block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-      >
-        Manage Product
-      </NavLink>
-    </li>
-  </ul>
-</li>
+              <ul
+                className={`ml-8 ${activeDropdown !== "product" && "hidden"} ${
+                  !isSidebarOpen && "text-center"
+                } ${isSidebarOpen ? "block" : "hidden"}`}
+              >
+                <li>
+                  <NavLink
+                    to="/dashboard/add-product"
+                    className="p-2 block rounded-none transition duration-200 text-white hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Add Product
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-product"
+                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Manage Product
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
 
+            {/* Application */}
+            <li>
+              <label
+                onClick={() => {
+                  handleDropdownToggle("application");
+                  setOpenApplication(!openApplication);
+                }}
+                className={`-my-4 flex items-center space-x-3 p-3 w-full transition text-left rounded-none transition duration-200 ${
+                  isSidebarOpen ? "text-white" : "text-center"
+                }`}
+              >
+                <SlEnvolopeLetter size={"35px"} />
+                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
+                  <p className="flex justify-center items-center gap-4">
+                    Application
+                    <span className="ml-[25px]">
+                      {openApplication ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
+                  </p>
+                </span>
+              </label>
 
-
-<li>
-  <label
-    onClick={() => {
-      handleDropdownToggle("application");
-      setOpenApplication(!openApplication); 
-    }}
-    className={`-my-4 flex items-center space-x-3 p-3 w-full text-left rounded-none transition duration-200 hover:bg-white hover:text-black ${
-      isSidebarOpen ? "text-white" : "text-center"
-    }`}
-  >
-    <SlEnvolopeLetter size={"35px"} />
-    <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
-      <p className="flex justify-center items-center gap-4">
-        Application
-        <span className="ml-[25px]" >{openApplication ? <FaAngleDown /> : <FaAngleUp />}</span>
-      </p>
-    </span>
-  </label>
-
-  <ul
-    className={`ml-8 ${
-      activeDropdown !== "application" && "hidden"
-    } ${!isSidebarOpen && "text-center"} ${
-      isSidebarOpen ? "block" : "hidden"
-    }`}
-  >
-    <li>
-      <NavLink
-        to="/dashboard/all-application"
-        className="p-2 block mt-1 border-bg_btn_hover  rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-      >
-        All Application
-      </NavLink>
-    </li>
-  </ul>
-</li>
-
-
-            
+              <ul
+                className={`ml-8 ${
+                  activeDropdown !== "application" && "hidden"
+                } ${!isSidebarOpen && "text-center"} ${
+                  isSidebarOpen ? "block" : "hidden"
+                }`}
+              >
+                <li>
+                  <NavLink
+                    to="/dashboard/applications"
+                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Manage Applications
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>

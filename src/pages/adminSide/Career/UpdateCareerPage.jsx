@@ -29,6 +29,9 @@ const UpdateCareerPage = () => {
         const edu = form.edu.value;
         const salary = form.salary.value;
         const Benifits = form.Benifits.value;
+        const skill = form.skill.value;
+        const location = form.location.value;
+        
         const payload = {
           jobTitle,
           description,
@@ -42,6 +45,8 @@ const UpdateCareerPage = () => {
           edu,
           salary,
           Benifits,
+          skill,
+          location,
         };
         let res = await updateCareerApi(id, payload);
       if (res) {
@@ -305,6 +310,49 @@ const UpdateCareerPage = () => {
               
             />
           </div>
+        </div>
+
+
+        <div className="flex flex-col md:flex-row md:justify-between md:gap-4 " >
+          {/* skill */}
+          <div className="mb-4 md:w-1/2 ">
+            <label
+              htmlFor="skill"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Skill
+            </label>
+            <input
+              type="text"
+              id="skill"
+              name="skill"
+              defaultValue={SingleCareerData[0]?.skill}
+              key={Date.now()}
+              
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter skill  name "
+            />
+          </div>
+
+          {/* location */}
+          <div className="mb-4 md:w-1/2 ">
+            <label
+              htmlFor="location"
+              className="block text-lg font-medium text-gray-700 mb-2"
+            >
+              Company location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              defaultValue={SingleCareerData[0]?.location}
+              key={Date.now()}
+              className="w-full px-4 py-2 rounded-lg focus:outline-none outline-none  focus:border-text_blue border-2 border-gray-300"
+              placeholder="Enter company location "
+            />
+          </div>
+
         </div>
 
 

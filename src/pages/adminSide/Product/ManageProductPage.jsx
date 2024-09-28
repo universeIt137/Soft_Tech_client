@@ -99,7 +99,6 @@ const ManageProductPage = () => {
           </tbody>
         </table>
       </div>
-      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };
