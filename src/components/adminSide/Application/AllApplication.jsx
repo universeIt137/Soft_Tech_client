@@ -1,22 +1,28 @@
 import React, { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2"; 
 import ApplicationStore from "../../../api-request/admin-api/application-api";
 
+
 const AllApplication = () => {
+  const { getApplicationRequest, applicationList } = ApplicationStore();
 
-    const navigate = useNavigate()
+  useEffect(() => {
+    (async () => {
+      await getApplicationRequest();
+    })();
+  }, []);
 
-    const {getApplicationRequest, applicationList} = ApplicationStore()
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        (async() => {
-            await getApplicationRequest()
-        })()
-    }, [])
-
-    console.log(applicationList)
+  const showResume = (pdf) => {
+    const encodedPdf = encodeURIComponent(pdf);
+    window.open(`https://soft-tech-server-liart.vercel.app/files/${encodedPdf}`, '_blank', 'noreferrer');
+  };
+  
+  
+  
 
   // Delete handler
   const handleDelete = () => {
@@ -35,8 +41,8 @@ const AllApplication = () => {
           text: "Your file has been deleted.",
           icon: "success"
         }).then(() => {
-            navigate("dashboard/getSingleApplication/1");
-        })
+          
+        });
       }
     });
   };
@@ -53,35 +59,37 @@ const AllApplication = () => {
             <thead>
               <tr className="w-full bg-gray-800 text-white">
                 <th className="text-left py-3 px-4">SL No</th>
-                <th className="text-left py-3 px-4">Applicant Name</th>
-                <th className="text-left py-3 px-4">Image</th>
+                <th className="text-left py-3 px-4"> Name</th>
+                <th className="text-left py-3 px-4">Resume</th>
+                <th className="text-left py-3 px-4">Number</th>
+                <th className="text-left py-3 px-4">Address</th>
+                <th className="text-left py-3 px-4">Status</th>
                 <th className="text-left py-3 px-4">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-t border-gray-300">
-                <td className="py-3 px-4">1</td>
-                <td className="py-3 px-4">Elon Musk</td>
-                <td className="py-3 px-4">
-                  <NavLink to="/dashboard/getSingleApplication/1">
-                    <img
-                      src="https://i.pinimg.com/564x/54/b5/a4/54b5a45d5f53fdc2708ffbfaa4d074df.jpg"
-                      alt="elon"
-                      className="w-16 h-16 py-[16px] object-cover"
-                    />
-                  </NavLink>
-                </td>
-                <td className="py-3 px-4 gap-2">
-                  <button
-                    onClick={handleDelete}
-                    className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                  >
-                    <i title="delete" className="-ml-[8px] block">
-                      <MdDelete />
-                    </i>
-                  </button>
-                </td>
-              </tr>
+              {applicationList?.map((item, i) => (
+                <tr key={i} className="border-t border-gray-300">
+                  <td className="py-3 px-4">{i + 1}</td>
+                  <td className="py-3 px-4">{item?.fullName}</td>
+                  <td className="py-3 px-4">
+                    <button onClick={()=>{showResume(item?.resume)}} > See Resume </button>
+                  </td>
+                  <td className="py-3 px-4">{item.phoneNumber}</td>
+                  <td className="py-3 px-4">{item.address.slice(0, 10)}...</td>
+                  <td className="py-3 px-4">{item.status}</td>
+                  <td className="py-3 px-4">
+                    <button
+                      onClick={handleDelete}
+                      className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                    >
+                      <i title="delete" className="-ml-[8px] block">
+                        <MdDelete />
+                      </i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

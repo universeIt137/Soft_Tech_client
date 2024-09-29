@@ -202,7 +202,7 @@ const router = createBrowserRouter([
                 element: <AddProductPage></AddProductPage>
             },
             {
-                path: "all-application",
+                path: "application",
                 element: <AllApplication></AllApplication>
             },
             {
