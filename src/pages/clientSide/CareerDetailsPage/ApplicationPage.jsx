@@ -24,7 +24,7 @@ const ApplicationPage = () => {
       }
     })
 
-    console.log(result);
+   
 
     if(result){
       console.log(result)
