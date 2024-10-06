@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import Swal from "sweetalert2"; 
-import ApplicationStore from "../../../api-request/admin-api/application-api";
 
+import ApplicationStore from "../../../api-request/admin-api/application-api";
+import { deleteAlert } from "../../../helper/deleteHelperAlert";
 
 const AllApplication = () => {
-  const { getApplicationRequest, applicationList } = ApplicationStore();
-
+  const {id} = useParams();
+  const { getApplicationRequest, applicationList,deleteApplicationApi } = ApplicationStore();
+  
   useEffect(() => {
     (async () => {
       await getApplicationRequest();
@@ -20,32 +21,15 @@ const AllApplication = () => {
     const encodedPdf = encodeURIComponent(pdf);
     window.open(`https://soft-tech-server-liart.vercel.app/files/${encodedPdf}`, '_blank', 'noreferrer');
   };
+
   
+  const handleDelete = async (id) => {
+    let res = await deleteAlert(id);
+  }
   
   
 
-  // Delete handler
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        }).then(() => {
-          
-        });
-      }
-    });
-  };
+  
 
   return (
     <div>
@@ -80,10 +64,11 @@ const AllApplication = () => {
                   <td className="py-3 px-4">{item.status}</td>
                   <td className="py-3 px-4">
                     <button
-                      onClick={handleDelete}
+                      onClick={handleDelete( )}
+                      onClickCapture={d}
                       className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600"
                     >
-                      <i title="delete" className="-ml-[8px] block">
+                      <i title="delete" onClick={deleteApplicationApi.bind(this, item["_id"])} className="-ml-[8px] block">
                         <MdDelete />
                       </i>
                     </button>
@@ -99,3 +84,4 @@ const AllApplication = () => {
 };
 
 export default AllApplication;
+

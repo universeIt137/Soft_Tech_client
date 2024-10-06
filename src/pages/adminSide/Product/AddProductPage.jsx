@@ -1,301 +1,276 @@
 import React, { useState } from "react";
 import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
+import { uploadImg } from "../../../uploadImage/UploadImage";
 
 const ProductCreateForm = () => {
   const { createProductApi } = productStore();
-  
-  // Initial state
-  const [formData, setFormData] = useState({
-    nav_logo: "",
-    nav_title: "",
-    nav_description: "",
-    main_title: "",
-    live_link: "",
-    short_description: "",
-    proposal_link: "",
-    feature: "",
-    feature_logo: "",
-    extra_data: [
+  const [extraData, setExtraData] = useState([
+    { extra_description: "", description_img: "", description_title: "" },
+  ]);
+
+  const handleAddExtraData = () => {
+    setExtraData([
+      ...extraData,
       { extra_description: "", description_img: "", description_title: "" },
-    ],
-  });
-
-  // Handle text field change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    
+    ]);
   };
 
-  // Convert file to Base64
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    const file = files[0];
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setFormData({ ...formData, [name]: reader.result });
-    };
-  };
-
-  // Handle extra_data file change for description_img
-  const handleExtraDataFileChange = (index, e) => {
-    const { name, files } = e.target;
-    const file = files[0];
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      const newExtraData = [...formData.extra_data];
-      newExtraData[index][name] = reader.result;
-      setFormData({ ...formData, extra_data: newExtraData });
-    };
-  };
-
-  // Handle extra_data change
-  const handleExtraDataChange = (index, e) => {
-    const { name, value } = e.target;
-    const newExtraData = [...formData.extra_data];
-    newExtraData[index][name] = value;
-    setFormData({ ...formData, extra_data: newExtraData });
-  };
-
-  // Add new extra_data fields
-  const addExtraDataField = () => {
-    setFormData({
-      ...formData,
-      extra_data: [
-        ...formData.extra_data,
-        { extra_description: "", description_img: "", description_title: "" },
-      ],
-    });
-  };
-
-  
-
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res = await createProductApi(formData);
-    if(res){
-      return true;
-    }else{
-      toast.error(`product was not created`);
+
+    const nav_logo = e.target.nav_logo.files[0];
+    const feature_logo = e.target.feature_logo.files[0];
+    const nav_title = e.target.nav_title.value;
+    const nav_description = e.target.nav_description.value;
+    const main_title = e.target.main_title.value;
+    const live_link = e.target.live_link.value;
+    const short_description = e.target.short_description.value;
+    const proposal_link = e.target.proposal_link.value;
+    const feature = e.target.feature.value;
+
+    // Upload individual images
+    let navLogoUrl = nav_logo ? await uploadImg(nav_logo) : "";
+    let featureLogoUrl = feature_logo ? await uploadImg(feature_logo) : "";
+
+    // Upload description images
+    const extraDataWithUrls = await Promise.all(
+      extraData.map(async (item) => {
+        const uploadedImg = item.description_img
+          ? await uploadImg(item.description_img)
+          : "";
+        return { ...item, description_img: uploadedImg };
+      })
+    );
+
+    // Prepare final payload
+    const payload = {
+      nav_logo: navLogoUrl,
+      nav_title,
+      nav_description,
+      main_title,
+      live_link,
+      short_description,
+      proposal_link,
+      feature,
+      feature_logo: featureLogoUrl,
+      extra_data: extraDataWithUrls,
+    };
+
+    console.log("Payload:", payload);
+
+    // Simulate API call
+    try {
+      let res = await createProductApi(payload);
+      if(res){
+        toast.success("Product created successfully");
+      }else{
+        toast.error("Error creating service");
+      }
+    } catch (err) {
+      toast.error("Error creating service");
     }
+    e.target.reset();
   };
 
 
 
   return (
-    <div>
-      <h2 className="text-xl text-center my-6 font-bold">Create Product</h2>
+    <div className="w-full min-h-screen p-6 bg-white">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Add New Service
+      </h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
-          {/* nav_logo */}
-          <div>
+        <div className="flex flex-row gap-6 " >
+        {/* Nav Logo */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Nav Logo:
+              Nav Logo
             </label>
             <input
               type="file"
               name="nav_logo"
               accept="image/*"
-              onChange={handleFileChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
             />
           </div>
-          <div>
-            {/* nav_title */}
+
+          {/* Nav Title */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Nav Title:
+              Nav Title
             </label>
             <input
               type="text"
               name="nav_title"
-              value={formData.nav_title}
-              onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter nav title"
             />
           </div>
         </div>
 
-        <div className="my-4">
-          {/* Nav Description */}
+        {/* Nav Description */}
+        <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700 mb-2">
-            Nav Description:
+            Nav Description
           </label>
           <textarea
             name="nav_description"
-            value={formData.nav_description}
-            onChange={handleChange}
+            rows="5"
             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            rows={"4"}
+            placeholder="Enter nav description"
           />
         </div>
 
-        <div className="md:grid md:grid-cols-2 md:gap-8">
+        <div className="flex flex-row gap-6" >
           {/* Main Title */}
-          <div>
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Main Title:
+              Main Title
             </label>
             <input
               type="text"
               name="main_title"
-              value={formData.main_title}
-              onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter main title"
             />
           </div>
-          <div>
-            {/* Live Link */}
+
+          {/* Live Link */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Live Link:
+              Live Link
             </label>
             <input
               type="text"
               name="live_link"
-              value={formData.live_link}
-              onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter live link"
             />
           </div>
         </div>
-
-        <div>
-          <div className="my-4">
-            {/* Short Description */}
-            <label className="block text-lg font-medium text-gray-700 mb-2">
-              Short Description:
-            </label>
-            <textarea
-              name="short_description"
-              value={formData.short_description}
-              onChange={handleChange}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-              rows={"4"}
-            />
-          </div>
+        {/* Short Description */}
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+            Short Description
+          </label>
+          <textarea
+            name="short_description"
+            rows="5"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            placeholder="Enter short description"
+          />
         </div>
-
-        <div className="flex flex-row md:grid md:grid-cols-2 gap-8">
-          <div>
-            {/* Proposal Link */}
+        <div className="flex flex-row gap-6 " >
+        {/* Proposal Link */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Proposal Link:
+              Proposal Link
             </label>
             <input
               type="text"
               name="proposal_link"
-              value={formData.proposal_link}
-              onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter proposal link"
             />
           </div>
-          <div>
-            {/* Feature */}
+
+          {/* Feature */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Feature:
+              Feature
             </label>
             <input
               type="text"
               name="feature"
-              value={formData.feature}
-              onChange={handleChange}
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter feature"
             />
           </div>
         </div>
-
-        <div>
-          <div className="my-4">
-            {/* Feature Logo */}
-            <label className="block text-lg font-medium text-gray-700 mb-2">
-              Feature Logo:
-            </label>
-            <input
-              type="file"
-              name="feature_logo"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            />
-          </div>
+        {/* Feature Logo */}
+        <div className="mb-4 w-1/2 ">
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+            Feature Logo
+          </label>
+          <input
+            type="file"
+            name="feature_logo"
+            accept="image/*"
+            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+          />
         </div>
 
-        {/* Render extra_data fields */}
-        {formData.extra_data.map((extra, index) => (
-          <div key={index}>
-            <h4 className="text-center my-4 font-bold text-lg">
-              Add Other Data {index + 1}
-            </h4>
+        {/* Extra Data */}
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">Extra Data</h2>
+        {extraData.map((item, index) => (
+          <div key={index} className="mb-4">
             {/* Extra Description */}
-            <div>
-              <label className="block text-lg font-medium text-gray-700 mb-2">
-                Extra Description:
-              </label>
-              <textarea
-                name="extra_description"
-                value={extra.extra_description}
-                onChange={(e) => handleExtraDataChange(index, e)}
-                rows={"4"}
-                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-              />
-            </div>
-            <div className="flex flex-row md:grid md:grid-cols-2 gap-8 my-4">
-              {/* Description Image */}
-              <div>
-                <label className="block text-lg font-medium text-gray-700 mb-2">
-                  Description Image:
-                </label>
+            <textarea
+              placeholder="Extra Description"
+              rows="5"
+              className="w-full rounded-xl px-4 py-2 mb-2 border-2 border-gray-300"
+              value={item.extra_description}
+              onChange={(e) => {
+                const newExtraData = [...extraData];
+                newExtraData[index].extra_description = e.target.value;
+                setExtraData(newExtraData);
+              }}
+            />
+            <div className="flex flex-row gap-6 " >
+              <div className="w-full" >
+                {/* Description Image */}
+                <label htmlFor="description_img">Description Image</label>
                 <input
                   type="file"
-                  name="description_img"
+                  id = "description_img"
                   accept="image/*"
-                  onChange={(e) => handleExtraDataFileChange(index, e)}
-                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                  onChange={(e) => {
+                    const newExtraData = [...extraData];
+                    newExtraData[index].description_img = e.target.files[0];
+                    setExtraData(newExtraData);
+                  }}
+                  className="w-full px-4 rounded-xl py-2 mb-2 border-2 border-gray-300"
                 />
               </div>
-              <div>
+
+              <div className="w-full" >
                 {/* Description Title */}
-                <label className="block text-lg font-medium text-gray-700 mb-2">
-                  Description Title:
-                </label>
+                <label htmlFor="description_title">Description Title</label>
                 <input
                   type="text"
-                  name="description_title"
-                  value={extra.description_title}
-                  onChange={(e) => handleExtraDataChange(index, e)}
-                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                  id="description_title"
+                  placeholder="Description Title"
+                  className="w-full px-4 py-2 rounded-xl border-2 border-gray-300"
+                  value={item.description_title}
+                  onChange={(e) => {
+                    const newExtraData = [...extraData];
+                    newExtraData[index].description_title = e.target.value;
+                    setExtraData(newExtraData);
+                  }}
                 />
               </div>
             </div>
+
           </div>
         ))}
+        <button
+          type="button"
+          onClick={handleAddExtraData}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+        >
+          Add Extra Data
+        </button> <br />
 
-        {/* Add new extra_data fields button */}
-        <div>
-          <button
-            type="button"
-            onClick={addExtraDataField}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-          >
-            Add More Extra Data
-          </button>
-        </div>
-
-        {/* Submit button */}
-        <div className="mt-6">
-          <button
-            type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded-lg"
-          >
-            Submit
-          </button>
-        </div>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="mt-6 bg-green-500 text-white px-4 py-2 rounded-lg"
+        >
+          Submit
+        </button>
       </form>
+      <Toaster />
     </div>
   );
 };

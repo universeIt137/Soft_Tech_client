@@ -16,6 +16,19 @@ const ApplicationStore = create((set) => ({
         }
     }catch(e){
         return false;
+    };
+
+    deleteApplicationApi = async (id)=>{
+        try{
+            const res = await axiosPublic.post(`/delete-application/${id}`)
+            if(res.data.status ==='success'){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(e){
+            return false;
+        }
     }
 }
 }))
