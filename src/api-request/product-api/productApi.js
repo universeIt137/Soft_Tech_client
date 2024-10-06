@@ -1,9 +1,8 @@
 import { create } from "zustand";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { getToken } from "../../helper/sessionHelper";
-import toast from "react-hot-toast";
 
-const baseUrl = `http://localhost:3000/api/v1`;
+
 
 const axiosPublic = useAxiosPublic();
 const config = {
@@ -12,23 +11,20 @@ const config = {
   },
 };
 
-console.log(config);
 
 const productStore = create((set) => ({
-  createProductApi: async (postBody) => {
-    // let createUrl = `${baseUrl}/create-product`;
-    let res = await axiosPublic.post("/create-product",postBody,config);
-    try {
-      let res = await axiosPublic.post("/create-product",postBody,config);
-      if(res.data["status"]==="success"){
-        toast.success("Product created successfully")
-        return res.data["status"]
-      }
-    } catch (error) {
+  createProductApi: async (payload) => {
+    let res = await axiosPublic.post(`/create-product`,payload,config);
+    if (res.data["status"] === "success") {
+      console.log(res)
+      return true;
+    }else{
       return false;
     }
   },
+
   productDataList: [],
+
   productDataListApi: async () => {
     try {
       let res = await axiosPublic.get(`/get-products`);
@@ -41,6 +37,7 @@ const productStore = create((set) => ({
       console.log(error);
     }
   },
+
   deleteProductApi: (id) => {
     try {
       // let url = `${baseUrl}/delete-product/${id}`;
@@ -56,6 +53,7 @@ const productStore = create((set) => ({
       return error;
     }
   },
+
   productUpdateApi: (id, postBody) => {
     console.log("post body is ", postBody);
 
@@ -75,6 +73,7 @@ const productStore = create((set) => ({
       return [false, error.response.msg];
     }
   },
+
   singleProductData: [],
   singleProductDataApi: (id) => {
     try {
@@ -95,6 +94,7 @@ const productStore = create((set) => ({
       return error;
     }
   },
+
 }));
 
 export default productStore;
