@@ -203,13 +203,15 @@ const UpdateServicePage = () => {
         </div>
 
         {/* Description Feature Section */}
-        <h3 className="text-center my-6 text-2xl font-semibold">
-          Description Feature
-        </h3>
-
+        
+    
         {getSingleServiceData?.description_feature &&
           getSingleServiceData?.description_feature.map((item, index) => (
+            
             <div key={index}>
+              <h3 className="text-center my-6 text-2xl font-semibold">
+              Description Feature ({index+1}) 
+              </h3>
               <div className="flex flex-col md:flex md:flex-row md:gap-4">
                 {/* Description Logo */}
                 <div className="w-1/2 mb-4">
@@ -267,61 +269,75 @@ const UpdateServicePage = () => {
           ))}
 
         {/* Feature Section */}
-        <h3 className="text-center my-6 text-2xl font-semibold">Feature</h3>
+        
 
-        <div className="flex flex-col md:flex md:flex-row md:gap-4">
-          {/* Feature Title */}
-          <div className="w-1/2 mb-4">
-            <label
-              htmlFor="feature_title"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
-              Feature Title
-            </label>
-            <input
-              type="text"
-              id="feature_title"
-              name="feature_title"
-              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
-              placeholder="Feature Title"
-              defaultValue={getSingleServiceData.feature_title}
-            />
-          </div>
+          {
+            getSingleServiceData?.feature && getSingleServiceData?.feature.map((item,i)=>{
+              return(
+                <div key={i} >
+                      <h3 className="text-center my-6 text-2xl font-semibold">Feature ({i+1}) </h3>
+                      <div className="avatar">
+                        <div className="w-12">
+                          <img src= {item.feature_logo} />
+                        </div>
+                      </div>
+                      <div className="flex flex-col md:flex md:flex-row md:gap-4">
+                      {/* Feature Title */}
+                      <div className="w-1/2 mb-4">
+                        <label
+                          htmlFor="feature_title"
+                          className="block text-lg font-medium text-gray-700 mb-2"
+                        >
+                          Feature Title
+                        </label>
+                        <input
+                          type="text"
+                          id="feature_title"
+                          name="feature_title"
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
+                          placeholder="Feature Title"
+                          defaultValue={item?.feature_title}
+                        />
+                      </div>
 
-          {/* Feature Img */}
-          <div className="w-1/2 mb-4">
-            <label
-              htmlFor="feature_logo"
-              className="block text-lg font-medium text-gray-700 mb-2"
-            >
-              Feature Img
-            </label>
-            <input
-              type="file"
-              id="feature_logo"
-              name="feature_logo"
-              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
-            />
-          </div>
-        </div>
+                      {/* Feature Img */}
+                      <div className="w-1/2 mb-4">
+                        <label
+                          htmlFor="feature_logo"
+                          className="block text-lg font-medium text-gray-700 mb-2"
+                        >
+                          Feature Img
+                        </label>
+                        <input
+                          type="file"
+                          id="feature_logo"
+                          name="feature_logo"
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
+                        />
+                      </div>
+                    </div>
 
-        {/* Feature Description */}
-        <div className="mb-4">
-          <label
-            htmlFor="feature_description"
-            className="block text-lg font-medium text-gray-700 mb-2"
-          >
-            Feature Description
-          </label>
-          <textarea
-            id="feature_description"
-            name="feature_description"
-            className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
-            placeholder="Enter feature description"
-            rows="4"
-            defaultValue={getSingleServiceData.feature_description}
-          />
-        </div>
+                    {/* Feature Description */}
+                    <div className="mb-4">
+                      <label
+                        htmlFor="feature_description"
+                        className="block text-lg font-medium text-gray-700 mb-2"
+                      >
+                        Feature Description
+                      </label>
+                      <textarea
+                        id="feature_description"
+                        name="feature_description"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
+                        placeholder="Enter feature description"
+                        rows="4"
+                        defaultValue={item?.feature_description}
+                      />
+                    </div>
+                </div>
+              )
+            })
+          }
 
         <div className="flex justify-end">
           <button
