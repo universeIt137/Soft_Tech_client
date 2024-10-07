@@ -19,8 +19,8 @@ const Footer = () => {
                         <div className="mt-5">
                             <p className="flex items-center gap-2"><FaLocationDot /> 5/A, Ga-130/B, Progoti Sharani, Middle</p>
                             <p>Badda, Gulshan, Badda, Dhaka-1212.</p>
-                            <p className="flex items-center gap-2"><IoCall />  +88 01616 500515</p>
-                            <p className="flex items-center gap-2"> <IoMdMailUnread /> info@softTech.com</p>
+                            <p className="flex items-center gap-2 justify-center"><IoCall />  +88 01616 500515</p>
+                            <p className="flex items-center gap-2 justify-center"> <IoMdMailUnread /> info@softTech.com</p>
                         </div>
                     </div>
 

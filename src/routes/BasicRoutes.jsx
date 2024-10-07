@@ -85,7 +85,7 @@ const router = createBrowserRouter([
                 element: <ServicePage></ServicePage>
             },
             {
-                path: '/serviceDetails',
+                path: '/serviceDetails/:id',
                 element: <ServiceDetailsPage></ServiceDetailsPage>
             },
             {

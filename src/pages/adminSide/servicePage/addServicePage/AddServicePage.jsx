@@ -5,7 +5,7 @@ import { uploadImg } from "../../../../uploadImage/UploadImage";
 import serviceStore from './../../../../api-request/service-api/serviceApi';
 
 const AddServicePage = () => {
-  const {createServiceApi} = serviceStore();
+  const { createServiceApi } = serviceStore();
   const [descriptionFeatures, setDescriptionFeatures] = useState([
     { description_logo: "", description_heading: "", description: "" },
   ]);
@@ -14,8 +14,8 @@ const AddServicePage = () => {
     { feature_title: "", feature_logo: "", feature_description: "" },
   ]);
 
-  const [showDescriptionFeatures, setShowDescriptionFeatures] = useState(false); 
-  const [showFeatures, setShowFeatures] = useState(false); 
+  const [showDescriptionFeatures, setShowDescriptionFeatures] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
 
   const handleAddDescriptionFeature = () => {
     setDescriptionFeatures([
@@ -78,12 +78,12 @@ const AddServicePage = () => {
       feature: featureWithUrls,
     };
 
-    console.log("Payload:", payload);
+    // console.log("Payload:", payload);
 
     // Simulate API call
     try {
       let res = await createServiceApi(payload);
-      if(res){
+      if (res) {
         toast.success("Service successfully created");
       }
     } catch (err) {
@@ -99,8 +99,8 @@ const AddServicePage = () => {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-row gap-4 " >
-          
-        {/* Nav Logo */}
+
+          {/* Nav Logo */}
           <div className="mb-4  w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Nav Logo
@@ -139,33 +139,33 @@ const AddServicePage = () => {
         </div>
 
         <div className="flex flex-row gap-6 " >
-            
-        {/* Main Title */}
-        <div className="mb-4 w-full ">
-          <label className="block text-lg font-medium text-gray-700 mb-2">
-            Main Title
-          </label>
-          <input
-            type="text"
-            name="main_title"
-            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            placeholder="Enter main title"
-          />
-        </div>
+
+          {/* Main Title */}
+          <div className="mb-4 w-full ">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Main Title
+            </label>
+            <input
+              type="text"
+              name="main_title"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              placeholder="Enter main title"
+            />
+          </div>
 
 
-        {/* Banner Image */}
-        <div className="mb-4 w-full ">
-          <label className="block text-lg font-medium text-gray-700 mb-2">
-            Banner Image
-          </label>
-          <input
-            type="file"
-            name="banner_img"
-            accept="image/*"
-            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-          />
-        </div>
+          {/* Banner Image */}
+          <div className="mb-4 w-full ">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Banner Image
+            </label>
+            <input
+              type="file"
+              name="banner_img"
+              accept="image/*"
+              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+            />
+          </div>
 
         </div>
 
@@ -189,63 +189,64 @@ const AddServicePage = () => {
           onClick={() => setShowDescriptionFeatures(!showDescriptionFeatures)}
           className="bg-blue-500 text-white mx-4 px-4 py-2 rounded-lg mb-4"
         >
-          {showDescriptionFeatures ? "Hide" : "Show"} Description Features
+          {showDescriptionFeatures ? "Hide" : "Add"} Description Features
         </button> <br />
 
         {/* Description Features */}
 
         {showDescriptionFeatures && (
           <>
-            <h2 className="text-xl font-semibold text-gray-700 mb-4">
-              Description Features
-            </h2>
+
             {descriptionFeatures.map((feature, index) => (
               <div key={index} className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                  Description Features {index + 1}
+                </h2>
                 <div className="flex flex-row gap-6 my-3 " >
                   <div className="w-full" >
-                  <label htmlFor="description_logo">Description logo</label>
-                  <input
-                    type="file"
-                    id = "description_logo"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const newFeatures = [...descriptionFeatures];
-                      newFeatures[index].description_logo = e.target.files[0];
-                      setDescriptionFeatures(newFeatures);
-                    }}
-                    className="w-full px-4 my-2 py-2 rounded-lg mb-2 border-2 border-gray-300"
-                  />
+                    <label htmlFor="description_logo">Description logo</label>
+                    <input
+                      type="file"
+                      id="description_logo"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const newFeatures = [...descriptionFeatures];
+                        newFeatures[index].description_logo = e.target.files[0];
+                        setDescriptionFeatures(newFeatures);
+                      }}
+                      className="w-full px-4 my-2 py-2 rounded-lg mb-2 border-2 border-gray-300"
+                    />
                   </div>
                   <div className="w-full" >
-                  <label htmlFor="description_heading">Description Heading</label>
-                  <input
-                  type="text"
-                  placeholder="Description Heading"
-                  className="w-full px-4 py-2 my-2 rounded-lg mb-2 border-2 border-gray-300"
-                  value={feature.description_heading}
-                  onChange={(e) => {
-                    const newFeatures = [...descriptionFeatures];
-                    newFeatures[index].description_heading = e.target.value;
-                    setDescriptionFeatures(newFeatures);
-                  }}
-                />
+                    <label htmlFor="description_heading">Description Heading</label>
+                    <input
+                      type="text"
+                      placeholder="Description Heading"
+                      className="w-full px-4 py-2 my-2 rounded-lg mb-2 border-2 border-gray-300"
+                      value={feature.description_heading}
+                      onChange={(e) => {
+                        const newFeatures = [...descriptionFeatures];
+                        newFeatures[index].description_heading = e.target.value;
+                        setDescriptionFeatures(newFeatures);
+                      }}
+                    />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="description">Description</label>
-                <textarea
-                  placeholder="Description"
-                  rows="5"
-                  id="description"
-                  className="w-full mt-2 rounded-lg px-4 py-2 border-2 border-gray-300"
-                  value={feature.description}
-                  onChange={(e) => {
-                    const newFeatures = [...descriptionFeatures];
-                    newFeatures[index].description = e.target.value;
-                    setDescriptionFeatures(newFeatures);
-                  }}
-                />
+                  <textarea
+                    placeholder="Description"
+                    rows="5"
+                    id="description"
+                    className="w-full mt-2 rounded-lg px-4 py-2 border-2 border-gray-300"
+                    value={feature.description}
+                    onChange={(e) => {
+                      const newFeatures = [...descriptionFeatures];
+                      newFeatures[index].description = e.target.value;
+                      setDescriptionFeatures(newFeatures);
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -265,7 +266,7 @@ const AddServicePage = () => {
           onClick={() => setShowFeatures(!showFeatures)}
           className="bg-blue-500 text-white px-4 mx-4 py-2 rounded-lg mb-4 mt-6"
         >
-          {showFeatures ? "Hide" : "Show"} Features
+          {showFeatures ? "Hide" : "Add"} Features
         </button> <br />
 
         {/* Features */}
@@ -279,43 +280,43 @@ const AddServicePage = () => {
               <div key={index} className="mb-4">
                 <div className="flex flex-row gap-6 " >
                   {/* feature_logo */}
-                <div className="w-full" >
-                  <label htmlFor="feature_logo">Feature logo</label>
-                  <input
-                    type="file"
-                    id="feature_logo"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const newFeatures = [...features];
-                      newFeatures[index].feature_logo = e.target.files[0];
-                      setFeatures(newFeatures);
-                    }}
-                    className="w-full px-4 py-2 my-2 mb-2 border-2 rounded-lg border-gray-300"
-                  />
-                </div>
-                {/* feature_title */}
-                <div className="w-full" >
-                  <label htmlFor="feature_title">Feature Title </label>
-                  <input
-                    type="text"
-                    id="feature_title"
-                    placeholder="Feature Title"
-                    className="w-full px-4 py-2 my-2 rounded-lg mb-2 border-2 border-gray-300"
-                    value={feature.feature_title}
-                    onChange={(e) => {
-                      const newFeatures = [...features];
-                      newFeatures[index].feature_title = e.target.value;
-                      setFeatures(newFeatures);
-                    }}
-                  />
-                </div>
+                  <div className="w-full" >
+                    <label htmlFor="feature_logo">Feature logo</label>
+                    <input
+                      type="file"
+                      id="feature_logo"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const newFeatures = [...features];
+                        newFeatures[index].feature_logo = e.target.files[0];
+                        setFeatures(newFeatures);
+                      }}
+                      className="w-full px-4 py-2 my-2 mb-2 border-2 rounded-lg border-gray-300"
+                    />
+                  </div>
+                  {/* feature_title */}
+                  <div className="w-full" >
+                    <label htmlFor="feature_title">Feature Title </label>
+                    <input
+                      type="text"
+                      id="feature_title"
+                      placeholder="Feature Title"
+                      className="w-full px-4 py-2 my-2 rounded-lg mb-2 border-2 border-gray-300"
+                      value={feature.feature_title}
+                      onChange={(e) => {
+                        const newFeatures = [...features];
+                        newFeatures[index].feature_title = e.target.value;
+                        setFeatures(newFeatures);
+                      }}
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label  htmlFor="feature_description">Feature Description</label>
+                  <label htmlFor="feature_description">Feature Description</label>
                   <textarea
                     placeholder="Feature Description"
                     rows="5"
-                    id = "feature_description"
+                    id="feature_description"
                     className="w-full rounded-lg px-4 my-2 py-2 border-2 border-gray-300"
                     value={feature.feature_description}
                     onChange={(e) => {
