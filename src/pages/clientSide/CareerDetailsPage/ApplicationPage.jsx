@@ -33,7 +33,7 @@ const ApplicationPage = () => {
 
     const result = await axiosPublic.post(`/applyJob`, data);
 
-    console.log(result);
+   
 
     if(result){
       console.log(result)

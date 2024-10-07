@@ -23,7 +23,7 @@ const UpdatedNavbar = () => {
         }
     })
 
-    console.log(allservices);
+    // console.log(allservices);
 
     // Course data (logo and title)
     const products = [
@@ -240,8 +240,8 @@ const UpdatedNavbar = () => {
                 <div className="grid grid-cols-2 gap-4 ">
                 {allservices.map((service) => (
                     <NavLink
-                        key={service.id}
-                        to={"/"}
+                        key={service._id}
+                        to={`/serviceDetails/${service._id}`}
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
