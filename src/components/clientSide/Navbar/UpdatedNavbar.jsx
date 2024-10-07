@@ -162,19 +162,19 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                    {allProducts.map((course) => (
+                    {allProducts.map((product) => (
                         <NavLink
 
-                            key={course.id}
-                            to={course.url}
+                            key={product._id}
+                            to={product.url}
                             onClick={handleHideDrawer}
                             className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
                         >
-                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" />
+                            <img src={product.nav_logo}  className="w-[30px]" />
 
-                            <div className="text-xs">
-                                <h2>{course.title}</h2>
-                                <small title="" className="text-ellipsis text-[#9F73B1] block">{course.subtitle}</small>
+                            <div className="">
+                                <span className="text-gray-400">{product.nav_title} </span>
+                                <p className="text-gray-300 text-[11px]">{product.nav_description.slice(0, 20)}... </p>
                             </div>
                         </NavLink>
                     ))}
@@ -209,7 +209,7 @@ const UpdatedNavbar = () => {
                             <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
                             <div className="">
                                 <span className="text-gray-400">{service.nav_title} </span>
-                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 150)}... </p>
+                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 20)}... </p>
                             </div>
                         </NavLink>
                     ))}
