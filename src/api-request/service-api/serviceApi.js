@@ -57,19 +57,13 @@ const serviceStore = create((set) => ({
       });
   },
   updateServiceApi: async (id,payload) => {
-    // const url = `${baseUrl}/update-service/${id}`;
-    return await axiosPublic
-      .put(`/update-service/${id}`,payload, config)
-      .then((res) => {
-        if(res.data["status"]==="success"){
-          return true;
-        }else{
-          return false;
-        }
-      })
-      .catch((err) => {
-        return false;
-      });
+    console.log(payload);
+    let res = await axiosPublic.put(`/update-service/${id}`, payload);
+    if (res.data["status"] === "success") {
+      return true;
+    } else {
+      return false;
+    }
   },
   getSingleServiceData : [],
   getSingleServiceApi: async (id) => {
