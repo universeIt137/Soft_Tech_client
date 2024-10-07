@@ -3,6 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { Fade as Hamburger } from 'hamburger-react';
 import { motion } from 'framer-motion';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query'
+
 
 const UpdatedNavbar = () => {
     const [isOpen, setOpenMenu] = useState(false);
@@ -10,6 +13,17 @@ const UpdatedNavbar = () => {
     const [isDropdownOpen2, setDropdownOpen2] = useState(false);
     const [isGetInTouchOpen, setGetInTouch] = useState(false);
 
+    const axiosPublic = useAxiosPublic();
+
+    const { data: allservices = [] } = useQuery({
+        queryKey: ['services'],
+        queryFn: async () => {
+            const response = await axiosPublic.get('/get-all-service');
+            return response.data.data;
+        }
+    })
+
+    // console.log(allservices);
 
     // Course data (logo and title)
     const products = [
@@ -113,19 +127,19 @@ const UpdatedNavbar = () => {
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-          if (!event.target.closest('.navbarUl')) {
-            setDropdownOpen(false);
-            setDropdownOpen2(false);
-            setGetInTouch(false);
-          }
+            if (!event.target.closest('.navbarUl')) {
+                setDropdownOpen(false);
+                setDropdownOpen2(false);
+                setGetInTouch(false);
+            }
         };
-    
-    
+
+
         document.addEventListener('click', handleOutsideClick);
         return () => {
-          document.removeEventListener('click', handleOutsideClick);
+            document.removeEventListener('click', handleOutsideClick);
         };
-      }, [setDropdownOpen, setDropdownOpen2, setGetInTouch]);
+    }, [setDropdownOpen, setDropdownOpen2, setGetInTouch]);
 
 
     const handleDropdownToggle = () => {
@@ -224,18 +238,17 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                    {services.map((course) => (
+                    {allservices.map((service) => (
                         <NavLink
-                            key={course.id}
-                            to={course.url}
+                            key={service._id}
+                            to={`/serviceDetails/${service._id}`}
                             onClick={handleHideDrawer}
-                            className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
+                            className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                         >
-                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" />
-
-                            <div className="text-xs">
-                                <h2>{course.title}</h2>
-                                <small title="" className="text-ellipsis text-[#9F73B1] block">{course.subtitle}</small>
+                            <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
+                            <div className="">
+                                <span className="text-gray-400">{service.nav_title} </span>
+                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 150)}... </p>
                             </div>
                         </NavLink>
                     ))}
@@ -346,15 +359,15 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isDropdownOpen2 ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                {services.map((course) => (
+                {allservices.map((service) => (
                     <NavLink
-                        key={course.id}
-                        to={course.url}
+                        key={service.id}
+                        to={`/serviceDetails/${service._id}`}
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
-                        <img src={course.logo} alt={`${course.title} Logo`} className="w-8 h-8 bg-white rounded-lg" />
-                        <span className="text-white">{course.title}</span>
+                        <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
+                        <span className="text-white">{service.nav_title} </span>
                     </NavLink>
                 ))}
             </div>

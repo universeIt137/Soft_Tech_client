@@ -9,7 +9,7 @@ const AdminNavbar = () => {
     }
 
     return (
-        <div className='bg-universe_primary py-2 px-3'>
+        <div className='bg-universe_secondary py-2 px-3'>
             <div className='flex justify-between items-center w-11/12 mx-auto'>
                 {/* Dashboard text aligned to the left */}
                 <div>

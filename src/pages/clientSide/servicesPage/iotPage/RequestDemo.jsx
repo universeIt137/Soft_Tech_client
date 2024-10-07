@@ -82,44 +82,6 @@ const RequestDemo = () => {
         </div>
       </div>
 
-
-      <div className="my-5">
-        <h2 className="text-3xl text-center text-gray-700 font-bold mb-8">Our Happy Clients</h2>
-
-        {/* Marquee for client logos */}
-        <marquee speed="1000" behavior="scroll" direction="left">
-          <div className="flex gap-6 ">
-            <div className="w-full h-[150px] max-w-[150px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-6">
-              <img
-                className="h-20 mb-3"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
-                alt="Google Logo"
-              />
-            </div>
-            <div className="w-full h-[150px] max-w-[150px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-6">
-              <img
-                className="h-20 mb-3"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                alt="Facebook Logo"
-              />
-            </div>
-            <div className="w-full h-[150px] max-w-[150px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-6">
-              <img
-                className="h-20 mb-3"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-                alt="Microsoft Logo"
-              />
-            </div>
-            <div className="w-full h-[150px] max-w-[150px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-6">
-              <img
-                className="h-20 mb-3"
-                src="https://upload.wikimedia.org/wikipedia/commons/1/19/Amazon_logo.png"
-                alt="Amazon Logo"
-              />
-            </div>
-          </div>
-        </marquee>
-      </div>
     </>
   );
 };

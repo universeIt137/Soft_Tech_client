@@ -37,7 +37,7 @@ const Sidebar = () => {
         <div className="flex justify-between items-center p-4 gap-4">
           <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
             <div className="bg-white px-4 py-4 rounded-xl">
-              <Link to="/dashboard">
+              <Link to="/">
                 <img
                   src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png"
                   alt="Logo"
