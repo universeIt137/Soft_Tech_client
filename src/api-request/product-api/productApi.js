@@ -5,6 +5,7 @@ import { getToken } from "../../helper/sessionHelper";
 
 
 const axiosPublic = useAxiosPublic();
+
 const config = {
   headers: {
     token: getToken(),
@@ -55,14 +56,12 @@ const productStore = create((set) => ({
   },
 
   productUpdateApi: (id, postBody) => {
-    console.log("post body is ", postBody);
 
     try {
       return axiosPublic
         .put(`/update-product/${id}`, postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
-            console.log(res.data["status"]);
             return res.data.status;
           }
         })
