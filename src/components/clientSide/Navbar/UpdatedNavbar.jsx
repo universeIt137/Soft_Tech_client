@@ -127,19 +127,19 @@ const UpdatedNavbar = () => {
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-          if (!event.target.closest('.navbarUl')) {
-            setDropdownOpen(false);
-            setDropdownOpen2(false);
-            setGetInTouch(false);
-          }
+            if (!event.target.closest('.navbarUl')) {
+                setDropdownOpen(false);
+                setDropdownOpen2(false);
+                setGetInTouch(false);
+            }
         };
-    
-    
+
+
         document.addEventListener('click', handleOutsideClick);
         return () => {
-          document.removeEventListener('click', handleOutsideClick);
+            document.removeEventListener('click', handleOutsideClick);
         };
-      }, [setDropdownOpen, setDropdownOpen2, setGetInTouch]);
+    }, [setDropdownOpen, setDropdownOpen2, setGetInTouch]);
 
 
     const handleDropdownToggle = () => {
@@ -238,17 +238,20 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                {allservices.map((service) => (
-                    <NavLink
-                        key={service._id}
-                        to={`/serviceDetails/${service._id}`}
-                        onClick={handleHideDrawer}
-                        className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
-                    >
-                        <img src={service.nav_logo}  className="w-8 h-8 bg-white rounded-lg" />
-                        <span className="text-gray-500">{service.nav_title} </span>
-                    </NavLink>
-                ))}
+                    {allservices.map((service) => (
+                        <NavLink
+                            key={service._id}
+                            to={`/serviceDetails/${service._id}`}
+                            onClick={handleHideDrawer}
+                            className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
+                        >
+                            <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
+                            <div className="">
+                                <span className="text-gray-400">{service.nav_title} </span>
+                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 150)}... </p>
+                            </div>
+                        </NavLink>
+                    ))}
                 </div>
             </div>
 
@@ -359,11 +362,11 @@ const UpdatedNavbar = () => {
                 {allservices.map((service) => (
                     <NavLink
                         key={service.id}
-                        to={"/"}
+                        to={`/serviceDetails/${service._id}`}
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
-                        <img src={service.nav_logo}  className="w-8 h-8 bg-white rounded-lg" />
+                        <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
                         <span className="text-white">{service.nav_title} </span>
                     </NavLink>
                 ))}
