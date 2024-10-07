@@ -23,6 +23,15 @@ const UpdatedNavbar = () => {
         }
     })
 
+    const { data: allProducts = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/get-products');
+            return res.data.data;
+        }
+    })
+    console.log(allProducts);
+
     // console.log(allservices);
 
     // Course data (logo and title)
@@ -75,55 +84,7 @@ const UpdatedNavbar = () => {
         },
     ];
 
-    // Course data (logo and title)
-    const services = [
-        {
-            id: 1,
-            title: 'IOT Services',
-            subtitle: 'IOT services dashboard...',
-            url: '/service-iot',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
-        },
-
-
-        {
-            id: 2,
-            title: 'Medical Services',
-            subtitle: 'Medical Solution attendance... ',
-            url: '/courseDetails/3423',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp'
-        },
-
-        {
-            id: 3,
-            title: 'ERP Solution',
-            subtitle: 'ERP Solution dashboard...',
-            url: '/courseDetails/3425',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp'
-        },
-
-        {
-            id: 4,
-            title: 'E-commerce Solution',
-            subtitle: 'E-commerce Solution Inventory ...',
-            url: '/courseDetails/3423',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp'
-        },
-        {
-            id: 5,
-            title: 'Data Analytics',
-            subtitle: 'Revolutionize learning with Nimu...',
-            url: '/courseDetails/3424',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp'
-        },
-        {
-            id: 3,
-            title: 'IOT & Virtual Reality',
-            subtitle: 'Streamline sales...',
-            url: '/courseDetails/3425',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp'
-        },
-    ];
+    
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
@@ -201,19 +162,19 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-2 gap-4 ">
-                    {products.map((course) => (
+                    {allProducts.map((product) => (
                         <NavLink
 
-                            key={course.id}
-                            to={course.url}
+                            key={product._id}
+                            to={product.url}
                             onClick={handleHideDrawer}
                             className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
                         >
-                            <img src={course.logo} alt={`${course.title} Logo`} className="w-[30px]" />
+                            <img src={product.nav_logo}  className="w-[30px]" />
 
-                            <div className="text-xs">
-                                <h2>{course.title}</h2>
-                                <small title="" className="text-ellipsis text-[#9F73B1] block">{course.subtitle}</small>
+                            <div className="">
+                                <span className="text-gray-400">{product.nav_title} </span>
+                                <p className="text-gray-300 text-[11px]">{product.nav_description.slice(0, 20)}... </p>
                             </div>
                         </NavLink>
                     ))}
@@ -248,7 +209,7 @@ const UpdatedNavbar = () => {
                             <img src={service.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
                             <div className="">
                                 <span className="text-gray-400">{service.nav_title} </span>
-                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 150)}... </p>
+                                <p className="text-gray-300 text-[11px]">{service.nav_description.slice(0, 20)}... </p>
                             </div>
                         </NavLink>
                     ))}
@@ -329,7 +290,7 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isDropdownOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                {products.map((course) => (
+                {allProducts.map((course) => (
                     <NavLink
                         key={course.id}
                         to={course.url}
