@@ -73,6 +73,11 @@ const ProductCreateForm = () => {
       <div>
         <h2 className="text-xl text-center my-6 font-bold">Update Product</h2>
         <form onSubmit={handleSubmit}>
+        <div className="avatar">
+            <div className="w-12 rounded-full mt-4 ">
+              <img src={singleProductData?.feature_logo} />
+            </div>
+          </div>
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
             <div>
               <label className="block text-lg font-medium text-gray-700 mb-2">
@@ -171,7 +176,13 @@ const ProductCreateForm = () => {
             </div>
           </div>
 
-          <div className="my-4">
+          <div className="avatar">
+            <div className="w-12 rounded-full mt-4 ">
+              <img src={singleProductData?.feature_logo} />
+            </div>
+          </div>
+
+          <div className="">
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Feature Logo:
             </label>
@@ -197,6 +208,19 @@ const ProductCreateForm = () => {
                     rows="4"
                   />
                 </div>
+                {
+                  singleProductData?.extra_data && singleProductData?.extra_data.map((item, i) =>{
+                    return (
+                      <div key={i} >
+                        <div className="avatar">
+                          <div className="w-12 rounded-full mt-4 ">
+                            <img src={item?.description_img} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
                 <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
                   <div>
                     <label className="block text-lg font-medium text-gray-700 mb-2">
