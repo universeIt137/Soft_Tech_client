@@ -2,91 +2,81 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import serviceStore from "./../../../api-request/service-api/serviceApi";
+import { uploadImageToCloudinary } from "../../../uploadImage/UpdateImg";
 
 const UpdateServicePage = () => {
   const { id } = useParams();
   const { updateServiceApi, getSingleServiceApi, getSingleServiceData } =
     serviceStore();
 
-  const [formData, setFormData] = useState({
-    nav_logo: "",
-    banner_img: "",
-    description_logo: "",
-    feature_logo: ""
-  });
+    const [navLogo, setNavLogo] = useState(null); // nav_logo state
+    const [bannerImg, setBannerImg] = useState(null); // feature_logo state
+    const [descriptionLogo, setDescriptionLogo] = useState({}); // extra data images
+    const [featureLogo,setFeatureLogo] = useState({}); //
+  
+    // Handle image file changes
+    const handleImageChange = (e, setState) => {
+      const file = e.target.files[0];
+      setState(file);
+    };
+  
+    // Handle the form submission
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      // Upload navLogo and featureLogo to Cloudinary
+      let navLogoUrl = navLogo ? await uploadImageToCloudinary(navLogo) : getSingleServiceData.nav_logo;
+      let bannerLogoUrl = bannerImg ? await uploadImageToCloudinary(bannerImg) : getSingleServiceData.banner_img;
+  
+      // Prepare extra_data with image uploads for extra description images
+      const updatedDescriptionFeature = await Promise.all(
+        getSingleServiceData.description_feature.map(async (item, i) => ({
+          description_heading: e.target[`description_heading_${i}`].value,
+          description: e.target[`description_${i}`].value,
+          description_logo: descriptionLogo[i] 
+            ? await uploadImageToCloudinary(descriptionLogo[i]) 
+            : item.description_img,
+        }))
+      );
 
-  useEffect(() => {
-    (async () => {
-      await getSingleServiceApi(id);
-    })();
-  }, [id]);
-
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result);
+      const updatedFeature = await Promise.all(
+        getSingleServiceData.feature.map(async (item, i) => ({
+          feature_title: e.target[`feature_title_${i}`].value,
+          feature_description: e.target[`feature_description_${i}`].value,
+          feature_logo: featureLogo[i] 
+            ? await uploadImageToCloudinary(featureLogo[i]) 
+            : item.feature_logo,
+        }))
+      );
+  
+      // Update form data with image URLs
+      const formData = {
+        nav_title: e.target.nav_title.value,
+        nav_description: e.target.nav_description.value,
+        main_title: e.target.main_title.value,
+        tag_line: e.target.tag_line.value,
+        nav_logo: navLogoUrl,
+        banner_img: bannerLogoUrl,
+        description_feature : updatedDescriptionFeature,
+        feature : updatedFeature
       };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-
-    const nav_logo = form.nav_logo.files[0];
-    const banner_img = form.banner_img.files[0];
-    const description_logo = form.description_logo.files[0];
-    const feature_logo = form.feature_logo.files[0];
-
-    const nav_title = form.nav_title.value;
-    const nav_description = form.nav_description.value;
-    const main_title = form.main_title.value;
-    const tag_line = form.tag_line.value;
-    const description_heading = form.description_heading.value;
-    const description = form.description.value;
-    const feature_title = form.feature_title.value;
-    const feature_description = form.feature_description.value;
-
-    let base64NavLogo = "",
-      base64BannerImg = "",
-      base64DescriptionLogo = "",
-      base64FeatureLogo = "";
-
-    // Convert images to base64
-    if (nav_logo) base64NavLogo = await convertToBase64(nav_logo);
-    console.log(base64NavLogo);
-    if (banner_img) base64BannerImg = await convertToBase64(banner_img);
-    if (description_logo)
-      base64DescriptionLogo = await convertToBase64(description_logo);
-
-    if (feature_logo) base64FeatureLogo = await convertToBase64(feature_logo);
-
-    const payload = {
-      nav_logo: base64NavLogo,
-      nav_title,
-      nav_description,
-      main_title,
-      banner_img: base64BannerImg,
-      description_logo: base64DescriptionLogo,
-      description_heading,
-      description,
-      feature_logo: base64FeatureLogo,
-      feature_title,
-      feature_description,
-      tag_line,
+      console.log(formData);
+  
+      // Send the form data to the API for product update
+      let res = await updateServiceApi(id, formData);
+      if (res) {
+        toast.success("Product updated successfully!");
+      } else {
+        toast.error("Failed to update product!");
+      }
     };
 
-
-    let res = await updateServiceApi(id, payload);
-    if (res) {
-      toast.success("Update successfully");
-    } else {
-      toast.error("Something went wrong");
-    }
-  };
+    useEffect(()=>{
+      (async () => {
+        await getSingleServiceApi(id);
+      })();
+    },[])
 
   return (
     <div className="w-full min-h-screen m-0 p-6 bg-white">
@@ -106,6 +96,7 @@ const UpdateServicePage = () => {
             <input
               type="file"
               id="nav_logo"
+              onChange={(e) => handleImageChange(e, setNavLogo)}
               name="nav_logo"
               className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
             />
@@ -179,6 +170,7 @@ const UpdateServicePage = () => {
               type="file"
               id="banner_img"
               name="banner_img"
+              onChange={(e) => handleImageChange(e, setBannerImg)}
               className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
             />
           </div>
@@ -212,7 +204,13 @@ const UpdateServicePage = () => {
               <h3 className="text-center my-6 text-2xl font-semibold">
               Description Feature ({index+1}) 
               </h3>
+              <div className="avatar">
+                <div className="w-12">
+                  <img src={ item?.description_logo} />
+                </div>
+              </div>
               <div className="flex flex-col md:flex md:flex-row md:gap-4">
+                
                 {/* Description Logo */}
                 <div className="w-1/2 mb-4">
                   <label
@@ -224,6 +222,9 @@ const UpdateServicePage = () => {
                   <input
                     type="file"
                     id={`description_logo_${index}`}
+                    onChange={(e) =>
+                      setDescriptionLogo({ ...descriptionLogo, [i]: e.target.files[0] })
+                    }
                     name="description_logo"
                     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   />
@@ -272,10 +273,10 @@ const UpdateServicePage = () => {
         
 
           {
-            getSingleServiceData?.feature && getSingleServiceData?.feature.map((item,i)=>{
+            getSingleServiceData?.feature && getSingleServiceData?.feature.map((item,index)=>{
               return(
-                <div key={i} >
-                      <h3 className="text-center my-6 text-2xl font-semibold">Feature ({i+1}) </h3>
+                <div key={index} >
+                      <h3 className="text-center my-6 text-2xl font-semibold">Feature ({index+1}) </h3>
                       <div className="avatar">
                         <div className="w-12">
                           <img src= {item.feature_logo} />
@@ -285,14 +286,14 @@ const UpdateServicePage = () => {
                       {/* Feature Title */}
                       <div className="w-1/2 mb-4">
                         <label
-                          htmlFor="feature_title"
+                          htmlFor={`feature_title_${index}`}
                           className="block text-lg font-medium text-gray-700 mb-2"
                         >
                           Feature Title
                         </label>
                         <input
                           type="text"
-                          id="feature_title"
+                          id={`feature_title_${index}`}
                           name="feature_title"
                           className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                           placeholder="Feature Title"
@@ -303,14 +304,17 @@ const UpdateServicePage = () => {
                       {/* Feature Img */}
                       <div className="w-1/2 mb-4">
                         <label
-                          htmlFor="feature_logo"
+                          htmlFor={`feature_logo_${index}`}
                           className="block text-lg font-medium text-gray-700 mb-2"
                         >
                           Feature Img
                         </label>
                         <input
                           type="file"
-                          id="feature_logo"
+                          id={`feature_logo_${index}`}
+                          onChange={(e) =>
+                            setFeatureLogo({...featureLogo, [i]: e.target.files[0] })
+                          }
                           name="feature_logo"
                           className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                         />
@@ -320,13 +324,13 @@ const UpdateServicePage = () => {
                     {/* Feature Description */}
                     <div className="mb-4">
                       <label
-                        htmlFor="feature_description"
+                        htmlFor={`feature_description_${index}`}
                         className="block text-lg font-medium text-gray-700 mb-2"
                       >
                         Feature Description
                       </label>
                       <textarea
-                        id="feature_description"
+                        id={`feature_description_${index}`}
                         name="feature_description"
                         className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                         placeholder="Enter feature description"
@@ -339,7 +343,7 @@ const UpdateServicePage = () => {
             })
           }
 
-        <div className="flex justify-end">
+        <div className="">
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg"
