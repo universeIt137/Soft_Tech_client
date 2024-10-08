@@ -16,35 +16,23 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PortfolioPage from "../pages/clientSide/portfolioPage/PortfolioPage";
 import AdminRegistration from "../pages/adminSide/admin-registration/AdminRegistration";
 import AdminLoginPage from "../pages/adminSide/admin-login/AdminLoginPage";
-import InventoryPage from "../pages/clientSide/productsPages/inventoryPage/InventoryPage";
 import AddServicePage from "../pages/adminSide/servicePage/addServicePage/AddServicePage";
 import ManageServicePage from "../pages/adminSide/servicePage/manageServicePage/ManageServicePage";
-import HrmPage from "../pages/clientSide/productsPages/hrmPage/HrmPage";
 import AddCareerPage from "../pages/adminSide/Career/AddCareerPage";
 import ManageCareerPage from "../pages/adminSide/Career/ManageCareerPage";
 import AddProductPage from "../pages/adminSide/Product/AddProductPage";
 import ManageProductPage from "../pages/adminSide/Product/ManageProductPage";
 import UpdateServicePage from "../pages/adminSide/servicePage/UpdateServicePage";
-import AttendencePage from "../pages/clientSide/productsPages/attendencePage/AttendencePage";
-import EducationPage from "../pages/clientSide/productsPages/educationPage/EducationPage";
-import PosPage from "../pages/clientSide/productsPages/posPage/PosPage";
-import CRMPage from "../pages/clientSide/productsPages/crmPage/CRMPage";
 import DashboardPage from "../pages/adminSide/dashboard/DashboardPage";
-import ServiceERP from "../pages/clientSide/servicesPage/erpService/ServiceERP";
-import MedicalServicePage from "../pages/clientSide/servicesPage/medicalPage/MedicalServicePage";
-import MobileAppPage from "../pages/clientSide/servicesPage/mobileAppPage/MobileAppPage";
-import EcommercePage from "../pages/clientSide/servicesPage/ecommercePage/EcommercePage";
-import DataAnalistPage from "../pages/clientSide/servicesPage/dataAnalistPage/DataAnalistPage";
-import IOTpage from "../pages/clientSide/servicesPage/iotPage/IOTpage";
-import OurTeam from "../pages/clientSide/homePage/OurTeam";
+
 import OurTeamPage from "../pages/clientSide/ourTeamPage/OurTeamPage";
 import ProductUpdatePage from "../pages/adminSide/Product/ProductUpdatePage";
 import CompanyProfilePage from "../pages/clientSide/companyProfilePage/CompanyProfilePage";
 import AllApplication from "../components/adminSide/Application/AllApplication";
 import GetSingleApplication from "../components/adminSide/Application/GetSingleApplication";
-import RequestDemo from "../pages/clientSide/servicesPage/iotPage/RequestDemo";
 import ApplicationPage from "../pages/clientSide/CareerDetailsPage/ApplicationPage";
 import UpdateCareerPage from "../pages/adminSide/Career/UpdateCareerPage";
+import ProductDetailsPage from "../pages/clientSide/productDetailsPage/ProductDetailsPage";
 
 
 
@@ -89,6 +77,11 @@ const router = createBrowserRouter([
                 element: <ServiceDetailsPage></ServiceDetailsPage>
             },
             {
+                path: '/productsDetails/:id',
+                element: <ProductDetailsPage></ProductDetailsPage>
+            },
+
+            {
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
@@ -102,58 +95,9 @@ const router = createBrowserRouter([
                 path: '/portfolio',
                 element: <PortfolioPage></PortfolioPage>
             },
-            {
-                path: '/products-inventory',
-                element: <InventoryPage></InventoryPage>
-            },
-            {
-                path: '/products-education',
-                element: <EducationPage></EducationPage>
-            },
-            {
-                path: '/products-pos',
-                element: <PosPage></PosPage>
-            },
-            {
-                path : "/products-hrm",
-                element :  <HrmPage></HrmPage>
-            },
-            {
-                path: "/products-attendance",
-                element: <AttendencePage/>
-            }, 
-            {
-                path: "/products-crm",
-                element: <CRMPage></CRMPage>
-            },
-            {
-                path: "/service-erp",
-                element: <ServiceERP></ServiceERP>
-            },
-            {
-                path: "/service-medical",
-                element: <MedicalServicePage></MedicalServicePage>
-            },
-            {
-                path: "/service-mobile",
-                element: <MobileAppPage></MobileAppPage>
-            },
-            {
-                path: "/service-ecommerce",
-                element: <EcommercePage></EcommercePage>
-            },
-            {
-                path: "/service-data-analyist",
-                element: <DataAnalistPage></DataAnalistPage>
-            },
-            {
-                path: "/service-iot",
-                element: <IOTpage></IOTpage>
-            },
-            {
-                path: "/request-demo",
-                element: <RequestDemo></RequestDemo>
-            },
+            
+
+           
             {
                 path: "/our-team",
                 element: <OurTeamPage></OurTeamPage>

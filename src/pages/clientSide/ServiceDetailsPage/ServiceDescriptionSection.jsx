@@ -26,7 +26,7 @@ const ServiceDescriptionSection = ({ descriptions }) => {
                                 </figure>
                                 {/* <img src={description.description_logo} alt="" className='w-1/2' /> */}
                                 <p className="font-bold text-xs lg:text-xl text-center">{description.description_heading}</p>
-                                <p className='lg:px-10 lg:text-xl text-sm text-center'>
+                                <p className='lg:px-10 lg:text-sm text-sm'>
                                     {description.description}
                                 </p>
                             </div>

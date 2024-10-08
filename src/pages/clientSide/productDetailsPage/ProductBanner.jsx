@@ -2,12 +2,10 @@ import Aos from 'aos';
 import React, { useEffect } from 'react';
 import { FaExternalLinkAlt, FaUsers } from 'react-icons/fa';
 
-const EducationBanner = () => {
-
+const ProductBanner = () => {
     useEffect(() => {
         Aos.init({ duration: 1000, delay: 500 });
     }, [])
-
     return (
         <div>
             <div className="lg:flex justify-center items-center text-white  w-11/12 mx-auto">
@@ -37,4 +35,4 @@ const EducationBanner = () => {
     );
 };
 
-export default EducationBanner;
+export default ProductBanner;
