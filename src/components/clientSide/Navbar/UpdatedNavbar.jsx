@@ -166,7 +166,7 @@ const UpdatedNavbar = () => {
                         <NavLink
 
                             key={product._id}
-                            to={product.url}
+                            to={`/productsDetails/${product._id}`}
                             onClick={handleHideDrawer}
                             className="flex items-center gap-2 p-2 text-gray-400 hover:text-blue-500 transition-all duration-300"
                         >
@@ -290,15 +290,15 @@ const UpdatedNavbar = () => {
                 className={`rounded-md bg-black/10 flex flex-col ml-4 transition-all origin-top duration-300 ${isDropdownOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     } gap-2`}
             >
-                {allProducts.map((course) => (
+                {allProducts.map((product) => (
                     <NavLink
-                        key={course.id}
-                        to={course.url}
+                        key={product._id}
+                        to={`/productsDetails/${product._id}`}
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
-                        <img src={course.logo} alt={`${course.title} Logo`} className="w-8 h-8 bg-white rounded-lg" />
-                        <span className="text-white">{course.title}</span>
+                        <img src={product.logo} className="w-8 h-8 bg-white rounded-lg" />
+                        <span className="text-white">{product.nav_title}</span>
                     </NavLink>
                 ))}
             </div>

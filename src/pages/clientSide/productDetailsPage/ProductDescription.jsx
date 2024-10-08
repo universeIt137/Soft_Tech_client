@@ -4,8 +4,7 @@ import { AiOutlineStock } from 'react-icons/ai';
 import { FaWarehouse } from 'react-icons/fa';
 import { FaCartShopping, FaTruckFast } from 'react-icons/fa6';
 
-const DigitalEducation = () => {
-
+const ProductDescription = () => {
     useEffect(() => {
         Aos.init({ duration: 1000, delay: 400 });
     }, []);
@@ -61,4 +60,4 @@ const DigitalEducation = () => {
     );
 };
 
-export default DigitalEducation;
+export default ProductDescription;

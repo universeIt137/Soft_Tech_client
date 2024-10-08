@@ -1,9 +1,4 @@
-import ServiceSlider from '../../../components/clientSide/ServiceDetailsComponent/ServiceSlider/ServiceSlider'
-import { Helmet } from "react-helmet-async";
-import IOTBanner from '../servicesPage/iotPage/IOTBanner';
-import QualitySection from '../servicesPage/iotPage/QualitySection';
-import IotService from '../servicesPage/iotPage/IotService';
-import IOTtalk from '../servicesPage/iotPage/IOTtalk';
+
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
