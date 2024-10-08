@@ -1,39 +1,43 @@
 import React from 'react';
 import { FaAngleRight } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
+import { FaUsps } from 'react-icons/fa6';
 
 const AllinOne = () => {
     return (
-        <div className="bg-bg_btn_hover py-24 px-10">
-            <div className="container mx-auto flex gap-5 flex-col lg:flex-row  text-white">
+        <div className="lg:py-24 lg:px-10">
+            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2  ">
                 {/* left side */}
-                <div className="flex flex-col lg:flex-row md:flex-row gap-5 pr-5 pt-5 justify-center items-center lg:items-start md:items-start ">
-                    <div>
-                        <img className="w-[100px] md:w-full lg:w-full" src="https://res.cloudinary.com/dqescabbl/image/upload/v1723454871/hrm-white_vpc8yk.webp" alt="" />
-                    </div>
+                <div className="flex flex-col lg:flex-row md:flex-row gap-5 p-5 rounded-l-2xl justify-center items-center lg:items-start md:items-start bg-[#fff8e8] text-black ">
+
                     <div className="text-center md:text-start lg:text-start">
-                        <h5>All in One</h5>
-                        <h2 className="font-bold lg:text-3xl md:text-2xl text-xl mt-3">SoftTech HRM</h2>
-                        <p className="leading-relaxed lg:text-[18px] text-base mt-5 mb-10">
-                            SoftTech HRM Dashboard provides a centralized platform for managing all HR operations efficiently. With its user-friendly interface, it offers a real-time overview of crucial HR data such as employee records, attendance, performance metrics, and more. The dashboard allows for seamless navigation, quick access to key information, and empowers HR teams to make informed, data-driven decisions to enhance workforce management.
-                        </p>
-                        {/* btn */}
-                        <div className="flex justify-center lg:justify-start md:justify-start">
-                            <button className="uppercase border-2 border-white flex items-center gap-2 p-4 rounded-md text-center">Try SoftTech HRM <FaAngleRight></FaAngleRight></button>
+                        <div className="flex items-center">
+                            <FaUsps className='text-7xl text-universe_secondary' />
+                            <h5 className='font-bold'>Always on Top</h5>
                         </div>
+                        <h2 className="font-bold lg:text-3xl md:text-2xl text-xl mt-3">SoftTech In brief</h2>
+                        <p className="leading-relaxed lg:text-[18px] text-base mt-5 mb-10">
+                            Universe soft Tech is a software development company in Bangladesh. We em- barked on this journey in 2020 and from 2023 our team started working under the name of Universe Soft Care, and we're passionate about giving customers the best possible experience Our motto is to make Business Digital For Today And The Future "Technology Towards Digitalization".
+
+                            Universe Soft Tech is one of the best software and web development company. We do all kinds of software and web development for any industry, business, shop at a relatively affordable price. If you want to manage all the tasks of your business organization perfectly with professional software and web development, then con- tact us today.
+                        </p>
+                        
                     </div>
 
                 </div>
                 {/* middle */}
-                <div className="lg:w-[1px] border border-white border-dashed">
 
-                </div>
+
                 {/* right side */}
-                <div className="pt-5 pl-5">
+                <div className="p-5 bg-[#b0c8e6] rounded-r-2xl text-black">
                     <div>
                         <FaQuoteLeft className="text-3xl mb-10"></FaQuoteLeft>
                         <p className="mb-16">&quot;
-                            SoftTech significantly boosted our productivity through their passion and advanced technological expertise. Their strong communication skills accelerated our product development, leading to greater customer satisfaction. They consistently offered better solutions than initially proposed. In addition to their cloud engineering expertise, SoftTech remained dedicated to delivering high-quality features and more efficient solutions for our users.
+                            I am heart full of pride as the CEO of Universe Soft Tech, Our goal is to empower Bangladesh and beyond through innovative and businesses and communities in Ban sustainable software solutions. We are dedicated to providing cutting edge technolo gy that enhances efficiency, fosters growth, and transforms ideas into reality.
+
+                            We aim to contribute significantly to Bangladesh's digital advancement, creating a brighter, technologically advanced future for all. We are to be a pioneering force in Bangladesh's software industry, renowned for our unwavering commitment to excel- lence, integrity, and creativity. We aspire to develop world-class software solutions that not only meet the evolving needs of our clients but also inspire positive change.
+
+                            Thank you.
                             &quot;</p>
                         {/* author */}
                         <div className="flex gap-5 items-center">

@@ -30,7 +30,7 @@ const UpdatedNavbar = () => {
             return res.data.data;
         }
     })
-    console.log(allProducts);
+    // console.log(allProducts);
 
     // console.log(allservices);
 
@@ -135,6 +135,7 @@ const UpdatedNavbar = () => {
     const NavLinkStyle =
         'text-universe_secondary hover:text-text_primari text-xl py-[5px] hover:px-[10px] lg:px-[10px] transition-all duration-300 font-medium';
 
+    // Desktop View 
     const navNavLinks = (
         <>
 
@@ -265,6 +266,7 @@ const UpdatedNavbar = () => {
         </>
     );
 
+    // Mobile View 
     const navNavLinksForDrawer = (
         <>
             <NavLink to="/" onClick={handleHideDrawer} className={`${NavLinkStyle}`}>
@@ -297,7 +299,7 @@ const UpdatedNavbar = () => {
                         onClick={handleHideDrawer}
                         className="flex items-center gap-2 p-2 hover:text-blue-500 transition-all duration-300"
                     >
-                        <img src={product.logo} className="w-8 h-8 bg-white rounded-lg" />
+                        <img src={product.nav_logo} className="w-8 h-8 bg-white rounded-lg" />
                         <span className="text-white">{product.nav_title}</span>
                     </NavLink>
                 ))}

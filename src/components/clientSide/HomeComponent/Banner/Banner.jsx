@@ -9,7 +9,7 @@ const Banner = () => {
     },[]);
 
     return (
-        <div className="py-16 banner-wave my-aos-element">
+        <div className="lg:py-16 banner-wave my-aos-element">
             <div className="container mx-auto flex flex-col md:flex-col lg:flex-row justify-between items-center md:px-8" >
                 {/* content */}
                 <div className="flex-1 lg:pb-20 md:pb-2 pb-5 md:leading-10" data-aos="zoom-in">

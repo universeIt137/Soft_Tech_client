@@ -28,7 +28,7 @@ const ServiceFeatures = ({ features }) => {
 
                             <h2 className="font-bold text-xs lg:text-3xl my-4 text-center">{feature.feature_title}</h2>
                             <p className="text-gray-600 text-justify text-xs lg:text-sm">
-                                {feature.feature_description.slice(0, 500)}
+                                {feature.feature_description.slice(0, 200)}
                             </p>
 
 

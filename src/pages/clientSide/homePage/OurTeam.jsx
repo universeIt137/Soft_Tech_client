@@ -19,9 +19,9 @@ import {
 
 const OurTeam = () => {
   return (
-    <div className="bg-universe_primary my-aos-element my-20 ">
+    <div className=" my-aos-element my-20 ">
       <div className="container mx-auto">
-        <div className="py-10 text-white text-center">
+        <div className="py-10 t text-center">
           <h2 className="lg:text-5xl text-2xl font-bold">The Visionary Team</h2>
           <p className="lg:text-xl pt-5">
             Meet the Innovators Behind Our Cutting-Edge Solutions
@@ -45,7 +45,7 @@ const OurTeam = () => {
         </div>
 
         <div className="pb-20">
-          {/* <Swiper
+          <Swiper
             spaceBetween={10}
             freeMode={true}
             navigation={true}
@@ -182,9 +182,9 @@ const OurTeam = () => {
               </div>
             </SwiperSlide>
 
-          </Swiper> */}
+          </Swiper>
 
-          <marquee speed = '1000' behavior="" direction="">
+          {/* <marquee speed = '1000' behavior="" direction="">
             <div className="flex gap-6 ">
               <div className="w-full h-[350px] max-w-[350px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex justify-center items-center py-10">
                 <div className="flex flex-col items-center">
@@ -247,7 +247,7 @@ const OurTeam = () => {
                 </div>
               </div>
             </div>
-          </marquee>
+          </marquee> */}
         </div>
       </div>
     </div>

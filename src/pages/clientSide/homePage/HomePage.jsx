@@ -13,12 +13,25 @@ import OurTeam from "./OurTeam.jsx";
 import ExpandableCards from "./ExpandableCards.jsx";
 import { useEffect } from "react";
 import Aos from "aos";
+import useAxiosPublic from "../../../hooks/useAxiosPublic.jsx";
+import { useQuery } from "@tanstack/react-query";
 
 
 
 
 
 const HomePage = () => {
+
+    const axiosPublic = useAxiosPublic();
+
+    const { data: products = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/get-products');
+            return res.data.data;
+        }
+    })
+
     window.scrollTo(0, 0);
     useEffect(() => {
         Aos.init({ duration: 1000, delay:100 });
@@ -38,7 +51,7 @@ const HomePage = () => {
     };
     
     return (
-        <div className="mt-12">
+        <div className="lg:mt-12">
             <Helmet>
                 <title>Soft Tech | HomePage</title>
             </Helmet>
@@ -54,7 +67,7 @@ const HomePage = () => {
             </div>
 
             <div>
-                <OurProductsSection></OurProductsSection>
+                <OurProductsSection products={products}></OurProductsSection>
             </div>
             <motion.div
                 initial="hidden"
