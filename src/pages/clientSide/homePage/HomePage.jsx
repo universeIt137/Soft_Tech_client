@@ -34,22 +34,22 @@ const HomePage = () => {
 
     window.scrollTo(0, 0);
     useEffect(() => {
-        Aos.init({ duration: 1000, delay:100 });
+        Aos.init({ duration: 1000, delay: 100 });
     }, []);
 
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 2 },
-        visible: { 
-            opacity: 1, 
-            y: 0, 
-            transition: { 
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
                 duration: 0.5,
-                type: "spring", 
-                stiffness: 50 
-            } 
+                type: "spring",
+                stiffness: 50
+            }
         }
     };
-    
+
     return (
         <div className="lg:mt-12">
             <Helmet>
@@ -60,15 +60,16 @@ const HomePage = () => {
             </div>
 
 
-           
+
 
             <div className="my-aos-element" data-aos="fade-up">
-               <AllinOne></AllinOne>
+                <AllinOne></AllinOne>
             </div>
 
             <div>
                 <OurProductsSection products={products}></OurProductsSection>
             </div>
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -87,7 +88,7 @@ const HomePage = () => {
                 <AtGlance></AtGlance>
             </motion.div>
 
-            
+
             <motion.div
                 className="lg:block hidden"
                 initial="hidden"
@@ -98,14 +99,10 @@ const HomePage = () => {
             </motion.div>
 
 
-            
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: true, amount: 0.2 }}>
+
+            <div className="">
                 <Technology></Technology>
-            </motion.div>
+            </div>
             <motion.div
                 initial="hidden"
                 whileInView="visible"

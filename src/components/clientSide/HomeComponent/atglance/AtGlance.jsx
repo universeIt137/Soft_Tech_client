@@ -5,11 +5,11 @@ import CountUp from "react-countup";
 const AtGlance = () => {
   const countUpRef = React.useRef(null);
   return (
-    <div className="container mx-auto py-28 text-center">
+    <div className="container mx-auto lg:py-28 text-center">
       <h1 className=" text-2xl font-semibold">Universe Soft Tech</h1>
-      <h1 className="font-bold text-text_primari text-5xl">At a Glance</h1>
+      <h1 className="font-bold text-text_primari text-3xl lg:text-5xl">At a Glance</h1>
 
-      <div className="lg:flex gap-4 pt-7 justify-between w-11/12 space-y-4 lg:space-y-0  mx-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-6  pt-7 justify-between w-11/12 gap-1 lg:gap-5 lg:space-y-0  mx-auto">
 
         <div className="shadow-lg px-12 p-5 flex flex-col  justify-center items-center space-y-4 border rounded-lg  ">
           <div ref={countUpRef} />
