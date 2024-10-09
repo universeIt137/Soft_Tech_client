@@ -40,6 +40,8 @@ import ProductDetailsPage from "../pages/clientSide/productDetailsPage/ProductDe
 
 
 const router = createBrowserRouter([
+
+    // FrontEnd routes 
     {
         path: "/",
         element: <MainLayout></MainLayout>,
@@ -109,6 +111,9 @@ const router = createBrowserRouter([
 
         ]
     },
+
+    // Dashboard routes 
+
     {
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,

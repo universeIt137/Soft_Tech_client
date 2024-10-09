@@ -13,32 +13,45 @@ import OurTeam from "./OurTeam.jsx";
 import ExpandableCards from "./ExpandableCards.jsx";
 import { useEffect } from "react";
 import Aos from "aos";
+import useAxiosPublic from "../../../hooks/useAxiosPublic.jsx";
+import { useQuery } from "@tanstack/react-query";
 
 
 
 
 
 const HomePage = () => {
+
+    const axiosPublic = useAxiosPublic();
+
+    const { data: products = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/get-products');
+            return res.data.data;
+        }
+    })
+
     window.scrollTo(0, 0);
     useEffect(() => {
-        Aos.init({ duration: 1000, delay:100 });
+        Aos.init({ duration: 1000, delay: 100 });
     }, []);
 
     const scrollAnimationVariants = {
         hidden: { opacity: 0, y: 2 },
-        visible: { 
-            opacity: 1, 
-            y: 0, 
-            transition: { 
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
                 duration: 0.5,
-                type: "spring", 
-                stiffness: 50 
-            } 
+                type: "spring",
+                stiffness: 50
+            }
         }
     };
-    
+
     return (
-        <div className="mt-12">
+        <div className="lg:mt-12">
             <Helmet>
                 <title>Soft Tech | HomePage</title>
             </Helmet>
@@ -47,15 +60,16 @@ const HomePage = () => {
             </div>
 
 
-           
+
 
             <div className="my-aos-element" data-aos="fade-up">
-               <AllinOne></AllinOne>
+                <AllinOne></AllinOne>
             </div>
 
             <div>
-                <OurProductsSection></OurProductsSection>
+                <OurProductsSection products={products}></OurProductsSection>
             </div>
+
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -74,7 +88,7 @@ const HomePage = () => {
                 <AtGlance></AtGlance>
             </motion.div>
 
-            
+
             <motion.div
                 className="lg:block hidden"
                 initial="hidden"
@@ -85,14 +99,10 @@ const HomePage = () => {
             </motion.div>
 
 
-            
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                variants={scrollAnimationVariants}
-                viewport={{ once: true, amount: 0.2 }}>
+
+            <div className="">
                 <Technology></Technology>
-            </motion.div>
+            </div>
             <motion.div
                 initial="hidden"
                 whileInView="visible"
