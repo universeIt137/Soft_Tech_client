@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 import { uploadImageToCloudinary } from "../../../uploadImage/UpdateImg";
 import { Helmet } from "react-helmet-async";
 
-const ProductCreateForm = () => {
+const ProductUpdateForm = () => {
   const { id } = useParams();
   const { singleProductData, singleProductDataApi, productUpdateApi } = productStore();
 
   const [navLogo, setNavLogo] = useState(null); // nav_logo state
-  const [featureLogo, setFeatureLogo] = useState(null); // feature_logo state
-  const [extraImages, setExtraImages] = useState({}); // extra data images
+  const [bannerImg, setBannerImg] = useState(null); // banner_img state
+  const [featureImg,setFeatureImg] = useState(null); // feature_img state
+  const [descriptionImg, setDescriptionImg] = useState({}); // description_img state
 
   // Handle image file changes
   const handleImageChange = (e, setState) => {
@@ -75,15 +76,21 @@ const ProductCreateForm = () => {
         <Helmet>
           <title>Dashboard | Update Product</title>
         </Helmet>
+
         <h2 className="text-xl text-center my-6 font-bold">Update Product</h2>
+
         <form onSubmit={handleSubmit}>
+
         <div className="avatar">
+
             <div className="w-12 rounded-full mt-4 ">
-              <img src={singleProductData?.feature_logo} />
+              <img src={singleProductData?.nav_logo} />
             </div>
           </div>
+
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
             <div>
+            {/* nav_logo */}
               <label className="block text-lg font-medium text-gray-700 mb-2">
                 Nav Logo:
               </label>
@@ -93,13 +100,14 @@ const ProductCreateForm = () => {
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
+
             <div>
               <label className="block text-lg font-medium text-gray-700 mb-2">
                 Nav Title:
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData.nav_title}
+                defaultValue={singleProductData?.nav_title}
                 name="nav_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
@@ -270,4 +278,4 @@ const ProductCreateForm = () => {
   }
 };
 
-export default ProductCreateForm;
+export default ProductUpdateForm;
