@@ -5,7 +5,7 @@ import { FaUsps } from 'react-icons/fa6';
 
 const AllinOne = () => {
     return (
-        <div className="lg:py-24 lg:px-10">
+        <div className="lg:py-0 lg:px-10">
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2  ">
                 {/* left side */}
                 <div className="flex flex-col lg:flex-row md:flex-row gap-5 p-5 rounded-l-2xl justify-center items-center lg:items-start md:items-start bg-[#fff8e8] text-black ">

@@ -22,7 +22,7 @@ import TeamCard from "../ourTeamPage/TeamCard";
 const OurTeam = () => {
   window.scrollTo(0, 0);
   return (
-    <div className=" my-aos-element my-5 lg:my-20 ">
+    <div className=" my-aos-element my-5">
       <div className="container mx-auto">
         <div className="py-10  text-center">
           <h2 className="lg:text-5xl text-2xl font-bold">The Visionary Team</h2>

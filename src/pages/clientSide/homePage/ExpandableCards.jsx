@@ -34,9 +34,9 @@ const ExpandableCards = () => {
 
     return (
         <>
-            <p className='  text-3xl text-center my-5 font-bold'>Have a look<br /> <span className='text-text_primari font-bold text-5xl'>Our top 5 projects</span></p>
+            <p className='  text-3xl text-center lg:mt-20 font-bold'>Have a look<br /> <span className='text-text_primari font-bold text-5xl'>Our top 5 projects</span></p>
 
-            <div className="flex justify-center items-center py-5 bg-gradient-to-r from-universe_primary to-universe_secondary">
+            <div className="flex my-5 justify-center items-center py-5 bg-gradient-to-r from-universe_primary to-universe_secondary">
                 <div className="flex">
                     {cards.map((card, index) => (
                         <div

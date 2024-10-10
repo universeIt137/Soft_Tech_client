@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import ServiceBanner from './ServiceBanner';
 import ServiceDescriptionSection from './ServiceDescriptionSection';
 import ServiceFeatures from './ServiceFeatures';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetailsPage = () => {
     const axiosPublic = useAxiosPublic();
@@ -29,6 +30,9 @@ const ServiceDetailsPage = () => {
 
     return (
         <div className=''>
+            <Helmet>
+                <title>SoftTech | Services</title>
+            </Helmet>
             <div className="">
                 <ServiceBanner service={service}></ServiceBanner>
                 <ServiceDescriptionSection descriptions={descriptions}></ServiceDescriptionSection>

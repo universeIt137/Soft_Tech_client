@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { uploadImg } from "../../../../uploadImage/UploadImage";
 import serviceStore from './../../../../api-request/service-api/serviceApi';
+import { Helmet } from "react-helmet-async";
 
 const AddServicePage = () => {
   const { createServiceApi } = serviceStore();
@@ -94,6 +95,9 @@ const AddServicePage = () => {
 
   return (
     <div className="w-full min-h-screen p-6 bg-white">
+      <Helmet>
+        <title>Dashboard | Add Service</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add Service
       </h1>
@@ -140,16 +144,16 @@ const AddServicePage = () => {
 
         <div className="flex flex-row gap-6 " >
 
-          {/* Main Title */}
+          {/* Banner Title */}
           <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Main Title
+              Banner Title
             </label>
             <input
               type="text"
               name="main_title"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-              placeholder="Enter main title"
+              placeholder="Enter banner title"
             />
           </div>
 
@@ -169,16 +173,16 @@ const AddServicePage = () => {
 
         </div>
 
-        {/* Tag Line */}
-        <div className="mb-4 w-1/2 ">
+        {/* Banner Description */}
+        <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700 mb-2">
-            Tag Line
+            Banner Description
           </label>
-          <input
-            type="text"
-            name="tag_line"
+          <textarea
+            name="banner_description"
+            rows="5"
             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            placeholder="Enter tag line"
+            placeholder="Enter banner description"
           />
         </div>
 
@@ -189,7 +193,7 @@ const AddServicePage = () => {
           onClick={() => setShowDescriptionFeatures(!showDescriptionFeatures)}
           className="bg-blue-500 text-white mx-4 px-4 py-2 rounded-lg mb-4"
         >
-          {showDescriptionFeatures ? "Hide" : "Add"} Description Features
+          {showDescriptionFeatures ? "Hide" : "Add"}  Features
         </button> <br />
 
         {/* Description Features */}
@@ -200,11 +204,11 @@ const AddServicePage = () => {
             {descriptionFeatures.map((feature, index) => (
               <div key={index} className="mb-4">
                 <h2 className="text-xl font-semibold text-gray-700 mb-4">
-                  Description Features {index + 1}
+                  Features {index + 1}
                 </h2>
                 <div className="flex flex-row gap-6 my-3 " >
                   <div className="w-full" >
-                    <label htmlFor="description_logo">Description logo</label>
+                    <label htmlFor="description_logo">Feature img</label>
                     <input
                       type="file"
                       id="description_logo"
@@ -218,10 +222,10 @@ const AddServicePage = () => {
                     />
                   </div>
                   <div className="w-full" >
-                    <label htmlFor="description_heading">Description Heading</label>
+                    <label htmlFor="description_heading">Feature Title</label>
                     <input
                       type="text"
-                      placeholder="Description Heading"
+                      placeholder="Feature title"
                       className="w-full px-4 py-2 my-2 rounded-lg mb-2 border-2 border-gray-300"
                       value={feature.description_heading}
                       onChange={(e) => {
@@ -234,7 +238,7 @@ const AddServicePage = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="description">Description</label>
+                  <label htmlFor="description">Feature Description</label>
                   <textarea
                     placeholder="Description"
                     rows="5"
@@ -255,7 +259,7 @@ const AddServicePage = () => {
               onClick={handleAddDescriptionFeature}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg"
             >
-              Add Description Feature
+              Add Another Feature
             </button>
           </>
         )}
@@ -266,22 +270,23 @@ const AddServicePage = () => {
           onClick={() => setShowFeatures(!showFeatures)}
           className="bg-blue-500 text-white px-4 mx-4 py-2 rounded-lg mb-4 mt-6"
         >
-          {showFeatures ? "Hide" : "Add"} Features
+          {showFeatures ? "Hide" : "Add"} Service Key Point
         </button> <br />
 
         {/* Features */}
 
         {showFeatures && (
           <>
-            <h2 className="text-xl font-semibold text-gray-700 mb-4">
-              Features
-            </h2>
+
             {features.map((feature, index) => (
               <div key={index} className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                  Key Point {index+1}
+                </h2>
                 <div className="flex flex-row gap-6 " >
-                  {/* feature_logo */}
+                  {/* key point img */}
                   <div className="w-full" >
-                    <label htmlFor="feature_logo">Feature logo</label>
+                    <label htmlFor="feature_logo">Key Point Image </label>
                     <input
                       type="file"
                       id="feature_logo"
@@ -294,9 +299,9 @@ const AddServicePage = () => {
                       className="w-full px-4 py-2 my-2 mb-2 border-2 rounded-lg border-gray-300"
                     />
                   </div>
-                  {/* feature_title */}
+                  {/* key point title */}
                   <div className="w-full" >
-                    <label htmlFor="feature_title">Feature Title </label>
+                    <label htmlFor="feature_title">Key Point Title </label>
                     <input
                       type="text"
                       id="feature_title"
@@ -311,8 +316,9 @@ const AddServicePage = () => {
                     />
                   </div>
                 </div>
+                {/* key point description */}
                 <div>
-                  <label htmlFor="feature_description">Feature Description</label>
+                  <label htmlFor="feature_description">Key Point Description</label>
                   <textarea
                     placeholder="Feature Description"
                     rows="5"
@@ -333,7 +339,7 @@ const AddServicePage = () => {
               onClick={handleAddFeature}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg"
             >
-              Add Feature
+              Add Another Key Point
             </button> <br />
           </>
         )}

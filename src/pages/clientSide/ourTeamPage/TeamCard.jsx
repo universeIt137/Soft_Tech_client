@@ -32,7 +32,7 @@ const TeamCard = () => {
                     <div className='pb-2 lg:pb-7'>
                         <div className='bg-gradient-to-r from-primary to-primary/70 w-[50%] text-white lg:font-semibold lg:mt-5 mt-2 ml-auto py-1 text-[10px] lg:text-sm   pl-1 sm:pl-5'>
                             <p>Experience:</p>
-                            <p>{"job_experience"} Years +</p>
+                            <p>{"5"}  + Years</p>
                         </div>
                     </div>
                 </div>

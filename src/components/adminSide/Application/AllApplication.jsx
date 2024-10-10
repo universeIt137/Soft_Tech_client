@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 
 import ApplicationStore from "../../../api-request/admin-api/application-api";
 import { deleteAlert } from "../../../helper/deleteHelperAlert";
 
 const AllApplication = () => {
-  const {id} = useParams();
-  const { getApplicationRequest, applicationList,deleteApplicationApi } = ApplicationStore();
-  
+  const { id } = useParams();
+  const { getApplicationRequest, applicationList, deleteApplicationApi } = ApplicationStore();
+
   useEffect(() => {
     (async () => {
       await getApplicationRequest();
@@ -22,14 +22,14 @@ const AllApplication = () => {
     window.open(`https://soft-tech-server-liart.vercel.app/files/${encodedPdf}`, '_blank', 'noreferrer');
   };
 
-  
+
   const handleDelete = async (id) => {
     let res = await deleteAlert(id);
   }
-  
-  
 
-  
+
+
+
 
   return (
     <div>
@@ -52,29 +52,26 @@ const AllApplication = () => {
               </tr>
             </thead>
             <tbody>
-              {applicationList?.map((item, i) => (
-                <tr key={i} className="border-t border-gray-300">
-                  <td className="py-3 px-4">{i + 1}</td>
-                  <td className="py-3 px-4">{item?.fullName}</td>
-                  <td className="py-3 px-4">
-                    <button onClick={()=>{showResume(item?.resume)}} > See Resume </button>
-                  </td>
-                  <td className="py-3 px-4">{item.phoneNumber}</td>
-                  <td className="py-3 px-4">{item.address.slice(0, 10)}...</td>
-                  <td className="py-3 px-4">{item.status}</td>
-                  <td className="py-3 px-4">
-                    <button
-                      onClick={handleDelete( )}
-                      onClickCapture={d}
-                      className="w-4 bg-red-500 outline-none border-0 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                    >
-                      <i title="delete" onClick={deleteApplicationApi.bind(this, item["_id"])} className="-ml-[8px] block">
-                        <MdDelete />
-                      </i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <th></th>
+              </tr>
+              {
+                applicationList?.map((application, index) =>
+                  <tr key={application._id}>
+                    <td>{index + 1}</td>
+                    <td>{application.fullName}</td>
+                    <td>
+                      <Link to={application.resume_link}>
+                        <button className="btn btn-primary">Resume</button>
+                      </Link>
+                    </td>
+                    <td>{ application.phoneNumber }</td>
+                    <td>{ application.address }</td>
+                    <td>{application.status}</td>
+                    <td><button className="btn btn-primary">Update</button> <button className="btn btn-warning">Delete</button></td>
+                  </tr>
+                )
+              }
             </tbody>
           </table>
         </div>

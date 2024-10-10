@@ -5,6 +5,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import productStore from "./../../../api-request/product-api/productApi";
 import { deleteAlert } from "../../../helper/deleteHelperAlert";
+import { Helmet } from "react-helmet-async";
 
 const ManageProductPage = () => {
   const { productDataList, productDataListApi, deleteProductApi } =
@@ -34,6 +35,9 @@ const ManageProductPage = () => {
 
   return (
     <div className="container mx-auto py-8">
+      <Helmet>
+        <title>Dashbaord | Manage Product</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
         Manage Products
       </h2>

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import serviceStore from "./../../../../api-request/service-api/serviceApi";
 import { deleteAlert } from "../../../../helper/deleteHelperAlert";
+import { Helmet } from "react-helmet-async";
 
 const ManageServicePage = () => {
   const { getAllServiceData, getAllServiceApi, deleteServiceApi } =
@@ -29,6 +30,9 @@ const ManageServicePage = () => {
   };
   return (
     <div className="p-8">
+      <Helmet>
+        <title>Dashboard | Manage Service</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold text-gray-800 mb-6">
         Manage Service
       </h1>

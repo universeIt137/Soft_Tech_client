@@ -18,11 +18,14 @@ const ServiceBanner = ({ service }) => {
                     </p>
                     <p className='text-xl text-center lg:text-start'>{tag_line}</p>
 
-                    <Link to='/request-demo'>
-                        <div className=" flex justify-center lg:justify-start">
+
+                    <div className=" flex justify-center lg:justify-start">
+                        <Link to='/request-demo'>
                             <button className='lg:p-3 mt-4  border-none rounded-xl bg-text_primari hover:bg-bg_btn_hover text-white font-bold lg:text-lg text-xs p-2'>Request Demo</button>
-                        </div>
-                    </Link>
+                        </Link>
+
+                    </div>
+
                 </div>
                 <div className="" data-aos="zoom-in">
                     <img src={banner_img} alt="" />

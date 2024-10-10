@@ -10,7 +10,7 @@ const ServiceFeatures = ({ features }) => {
     console.log(features);
     return (
         <div className="container mx-auto my-10 lg:my-20">
-            <p className="text-2xl lg:text-7xl font-bold text-center my-5">Features</p>
+            <p className="text-2xl lg:text-7xl font-bold text-center my-5">Our Service Key Points</p>
             <div className="grid lg:grid-cols-4 grid-cols-2 lg:mx-0 mx-5 mx:mx-5 gap-2 lg:gap-7">
                 {
                     features?.map(feature =>
