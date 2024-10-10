@@ -18,14 +18,15 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
 
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <HelmetProvider>
+      
+      <AuthProvider> <HelmetProvider>
           <RouterProvider router={router} />
           <ToastContainer position='bottom-center' />
           <Toaster position="top-center" reverseOrder={false}
           />
         </HelmetProvider>
       </AuthProvider>
+     
     </QueryClientProvider>
 
 
