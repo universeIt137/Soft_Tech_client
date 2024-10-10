@@ -38,7 +38,7 @@ const OurProductsSection = ({products}) => {
 
 
                     {
-                        products.map(product =>
+                        products && products.map(product =>
                             <div key={product._id} style={bgImg} className="shadow-2xl bg-white relative lg:min-h-[400px]">
                                 {/* Top section with image and title */}
                                 <div className="text-center py-5 md:py-8">
@@ -51,7 +51,7 @@ const OurProductsSection = ({products}) => {
                                 <div className="px-5 md:px-10 lg:px-5 py-14 text-white">
                                     {/* Title with truncation and ellipsis */}
                                     <h2 className="text-[14px] font-bold mt-3 md:text-3xl lg:text-2xl text-center break-words leading-tight overflow-hidden text-ellipsis">
-                                        {product.main_title.length > 50 ? `${product.main_title.substring(0, 50)}...` : product.main_title}
+                                        {product?.main_title?.length > 50 ? `${product.main_title.substring(0, 50)}...` : product.main_title}
                                     </h2>
 
                                     {/* Description */}

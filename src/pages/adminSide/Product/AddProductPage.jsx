@@ -3,17 +3,20 @@ import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
 import { uploadImg } from "../../../uploadImage/UploadImage";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../../components/loder/Loader";
 
 const ProductCreateForm = () => {
   const { createProductApi } = productStore();
+  const [loader,setLoader] = useState(false);
+  
   const [extraData, setExtraData] = useState([
-    { extra_description: "", description_img: "", description_title: "" },
+    { extra_description: "", description_img: "" },
   ]);
 
   const handleAddExtraData = () => {
     setExtraData([
       ...extraData,
-      { extra_description: "", description_img: "", description_title: "" },
+      { extra_description: "", description_img: ""},
     ]);
   };
 
@@ -21,18 +24,25 @@ const ProductCreateForm = () => {
     e.preventDefault();
 
     const nav_logo = e.target.nav_logo.files[0];
-    const feature_logo = e.target.feature_logo.files[0];
     const nav_title = e.target.nav_title.value;
     const nav_description = e.target.nav_description.value;
-    const main_title = e.target.main_title.value;
+
+    const banner_title = e.target.banner_title.value;
+    const banner_img = e.target.banner_img.files[0];
+    const banner_description = e.target.banner_description.value;
+
     const live_link = e.target.live_link.value;
-    const short_description = e.target.short_description.value;
     const proposal_link = e.target.proposal_link.value;
-    const feature = e.target.feature.value;
+    const feature_title = e.target.feature_title.value;
+    const feature_img = e.target.feature_img.files[0];
+    const feature_description = e.target.feature_description.value;
+
+
 
     // Upload individual images
     let navLogoUrl = nav_logo ? await uploadImg(nav_logo) : "";
-    let featureLogoUrl = feature_logo ? await uploadImg(feature_logo) : "";
+    let bannerImgUrl = banner_img ? await uploadImg(banner_img) : "";
+    let featureImgUrl = feature_img? await uploadImg(feature_img) : "";
 
     // Upload description images
     const extraDataWithUrls = await Promise.all(
@@ -46,23 +56,27 @@ const ProductCreateForm = () => {
 
     // Prepare final payload
     const payload = {
-      nav_logo: navLogoUrl,
+      nav_logo : navLogoUrl,
       nav_title,
       nav_description,
-      main_title,
+      banner_title,
+      banner_img : bannerImgUrl,
+      banner_description,
       live_link,
-      short_description,
       proposal_link,
-      feature,
-      feature_logo: featureLogoUrl,
-      extra_data: extraDataWithUrls,
+      feature_title,
+      feature_img : featureImgUrl,
+      feature_description,
+      extra_data : extraDataWithUrls
     };
 
     console.log("Payload:", payload);
 
     // Simulate API call
     try {
+      setLoader(true);
       let res = await createProductApi(payload);
+      setLoader(false);
       if (res) {
         toast.success("Product created successfully");
       } else {
@@ -86,6 +100,7 @@ const ProductCreateForm = () => {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-row gap-6 " >
+
           {/* Nav Logo */}
           <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
@@ -96,6 +111,7 @@ const ProductCreateForm = () => {
               name="nav_logo"
               accept="image/*"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              required
             />
           </div>
 
@@ -109,6 +125,7 @@ const ProductCreateForm = () => {
               name="nav_title"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               placeholder="Enter nav title"
+              required
             />
           </div>
         </div>
@@ -123,32 +140,36 @@ const ProductCreateForm = () => {
             rows="5"
             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
             placeholder="Enter nav description"
+            required
           />
         </div>
 
         <div className="flex flex-row gap-6">
 
+          {/* banner title  */}
           <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Banner Title
             </label>
             <input
               type="text"
-              name="main_title"
+              name="banner_title"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-              placeholder="Enter main title"
+              placeholder="Enter banner title"
+              required
             />
           </div>
-
-          <div className="mb-4 w-1/2 ">
+          {/* banner image */}
+          <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Banner Image
             </label>
             <input
               type="file"
-              name="banner_image"
+              name="banner_img"
               accept="image/*"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              required
             />
           </div>
         </div>
@@ -159,10 +180,11 @@ const ProductCreateForm = () => {
             Banner Description
           </label>
           <textarea
-            name="short_description"
+            name="banner_description"
             rows="5"
             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            placeholder="Enter short description"
+            placeholder="Enter banner description"
+            required
           />
         </div>
 
@@ -178,6 +200,7 @@ const ProductCreateForm = () => {
               name="proposal_link"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               placeholder="Enter proposal link"
+              required
             />
           </div>
 
@@ -191,14 +214,10 @@ const ProductCreateForm = () => {
               name="live_link"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               placeholder="Enter live link"
+              required
             />
           </div>
         </div>
-
-        <div className="flex flex-row gap-6 " >
-
-
-
           <div className="flex flex-row gap-6">
             {/* Feature */}
             <div className="mb-4 w-full ">
@@ -207,25 +226,26 @@ const ProductCreateForm = () => {
               </label>
               <input
                 type="text"
-                name="feature"
+                name="feature_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-                placeholder="Enter feature"
+                placeholder="Enter feature title "
+                required
               />
             </div>
-          </div>
-          {/* Feature Image */}
-          <div className="mb-4 w-full ">
+            <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
               Feature Image
             </label>
             <input
               type="file"
-              name="feature_logo"
+              name="feature_img"
               accept="image/*"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              required
             />
           </div>
-        </div>
+          </div>
+          
 
         {/* Feature Description */}
         <div className="mb-4">
@@ -236,7 +256,8 @@ const ProductCreateForm = () => {
             name="feature_description"
             rows="5"
             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            placeholder="Enter nav description"
+            placeholder="Enter feature description"
+            required
           />
         </div>
 
@@ -245,18 +266,7 @@ const ProductCreateForm = () => {
         <h2 className="text-xl font-semibold text-gray-700 mb-4">Extra Data</h2>
         {extraData.map((item, index) => (
           <div key={index} className="mb-4">
-            {/* Extra Description */}
-            <textarea
-              placeholder="Extra Description"
-              rows="5"
-              className="w-full rounded-xl px-4 py-2 mb-2 border-2 border-gray-300"
-              value={item.extra_description}
-              onChange={(e) => {
-                const newExtraData = [...extraData];
-                newExtraData[index].extra_description = e.target.value;
-                setExtraData(newExtraData);
-              }}
-            />
+            
             <div className="flex flex-row gap-6 " >
               <div className="w-full" >
                 {/* Description Image */}
@@ -282,10 +292,10 @@ const ProductCreateForm = () => {
                   id="description_title"
                   placeholder="Description Title"
                   className="w-full px-4 py-2 rounded-xl border-2 border-gray-300"
-                  value={item.description_title}
+                  value={item.extra_description}
                   onChange={(e) => {
                     const newExtraData = [...extraData];
-                    newExtraData[index].description_title = e.target.value;
+                    newExtraData[index].extra_description = e.target.value;
                     setExtraData(newExtraData);
                   }}
                 />
@@ -305,12 +315,19 @@ const ProductCreateForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="mt-6 bg-green-500 text-white px-4 py-2 rounded-lg"
+          className="mt-6 bg-green-500 text-white mx-auto block px-4 py-2 rounded-lg"
         >
           Submit
         </button>
       </form>
       <Toaster />
+      {
+        loader && (
+          <div>
+            <Loader></Loader>
+          </div>
+        )
+      }
     </div>
   );
 };
