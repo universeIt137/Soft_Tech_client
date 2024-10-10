@@ -58,9 +58,9 @@ const ManageProductPage = () => {
           <thead>
             <tr className="w-full bg-gray-800 text-white">
               <th className="text-left py-3 px-4">SL No</th>
-              <th className="text-left py-3 px-4">Product Name</th>
-              <th className="text-left py-3 px-4">feature</th>
-              <th className="text-left py-3 px-4">Product Image</th>
+              <th className="text-left py-3 px-4">Banner Title</th>
+              <th className="text-left py-3 px-4">Banner Img</th>
+              <th className="text-left py-3 px-4">Live Link</th>
               <th className="text-left py-3 px-4">Actions</th>
             </tr>
           </thead>
@@ -68,16 +68,16 @@ const ManageProductPage = () => {
             {productDataList.map((item, i) => (
               <tr key={i} className="border-t border-gray-300">
                 <td className="py-3 px-4">{i + 1}</td>
-                <td className="py-3 px-4">{item.main_title}</td>
+                <td className="py-3 px-4">{item.banner_title ? item.banner_title.slice(0, 15) : 'No title available'}...</td>
                 <td className="py-3 px-4">
                   <img
-                    src={item.nav_logo}
-                    alt={item.nav_title}
+                    src={item.banner_img}
+                    alt={item.banner_title}
                     className="w-16 h-16 py-[16px] object-cover"
                   />
                 </td>
                 <td className="py-3 px-4">
-                  <p> { item.feature } </p>
+                  <p> { item.live_link ? item?.live_link.slice(0,18) : "No live link available" }... </p>
                   <td/>
                 </td>
                 <td className="py-3 px-4 gap-2">
