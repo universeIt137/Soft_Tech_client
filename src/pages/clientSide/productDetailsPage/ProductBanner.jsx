@@ -32,7 +32,7 @@ const ProductBanner = ({ product }) => {
                 </div>
 
                 <div className='my-aos-element' data-aos="zoom-in">
-                    <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725861900/Universe%20Soft%20Tech/Products/Inventory/o2ckcilit4pxrkmm15at.png" alt="" className='w-full' />
+                    <img src={product.nav_logo} alt="" className='w-full' />
                 </div>
 
             </div>

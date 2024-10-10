@@ -6,6 +6,7 @@ import ProductDescription from './ProductDescription';
 import { useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const ProductDetailsPage = () => {
     window.scrollTo(0, 0);
@@ -24,12 +25,16 @@ const ProductDetailsPage = () => {
 
     return (
         <>
-        <div className=' min-h-screen bg-universe_secondary items-center justify-center flex'>
+
+            <Helmet>
+                <title>SoftTech | Products</title>
+            </Helmet>
+            <div className=' min-h-screen bg-universe_secondary items-center justify-center flex'>
                 <ProductBanner product={product}></ProductBanner>
             </div>
             {/* <ProductKeyPoint></ProductKeyPoint> */}
 
-            <ProductDescription product = {product}></ProductDescription>
+            <ProductDescription product={product}></ProductDescription>
         </>
     );
 };

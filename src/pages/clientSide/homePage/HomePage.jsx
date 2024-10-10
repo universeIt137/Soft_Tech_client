@@ -53,7 +53,7 @@ const HomePage = () => {
     return (
         <div className="lg:mt-12">
             <Helmet>
-                <title>Soft Tech | HomePage</title>
+                <title>Soft Tech</title>
             </Helmet>
             <div>
                 <Banner></Banner>

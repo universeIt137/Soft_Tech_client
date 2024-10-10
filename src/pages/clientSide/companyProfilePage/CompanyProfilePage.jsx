@@ -1,10 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const CompanyProfilePage = () => {
     window.scrollTo(0, 0);
     const pdfUrl = '/pdfs/portfolio.pdf';
     return (
         <>
+            <Helmet>
+                <title>SoftTech | Company Profile</title>
+            </Helmet>
             <div className=" w-2/3 mx-auto">
                 <div style={{ height: '100vh', width: '100%' }}>
                     <iframe

@@ -11,7 +11,7 @@ const ServiceDescriptionSection = ({ descriptions }) => {
     return (
         <div>
             <div className=' my-10'>
-                <p className='text-2xl lg:text-7xl font-bold text-center'>Unlock High-Quality Solutions</p>
+                <p className='text-2xl lg:text-7xl font-bold text-center'> Enjoy High Quality Features </p>
                 <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-10 gap-2 w-11/12 mx-auto lg:mt-24 mt-10 " >
 
                     {

@@ -26,7 +26,7 @@ const OurProductsSection = ({products}) => {
         overflow: 'hidden',
     }
     return (
-        <div className="bg-[#ffffff] lg:py-20 my-aos-element">
+        <div className="bg-[#ffffff] lg:pt-16 my-aos-element">
             <div className='container mx-auto px-5 flex-grow'>
                 <div>
                     <h1 className="text-2xl lg:text-5xl font-semibold text-center my-4"><span className="text-text_blue">What We</span> <span className="text-text_primari">Offers</span></h1>

@@ -16,7 +16,7 @@ const PortfolioPage = () => {
   return (
     <>
       <Helmet>
-        <title>UST | Portfolio</title>
+        <title>SoftTech | Portfolio</title>
       </Helmet>
       <div className="w-10/12 mb-20 mx-auto ">
         <p className="text-2xl font-bold text-center py-5 text-universe_primary">

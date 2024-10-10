@@ -33,6 +33,8 @@ import GetSingleApplication from "../components/adminSide/Application/GetSingleA
 import ApplicationPage from "../pages/clientSide/CareerDetailsPage/ApplicationPage";
 import UpdateCareerPage from "../pages/adminSide/Career/UpdateCareerPage";
 import ProductDetailsPage from "../pages/clientSide/productDetailsPage/ProductDetailsPage";
+import PrivateRoutes from "./PrivateRoutes";
+import RequestDemo from "../pages/clientSide/productDetailsPage/RequestDemo";
 
 
 
@@ -107,6 +109,10 @@ const router = createBrowserRouter([
             {
                 path: "/company-profile",
                 element: <CompanyProfilePage></CompanyProfilePage>
+            },
+            {
+                path: "/request-demo",
+                element: <RequestDemo></RequestDemo>
             }
 
         ]

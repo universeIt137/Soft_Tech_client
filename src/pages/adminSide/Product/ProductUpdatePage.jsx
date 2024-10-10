@@ -3,6 +3,7 @@ import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { uploadImageToCloudinary } from "../../../uploadImage/UpdateImg";
+import { Helmet } from "react-helmet-async";
 
 const ProductCreateForm = () => {
   const { id } = useParams();
@@ -71,6 +72,9 @@ const ProductCreateForm = () => {
   } else {
     return (
       <div>
+        <Helmet>
+          <title>Dashboard | Update Product</title>
+        </Helmet>
         <h2 className="text-xl text-center my-6 font-bold">Update Product</h2>
         <form onSubmit={handleSubmit}>
         <div className="avatar">

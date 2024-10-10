@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import careerStore from "../../../api-request/carrer-api/carrerApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const AddCareer = () => {
   const { createCareerApi, careerApiRequest, careerDataList } = careerStore();
   const navigate = useNavigate();
@@ -62,6 +63,9 @@ const AddCareer = () => {
 
   return (
     <div className="max-w-full mx-auto p-6 bg-white ">
+      <Helmet>
+        <title>Dashboard | Add Career</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Add Career
       </h1>

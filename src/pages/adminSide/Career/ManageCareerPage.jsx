@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { deleteAlert } from "../../../helper/deleteHelperAlert";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ManageCareerPage = () => {
   const { careerApiDataRequest, careerDataList, careerDeleteApi } = careerStore();
@@ -33,6 +34,9 @@ const ManageCareerPage = () => {
 
   return (
     <div className="container mx-auto p-6">
+      <Helmet>
+        <title>Dashboard | Manage Career</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-center mb-8">Manage Careers</h1>
 
       <div className="overflow-x-auto">
