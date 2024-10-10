@@ -11,6 +11,7 @@ import { AiOutlineProduct } from "react-icons/ai";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { RiTeamLine } from "react-icons/ri";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -37,7 +38,7 @@ const Sidebar = () => {
       })
       .catch(err => {
         console.log(err.message);
-    })
+      })
   }
 
   const toggleSidebar = () => {
@@ -221,7 +222,7 @@ const Sidebar = () => {
               </ul>
             </li>
 
-            
+
 
             {/* Application */}
             <li>
@@ -259,18 +260,21 @@ const Sidebar = () => {
                 </li>
               </ul>
             </li>
-            <li onClick={handleLogout}>
-              <label
-                
-                className={`-my-2 flex items-center space-x-3 p-3 w-full transition text-left rounded-none transition duration-200 `}
-              >
-                <IoMdLogOut size={"35px"}/>
-                <span>
-                  <p className="flex justify-center items-center gap-4">
-                    Logout
-                  </p>
-                </span>
-              </label>
+            <li>
+              <Link to={"/dashboard/manage-team"}>
+                <label
+
+                  className={`-my-2 flex items-center space-x-3 p-3 w-full text-left rounded-none transition duration-200 `}
+                >
+                  <RiTeamLine size={"35px"} />
+                  <span>
+                    <p className="flex justify-center items-center gap-4">
+                      Manage TeamMember
+                    </p>
+                  </span>
+                </label>
+              </Link>
+
             </li>
           </ul>
         </nav>

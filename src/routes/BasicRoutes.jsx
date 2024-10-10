@@ -35,6 +35,7 @@ import UpdateCareerPage from "../pages/adminSide/Career/UpdateCareerPage";
 import ProductDetailsPage from "../pages/clientSide/productDetailsPage/ProductDetailsPage";
 import PrivateRoutes from "./PrivateRoutes";
 import RequestDemo from "../pages/clientSide/productDetailsPage/RequestDemo";
+import ManageTeam from "../pages/adminSide/teamRelatedPage/manageTeam/ManageTeam";
 
 
 
@@ -172,6 +173,10 @@ const router = createBrowserRouter([
                 path : "/dashboard/product/update/:id",
                 element : <ProductUpdatePage></ProductUpdatePage>
             },
+            {
+                path: "/dashboard/manage-team",
+                element: <ManageTeam></ManageTeam>
+            }
         ]
     },
     {
