@@ -38,7 +38,7 @@ const OurProductsSection = ({products}) => {
 
 
                     {
-                        products.map(product =>
+                        products?.map(product =>
                             <div key={product._id} style={bgImg} className="shadow-2xl bg-white relative lg:min-h-[400px]">
                                 {/* Top section with image and title */}
                                 <div className="text-center py-5 md:py-8">
