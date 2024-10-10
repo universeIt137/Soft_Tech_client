@@ -41,9 +41,9 @@ const ManageServicePage = () => {
           <thead>
             <tr className="bg-gray-800 text-white uppercase text-sm leading-normal">
               <th className="py-3 px-6 text-[14px] text-left">Sl</th>
-              <th className="py-3 px-6 text-[14px] text-left">Main title</th>
-              <th className="py-3 px-6 text-[14px] text-left">Image</th>
-              <th className="py-3 px-6 text-[14px] text-left">Tag line</th>
+              <th className="py-3 px-6 text-[14px] text-left">Banner Title</th>
+              <th className="py-3 px-6 text-[14px] text-left">Banner Img</th>
+              <th className="py-3 px-6 text-[14px] text-left">Banner Description</th>
               <th className="py-3 px-6 text-[14px] text-center">Action</th>
             </tr>
           </thead>
@@ -58,7 +58,7 @@ const ManageServicePage = () => {
                     <p>{i + 1}</p>
                   </td>
                   <td className="py-3 px-6 text-left whitespace-nowrap">
-                    <p>{item.main_title}</p>
+                    <p>{item.banner_title ? item.banner_title.slice(0, 15) : 'No title available'}...</p>
                   </td>
                   <td className="py-3 px-6 text-left">
                     <img
@@ -68,7 +68,7 @@ const ManageServicePage = () => {
                     />
                   </td>
                   <td className="py-3 px-6 text-[16px] text-left">
-                    <p>{item.tag_line}</p>
+                    <p>{item.banner_description ? item.banner_description.slice(0, 18) : 'No description available'}...</p>
                   </td>
                   <td className="py-3 px-6 flex justify-center items-center space-x-2">
                     <NavLink to={`/dashboard/update-service/${item._id}`} >
