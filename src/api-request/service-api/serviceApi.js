@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { getToken } from "../../helper/sessionHelper";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 
 const axiosPublic = useAxiosPublic();
@@ -57,9 +58,10 @@ const serviceStore = create((set) => ({
       });
   },
   updateServiceApi: async (id,payload) => {
-    console.log(payload);
+    const toastId = toast.loading("Updating...");
     let res = await axiosPublic.put(`/update-service/${id}`, payload);
     if (res.data["status"] === "success") {
+      toast.success("Member updated successfully!!", { id: toastId });
       return true;
     } else {
       return false;

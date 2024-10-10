@@ -81,7 +81,7 @@ const ProductUpdateForm = () => {
 
         <form onSubmit={handleSubmit}>
 
-        <div className="avatar">
+          <div className="avatar">
 
             <div className="w-12 rounded-full mt-4 ">
               <img src={singleProductData?.nav_logo} />
@@ -102,6 +102,9 @@ const ProductUpdateForm = () => {
             </div>
 
             <div>
+
+            {/* nav_title */}
+
               <label className="block text-lg font-medium text-gray-700 mb-2">
                 Nav Title:
               </label>
@@ -113,6 +116,8 @@ const ProductUpdateForm = () => {
               />
             </div>
           </div>
+
+          {/* nav_description */}
 
           <div className="my-4">
             <label className="block text-lg font-medium text-gray-700 mb-2">
@@ -126,38 +131,49 @@ const ProductUpdateForm = () => {
             />
           </div>
 
+          <div className="avatar">
+            <div className="w-12 rounded-full mt-4 ">
+              <img src={singleProductData?.banner_img} />
+            </div>
+          </div>
+
           <div className="md:grid md:grid-cols-2 md:gap-8">
+
+          {/* banner_title */}
             <div>
               <label className="block text-lg font-medium text-gray-700 mb-2">
-                Main Title:
+                Banner Title:
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData.main_title}
-                name="main_title"
+                defaultValue={singleProductData?.banner_title}
+                name="banner_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
+
+            {/* banner_img */}
+
             <div>
               <label className="block text-lg font-medium text-gray-700 mb-2">
-                Live Link:
+                Banner Image
               </label>
               <input
-                type="text"
-                defaultValue={singleProductData.live_link}
-                name="live_link"
+                type="file"
+                name="banner_img"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
           </div>
 
+          {/* banner description */}
           <div className="my-4">
             <label className="block text-lg font-medium text-gray-700 mb-2">
-              Short Description:
+              Banner Description:
             </label>
             <textarea
-              defaultValue={singleProductData.short_description}
-              name="short_description"
+              defaultValue={singleProductData.banner_description}
+              name="banner_description"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               rows="4"
             />
@@ -165,24 +181,26 @@ const ProductUpdateForm = () => {
 
           <div className="flex flex-row md:grid md:grid-cols-2 gap-8">
             <div>
+            {/* live_link */}
               <label className="block text-lg font-medium text-gray-700 mb-2">
-                Proposal Link:
+              Live Link:
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData.proposal_link}
-                name="proposal_link"
+                defaultValue={singleProductData?.live_link}
+                name="live_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
             <div>
+            {/* proposal_link */}
               <label className="block text-lg font-medium text-gray-700 mb-2">
-                Feature:
+              Proposal Link
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData.feature}
-                name="feature"
+                defaultValue={singleProductData?.proposal_link}
+                name="proposal_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
@@ -190,49 +208,74 @@ const ProductUpdateForm = () => {
 
           <div className="avatar">
             <div className="w-12 rounded-full mt-4 ">
-              <img src={singleProductData?.feature_logo} />
+              <img src={singleProductData?.feature_img} />
             </div>
           </div>
 
-          <div className="">
-            <label className="block text-lg font-medium text-gray-700 mb-2">
-              Feature Logo:
-            </label>
-            <input
-              name="feature_logo"
-              type="file"
-              onChange={(e) => handleImageChange(e, setFeatureLogo)}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-            />
+          
+
+          <div className="flex flex-row md:grid md:grid-cols-2 gap-8" >
+            {/* feature_img */}
+            <div className="">
+              <label className="block text-lg font-medium text-gray-700 mb-2">
+                Feature Img:
+              </label>
+              <input
+                name="feature_img"
+                type="file"
+                onChange={(e) => handleImageChange(e, setFeatureImg)}
+                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              />
+            </div>
+            {/* feature_title */}
+            <div className="">
+              <label className="block text-lg font-medium text-gray-700 mb-2">
+                Feature Title:
+              </label>
+              <input
+                name="feature_title"
+                type="text"
+                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="my-4">
+              <label className="block text-lg font-medium text-gray-700 mb-2">
+              Feature Description:
+              </label>
+              <textarea
+                defaultValue={singleProductData?.feature_description}
+                name="feature_description"
+                className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                rows="4"
+              />
+            </div>
           </div>
 
           {singleProductData?.extra_data &&
             singleProductData.extra_data.map((item, i) => (
               <div className="my-10" key={i}>
                 <div className="my-4">
-                  <label className="block text-lg font-medium text-gray-700 mb-2">
-                    Extra description:
-                  </label>
-                  <textarea
-                    name={`extra_description_${i}`}
-                    defaultValue={item.extra_description}
-                    className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-                    rows="4"
-                  />
+                  
+                  
                 </div>
-                {
-                  singleProductData?.extra_data && singleProductData?.extra_data.map((item, i) =>{
-                    return (
-                      <div key={i} >
-                        <div className="avatar">
-                          <div className="w-12 rounded-full mt-4 ">
-                            <img src={item?.description_img} />
+                <div className="flex flex-row gap-6 items-center my-6  " >
+                  {
+                    singleProductData?.extra_data && singleProductData?.extra_data.map((item, i) =>{
+                      return (
+                        <div key={i} >
+                          <div className="avatar">
+                            <div className="w-12 rounded-full mt-4 ">
+                              <img src={item?.description_img} />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )
-                  })
-                }
+                      )
+                    })
+                  }
+                </div>
                 <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
                   <div>
                     <label className="block text-lg font-medium text-gray-700 mb-2">
