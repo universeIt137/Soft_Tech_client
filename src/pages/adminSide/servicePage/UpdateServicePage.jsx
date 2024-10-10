@@ -12,8 +12,8 @@ const UpdateServicePage = () => {
 
   const [navLogo, setNavLogo] = useState(null); // nav_logo state
   const [bannerImg, setBannerImg] = useState(null); // feature_logo state
-  const [descriptionLogo, setDescriptionLogo] = useState({}); // extra data images
-  const [featureLogo, setFeatureLogo] = useState({}); //
+  const [keyPointImg, setPointImg] = useState({}); // extra data images
+  const [featureImg, setFeatureImg] = useState({}); //
 
   // Handle image file changes
   const handleImageChange = (e, setState) => {
@@ -25,7 +25,7 @@ const UpdateServicePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Upload navLogo and featureLogo to Cloudinary
+    // Upload navLogo and banner img to Cloudinary
     let navLogoUrl = navLogo
       ? await uploadImageToCloudinary(navLogo)
       : getSingleServiceData.nav_logo;
@@ -33,37 +33,42 @@ const UpdateServicePage = () => {
       ? await uploadImageToCloudinary(bannerImg)
       : getSingleServiceData.banner_img;
 
-    // Prepare extra_data with image uploads for extra description images
-    const updatedDescriptionFeature = await Promise.all(
-      getSingleServiceData.description_feature.map(async (item, i) => ({
-        description_heading: e.target[`description_heading_${i}`].value,
-        description: e.target[`description_${i}`].value,
-        description_logo: descriptionLogo[i]
-          ? await uploadImageToCloudinary(descriptionLogo[i])
-          : item.description_logo,
-      }))
-    );
+    // Prepare extra_data with image uploads for extra feature images
 
     const updatedFeature = await Promise.all(
       getSingleServiceData.feature.map(async (item, i) => ({
         feature_title: e.target[`feature_title_${i}`].value,
         feature_description: e.target[`feature_description_${i}`].value,
-        feature_logo: featureLogo[i]
-          ? await uploadImageToCloudinary(featureLogo[i])
-          : item.feature_logo,
+        feature_img: featureImg[i]
+          ? await uploadImageToCloudinary(featureImg[i])
+          : item.feature_img,
+      }))
+    );
+
+    const updatedKeyPoint = await Promise.all(
+      getSingleServiceData.key_point.map(async (item, i) => ({
+        key_point_title: e.target[`key_point_title_${i}`].value,
+        key_point_description: e.target[`key_point_description_${i}`].value,
+        key_point_img: keyPointImg[i]
+          ? await uploadImageToCloudinary(keyPointImg[i])
+          : item.key_point_img,
       }))
     );
 
     // Update form data with image URLs
     const formData = {
+
+      nav_logo: navLogoUrl,
       nav_title: e.target.nav_title.value,
       nav_description: e.target.nav_description.value,
-      main_title: e.target.main_title.value,
-      tag_line: e.target.tag_line.value,
-      nav_logo: navLogoUrl,
+
+      banner_title: e.target.banner_title.value,
+      banner_description: e.target.banner_description.value,
       banner_img: bannerLogoUrl,
-      description_feature: updatedDescriptionFeature,
+
+      key_point: updatedKeyPoint,
       feature: updatedFeature,
+
     };
 
     console.log(formData);
@@ -150,23 +155,29 @@ const UpdateServicePage = () => {
             defaultValue={getSingleServiceData.nav_description}
           />
         </div>
+          <div className="avatar">
+            <div className="w-12">
+              <img src= {getSingleServiceData?.banner_img} />
+            </div>
+          </div>
+
 
         <div className="flex flex-col md:flex md:flex-row md:gap-4">
-          {/* Main Title */}
+          {/* Banner Title */}
           <div className="w-1/2 mb-4">
             <label
-              htmlFor="main_title"
+              htmlFor="banner_title"
               className="block text-lg font-medium text-gray-700 mb-2"
             >
-              Main Title
+              Banner Title
             </label>
             <input
               type="text"
-              id="main_title"
-              name="main_title"
+              id="banner_title"
+              name="banner_title"
               className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
               placeholder="Main Title"
-              defaultValue={getSingleServiceData.main_title}
+              defaultValue={getSingleServiceData.banner_title}
             />
           </div>
 
@@ -188,94 +199,98 @@ const UpdateServicePage = () => {
           </div>
         </div>
 
-        {/* Tag Line */}
+        {/* Banner Description */}
         <div className="mb-4">
           <label
-            htmlFor="tag_line"
+            htmlFor="banner_description"
             className="block text-lg font-medium text-gray-700 mb-2"
           >
             Tag Line
           </label>
           <input
             type="text"
-            id="tag_line"
-            name="tag_line"
+            id="banner_description"
+            name="banner_description"
             className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
             placeholder="Tag Line"
-            defaultValue={getSingleServiceData.tag_line}
+            defaultValue={getSingleServiceData.banner_description}
           />
         </div>
 
-        {/* Description Feature Section */}
-        {getSingleServiceData?.description_feature &&
-          getSingleServiceData?.description_feature.map((item, index) => (
+        {/* Key Point Section */}
+        {getSingleServiceData?.key_point &&
+          getSingleServiceData?.key_point.map((item, index) => (
             <div key={index}>
               <h3 className="text-center my-6 text-2xl font-semibold">
-                Description Feature ({index + 1})
+                Key Point ({index + 1})
               </h3>
               <div className="avatar">
                 <div className="w-12">
-                  <img src={item?.description_logo} alt="Description logo" />
+                  <img src={item?.key_point_img} alt="key_point_img" />
                 </div>
               </div>
+              
               <div className="flex flex-col md:flex md:flex-row md:gap-4">
-                {/* Description Logo */}
+                {/* Key Point Img  */}
                 <div className="w-1/2 mb-4">
                   <label
-                    htmlFor={`description_logo_${index}`}
+                    htmlFor={`key_point_img_${index}`}
                     className="block text-lg font-medium text-gray-700 mb-2"
                   >
-                    Description Logo
+                    Feature Img
                   </label>
                   <input
                     type="file"
-                    id={`description_logo_${index}`}
+                    id={`key_point_img_${index}`}
                     onChange={(e) =>
-                      setDescriptionLogo({
-                        ...descriptionLogo,
+                      setPointImg({
+                        ...keyPointImg,
                         [index]: e.target.files[0],
                       })
                     }
-                    name="description_logo"
+                    name="key_point_img"
                     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   />
                 </div>
 
-                {/* Description Heading */}
-                <div className="w-1/2 mb-4">
-                  <label
-                    htmlFor={`description_heading_${index}`}
-                    className="block text-lg font-medium text-gray-700 mb-2"
-                  >
-                    Description Heading
-                  </label>
-                  <input
-                    type="text"
-                    id={`description_heading_${index}`}
-                    name="description_heading"
-                    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
-                    defaultValue={item?.description_heading}
-                  />
-                </div>
-              </div>
-
-              {/* Description Text */}
+                {/*  key_point_title */}
               <div className="mb-4">
                 <label
-                  htmlFor={`description_${index}`}
+                  htmlFor={`key_point_title_${index}`}
                   className="block text-lg font-medium text-gray-700 mb-2"
                 >
-                  Description
+                  Key Point Title
                 </label>
                 <textarea
-                  id={`description_${index}`}
-                  name="description"
+                  id={`key_point_title_${index}`}
+                  name="key_point_title"
                   className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
-                  defaultValue={item?.description}
-                  placeholder="Enter description"
-                  rows="4"
+                  defaultValue={item?.key_point_title}
+                  placeholder="Enter Key Point Title"
                 />
               </div>
+
+                
+              </div>
+
+              {/* key_point_description */}
+              <div className=" mb-4">
+                  <label
+                    htmlFor={`key_point_description_${index}`}
+                    className="block text-lg font-medium text-gray-700 mb-2"
+                  >
+                    Key Point Description
+                  </label>
+                  <textarea
+                    rows={5}
+                    id={`key_point_description_${index}`}
+                    name="key_point_description"
+                    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
+                    defaultValue={item?.key_point_description}
+                  />
+                </div>
+
+              
             </div>
           ))}
 
@@ -292,24 +307,24 @@ const UpdateServicePage = () => {
                 </div>
               </div>
               <div className="flex flex-col md:flex md:flex-row md:gap-4">
-                {/* Feature Logo */}
+                {/* feature_img */}
                 <div className="w-1/2 mb-4">
                   <label
-                    htmlFor={`feature_logo_${index}`}
+                    htmlFor={`feature_img_${index}`}
                     className="block text-lg font-medium text-gray-700 mb-2"
                   >
-                    Feature Logo
+                    Feature Img
                   </label>
                   <input
                     type="file"
-                    id={`feature_logo_${index}`}
+                    id={`feature_img_${index}`}
                     onChange={(e) =>
-                      setFeatureLogo({
-                        ...featureLogo,
+                      setFeatureImg({
+                        ...featureImg,
                         [index]: e.target.files[0],
                       })
                     }
-                    name="feature_logo"
+                    name="feature_img"
                     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   />
                 </div>
@@ -346,7 +361,7 @@ const UpdateServicePage = () => {
                   className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   defaultValue={item?.feature_description}
                   placeholder="Enter feature description"
-                  rows="4"
+                  rows="7"
                 />
               </div>
             </div>
