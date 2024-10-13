@@ -26,30 +26,34 @@ const ProductUpdateForm = () => {
 
     // Upload navLogo and featureLogo to Cloudinary
     let navLogoUrl = navLogo ? await uploadImageToCloudinary(navLogo) : singleProductData.nav_logo;
-    let featureLogoUrl = featureLogo ? await uploadImageToCloudinary(featureLogo) : singleProductData.feature_logo;
+    let bannerImgUrl = bannerImg ? await uploadImageToCloudinary(bannerImg) : singleProductData.banner_img;
+    let featureImgUrl = featureImg ? await uploadImageToCloudinary(featureImg) : singleProductData.feature_img;
 
     // Prepare extra_data with image uploads for extra description images
     const updatedExtraData = await Promise.all(
       singleProductData.extra_data.map(async (item, i) => ({
-        extra_description: e.target[`extra_description_${i}`].value,
         description_title: e.target[`description_title_${i}`].value,
-        description_img: extraImages[i] 
-          ? await uploadImageToCloudinary(extraImages[i]) 
+        description_img: descriptionImg[i] 
+          ? await uploadImageToCloudinary(descriptionImg[i]) 
           : item.description_img,
       }))
     );
 
     // Update form data with image URLs
+
     const formData = {
       nav_title: e.target.nav_title.value,
       nav_description: e.target.nav_description.value,
-      main_title: e.target.main_title.value,
-      live_link: e.target.live_link.value,
-      short_description: e.target.short_description.value,
-      proposal_link: e.target.proposal_link.value,
-      feature: e.target.feature.value,
+      banner_title : e.target.banner_title.value,
+      banner_description : e.target.banner_description.value,
+      live_link : e.target.live_link.value,
+      proposal_link : e.target.proposal_link.value,
+      feature_title : e.target.feature_title.value,
+      feature_description : e.target.feature_description.value,
+
       nav_logo: navLogoUrl,
-      feature_logo: featureLogoUrl,
+      banner_img: bannerImgUrl,
+      feature_img : featureImgUrl ,
       extra_data: updatedExtraData,
     };
 
@@ -131,7 +135,7 @@ const ProductUpdateForm = () => {
             />
           </div>
 
-          <div className="avatar">
+          <div className="avatar ml-[50%] ">
             <div className="w-12 rounded-full mt-4 ">
               <img src={singleProductData?.banner_img} />
             </div>
@@ -161,6 +165,7 @@ const ProductUpdateForm = () => {
               <input
                 type="file"
                 name="banner_img"
+                onChange={(e) => handleImageChange(e, setBannerImg)}
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               />
             </div>
@@ -254,12 +259,12 @@ const ProductUpdateForm = () => {
             </div>
           </div>
 
+
+
           {singleProductData?.extra_data &&
             singleProductData.extra_data.map((item, i) => (
               <div className="my-10" key={i}>
                 <div className="my-4">
-                  
-                  
                 </div>
                 <div className="flex flex-row gap-6 items-center my-6  " >
                   {
@@ -286,7 +291,7 @@ const ProductUpdateForm = () => {
                       name={`description_img${i}`}
                       accept="image/*"
                       onChange={(e) =>
-                        setExtraImages({ ...extraImages, [i]: e.target.files[0] })
+                        setDescriptionImg({ ...descriptionImg, [i]: e.target.files[0] })
                       }
                       className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                     />
