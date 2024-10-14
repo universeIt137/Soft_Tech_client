@@ -37,6 +37,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import RequestDemo from "../pages/clientSide/productDetailsPage/RequestDemo";
 import ManageTeam from "../pages/adminSide/teamRelatedPage/manageTeam/ManageTeam";
 import UpdateMember from "../pages/adminSide/teamRelatedPage/updateMember/UpdateMember";
+import CreatePortfolioPage from './../pages/adminSide/portfolioPage/CreatePortfolioPage';
 
 
 
@@ -181,6 +182,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/update/:id",
                 element: <UpdateMember></UpdateMember>
+            },
+            {
+                path : "create-portfolio",
+                element : <CreatePortfolioPage></CreatePortfolioPage>
             }
         ]
     },
