@@ -28,7 +28,7 @@ const AllPortfolioPage = () => {
       const res = await portfolioDataDeleteApi(id);
       setLoader(false);
       if (res) {
-        await portfolioDataListApi(); // Refresh the data after deletion
+        await portfolioDataListApi(); 
         toast.success('Portfolio deleted successfully');
         
       }else{

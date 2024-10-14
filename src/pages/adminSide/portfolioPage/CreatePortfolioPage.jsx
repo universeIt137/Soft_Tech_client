@@ -5,13 +5,13 @@ import { createAlert } from '../../../helper/createAlert';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import SpinnerLoader from '../../../components/loder/Loader';
 
 const CreatePortfolioPage = () => {
   const {portfolioCreateApi} = portfolioStore();
   const [loader,setLoader] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("|ishan")
     const img = e.target.img.files[0];
     const title = e.target.title.value;
     const live_link = e.target.live_link.value;
@@ -121,6 +121,13 @@ const CreatePortfolioPage = () => {
         </form>
       </div>
     </div>
+    {
+      loader && (
+        <div>
+          <SpinnerLoader></SpinnerLoader>
+        </div>
+      )
+    }
     </div>
   )
 }
