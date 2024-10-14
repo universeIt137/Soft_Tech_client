@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteOutline } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import portfolioStore from '../../../api-request/portfolio-api/portfolioStore';
 import { Helmet } from 'react-helmet-async';
+import { deleteAlert } from '../../../helper/deleteHelperAlert';
+import toast from 'react-hot-toast';
+import SpinnerLoader from '../../../components/loder/Loader';
 
 const AllPortfolioPage = () => {
-  const { portfolioDataListApi, portfolioDataList } = portfolioStore();
   const [loader, setLoader] = useState(false);
+  const { portfolioDataListApi, portfolioDataList, portfolioDataDeleteApi } = portfolioStore();
 
   useEffect(() => {
     (async () => {
@@ -16,6 +19,24 @@ const AllPortfolioPage = () => {
       setLoader(false);
     })();
   }, []);
+
+  const deletePortfolio = async (id) => {
+    const resp = await deleteAlert();
+     // Ensure alert resolves before continuing
+    if (resp.isConfirmed) {
+      setLoader(true);
+      const res = await portfolioDataDeleteApi(id);
+      setLoader(false);
+      if (res) {
+        await portfolioDataListApi(); // Refresh the data after deletion
+        toast.success('Portfolio deleted successfully');
+        
+      }else{
+        toast.error('Failed to delete portfolio');
+      }
+    }
+    
+  };
 
   return (
     <div>
@@ -27,7 +48,7 @@ const AllPortfolioPage = () => {
         <h1 className="text-2xl font-bold mb-6 text-center">Portfolio Table</h1>
 
         {loader ? (
-          <div className="text-center text-xl">Loading...</div>
+          <SpinnerLoader /> // Display loader if the data is loading
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full border-collapse border border-gray-300">
@@ -43,7 +64,7 @@ const AllPortfolioPage = () => {
               <tbody>
                 {portfolioDataList &&
                   portfolioDataList.map((item, i) => (
-                    <tr key={i} className="hover:bg-gray-100 text-center ">
+                    <tr key={item._id} className="hover:bg-gray-100 text-center">
                       <td className="border border-gray-300 p-4">{i + 1}</td>
                       <td className="border border-gray-300 p-4">{item?.title}</td>
                       <td className="border border-gray-300 p-4">
@@ -64,12 +85,15 @@ const AllPortfolioPage = () => {
                         </NavLink>
                       </td>
                       <td className="p-4 flex justify-center space-x-2">
-                        <NavLink to="/dashboard/portfolio-update">
+                        <NavLink to={`/dashboard/portfolio-update/${item._id}`}>
                           <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                             <FaRegEdit />
                           </button>
                         </NavLink>
-                        <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                        <button
+                          onClick={ deletePortfolio.bind(this, item._id) } // Fixed onClick handler
+                          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                        >
                           <MdDeleteOutline />
                         </button>
                       </td>
