@@ -38,6 +38,8 @@ import RequestDemo from "../pages/clientSide/productDetailsPage/RequestDemo";
 import ManageTeam from "../pages/adminSide/teamRelatedPage/manageTeam/ManageTeam";
 import UpdateMember from "../pages/adminSide/teamRelatedPage/updateMember/UpdateMember";
 import CreatePortfolioPage from './../pages/adminSide/portfolioPage/CreatePortfolioPage';
+import AllPortfolioPage from "../pages/adminSide/portfolioPage/AllPortfolioPage";
+import UpdatePortfolioPage from "../pages/adminSide/portfolioPage/UpdatePortfolioPage";
 
 
 
@@ -186,6 +188,13 @@ const router = createBrowserRouter([
             {
                 path : "create-portfolio",
                 element : <CreatePortfolioPage></CreatePortfolioPage>
+            },{
+                path :"manage-portfolio",
+                element : <AllPortfolioPage></AllPortfolioPage>
+            },
+            {
+                path :"portfolio-update/:id",
+                element :<UpdatePortfolioPage></UpdatePortfolioPage>
             }
         ]
     },
