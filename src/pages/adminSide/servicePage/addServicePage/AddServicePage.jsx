@@ -281,7 +281,7 @@ const AddServicePage = () => {
         {/* Features */}
         {showDescriptionFeatures && (
           <>
-            {features.map((feature, index) => (
+            {features.map((featureData, index) => (
               <div key={index} className="mb-4">
                 <h2 className="text-xl font-semibold text-gray-700 mb-4">
                   Feature {index + 1}
@@ -292,6 +292,7 @@ const AddServicePage = () => {
                     <input
                       type="file"
                       id="feature_img"
+                      name="feature_img"
                       accept="image/*"
                       onChange={(e) => {
                         const newFeatures = [...features];
@@ -309,7 +310,7 @@ const AddServicePage = () => {
                       id="feature_title"
                       placeholder="Feature Title"
                       className="w-full px-4 py-2 rounded-lg mb-2 border-2 border-gray-300"
-                      value={feature.feature_title}
+                      value={featureData.feature_title}
                       onChange={(e) => {
                         const newFeatures = [...features];
                         newFeatures[index].feature_title = e.target.value;
@@ -326,7 +327,7 @@ const AddServicePage = () => {
                     rows="5"
                     id="feature_description"
                     className="w-full rounded-lg px-4 py-2 border-2 border-gray-300"
-                    value={feature.feature_description}
+                    value={featureData.feature_description}
                     onChange={(e) => {
                       const newFeatures = [...features];
                       newFeatures[index].feature_description = e.target.value;
