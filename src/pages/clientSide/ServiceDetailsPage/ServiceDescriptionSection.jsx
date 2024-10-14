@@ -19,15 +19,15 @@ const ServiceDescriptionSection = ({ descriptions }) => {
                             <div className="border rounded-xl pb-5  flex flex-col justify-center items-center space-y-5 shadow-xl my-aos-element" >
                                 <figure className="px-2 sm:px-10 pt-2 sm:pt-10 h-40 sm:h-60 w-full overflow-hidden">
                                     <img
-                                        src={description?.key_point_img}
-                                        alt="Faculty"
+                                        src={description?.feature_img}
+                                        alt=""
                                         className="rounded-xl w-full h-full object-cover"
                                     />
                                 </figure>
                                 {/* <img src={description.description_logo} alt="" className='w-1/2' /> */}
-                                <p className="font-bold text-xs lg:text-xl text-center">{description?.key_point_title}</p>
+                                <p className="font-bold text-xs lg:text-xl text-center">{description?.feature_title}</p>
                                 <p className='lg:px-10 px-3 lg:text-sm text-sm'>
-                                    {description?.key_point_description.slice(0, 200)}
+                                    {description?.feature_description.slice(0, 200)}
                                 </p>
                             </div>
                         )
