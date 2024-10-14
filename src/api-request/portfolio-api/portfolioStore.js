@@ -8,9 +8,8 @@ const axiosPublic = useAxiosPublic();
 const portfolioStore = create((set)=>({
     portfolioCreateApi : async (payload)=>{
         const res = await axiosPublic.post(`/portfolio/create`,payload);
-        if(res.data.status ==='success'){
-            console.log(res.data.data);
-            return res.data.data;
+        if(res.data["status"] ==='success'){
+            return true ;
         }else{
             return false;
         }
@@ -43,9 +42,8 @@ const portfolioStore = create((set)=>({
     },
     portfolioDataDeleteApi :async (id)=>{ 
         let res = await axiosPublic.delete(`/portfolio/delete/${id}`);
-        if(res.data.status ==='success'){
-            console.log(res.data.message);
-            return res.data.message;
+        if(res.data["status"] ==='success'){
+            return true ;
         } else{
             return false;
         }
