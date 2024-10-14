@@ -33,7 +33,7 @@ const OurTeam = () => {
     }
   })
 
-  console.log(teams);
+  // console.log(teams);
   const CEO = teams.find(member => member.email === "golamkibriya32@gmail.com");
 
   const otherMembers = teams.filter(member => member.email !== "golamkibriya32@gmail.com");

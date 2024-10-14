@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 const PortfolioPage = () => {
 
   window.scrollTo(0, 0);
@@ -13,6 +15,18 @@ const PortfolioPage = () => {
       duration: 1000
     })
   })
+
+  const axiosPublic = useAxiosPublic();
+  const { data: portfolios = {} } = useQuery({
+    queryKey: ['portfolios'],
+    queryFn: async () => {
+      const res = await axiosPublic.get('/get-all-portfolio');
+      return res.data;
+    }
+  })
+
+  const projects = portfolios?.data;
+
   return (
     <>
       <Helmet>
@@ -24,120 +38,31 @@ const PortfolioPage = () => {
         </p>
 
         <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-8">
+          {
+            projects?.map(portfolio =>
+              <div key={portfolio._id} data-aos="zoom-out-right" className=" shadow-2xl border rounded-lg p-5">
+                <div>
+                  <img
+                    src={portfolio?.img}
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <p className="font-bold text-2xl my-4">{ portfolio?.title }</p>
+                </div>
+                <div className=" flex justify-end">
+                  <Link target="_blank" to={portfolio?.live_link}>
+                    <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
+                      Live Link
+                    </button>
+                  </Link>
+                </div>
+              </div>)
+          }
 
-          <div data-aos="zoom-out-right" className=" shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
 
-          <div data-aos="zoom-out-left" className="shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
 
-          <div data-aos="zoom-out-right" className=" shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
 
-          <div data-aos="zoom-out-left" className=" shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div data-aos="zoom-out-right" className="shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
-
-          <div data-aos="zoom-out-left" className="shadow-2xl border rounded-lg p-5">
-            <div>
-              <img
-                src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png"
-                alt=""
-              />
-            </div>
-            <div>
-              <p className="font-bold text-2xl my-4">UNIVERSE IT INSTITUTE</p>
-            </div>
-            <div className=" flex justify-end">
-              <Link target="_blank" to={"https://www.universeitinstitute.com/"}>
-                <button className="bg-universe_primary font-bold text-white p-5 text-xl rounded-lg">
-                  Live Link
-                </button>
-              </Link>
-            </div>
-          </div>
 
         </div>
       </div>
