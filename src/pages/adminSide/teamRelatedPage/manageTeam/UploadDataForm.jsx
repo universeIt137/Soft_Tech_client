@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { uploadImg } from "../../../../uploadImage/UploadImage";
 
 const UploadDataForm = ({ refetch }) => {
 
@@ -12,6 +13,7 @@ const UploadDataForm = ({ refetch }) => {
         contact: "",
         email: "",
         experience: "",
+        image:"",
     });
 
     const handleChange = (e) => {
@@ -20,10 +22,23 @@ const UploadDataForm = ({ refetch }) => {
 
     };
 
-    const handleSubmit = (e) => {
-        
+    const handleSubmit = async(e) => {
+
         e.preventDefault();
-        
+        const image = e.target.team_img.files[0];
+
+        let imageUrl = '';
+        if (!image?.name) {
+            imageUrl = ''
+        } else {
+            imageUrl = await uploadImg(image);
+        }
+
+        formData.image = imageUrl;
+
+       
+
+
         const toastId = toast.loading("Uploading...");
 
         // Handle form submission logic (e.g., POST to server)
@@ -46,7 +61,7 @@ const UploadDataForm = ({ refetch }) => {
             .catch(err => {
                 toast.error(err?.message, { id: toastId });
             })
-        
+
     };
 
     return (
@@ -132,6 +147,20 @@ const UploadDataForm = ({ refetch }) => {
                             onChange={handleChange}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="5 years"
+                            required
+                        />
+                    </div>
+
+                    {/* image  */}
+                    <div className="mb-4 w-full ">
+                        <label className="block text-lg font-medium text-gray-700 mb-2">
+                            Upload image
+                        </label>
+                        <input
+                            type="file"
+                            name="team_img"
+                            accept="image/*"
+                            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                             required
                         />
                     </div>

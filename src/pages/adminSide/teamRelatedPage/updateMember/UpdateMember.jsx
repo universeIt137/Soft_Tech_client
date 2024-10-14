@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { uploadImg } from "../../../../uploadImage/UploadImage";
 
 const UpdateMember = () => {
     const { id } = useParams();
@@ -17,10 +18,12 @@ const UpdateMember = () => {
     })
 
     // console.log(member.data);
+    const incomingUrl = member?.data?.image;
+    // console.log(incomingUrl);
 
-    
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const toastId = toast.loading("Updating...");
         const form = e.target;
@@ -29,7 +32,18 @@ const UpdateMember = () => {
         const contact = form.contact.value;
         const email = form.email.value;
         const experience = form.experience.value;
-        const formData = { name, designation, contact, email, experience };
+        const memberImage = e.target.team_img.files[0];
+
+        let image = incomingUrl;
+        if (!memberImage?.name) {
+            image = incomingUrl
+        } else {
+            image = await uploadImg(memberImage);
+        }
+
+
+        const formData = { name, designation, contact, email, experience, image };
+        // console.log(formData);
         axiosPublic.put(`/member/${id}`, formData)
             .then(res => {
                 if (res) {
@@ -38,7 +52,7 @@ const UpdateMember = () => {
                 refetch();
 
                 // Optionally reset form fields or navigate away
-               
+
             })
             .catch(err => {
                 toast.error(err?.message, { id: toastId });
@@ -125,6 +139,27 @@ const UpdateMember = () => {
                             placeholder="5 years"
                             required
                         />
+                    </div>
+
+                    {/* image  */}
+                    <div className="mb-4 w-full ">
+                        <label className="block text-lg font-medium text-gray-700 mb-2">
+                            Upload image
+                        </label>
+                        <input
+                            type="file"
+                            name="team_img"
+                            accept="image/*"
+                            className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                            required
+                        />
+                    </div>
+
+                    <p className="font-bold">Already uploaded images</p>
+                    <div className="avatar">
+                        <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                            <img src={member?.data?.image} />
+                        </div>
                     </div>
 
                     {/* Submit Button */}
