@@ -24,11 +24,10 @@ const ServiceDetailsPage = () => {
     });
 
 
-    // console.log(service);
 
-    const descriptions = service?.description_feature;
     const features = service?.feature;
 
+    console.log(features);
 
     return (
         <div className=''>
@@ -37,16 +36,13 @@ const ServiceDetailsPage = () => {
             </Helmet>
             <div className="">
                 <ServiceBanner service={service}></ServiceBanner>
-                <ServiceDescriptionSection descriptions={descriptions}></ServiceDescriptionSection>
-                <div>
-                    <ServiceFeaturePage></ServiceFeaturePage>
-                </div>
-                {/* <ServiceFeatures features={features}></ServiceFeatures> */}
+                <ServiceFeatures features={features}></ServiceFeatures>
+                
+                
                 <div className=' container mx-auto mb-10' >
                     <ServiceKeyPoint></ServiceKeyPoint>
                 </div>
-                {/* <IotService></IotService> */}
-                {/* <IOTtalk></IOTtalk> */}
+                
             </div>
         </div>
     );
