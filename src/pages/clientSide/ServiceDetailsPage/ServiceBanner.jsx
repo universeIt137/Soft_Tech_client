@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const ServiceBanner = ({ service }) => {
 
-    const { main_title, tag_line, banner_img } = service;
+    const { banner_title, banner_description, banner_img } = service;
     useEffect(() => {
         Aos.init({ duration: 700, delay: 200 });
     }, [])
@@ -14,9 +14,9 @@ const ServiceBanner = ({ service }) => {
             <div className="lg:min-h-screen my-5 grid grid-cols-1 lg:grid-cols-2 w-4/5 mx-auto justify-center items-center">
                 <div className="my-aos-element mb-5" data-aos="zoom-out">
                     <p className='lg:text-7xl text-3xl text-center lg:text-start font-bold'>
-                        {main_title}
+                        {banner_title}
                     </p>
-                    <p className='text-xl text-center lg:text-start'>{tag_line}</p>
+                    <p className='text-xl text-center lg:text-start'>{banner_description}</p>
 
 
                     <div className=" flex justify-center lg:justify-start">

@@ -12,9 +12,9 @@ const ProductBanner = ({ product }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center text-white  w-11/12 mx-auto">
 
                 <div className=" text-center lg:text-start space-y-8 my-aos-element" data-aos="zoom-in">
-                    <p className='lg:text-6xl text-3xl font-bold overflow-hidden'>{product.main_title}</p>
+                    <p className='lg:text-6xl text-3xl font-bold overflow-hidden'>{product.banner_title}</p>
                     <p className='lg:text-xl text-xl'>
-                        {product.short_description}
+                        {product.banner_description}
                     </p>
                     <div className='gap-4 flex flex-col lg:flex-row text-xl justify-center lg:justify-start items-center'>
                         <Link to={`${product.live_link}`}>

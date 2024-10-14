@@ -6,6 +6,8 @@ import ServiceBanner from './ServiceBanner';
 import ServiceDescriptionSection from './ServiceDescriptionSection';
 import ServiceFeatures from './ServiceFeatures';
 import { Helmet } from 'react-helmet-async';
+import ServiceKeyPoint from './ServiceKeyPoint';
+import ServiceFeaturePage from './ServiceFeaturePage';
 
 const ServiceDetailsPage = () => {
     const axiosPublic = useAxiosPublic();
@@ -24,8 +26,8 @@ const ServiceDetailsPage = () => {
 
     // console.log(service);
 
-    const descriptions = service.description_feature;
-    const features = service.feature;
+    const descriptions = service?.description_feature;
+    const features = service?.feature;
 
 
     return (
@@ -36,7 +38,13 @@ const ServiceDetailsPage = () => {
             <div className="">
                 <ServiceBanner service={service}></ServiceBanner>
                 <ServiceDescriptionSection descriptions={descriptions}></ServiceDescriptionSection>
-                <ServiceFeatures features={features}></ServiceFeatures>
+                <div>
+                    <ServiceFeaturePage></ServiceFeaturePage>
+                </div>
+                {/* <ServiceFeatures features={features}></ServiceFeatures> */}
+                <div className=' container mx-auto mb-10' >
+                    <ServiceKeyPoint></ServiceKeyPoint>
+                </div>
                 {/* <IotService></IotService> */}
                 {/* <IOTtalk></IOTtalk> */}
             </div>
