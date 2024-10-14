@@ -14,7 +14,16 @@ const portfolioStore = create((set)=>({
         }else{
             return false;
         }
-    }
+    },
+    portfolioDataList : [],
+    portfolioDataListApi :async ()=>{
+        let res = await axiosPublic.get(`/get-all-portfolio`);
+        if(res.data.status ==='success'){
+            set({portfolioDataList: res.data.data});
+        }else{
+            return false;
+        }
+    },
 }));
 
 export default portfolioStore;
