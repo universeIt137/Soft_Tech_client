@@ -17,6 +17,7 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [openService, setOpenService] = useState(true);
   const [openCareer, setOpenCareer] = useState(true);
+  const [openPortfolio, setOpenPortfolio] = useState(true);
   const [openProduct, setOpenProduct] = useState(true);
   const [openApplication, setOpenApplication] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState(null); // Single state to track active dropdown
@@ -222,9 +223,60 @@ const Sidebar = () => {
               </ul>
             </li>
 
+              
+              {/* portfolio */}
+
+            <li>
+              <label
+                onClick={() => {
+                  handleDropdownToggle("portfolio");
+                  setOpenPortfolio(!openPortfolio);
+                }}
+                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
+              >
+                <img
+                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
+                  className="w-9"
+                  alt="Career"
+                />
+                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
+                  <p className="flex justify-center items-center gap-4">
+                    Portfolio
+                    <span className="ml-[53px]">
+                      {openPortfolio ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
+                  </p>
+                </span>
+              </label>
+
+              <ul
+                className={`ml-8 ${activeDropdown !== "portfolio" && "hidden"} ${!isSidebarOpen && "text-center"
+                  } ${isSidebarOpen ? "block" : "hidden"}`}
+              >
+                <li>
+                  <NavLink
+                    to="/dashboard/create-portfolio"
+                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Create Portfolio
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-portfolio"
+                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Manage Portfolio
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+
 
 
             {/* Application */}
+
             <li>
               <label
                 onClick={() => {
@@ -275,6 +327,7 @@ const Sidebar = () => {
                 </label>
               </Link>
             </li>
+            
           </ul>
         </nav>
       </div>
