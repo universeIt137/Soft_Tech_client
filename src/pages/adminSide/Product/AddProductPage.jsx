@@ -10,13 +10,13 @@ const ProductCreateForm = () => {
   const [loader,setLoader] = useState(false);
   
   const [extraData, setExtraData] = useState([
-    { extra_description: "", description_img: "" },
+    { description_title: "", description_img: "" },
   ]);
 
   const handleAddExtraData = () => {
     setExtraData([
       ...extraData,
-      { extra_description: "", description_img: ""},
+      { description_title: "", description_img: ""},
     ]);
   };
 
@@ -292,10 +292,10 @@ const ProductCreateForm = () => {
                   id="description_title"
                   placeholder="Description Title"
                   className="w-full px-4 py-2 rounded-xl border-2 border-gray-300"
-                  value={item.extra_description}
+                  value={item.description_title}
                   onChange={(e) => {
                     const newExtraData = [...extraData];
-                    newExtraData[index].extra_description = e.target.value;
+                    newExtraData[index].description_title = e.target.value;
                     setExtraData(newExtraData);
                   }}
                 />

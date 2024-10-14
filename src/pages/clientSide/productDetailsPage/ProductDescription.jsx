@@ -37,7 +37,8 @@ const ProductDescription = ({ product }) => {
                             bulletpoint?.map(point =>
                                 <div key={point._id} className="flex justify-center flex-col items-center rounded-xl shadow-xl py-10 text-universe_secondary border" data-aos="fade-up">
                                 <img src={point.description_img} alt="" className='size-12' />
-                                    <p className='text-xl'>{ point.description_title }</p>
+                                    <p className='text-xl my-3 '>{ point.description_title }</p>
+                                    
                             </div>)
                         }
 
