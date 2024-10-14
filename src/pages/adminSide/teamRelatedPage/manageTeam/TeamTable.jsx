@@ -12,7 +12,7 @@ const TeamTable = ({ teamMembers, handleDelete }) => {
                         <th className="py-3 px-6 text-left">Name</th>
                         <th className="py-3 px-6 text-left">Designation</th>
                         <th className="py-3 px-6 text-left">Contact</th>
-                        <th className="py-3 px-6 text-left">Email</th>
+                        <th className="py-3 px-6 text-left">image</th>
                         <th className="py-3 px-6 text-left">Experience</th>
                         <th className="py-3 px-6 text-center">Actions</th>
                     </tr>
@@ -23,7 +23,13 @@ const TeamTable = ({ teamMembers, handleDelete }) => {
                             <td className="py-4 px-6">{member.name}</td>
                             <td className="py-4 px-6">{member.designation}</td>
                             <td className="py-4 px-6">{member.contact}</td>
-                            <td className="py-4 px-6">{member.email}</td>
+                            <td className="py-4 px-6">
+                                <div className="avatar">
+                                    <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                                        <img src={member.image} />
+                                    </div>
+                                </div>
+                            </td>
                             <td className="py-4 px-6">{member.experience}</td>
                             <td className="py-4 px-6 text-center flex justify-center space-x-2">
                                 <Link to={`/dashboard/update/${member._id}`}>

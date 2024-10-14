@@ -18,9 +18,26 @@ import {
 } from "swiper/modules";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import TeamCard from "../ourTeamPage/TeamCard";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const OurTeam = () => {
   window.scrollTo(0, 0);
+
+  const axiosPublic = useAxiosPublic();
+  const { data: teams = [] } = useQuery({
+    queryKey: ['teams'],
+    queryFn: async () => {
+      const res = await axiosPublic.get('/member');
+      return res.data.data;
+    }
+  })
+
+  console.log(teams);
+  const CEO = teams.find(member => member.email === "golamkibriya32@gmail.com");
+
+  const otherMembers = teams.filter(member => member.email !== "golamkibriya32@gmail.com");
+
   return (
     <div className=" my-aos-element my-5">
       <div className="container mx-auto">
@@ -31,7 +48,7 @@ const OurTeam = () => {
           </p>
         </div>
 
-        <TeamCard></TeamCard>
+        <TeamCard member={CEO}></TeamCard>
 
 
         <div className="lg:pb-20">
@@ -174,12 +191,13 @@ const OurTeam = () => {
 
           </Swiper> */}
 
-          <marquee speed = '1000' behavior="" direction="">
+          <marquee speed='1000' behavior="" direction="">
             <div className="flex gap-6 mt-5">
-              <TeamCard></TeamCard>
-              <TeamCard></TeamCard>
-              <TeamCard></TeamCard>
-              <TeamCard></TeamCard>
+              {
+                otherMembers?.map(member => <TeamCard key={member._id} member={member}></TeamCard>)
+              }
+
+
             </div>
           </marquee>
         </div>
