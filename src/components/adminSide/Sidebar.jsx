@@ -18,6 +18,7 @@ const Sidebar = () => {
   const [openService, setOpenService] = useState(true);
   const [openCareer, setOpenCareer] = useState(true);
   const [openPortfolio, setOpenPortfolio] = useState(true);
+  const [openBlog, setOpenBlog] = useState(true);
   const [openProduct, setOpenProduct] = useState(true);
   const [openApplication, setOpenApplication] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState(null); // Single state to track active dropdown
@@ -268,6 +269,57 @@ const Sidebar = () => {
                     className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
                   >
                     Manage Portfolio
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+
+
+          {/* blog  */}
+
+
+          <li>
+              <label
+                onClick={() => {
+                  handleDropdownToggle("blog");
+                  setOpenBlog(!openBlog);
+                }}
+                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
+                  }`}
+              >
+                <img
+                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
+                  className="w-9"
+                  alt="Career"
+                />
+                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
+                  <p className="flex justify-center items-center gap-4">
+                    Blog
+                    <span className="ml-[53px]">
+                      {openPortfolio ? <FaAngleDown /> : <FaAngleUp />}
+                    </span>
+                  </p>
+                </span>
+              </label>
+
+              <ul
+                className={`ml-8 ${activeDropdown !== "blog" && "hidden"} ${!isSidebarOpen && "text-center"
+                  } ${isSidebarOpen ? "block" : "hidden"}`}
+              >
+                <li>
+                  <NavLink
+                    to="/dashboard/add-blog"
+                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Add Blog
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-blog"
+                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
+                  >
+                    Manage Blog
                   </NavLink>
                 </li>
               </ul>
