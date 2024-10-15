@@ -41,6 +41,7 @@ import CreatePortfolioPage from './../pages/adminSide/portfolioPage/CreatePortfo
 import AllPortfolioPage from "../pages/adminSide/portfolioPage/AllPortfolioPage";
 import UpdatePortfolioPage from "../pages/adminSide/portfolioPage/UpdatePortfolioPage";
 import BlogPage from "../pages/clientSide/blogRelatedPages/BlogPage";
+import Blogdetails from "../pages/clientSide/blogRelatedPages/Blogdetails";
 
 
 
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
             {
                 path: "/blogs",
                 element: <BlogPage></BlogPage>
+            },
+            {
+                path: "/blogDetails/:id",
+                element: <Blogdetails></Blogdetails>
             },
 
 
