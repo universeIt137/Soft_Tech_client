@@ -22,7 +22,7 @@ const Blogdetails = () => {
         <div className='lg:px-20'>
             <p className="text-4xl m-10"><span className='text-primary '>Blog</span> Details</p>
             <div className=' gap-5 sm:m-4 '>
-                <div className=' mx-auto bg-gray-200'>
+                <div className=' mx-auto'>
                     <img
                         className='w-1/2 mx-auto'
                         src={blogData?.blog_banner_image}
