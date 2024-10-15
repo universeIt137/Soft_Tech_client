@@ -1,6 +1,44 @@
 import React, { useState } from 'react';
+import { useRef } from "react";
+import emailjs from '@emailjs/browser';
+import Swal from "sweetalert2";
 
 const RequestDemo = () => {
+
+
+    const formRef = useRef();
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm('service_sx83m91', 'template_x1ajmyn', formRef.current, {
+                publicKey: 'PbUISmrSE9uXrKvsb',
+            })
+            .then(
+                () => {
+
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Email Sent Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                (error) => {
+                    setError(true);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Email Sent Failed",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    console.log('FAILED...', error.text);
+                },
+            );
+    };
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -15,7 +53,7 @@ const RequestDemo = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Form submission logic
-        console.log(formData);
+        // console.log(formData);
     };
 
     return (
@@ -31,7 +69,7 @@ const RequestDemo = () => {
                 {/* Form Section */}
                 <div className="lg:w-1/2 p-8 lg:p-12">
                     <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Request a Demo</h2>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={sendEmail} ref={formRef} className="space-y-6">
                         {/* Name */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700">
