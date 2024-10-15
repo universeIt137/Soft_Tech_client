@@ -23,12 +23,12 @@ const ManageBlogPage = () => {
       console.log(id);
       const resp  = await deleteAlert();
       if(resp.isConfirmed){
-        const res = await blogDeleteApi(id);
+        let res = await blogDeleteApi(id);
         if(res){
-          toast.success("Blog deleted successfully");
-          await blogDataListApi();
+            await blogDataListApi();
+            toast.success("Blog deleted successfully");
         }else{
-          toast.error("Failed to delete blog");
+            toast.error("Failed to delete blog");
         }
       }
     };
@@ -60,7 +60,7 @@ const ManageBlogPage = () => {
                                 <td className="py-3 px-6 text-center">{moment(item?.createdAt).format("MMMM Do YYYY")}</td>
                                 <td className="py-3 px-6 text-center">
                                     <button className="hover:text-blue-700 text-black">
-                                        <NavLink to={`/edit-blog/${item.id}`}>
+                                        <NavLink to={`/dashboard/blog-update/${item._id}`}>
                                             <FaRegEdit className='text-black' size={"25px"} />
                                         </NavLink>
                                     </button>
