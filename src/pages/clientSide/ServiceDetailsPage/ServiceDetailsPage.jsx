@@ -12,7 +12,7 @@ import ServiceFeaturePage from './ServiceFeaturePage';
 const ServiceDetailsPage = () => {
     const axiosPublic = useAxiosPublic();
     let { id } = useParams();
-    // console.log(id);
+    window.scrollTo(0, 0);
 
     const { data: service = [], isLoading, error } = useQuery({
         queryKey: ['service', id], // Include 'id' in the queryKey for caching purposes
