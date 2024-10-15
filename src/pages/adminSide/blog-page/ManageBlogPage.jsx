@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { FaRegEdit } from 'react-icons/fa'
 import { MdDeleteOutline } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import blogStore from '../../../api-request/blog-api/blogStore'
 import moment from "moment/moment";
+import { deleteAlert } from '../../../helper/deleteHelperAlert'
+import toast from 'react-hot-toast'
 
 const ManageBlogPage = () => {
-    const { blogDataListApi, blogDataList } = blogStore();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { blogDataListApi, blogDataList,blogDeleteApi } = blogStore();
+    const {id} = useParams();
 
     useEffect(() => {
-        (async () => {
-            try {
-                await blogDataListApi();
-            } catch (err) {
-                setError(err.message || "Error fetching blog data");
-            } finally {
-                setLoading(false);
-            }
-        })();
+      (async()=>{
+        await blogDataListApi();
+      })()
     }, []);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
 
-    const handleDelete = (id) => {
-        // Implement delete functionality here
-        console.log(`Delete blog with ID: ${id}`);
+
+    const handleDelete = async (id) => {
+      console.log(id);
+      const resp  = await deleteAlert();
+      if(resp.isConfirmed){
+        let res = await blogDeleteApi(id);
+        if(res){
+            await blogDataListApi();
+            toast.success("Blog deleted successfully");
+        }else{
+            toast.error("Failed to delete blog");
+        }
+      }
     };
 
     return (
@@ -57,11 +60,11 @@ const ManageBlogPage = () => {
                                 <td className="py-3 px-6 text-center">{moment(item?.createdAt).format("MMMM Do YYYY")}</td>
                                 <td className="py-3 px-6 text-center">
                                     <button className="hover:text-blue-700 text-black">
-                                        <NavLink to={`/edit-blog/${item.id}`}>
+                                        <NavLink to={`/dashboard/blog-update/${item._id}`}>
                                             <FaRegEdit className='text-black' size={"25px"} />
                                         </NavLink>
                                     </button>
-                                    <button className="ml-2" onClick={() => handleDelete(item.id)}>
+                                    <button className="ml-2" onClick={()=>{handleDelete(item._id)}}>
                                         <MdDeleteOutline size={"25px"} />
                                     </button>
                                 </td>
