@@ -40,6 +40,7 @@ import UpdateMember from "../pages/adminSide/teamRelatedPage/updateMember/Update
 import CreatePortfolioPage from './../pages/adminSide/portfolioPage/CreatePortfolioPage';
 import AllPortfolioPage from "../pages/adminSide/portfolioPage/AllPortfolioPage";
 import UpdatePortfolioPage from "../pages/adminSide/portfolioPage/UpdatePortfolioPage";
+import BlogPage from "../pages/clientSide/blogRelatedPages/BlogPage";
 
 
 
@@ -118,7 +119,12 @@ const router = createBrowserRouter([
             {
                 path: "/request-demo",
                 element: <RequestDemo></RequestDemo>
-            }
+            },
+            {
+                path: "/blogs",
+                element: <BlogPage></BlogPage>
+            },
+
 
         ]
     },
