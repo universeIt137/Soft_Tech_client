@@ -42,6 +42,7 @@ const blogStore = create((set)=>({
     blogDeleteApi : async (id) => {
         let res = await axiosPublic.delete(`/blog/delete/${id}`);
         if(res.data["status"] ==='success'){
+            console.log(res);
             return true ;
         } else{
             return false;
