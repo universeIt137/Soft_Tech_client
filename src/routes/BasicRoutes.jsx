@@ -42,6 +42,9 @@ import AllPortfolioPage from "../pages/adminSide/portfolioPage/AllPortfolioPage"
 import UpdatePortfolioPage from "../pages/adminSide/portfolioPage/UpdatePortfolioPage";
 import AddBlogPage from './../pages/adminSide/blog-page/AddBlogPage';
 import ManageBlogPage from "../pages/adminSide/blog-page/ManageBlogPage";
+import BlogPage from "../pages/clientSide/blogRelatedPages/BlogPage";
+import Blogdetails from "../pages/clientSide/blogRelatedPages/Blogdetails";
+
 
 
 
@@ -120,7 +123,16 @@ const router = createBrowserRouter([
             {
                 path: "/request-demo",
                 element: <RequestDemo></RequestDemo>
-            }
+            },
+            {
+                path: "/blogs",
+                element: <BlogPage></BlogPage>
+            },
+            {
+                path: "/blogDetails/:id",
+                element: <Blogdetails></Blogdetails>
+            },
+
 
         ]
     },

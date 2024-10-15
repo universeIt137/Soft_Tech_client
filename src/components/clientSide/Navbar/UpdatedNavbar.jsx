@@ -258,6 +258,9 @@ const UpdatedNavbar = () => {
                     <NavLink to="/our-team" className={`${NavLinkStyle} text-left w-full`}>
                         Our Team
                     </NavLink>
+                    <NavLink to="/blogs" className={`${NavLinkStyle} text-left w-full`}>
+                        Blogs
+                    </NavLink>
                 </div>
 
 
@@ -371,6 +374,10 @@ const UpdatedNavbar = () => {
 
                     <NavLink to="/our-team" className={`${NavLinkStyle} text-left text-white w-full`}>
                         Our Team
+                    </NavLink>
+
+                    <NavLink to="/blogs" className={`${NavLinkStyle} text-left text-white w-full`}>
+                        Blogs
                     </NavLink>
                 </div>
 

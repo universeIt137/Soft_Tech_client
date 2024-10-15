@@ -4,6 +4,7 @@ import './ContactUs.css'; // Importing the custom CSS file
 import { FaAnglesRight } from "react-icons/fa6";
 import { useRef } from "react";
 import emailjs from '@emailjs/browser';
+import Swal from "sweetalert2";
 
 
 const fadeInVariants = {
@@ -20,23 +21,55 @@ const ContactUs = () => {
 
     const formRef = useRef();
 
+    // const sendEmail = (e) => {
+    //     e.preventDefault();
+
+    //     emailjs
+    //         .sendForm('service_sx83m91', 'template_ope8b6j', formRef.current, {
+    //             publicKey: 'PbUISmrSE9uXrKvsb',
+    //         })
+    //         .then(
+    //             () => {
+    //                 setSuccess(true);
+    //                 Swal.fire({
+    //                     position: "top-end",
+    //                     icon: "success",
+    //                     title: "Email Sent Successfully",
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 });
+    //             },
+    //             (error) => {
+    //                 setError(true);
+    //                 Swal.fire({
+    //                     position: "top-end",
+    //                     icon: "success",
+    //                     title: "Email Sent Failed",
+    //                     showConfirmButton: false,
+    //                     timer: 1500
+    //                 });
+    //                 console.log('FAILED...', error.text);
+    //             },
+    //         );
+    // };
+
     const sendEmail = (e) => {
         e.preventDefault();
 
         emailjs
-            .sendForm('service_sx83m91', 'template_ope8b6j', formRef.current, {
+            .sendForm('service_sx83m91', 'template_x1ajmyn', formRef.current, {
                 publicKey: 'PbUISmrSE9uXrKvsb',
             })
             .then(
                 () => {
-                    setSuccess(true);
+                    
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
                         title: "Email Sent Successfully",
                         showConfirmButton: false,
                         timer: 1500
-                    });
+                      });
                 },
                 (error) => {
                     setError(true);
@@ -46,11 +79,12 @@ const ContactUs = () => {
                         title: "Email Sent Failed",
                         showConfirmButton: false,
                         timer: 1500
-                    });
+                      });
                     console.log('FAILED...', error.text);
                 },
             );
     };
+
 
     return (
         <div className="bg-cover bg-center min-h-screen flex items-center justify-center">
@@ -78,7 +112,9 @@ const ContactUs = () => {
                         <div className="space-y-8">
                             <h2 className="text-3xl font-bold text-text_hover mb-6">Personal Information</h2>
 
-                            <form action="">
+                            <form action="" onSubmit={sendEmail}
+                            ref={formRef}
+                            >
                                 {/* Name & Designation */}
                                 <div className="flex flex-col lg:flex-row gap-6">
                                     <div className="w-full">
