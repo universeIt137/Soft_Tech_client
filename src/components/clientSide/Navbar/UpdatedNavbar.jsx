@@ -32,57 +32,8 @@ const UpdatedNavbar = () => {
     })
     // console.log(allProducts);
 
-    // console.log(allservices);
-
-    // Course data (logo and title)
-    const products = [
-        {
-            id: 1,
-            title: 'ERP Solution',
-            subtitle: 'ERP Solution dashboard...',
-            url: '/products-education',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp'
-        },
 
 
-        {
-            id: 2,
-            title: 'Medical Services',
-            subtitle: 'Medical Solution attendance... ',
-            url: '/courseDetails/3423',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467392/3_mkjl0m.webp'
-        },
-
-        {
-            id: 3,
-            title: 'ERP Solution',
-            subtitle: 'ERP Solution dashboard...',
-            url: '/courseDetails/3425',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467626/5_ah95wk.webp'
-        },
-
-        {
-            id: 4,
-            title: 'E-commerce Solution',
-            subtitle: 'E-commerce Solution Inventory ...',
-            url: '/courseDetails/3423',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467020/2_tt0ldj.webp'
-        },
-        {
-            id: 5,
-            title: 'Data Analytics',
-            subtitle: 'Revolutionize learning with Nimu...',
-            url: '/courseDetails/3424',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467809/6_whzw3l.webp'
-        },
-        {
-            id: 3,
-            title: 'IOT & Virtual Reality',
-            subtitle: 'Streamline sales...',
-            url: '/courseDetails/3425',
-            logo: 'https://res.cloudinary.com/dqescabbl/image/upload/v1723467979/4_crl0kc.webp'
-        },
-    ];
 
     
 
