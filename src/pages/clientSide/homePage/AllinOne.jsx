@@ -15,9 +15,9 @@ const AllinOne = () => {
                             <FaUsps className='text-7xl text-universe_secondary' />
                             <h5 className='font-bold'>Always on Top</h5>
                         </div>
-                        <h2 className="font-bold lg:text-3xl md:text-2xl text-xl mt-3">SoftTech In brief</h2>
+                        <h2 className="font-bold lg:text-3xl md:text-2xl text-xl mt-3">Universe Soft Tech In brief</h2>
                         <p className="leading-relaxed lg:text-[18px] text-base mt-5 mb-10">
-                            Universe soft Tech is a software development company in Bangladesh. We em- barked on this journey in 2020 and from 2023 our team started working under the name of Universe Soft Care, and we're passionate about giving customers the best possible experience Our motto is to make Business Digital For Today And The Future "Technology Towards Digitalization".
+                            Universe soft Tech is a software development company in Bangladesh. We em- barked on this journey in 2020 and from 2023 our team started working under the name of Universe Soft Tech, and we're passionate about giving customers the best possible experience Our motto is to make Business Digital For Today And The Future "Technology Towards Digitalization".
 
                             Universe Soft Tech is one of the best software and web development company. We do all kinds of software and web development for any industry, business, shop at a relatively affordable price. If you want to manage all the tasks of your business organization perfectly with professional software and web development, then con- tact us today.
                         </p>
