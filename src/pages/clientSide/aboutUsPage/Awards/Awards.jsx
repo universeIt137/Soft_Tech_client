@@ -7,7 +7,7 @@ const Awards = () => {
                 <div className='lg:flex gap-10'>
                     <div className='lg:w-1/2 flex flex-col justify-center'>
                         <h1 className='text-2xl sm:text-3xl uppercase mb-5 font-bold'>Industry <span className='text-text_primari underline '>Awards</span> and Recognition</h1>
-                        <p className='text-lg text-justify'>Universe SoftTech sincerely feel that all service is unique, and Universe SoftTech has achieve honors to prove it. Every year, Universe SoftTech has been recognized by industry leaders and awarded for everything from outstanding in-house support to being an eco-friendly IT Solutions Company.</p>
+                        <p className='text-lg text-justify'>Universe Soft Tech sincerely feel that all service is unique, and Universe Soft Tech has achieve honors to prove it. Every year, Universe Soft Tech has been recognized by industry leaders and awarded for everything from outstanding in-house support to being an eco-friendly IT Solutions Company.</p>
                     </div>                    
 
                         <div className='lg:w-1/2 lg:bg-text_primari'>

@@ -22,6 +22,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const HomePage = () => {
 
+    window.scrollTo(0, 0);
     const axiosPublic = useAxiosPublic();
 
     const { data: products = [] } = useQuery({

@@ -57,8 +57,8 @@ const ContactUs = () => {
         e.preventDefault();
 
         emailjs
-            .sendForm('service_sx83m91', 'template_x1ajmyn', formRef.current, {
-                publicKey: 'PbUISmrSE9uXrKvsb',
+            .sendForm('service_7qf4r5a', 'template_4o7c5qw', formRef.current, {
+                publicKey: '9GK64Bx_s0ue-trKu',
             })
             .then(
                 () => {
@@ -153,7 +153,7 @@ const ContactUs = () => {
                                 <div className="mt-6">
                                     <label className="inline-flex items-center">
                                         <input type="checkbox" defaultChecked className="checkbox" />
-                                        <span className="text-gray-800 ml-2">By submitting, you agree to receive marketing emails from Nimusoft Technologies Ltd. Unsubscribe anytime. View our <Link to="/privacy-policy" className="text-bg_btn_primary hover:text-bg_btn_hover">Privacy Policy.</Link>.</span>
+                                        <span className="text-gray-800 ml-2">By submitting, you agree to receive marketing emails from Universe Soft Tech. Unsubscribe anytime. View our <Link to="/privacy-policy" className="text-bg_btn_primary hover:text-bg_btn_hover">Privacy Policy.</Link>.</span>
                                     </label>
                                 </div>
 

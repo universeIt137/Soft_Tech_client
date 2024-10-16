@@ -18,9 +18,9 @@ const About = () => {
             </div>
 
             <div className="lg:w-3/5 text-justify mr-10 mt-5">
-                <h1 className="text-3xl md:text-4xl mb-6 uppercase font-semibold"><span className="text-text_blue underline ">About</span> <span className="text-universe_primary">Universe SoftTech</span></h1>
-                <h3 className="text-xl mb-6">Universe SoftTech's commitment to serving quality service has gained the respect of customers and partners worldwide.</h3>
-                <p className="text-xl mb-6">Universe SoftTech has been serving Enterprise IT Solutions in Bangladesh since 2020. Currently serving thousands of customers worldwide including Bangladesh and the USA. All services are using many Government and Corporate organization. Universe SoftTech builds and manages own Server infrastructure in Bangladesh and the USA. At present, Universe SoftTech is working to extend infrastructure in India, Canada, South Africa, Singapore and Mexico.</p>
+                <h1 className="text-3xl md:text-4xl mb-6 uppercase font-semibold"><span className="text-text_blue underline ">About</span> <span className="text-universe_primary">Universe Soft Tech</span></h1>
+                <h3 className="text-xl mb-6">Universe Soft Tech's commitment to serving quality service has gained the respect of customers and partners worldwide.</h3>
+                <p className="text-xl mb-6">Universe Soft Tech has been serving Enterprise IT Solutions in Bangladesh since 2020. Currently serving thousands of customers worldwide including Bangladesh and the USA. All services are using many Government and Corporate organization. Universe Soft Tech builds and manages own Server infrastructure in Bangladesh and the USA. At present, Universe Soft Tech is working to extend infrastructure in India, Canada, South Africa, Singapore and Mexico.</p>
                 <div className="lg:flex justify-between gap-6">
                     <div className="">
                         <div className="flex items-center gap-3 text-lg">
