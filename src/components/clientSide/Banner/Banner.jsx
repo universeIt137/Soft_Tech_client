@@ -19,7 +19,7 @@ const Banner = () => {
                     }}
                     className='text-xl md:text-2xl mt-8 text-wrap mb-8'
                 >
-                    Universe Soft Tech is a Bangladesh based Enterprise IT Solutions Company in Bangladesh. Universe SoftTech maintains a high-quality infrastructure worldwide. Main objective is to give the best possible service to customers.
+                    Universe Soft Tech is a Bangladesh based Enterprise IT Solutions Company in Bangladesh. Universe Soft Tech maintains a high-quality infrastructure worldwide. Main objective is to give the best possible service to customers.
                 </p>
 
             </div>
