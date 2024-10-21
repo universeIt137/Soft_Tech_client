@@ -366,9 +366,9 @@ const UpdateServicePage = () => {
                   name="feature_description"
                   className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   defaultValue={item?.feature_description}
+                  key = {Date.now()}
                   placeholder="Enter feature description"
                   rows="7"
-                  key={Date.now()}
                 />
               </div>
             </div>
