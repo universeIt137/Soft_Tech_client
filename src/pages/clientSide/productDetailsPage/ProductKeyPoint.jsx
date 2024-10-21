@@ -9,47 +9,53 @@ const ProductKeyPoint = () => {
 
     return (
         <div>
-        <div className="lg:flex text-center lg:text-start">
-            <div className="lg:w-1/4  bg-green-500" data-aos="fade-up">
-                <div className='p-10 text-white'>
-                    <p className='text-3xl font-bold'>
-                        Academic Management
-                    </p>
-                    <p>All kind of Academic Features</p>
+            <div className="grid grid-cols-1 lg:grid-cols-4 text-center lg:text-start">
+                <div className="  bg-green-500" data-aos="fade-up">
+                    <div className='p-10 text-white'>
+                        <p className='text-xl lg:text-3xl font-bold'>
+                            High-Quality Standards
+                        </p>
+                        <p>We prioritize quality to ensure that every product/service meets industry standards and exceeds customer expectations.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="lg:w-1/4  bg-blue-500" data-aos="fade-up">
-                <div className='p-10 text-white'>
-                    <p className='text-3xl font-bold'>
-                        Online Admission System
-                    </p>
-                    <p>Student Online Admission</p>
+                <div className="  bg-blue-500" data-aos="fade-up">
+                    <div className='p-10 text-white'>
+                        <p className='text-xl lg:text-3xl font-bold'>
+                            Customer-Focused Solutions
+                        </p>
+                        <p>
+                        Our solutions are designed with the customer in mind, offering personalized experiences and exceptional service.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="lg:w-1/4  bg-yellow-500" data-aos="fade-up">
-                <div className='p-10 text-white'>
-                    <p className='text-3xl font-bold'>
-                        Students And Teachers
-                    </p>
-                    <p>Class Wise Manage</p>
+                <div className="  bg-yellow-500" data-aos="fade-up">
+                    <div className='p-10 text-white'>
+                        <p className='text-xl lg:text-3xl font-bold'>
+                        Innovative Approach
+                        </p>
+                        <p>
+                        We embrace the latest technologies and trends to provide cutting-edge products/services that stay ahead of the market.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="lg:w-1/4  bg-pink-500" data-aos="fade-up">
-                <div className='p-10 text-white'>
-                    <p className='text-3xl font-bold'>
-                        Exam And Results
-                    </p>
-                    <p>Exam & Result Publish Manage</p>
+                <div className="  bg-pink-500" data-aos="fade-up">
+                    <div className='p-10 text-white'>
+                        <p className='text-xl lg:text-3xl font-bold'>
+                        Reliable Support
+                        </p>
+                        <p>
+                        Our dedicated support team is available 24/7 to assist you with any queries or issues, ensuring a smooth and hassle-free experience.
+                        </p>
+                    </div>
                 </div>
+
+
+
             </div>
-
-
-
         </div>
-    </div>
     );
 };
 

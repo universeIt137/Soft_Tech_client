@@ -11,12 +11,12 @@ const ServiceBanner = ({ service }) => {
 
     return (
         <div>
-            <div className="lg:min-h-screen my-5 grid grid-cols-1 lg:grid-cols-2 w-4/5 mx-auto justify-center items-center">
+            <div className="lg:min-h-screen my-5 grid grid-cols-1 gap-20 lg:grid-cols-2 w-4/5 mx-auto justify-center items-center">
                 <div className="my-aos-element mb-5" data-aos="zoom-out">
-                    <p className='lg:text-7xl text-3xl text-center lg:text-start font-bold'>
+                    <p className='lg:text-5xl text-3xl text-center lg:text-start font-bold'>
                         {banner_title}
                     </p>
-                    <p className='text-xl text-center lg:text-start'>{banner_description}</p>
+                    <p className='text-xl text-center mt-5 lg:text-start'>{banner_description}</p>
 
 
                     <div className=" flex justify-center lg:justify-start">

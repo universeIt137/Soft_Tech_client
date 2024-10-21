@@ -10,7 +10,7 @@ const ServiceFeatures = ({ features }) => {
     console.log(features);
     return (
         <div className="container mx-auto my-10 lg:my-20">
-            <p className="text-2xl lg:text-7xl font-bold text-center my-5">Features Of Our Service</p>
+            <p className="text-2xl lg:text-5xl font-bold text-center my-5">Features Of Our Service</p>
             <div className="grid lg:grid-cols-4 grid-cols-2 lg:mx-0 mx-5 mx:mx-5 gap-2 lg:gap-7">
                 {
                     features?.map(feature =>
@@ -26,7 +26,7 @@ const ServiceFeatures = ({ features }) => {
                                 </div> */}
                             </div>
 
-                            <h2 className="font-bold text-xs lg:text-3xl my-4 text-center">{feature?.feature_title}</h2>
+                            <h2 className="font-bold text-xs lg:text-xl my-4 text-center">{feature?.feature_title}</h2>
                             <p className="text-gray-600 text-justify text-xs lg:text-sm">
                                 {feature?.feature_description.slice(0, 200)}
                             </p>

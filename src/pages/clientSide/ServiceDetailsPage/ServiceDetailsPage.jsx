@@ -26,6 +26,7 @@ const ServiceDetailsPage = () => {
 
 
     const features = service?.feature;
+    const key_points = service?.key_point;
 
     console.log(features);
 
@@ -40,7 +41,7 @@ const ServiceDetailsPage = () => {
                 
                 
                 <div className=' container mx-auto mb-10' >
-                    <ServiceKeyPoint></ServiceKeyPoint>
+                    <ServiceKeyPoint key_points={key_points}></ServiceKeyPoint>
                 </div>
                 
             </div>

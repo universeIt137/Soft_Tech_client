@@ -58,7 +58,7 @@ const ManageProductPage = () => {
           <thead>
             <tr className="w-full bg-gray-800 text-white">
               <th className="text-left py-3 px-4">SL No</th>
-              <th className="text-left py-3 px-4">Banner Title</th>
+              <th className="text-left py-3 px-4">Product Name</th>
               <th className="text-left py-3 px-4">Banner Img</th>
               <th className="text-left py-3 px-4">Live Link</th>
               <th className="text-left py-3 px-4">Actions</th>
@@ -68,7 +68,7 @@ const ManageProductPage = () => {
             {productDataList.map((item, i) => (
               <tr key={i} className="border-t border-gray-300">
                 <td className="py-3 px-4">{i + 1}</td>
-                <td className="py-3 px-4">{item.banner_title ? item.banner_title.slice(0, 15) : 'No title available'}...</td>
+                <td className="py-3 px-4">{item.nav_title ? item.nav_title : 'No title available'}</td>
                 <td className="py-3 px-4">
                   <img
                     src={item.banner_img}

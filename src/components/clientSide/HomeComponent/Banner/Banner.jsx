@@ -18,7 +18,7 @@ const Banner = () => {
                         Providing You <br /> <span className="text-text_primari"> Smart Digital Solutions </span> <br />for Future-Ready Business <br className="hidden lg:block" />
                     </h1>
                     <p className="text-text_blue leading-7 -tracking-[0.2px] lg:w-[510px] basis-[510px] lg:text-justify text-center md:text-start mb-5 px-10 md:px-0 lg:px-0">
-                        At Softech, we offer comprehensive digital solutions like POS, HRM, and LMS, tailored to optimize your business processes and drive growth in the digital age.
+                        At Sof Tech, we offer comprehensive digital solutions like POS, HRM, and LMS, tailored to optimize your business processes and drive growth in the digital age.
                     </p>
                     <div className="flex flex-col md:flex-row lg:flex-row gap-5 py-5 px-10 md:px-0 lg:px-0">
 

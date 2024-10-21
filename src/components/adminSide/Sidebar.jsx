@@ -1,389 +1,306 @@
-import React, { Fragment, useContext, useState } from "react";
-import { IoMdAddCircle, IoMdLogOut } from "react-icons/io";
-import { MdManageHistory, MdMenuOpen } from "react-icons/md";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import React, { useState, useContext } from "react";
+import { IoMdLogOut } from "react-icons/io";
+import { MdAssessment, MdMenuOpen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { GiStairsGoal } from "react-icons/gi";
-import { GrServices } from "react-icons/gr";
-import { SlEnvolopeLetter } from "react-icons/sl";
 import { AiOutlineProduct } from "react-icons/ai";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { RiTeamLine } from "react-icons/ri";
+import { SlEnvolopeLetter } from "react-icons/sl";
+
+const serviceIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png";
+const careerIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [openService, setOpenService] = useState(true);
-  const [openCareer, setOpenCareer] = useState(true);
-  const [openPortfolio, setOpenPortfolio] = useState(true);
-  const [openBlog, setOpenBlog] = useState(true);
-  const [openProduct, setOpenProduct] = useState(true);
-  const [openApplication, setOpenApplication] = useState(true);
-  const [activeDropdown, setActiveDropdown] = useState(null); // Single state to track active dropdown
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logOut()
-      .then(res => {
+      .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Logout Successful",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
-        navigate('/');
+        navigate("/");
       })
-      .catch(err => {
-        console.log(err.message);
-      })
-  }
+      .catch((err) => console.log(err.message));
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    if (!isSidebarOpen) {
+      setActiveDropdown(null); // Close all dropdowns when sidebar shrinks
+    }
   };
 
   const handleDropdownToggle = (dropdown) => {
-    // Toggle the clicked dropdown and close others
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
   return (
-    <>
-      <div
-        className={`bg-universe_secondary h-screen text-white transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-14"
-          }`}
-      >
-        <div className="flex justify-between items-center p-4 gap-4">
-          <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
-            <div className="bg-white px-4 py-4 rounded-xl">
-              <Link to="/">
-                <img
-                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png"
-                  alt="Logo"
-                />
-              </Link>
-            </div>
-          </div>
-          <button
-            onClick={toggleSidebar}
-            className="text-white focus:outline-none"
-          >
-            {isSidebarOpen ? (
-              <IoCloseCircleOutline className="text-4xl" />
-            ) : (
-              <MdMenuOpen className="text-3xl" />
-            )}
-          </button>
+    <div
+      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-14"
+        }`}
+    >
+      <div className="flex justify-between items-center p-4">
+        <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
+          <Link to="/">
+            <img
+              src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png"
+              alt="Logo"
+              className="bg-white p-4 rounded-xl"
+            />
+          </Link>
         </div>
-        <nav>
-          <ul>
+        <button onClick={toggleSidebar} className="text-white focus:outline-none">
+          {isSidebarOpen ? (
+            <IoCloseCircleOutline className="text-4xl" />
+          ) : (
+            <MdMenuOpen className="text-3xl" />
+          )}
+        </button>
+      </div>
 
-            {/* Product */}
-            <li className="">
-              <label
-                onClick={() => {
-                  handleDropdownToggle("product");
-                  setOpenProduct(!openProduct);
-                }}
-                className={`-my-4 flex items-center space-x-3 p-3 w-full text-left border-bg_btn_hover rounded-none transition duration-200 hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
-              >
-                <AiOutlineProduct size={"40px"} />
-
-                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center my-4 -ml-1 items-center gap-4">
-                    Product
-                    <span className="block ml-[47px] -mt-1">
-                      {openProduct ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
-                </span>
-              </label>
-
-              <ul
-                className={`ml-8 ${activeDropdown !== "product" && "hidden"} ${!isSidebarOpen && "text-center"
-                  } ${isSidebarOpen ? "block" : "hidden"}`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/add-product"
-                    className="p-2 block rounded-none transition duration-200 text-white hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Add Product
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/manage-product"
-                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Manage Product
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-
-            {/* Services */}
-            <li>
-              <label
-                onClick={() => {
-                  handleDropdownToggle("service");
-                  setOpenService(!openService);
-                }}
-                className={` mt-2 flex items-center space-x-3 p-3 w-full text-left  transition duration-200 hover: rounded-none ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
-              >
-                <img
-                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png"
-                  className="w-9"
-                  alt="Services"
-                />
-                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center items-center gap-4">
-                    Services
-                    <span className="ml-10">
-                      {openService ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
-                </span>
-              </label>
-
-              <ul
-                className={`ml-8 ${activeDropdown !== "service" && "hidden"} ${!isSidebarOpen && "text-center"
-                  } ${isSidebarOpen ? "block" : "hidden"}`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/add-service"
-                    className="p-2 block -my-2 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Add Service
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/manage-service"
-                    className="p-2 -my-4 block transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black border-bg_btn_hover rounded-none"
-                  >
-                    Manage Service
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-
-            {/* Career */}
-            <li>
-              <label
-                onClick={() => {
-                  handleDropdownToggle("career");
-                  setOpenCareer(!openCareer);
-                }}
-                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
-              >
-                <img
-                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
-                  className="w-9"
-                  alt="Career"
-                />
-                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center items-center gap-4">
-                    Career
-                    <span className="ml-[53px]">
-                      {openCareer ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
-                </span>
-              </label>
-
-              <ul
-                className={`ml-8 ${activeDropdown !== "career" && "hidden"} ${!isSidebarOpen && "text-center"
-                  } ${isSidebarOpen ? "block" : "hidden"}`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/add-career"
-                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Add Career
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/manage-career"
-                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Manage Career
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-
-              
-              {/* portfolio */}
-
-            <li>
-              <label
-                onClick={() => {
-                  handleDropdownToggle("portfolio");
-                  setOpenPortfolio(!openPortfolio);
-                }}
-                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
-              >
-                <img
-                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
-                  className="w-9"
-                  alt="Career"
-                />
-                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center items-center gap-4">
-                    Portfolio
-                    <span className="ml-[53px]">
-                      {openPortfolio ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
-                </span>
-              </label>
-
-              <ul
-                className={`ml-8 ${activeDropdown !== "portfolio" && "hidden"} ${!isSidebarOpen && "text-center"
-                  } ${isSidebarOpen ? "block" : "hidden"}`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/create-portfolio"
-                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Create Portfolio
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/manage-portfolio"
-                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Manage Portfolio
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-
-
-          {/* blog  */}
-
+      <nav>
+        <ul className="space-y-2">
 
           <li>
+            <Link to={'/dashboard'}>
               <label
-                onClick={() => {
-                  handleDropdownToggle("blog");
-                  setOpenBlog(!openBlog);
-                }}
-                className={` -my-4 flex items-center space-x-3 p-3 w-full text-left  border-bg_btn_hover rounded-none transition duration-200  hover:text-white ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
+
+                className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
               >
-                <img
-                  src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png"
-                  className="w-9"
-                  alt="Career"
-                />
-                <span className={` ${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center items-center gap-4">
-                    Blog
-                    <span className="ml-[53px]">
-                      {openPortfolio ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
-                </span>
+                <MdAssessment size={30} />
+                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Dashboard</span>
+
               </label>
+            </Link>
 
-              <ul
-                className={`ml-8 ${activeDropdown !== "blog" && "hidden"} ${!isSidebarOpen && "text-center"
-                  } ${isSidebarOpen ? "block" : "hidden"}`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/add-blog"
-                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Add Blog
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/manage-blog"
-                    className="p-2 block -my-4 border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Manage Blog
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+          </li>
 
-
-
-            {/* Application */}
-
-            <li>
-              <label
-                onClick={() => {
-                  handleDropdownToggle("application");
-                  setOpenApplication(!openApplication);
-                }}
-                className={`-my-4 flex items-center space-x-3 p-3 w-full transition text-left rounded-none transition duration-200 ${isSidebarOpen ? "text-white" : "text-center"
-                  }`}
-              >
-                <SlEnvolopeLetter size={"35px"} />
-                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>
-                  <p className="flex justify-center items-center gap-4">
-                    Application
-                    <span className="ml-[25px]">
-                      {openApplication ? <FaAngleDown /> : <FaAngleUp />}
-                    </span>
-                  </p>
+          {/* Product */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("product")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <AiOutlineProduct size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Products</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "product" ? <FaAngleUp /> : <FaAngleDown />}
                 </span>
-              </label>
-
-              <ul
-                className={`ml-8 ${activeDropdown !== "application" && "hidden"
-                  } ${!isSidebarOpen && "text-center"} ${isSidebarOpen ? "block" : "hidden"
-                  }`}
-              >
-                <li>
-                  <NavLink
-                    to="/dashboard/application"
-                    className="p-2 block border-bg_btn_hover rounded-none transition duration-200 hover:bg-white hover:text-black focus:bg-white focus:text-black"
-                  >
-                    Manage Applications
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <Link to={"/dashboard/manage-team"}>
-                <label
-
-                  className={`-my-2 flex items-center space-x-3 p-3 w-full text-left rounded-none transition duration-200 `}
+              )}
+            </label>
+            <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/add-product"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
                 >
-                  <RiTeamLine size={"35px"} />
-                  <span>
-                    <p className="flex justify-center items-center gap-4">
-                      Manage TeamMember
-                    </p>
-                  </span>
-                </label>
-              </Link>
-            </li>
-            
-          </ul>
-        </nav>
-      </div>
-    </>
+                  Add Product
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-product"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Product
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Portfolio */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("portfolio")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <AiOutlineProduct size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Portfolio projects</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "portfolio" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "portfolio" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/create-portfolio"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Portfolio
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-portfolio"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Portfolio
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Services */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("service")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <img src={serviceIcon} alt="Services" className="w-9" />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Services</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "service" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "service" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/add-service"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Service
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-service"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Service
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Career */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("career")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <img src={careerIcon} alt="Career" className="w-9" />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Career</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "career" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "career" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/add-career"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Career
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-career"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Career
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Blog */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("blog")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <img src={careerIcon} alt="Blog" className="w-9" />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Blog</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "blog" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "blog" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/add-blog"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Blog
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-blog"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Blog
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Application */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("application")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <SlEnvolopeLetter size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Application</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "application" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "application" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/application"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Applications
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Team Management */}
+          <li>
+            <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <RiTeamLine size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Team</span>
+            </Link>
+          </li>
+
+          {/* Logout */}
+          <li onClick={handleLogout}>
+            <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <IoMdLogOut size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Logout</span>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 };
 

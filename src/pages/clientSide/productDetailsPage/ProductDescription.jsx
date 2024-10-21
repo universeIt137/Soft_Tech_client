@@ -13,30 +13,18 @@ const ProductDescription = ({ product }) => {
 
     return (
         <div>
-            <section className="Digital-education w-11/12 mx-auto mt-32">
-                <div className="grid grid-cols-1 lg:grid-cols-2  justify-center items-center gap-5">
-                    <div className="" data-aos="zoom-in">
-                        <img src={product?.feature_logo} alt="" className='rounded-2xl shadow-lg' />
-                    </div>
-                    <div className="text-center lg:text-start space-y-4" data-aos="zoom-in">
-                        <p className='text-3xl lg:text-5xl text-universe_primary font-bold'>
-                           {product?.feature}
-                        </p>
-                        <p className='text-xl'>
-                            {product?.short_description}
-                        </p>
-                        
-                    </div>
-                </div>
+            <section className="Digital-education w-11/12 mx-auto lg:mt-32 mt-5 ">
+                <p className="text-2xl lg:text-5xl font-bold text-center">Keypoints of the Project</p>
+                
 
                 <div>
-                    <div className='grid grid-cols-2 lg:grid-cols-4 text-center lg:gap-12 lg:text-4xl font-bold w-4/5 mx-auto my-5 gap-5  lg:space-y-0'>
+                    <div className='grid grid-cols-2 lg:grid-cols-4 text-center lg:gap-12 lg:text-4xl font-bold mx-auto my-5 gap-5  lg:space-y-0'>
 
                         {
                             bulletpoint?.map(point =>
-                                <div key={point._id} className="flex justify-center flex-col items-center rounded-xl shadow-xl py-10 text-universe_secondary border" data-aos="fade-up">
+                                <div key={point._id} className="flex justify-center flex-col items-center rounded-xl shadow-xl lg:py-10 p-2 text-universe_secondary border" >
                                 <img src={point?.description_img} alt="" className='size-12' />
-                                    <p className='text-xl my-3 '>{ point?.description_title }</p>
+                                    <p className='text-xs lg:text-xl my-3 '>{ point?.description_title }</p>
                                     
                             </div>)
                         }
