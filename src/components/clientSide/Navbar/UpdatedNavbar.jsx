@@ -109,11 +109,11 @@ const UpdatedNavbar = () => {
 
             {/* Products Dropdown Menu */}
             <div
-                className={`absolute border mx-auto top-12 left-20 rounded-md bg-white transition-all origin-top duration-300 ${isDropdownOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
+                className={`absolute border mx-auto top-12 left-120 rounded-md bg-white transition-all origin-top duration-300 ${isDropdownOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     }`}
-                style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
+                style={{ width: '200px', minWidth: '700px', maxWidth: '700px' }} // Adjust width if needed
             >
-                <div className="grid grid-cols-2 gap-4 ">
+                <div className="grid grid-cols-3 gap-4 ">
                     {allProducts.map((product) => (
                         <NavLink
 
@@ -146,11 +146,11 @@ const UpdatedNavbar = () => {
 
             {/* Services Dropdown Menu */}
             <div
-                className={`absolute border mx-auto top-10 left-56 rounded-md bg-white transition-all origin-top duration-300 ${isDropdownOpen2 ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
+                className={`absolute border mx-auto top-10 left-166 rounded-md bg-white transition-all origin-top duration-300 ${isDropdownOpen2 ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     }`}
-                style={{ width: '200px', minWidth: '400px', maxWidth: '400px' }} // Adjust width if needed
+                style={{ width: '200px', minWidth: '700px', maxWidth: '700px' }} // Adjust width if needed
             >
-                <div className="grid grid-cols-2 gap-4 ">
+                <div className="grid grid-cols-3 gap-4 ">
                     {allservices.map((service) => (
                         <NavLink
                             key={service._id}

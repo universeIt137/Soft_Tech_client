@@ -33,7 +33,7 @@ const OurProductsSection = ({products}) => {
                     <p className="text-center text-xs mb-3 lg:text-xl">Explore how Soft Tech HRM, Soft Tech Attendance, and Soft Tech Inventory streamline and enhance your business operations</p>
                 </div>
 
-                {/* nimusogt product card */}
+                {/* soft Tech product card */}
                 <div className="grid grid-cols-2  lg:grid-cols-3 lg:gap-10 gap-4 lg:my-10" >
 
 
@@ -43,20 +43,20 @@ const OurProductsSection = ({products}) => {
                                 {/* Top section with image and title */}
                                 <div className="text-center py-5 md:py-8">
                                     <img className=" mx-auto size-10 lg:size-32"
-                                        src="https://res.cloudinary.com/dqescabbl/image/upload/v1723465405/1_ggkx2f.webp"
+                                        src={product?.nav_logo}
                                         alt="Soft Tech HRM" />
                                 </div>
 
                                 {/* Text content */}
                                 <div className="px-5 md:px-10 lg:px-5 py-14 text-white">
                                     {/* Title with truncation and ellipsis */}
-                                    <h2 className="text-[14px] font-bold mt-3 md:text-3xl lg:text-2xl text-center break-words leading-tight overflow-hidden text-ellipsis">
-                                        {product?.main_title?.length > 50 ? `${product.main_title.substring(0, 50)}...` : product.main_title}
+                                    <h2 className="text-[14px] font-bold my-3 md:text-3xl lg:text-2xl text-center break-words leading-tight overflow-hidden text-ellipsis">
+                                        {product?.banner_title?.length > 50 ? `${product.banner_title.substring(0, 50)}...` : product.banner_title}
                                     </h2>
 
                                     {/* Description */}
                                     <p className="text-center text-xs leading-relaxed lg:text-[14px] hidden lg:flex">
-                                        {product.short_description}
+                                        {product?.banner_description}
                                     </p>
                                 </div>
 

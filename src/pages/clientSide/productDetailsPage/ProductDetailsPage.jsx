@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
+import FeaturedProductSection from './FeaturedProductSection';
 
 const ProductDetailsPage = () => {
     window.scrollTo(0, 0);
@@ -22,6 +23,7 @@ const ProductDetailsPage = () => {
     });
 
     console.log(product)
+    const extraDatas = product?.extra_data;
 
     return (
         <>
@@ -32,7 +34,8 @@ const ProductDetailsPage = () => {
             <div className=' min-h-screen bg-universe_secondary items-center justify-center flex'>
                 <ProductBanner product={product}></ProductBanner>
             </div>
-            {/* <ProductKeyPoint></ProductKeyPoint> */}
+            <ProductKeyPoint ></ProductKeyPoint>
+            <FeaturedProductSection product={product}></FeaturedProductSection>
 
             <ProductDescription product={product}></ProductDescription>
         </>

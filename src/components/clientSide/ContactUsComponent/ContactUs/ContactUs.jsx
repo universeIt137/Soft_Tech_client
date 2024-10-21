@@ -98,7 +98,7 @@ const ContactUs = () => {
                         transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
                         className="flex-1 hidden lg:block space-y-6 lg:space-y-10"
                     >
-                        <img src="https://i.postimg.cc/CLDQgBNM/contact-img.png" alt="contactImg" className="w-full" />
+                        <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729485230/Universe%20Soft%20Tech/zjetibjzjnlhsv5xgj0q.png" alt="contactImg" className="w-full" />
                     </motion.div>
 
                     {/* Right Section */}

@@ -19,11 +19,7 @@ const PrivateRoutes = ({ children }) => {
 
     return <Navigate to={'/admin-login'}></Navigate>
 
-    return (
-        <div>
-
-        </div>
-    );
+    
 };
 
 export default PrivateRoutes;

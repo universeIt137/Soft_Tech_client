@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { IoMdLogOut } from "react-icons/io";
-import { MdMenuOpen } from "react-icons/md";
+import { MdAssessment, MdMenuOpen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineProduct } from "react-icons/ai";
@@ -48,9 +48,8 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${
-        isSidebarOpen ? "w-64" : "w-14"
-      }`}
+      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-14"
+        }`}
     >
       <div className="flex justify-between items-center p-4">
         <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
@@ -73,6 +72,21 @@ const Sidebar = () => {
 
       <nav>
         <ul className="space-y-2">
+
+          <li>
+            <Link to={'/dashboard'}>
+              <label
+
+                className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+              >
+                <MdAssessment size={30} />
+                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Dashboard</span>
+
+              </label>
+            </Link>
+
+          </li>
+
           {/* Product */}
           <li>
             <label
@@ -80,7 +94,7 @@ const Sidebar = () => {
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
               <AiOutlineProduct size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Product</span>
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Products</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "product" ? <FaAngleUp /> : <FaAngleDown />}
@@ -102,6 +116,40 @@ const Sidebar = () => {
                   className="p-2 block transition duration-200 hover:bg-white hover:text-black"
                 >
                   Manage Product
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* Portfolio */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("portfolio")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <AiOutlineProduct size={30} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Portfolio projects</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "portfolio" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "portfolio" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/create-portfolio"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Portfolio
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-portfolio"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Portfolio
                 </NavLink>
               </li>
             </ul>
