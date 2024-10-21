@@ -33,6 +33,7 @@ const blogStore = create((set)=>({
     },
     blogUpdateApi : async (id,payload) => {
         let res = await axiosPublic.put(`/blog/update/${id}`,payload);
+        console.log(payload);
         if(res.data["status"] ==='success'){
             return true ;
         } else{
