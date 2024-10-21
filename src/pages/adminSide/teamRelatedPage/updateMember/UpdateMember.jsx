@@ -151,7 +151,7 @@ const UpdateMember = () => {
                             name="team_img"
                             accept="image/*"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
-                            required
+                           
                         />
                     </div>
 

@@ -1,34 +1,36 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
 import { logoInstagram, logoFacebook, logoTwitter, logoLinkedin } from 'ionicons/icons';
+import { Link } from 'react-router-dom';
 
 
 const ExpandableCards = () => {
     const cards = [
         {
-            name: "Emma Watson",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png",
-            movies: ["Harry Potter", "Beauty and the Beast"],
+            name: "LMS",
+            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498702/Universe%20Soft%20Tech/Homepage/nkgavootdezpwkdrum3b.png",
+            live_link: "https://learning-management-syst-f5df8.web.app/"
         },
         {
-            name: "De Caprio",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725706680/Universe%20Soft%20Tech/Homepage/arxlwbefeftpoje8foqs.png",
-            movies: ["Titanic", "The Wolf of Wall Street"],
+            name: "Eranian",
+            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498716/Universe%20Soft%20Tech/Homepage/ck8op8zhfrdfpllovh1k.png",
+            live_link: "https://eranian.onrender.com/"
         },
         {
-            name: "Selena Gomez",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png",
-            movies: ["Getaway", "Monte Carlo"],
+            name: "Bideshgami",
+            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498703/Universe%20Soft%20Tech/Homepage/u5f2ggzughqk2oyjd2bm.png",
+            live_link: "https://bideshgami-a638b.web.app/"
         },
         {
-            name: "Tom Cruise",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725706679/Universe%20Soft%20Tech/Homepage/mvfelsdxbcmcbj0t1qfl.png",
-            movies: ["Top Gun", "Mission Impossible"],
+            name: "Quantum",
+            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498708/Universe%20Soft%20Tech/Homepage/yxxgwuzeelcvwtpsgdne.png",
+            live_link: "https://quantum-builders.onrender.com"
+
         },
         {
-            name: "Kristen Stewart",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725537856/Universe%20Soft%20Tech/portfolioPage/q2nnxeoele8zh1dhbmjn.png",
-            movies: ["Twilight", "Underwater"],
+            name: "Abinash Foundation",
+            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498723/Universe%20Soft%20Tech/Homepage/z2ehfg1tdw9u8r0cexlg.png",
+            live_link: "http://abinashfoundation.com"
         },
     ];
 
@@ -41,26 +43,22 @@ const ExpandableCards = () => {
                     {cards.map((card, index) => (
                         <div
                             key={index}
-                            className={`relative  w-52 h-[500px] bg-cover bg-center rounded-lg  overflow-hidden transition-all duration-500 hover:w-96 cursor-pointer`}
+                            className={`relative w-52 h-[500px] bg-cover bg-center rounded-b-3xl overflow-hidden transition-all duration-500 hover:w-96 cursor-pointer`}
                             style={{ backgroundImage: `url(${card.image})` }}
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent rounded-b-3xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="absolute w-72 px-8 bottom-8 translate-x-full opacity-0 hover:translate-x-0 hover:opacity-100 transition-all duration-500 text-white">
-                                <h3 className="text-2xl text-yellow-300">{card.name}</h3>
-                                <h4 className="text-lg text-gray-400">Follow</h4>
-                                <div className="flex space-x-4 my-4">
-                                    <p className='text-white'>This is work</p>
-                                </div>
-                                <h2 className="text-purple-300">Movies</h2>
-                                <div>
-                                    {card.movies.map((movie, i) => (
-                                        <p key={i}>{movie}</p>
-                                    ))}
-                                </div>
+                            {/* Gradient overlay that appears on hover */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent rounded-b-3xl opacity-0 hover:opacity-100 transition-opacity duration-500">
+                                {/* Test text that becomes visible on hover */}
+                                <Link to={ card.live_link }>
+                                    <p className="absolute text-4xl text-white w-full text-center bottom-0 transform -translate-y-1/2 hover:text-blue-700">
+                                        {card.name}
+                                    </p>
+                                </Link>
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </>
     );
