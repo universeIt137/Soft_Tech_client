@@ -98,7 +98,7 @@ const UpdateServicePage = () => {
       <form onSubmit={handleSubmit}>
         <div className="avatar">
           <div className="w-12">
-            <img src= {getSingleServiceData?.nav_logo} />
+            <img key={Date.now()} src= {getSingleServiceData?.nav_logo} />
           </div>
         </div>
         <div className="flex flex-col md:flex md:flex-row md:gap-4">
@@ -134,6 +134,7 @@ const UpdateServicePage = () => {
               className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
               placeholder="Nav Title"
               defaultValue={getSingleServiceData.nav_title}
+              key = {Date.now()}
             />
           </div>
         </div>
@@ -153,11 +154,12 @@ const UpdateServicePage = () => {
             placeholder="Enter nav description"
             rows="4"
             defaultValue={getSingleServiceData.nav_description}
+            key={Date.now()}
           />
         </div>
           <div className="avatar">
             <div className="w-12">
-              <img src= {getSingleServiceData?.banner_img} />
+              <img key={Date.now()} src= {getSingleServiceData?.banner_img} />
             </div>
           </div>
 
@@ -178,6 +180,7 @@ const UpdateServicePage = () => {
               className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
               placeholder="Main Title"
               defaultValue={getSingleServiceData.banner_title}
+              key={Date.now()}
             />
           </div>
 
@@ -214,6 +217,7 @@ const UpdateServicePage = () => {
             className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
             placeholder="Tag Line"
             defaultValue={getSingleServiceData.banner_description}
+            key={Date.now()}
           />
         </div>
 
@@ -226,7 +230,7 @@ const UpdateServicePage = () => {
               </h3>
               <div className="avatar">
                 <div className="w-12">
-                  <img src={item?.key_point_img} alt="key_point_img" />
+                  <img key={Date.now()} src={item?.key_point_img} alt="key_point_img" />
                 </div>
               </div>
               
@@ -266,7 +270,7 @@ const UpdateServicePage = () => {
                   name="key_point_title"
                   className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   defaultValue={item?.key_point_title}
-                  placeholder="Enter Key Point Title"
+                  key={Date.now()}
                 />
               </div>
 
@@ -287,6 +291,7 @@ const UpdateServicePage = () => {
                     name="key_point_description"
                     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                     defaultValue={item?.key_point_description}
+                    key={Date.now()}
                   />
                 </div>
 
@@ -303,7 +308,7 @@ const UpdateServicePage = () => {
               </h3>
               <div className="avatar">
                 <div className="w-12">
-                  <img src={item?.feature_logo} alt="Feature logo" />
+                  <img key={Date.now()} src={item?.feature_logo} alt="Feature logo" />
                 </div>
               </div>
               <div className="flex flex-col md:flex md:flex-row md:gap-4">
@@ -343,6 +348,7 @@ const UpdateServicePage = () => {
                     name="feature_title"
                     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                     defaultValue={item?.feature_title}
+                    key={Date.now()}
                   />
                 </div>
               </div>
@@ -360,6 +366,7 @@ const UpdateServicePage = () => {
                   name="feature_description"
                   className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-text_blue border-2 border-gray-300"
                   defaultValue={item?.feature_description}
+                  key = {Date.now()}
                   placeholder="Enter feature description"
                   rows="7"
                 />

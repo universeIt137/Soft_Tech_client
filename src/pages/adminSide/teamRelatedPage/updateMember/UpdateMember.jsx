@@ -77,7 +77,7 @@ const UpdateMember = () => {
                             defaultValue={member?.data?.name}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder=""
-                            required
+                            key={Date.now()}
                         />
                     </div>
 
@@ -90,6 +90,7 @@ const UpdateMember = () => {
                             type="text"
                             name="designation"
                             defaultValue={member?.data?.designation}
+                            key = {Date.now()}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Software Engineer"
                             required
@@ -105,6 +106,7 @@ const UpdateMember = () => {
                             type="tel"
                             name="contact"
                             defaultValue={member?.data?.contact}
+                            key={Date.now()}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="+1-555-123-4567"
                             required
@@ -120,6 +122,7 @@ const UpdateMember = () => {
                             type="email"
                             name="email"
                             defaultValue={member?.data?.email}
+                            key={Date.now()}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="john.doe@example.com"
                             required
@@ -135,6 +138,7 @@ const UpdateMember = () => {
                             type="text"
                             name="experience"
                             defaultValue={member?.data?.experience}
+                            key={Date.now()}
                             className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="5 years"
                             required
@@ -157,7 +161,7 @@ const UpdateMember = () => {
 
                     <p className="font-bold">Already uploaded images</p>
                     <div className="avatar">
-                        <div className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
+                        <div key={Date.now()} className="ring-primary ring-offset-base-100 w-12 rounded-full ring ring-offset-2">
                             <img src={member?.data?.image} />
                         </div>
                     </div>

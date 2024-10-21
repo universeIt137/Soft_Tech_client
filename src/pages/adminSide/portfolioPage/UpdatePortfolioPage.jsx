@@ -85,6 +85,7 @@ const UpdatePortfolioPage = () => {
                 type="text"
                 name="title"
                 defaultValue={singlePortfolioData?.title}
+                key={Date.now()}
                 placeholder="Enter portfolio title"
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -93,7 +94,7 @@ const UpdatePortfolioPage = () => {
             {/* Current Image Preview */}
             <div className="avatar mb-4 ">
                 <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
-                <img 
+                <img key={Date.now()} 
                     src={singlePortfolioData?.img} 
                     alt="Portfolio Preview" 
                     className="object-cover rounded-full"
@@ -119,6 +120,7 @@ const UpdatePortfolioPage = () => {
                 type="text"
                 name="live_link"
                 defaultValue={singlePortfolioData?.live_link}
+                key={Date.now()}
                 placeholder="Enter live link"
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />

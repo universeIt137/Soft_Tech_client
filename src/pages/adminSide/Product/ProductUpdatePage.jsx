@@ -88,7 +88,7 @@ const ProductUpdateForm = () => {
           <div className="avatar">
 
             <div className="w-12 rounded-full mt-4 ">
-              <img src={singleProductData?.nav_logo} />
+              <img key={Date.now()} src={singleProductData?.nav_logo} />
             </div>
           </div>
 
@@ -117,6 +117,7 @@ const ProductUpdateForm = () => {
                 defaultValue={singleProductData?.nav_title}
                 name="nav_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
           </div>
@@ -132,12 +133,13 @@ const ProductUpdateForm = () => {
               name="nav_description"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               rows="4"
+              key={Date.now()}
             />
           </div>
 
           <div className="avatar ml-[50%] ">
             <div className="w-12 rounded-full mt-4 ">
-              <img src={singleProductData?.banner_img} />
+              <img key={Date.now()} src={singleProductData?.banner_img} />
             </div>
           </div>
 
@@ -153,6 +155,7 @@ const ProductUpdateForm = () => {
                 defaultValue={singleProductData?.banner_title}
                 name="banner_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
 
@@ -167,6 +170,7 @@ const ProductUpdateForm = () => {
                 name="banner_img"
                 onChange={(e) => handleImageChange(e, setBannerImg)}
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
           </div>
@@ -181,6 +185,7 @@ const ProductUpdateForm = () => {
               name="banner_description"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               rows="4"
+              key={Date.now()}
             />
           </div>
 
@@ -195,6 +200,7 @@ const ProductUpdateForm = () => {
                 defaultValue={singleProductData?.live_link}
                 name="live_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
             <div>
@@ -207,13 +213,14 @@ const ProductUpdateForm = () => {
                 defaultValue={singleProductData?.proposal_link}
                 name="proposal_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
           </div>
 
           <div className="avatar">
             <div className="w-12 rounded-full mt-4 ">
-              <img src={singleProductData?.feature_img} />
+              <img key={Date.now()} src={singleProductData?.feature_img} />
             </div>
           </div>
 
@@ -230,6 +237,7 @@ const ProductUpdateForm = () => {
                 type="file"
                 onChange={(e) => handleImageChange(e, setFeatureImg)}
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                
               />
             </div>
             {/* feature_title */}
@@ -241,6 +249,7 @@ const ProductUpdateForm = () => {
                 name="feature_title"
                 type="text"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                key={Date.now()}
               />
             </div>
           </div>
@@ -255,6 +264,7 @@ const ProductUpdateForm = () => {
                 name="feature_description"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 rows="4"
+                key={Date.now()}
               />
             </div>
           </div>
@@ -273,7 +283,7 @@ const ProductUpdateForm = () => {
                         <div key={i} >
                           <div className="avatar">
                             <div className="w-12 rounded-full mt-4 ">
-                              <img src={item?.description_img} />
+                              <img key={Date.now()} src={item?.description_img} />
                             </div>
                           </div>
                         </div>
@@ -305,6 +315,7 @@ const ProductUpdateForm = () => {
                       name={`description_title_${i}`}
                       defaultValue={item.description_title}
                       className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                      key={Date.now()}
                     />
                   </div>
                 </div>
