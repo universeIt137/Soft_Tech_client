@@ -3,12 +3,15 @@ import { IoMdLogOut } from "react-icons/io";
 import { MdAssessment, MdMenuOpen } from "react-icons/md";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AiOutlineProduct } from "react-icons/ai";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { AiFillFileImage, AiOutlineProduct } from "react-icons/ai";
+import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack } from "react-icons/fa";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { RiTeamLine } from "react-icons/ri";
+import { RiLogoutCircleFill, RiTeamLine } from "react-icons/ri";
 import { SlEnvolopeLetter } from "react-icons/sl";
+import { SiPolymerproject } from "react-icons/si";
+import { FaBlogger } from "react-icons/fa6";
+import { BiLogoMicrosoftTeams } from "react-icons/bi";
 
 const serviceIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png";
 const careerIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png";
@@ -48,24 +51,20 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-14"
+      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
         }`}
     >
       <div className="flex justify-between items-center p-4">
-        <div className={`text-2xl font-bold ${!isSidebarOpen && "hidden"}`}>
+        <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
           <Link to="/">
-            <img
-              src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png"
-              alt="Logo"
-              className="bg-white p-4 rounded-xl"
-            />
+            <p>Universe Soft Tech</p>
           </Link>
         </div>
         <button onClick={toggleSidebar} className="text-white focus:outline-none">
           {isSidebarOpen ? (
             <IoCloseCircleOutline className="text-4xl" />
           ) : (
-            <MdMenuOpen className="text-3xl" />
+            <MdMenuOpen size={20} />
           )}
         </button>
       </div>
@@ -79,8 +78,8 @@ const Sidebar = () => {
 
                 className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
               >
-                <MdAssessment size={30} />
-                <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Dashboard</span>
+                <MdAssessment size={20} />
+                <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
 
               </label>
             </Link>
@@ -93,8 +92,8 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("product")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <AiOutlineProduct size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Products</span>
+              <AiOutlineProduct size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Products</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "product" ? <FaAngleUp /> : <FaAngleDown />}
@@ -127,8 +126,8 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("portfolio")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <AiOutlineProduct size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Portfolio projects</span>
+              <SiPolymerproject size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Portfolio projects</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "portfolio" ? <FaAngleUp /> : <FaAngleDown />}
@@ -161,8 +160,8 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("service")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <img src={serviceIcon} alt="Services" className="w-9" />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Services</span>
+              <FaServicestack size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Services</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "service" ? <FaAngleUp /> : <FaAngleDown />}
@@ -195,8 +194,8 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("career")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <img src={careerIcon} alt="Career" className="w-9" />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Career</span>
+              <FaBriefcase size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Career</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "career" ? <FaAngleUp /> : <FaAngleDown />}
@@ -229,8 +228,8 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("blog")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <img src={careerIcon} alt="Blog" className="w-9" />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Blog</span>
+              <FaBloggerB size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Blog</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "blog" ? <FaAngleUp /> : <FaAngleDown />}
@@ -263,8 +262,9 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("application")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              <SlEnvolopeLetter size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Application</span>
+              
+              <AiFillFileImage size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Application</span>
               {isSidebarOpen && (
                 <span className="ml-auto">
                   {activeDropdown === "application" ? <FaAngleUp /> : <FaAngleDown />}
@@ -286,16 +286,16 @@ const Sidebar = () => {
           {/* Team Management */}
           <li>
             <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-              <RiTeamLine size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Team</span>
+            <BiLogoMicrosoftTeams size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
             </Link>
           </li>
 
           {/* Logout */}
           <li onClick={handleLogout}>
             <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-              <IoMdLogOut size={30} />
-              <span className={`${isSidebarOpen ? "block" : "hidden"}`}>Logout</span>
+            <RiLogoutCircleFill size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
             </Link>
           </li>
         </ul>

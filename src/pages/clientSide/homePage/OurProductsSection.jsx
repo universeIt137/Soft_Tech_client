@@ -1,21 +1,26 @@
 
-import { GoArrowRight } from "react-icons/go";
+import { GoArrowDown, GoArrowRight, GoArrowUp } from "react-icons/go";
 import { Link } from "react-router-dom";
 import './HomePageStyle.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
-const OurProductsSection = ({products}) => {
-    
+const OurProductsSection = ({ products }) => {
+
+
+    const [showProduct, setshowProduct] = useState(false)
 
     useEffect(() => {
         Aos.init({ duration: 1000, delay: 200 });
     }, []);
 
-
+    let showProducts = products.slice().reverse().slice(0, 3);
+    if (showProduct) {
+        showProducts = products.slice().reverse();
+    }
 
     // console.log(products);
 
@@ -38,7 +43,7 @@ const OurProductsSection = ({products}) => {
 
 
                     {
-                        products && products.map(product =>
+                        products && showProducts.map(product =>
                             <div key={product._id} style={bgImg} className="shadow-2xl bg-white relative lg:min-h-[400px]">
                                 {/* Top section with image and title */}
                                 <div className="text-center py-5 md:py-8">
@@ -62,7 +67,7 @@ const OurProductsSection = ({products}) => {
 
                                 {/* Link/Button */}
                                 <div className="absolute bottom-1 lg:bottom-5 left-1/2 transform -translate-x-1/2">
-                                    <Link to={`/productsDetails/${product._id}`} className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 text-xs">
+                                    <Link to={`/productsDetails/${product._id}`} onClick={() => setshowProduct(!showProduct)} className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 text-xs">
                                         <p>Details</p>
                                         <GoArrowRight className="font-bold lg:text-xl" />
                                     </Link>
@@ -78,7 +83,20 @@ const OurProductsSection = ({products}) => {
 
                 </div>
             </div>
-
+            <div className=" flex justify-center">
+                <div className=" bottom-1 lg:bottom-5 left-1/2 transform -translate-x-1/2">
+                    <button onClick={() => setshowProduct(!showProduct)} className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-300 text-xs">
+                        <p>
+                            {
+                                showProduct ? 'See Less' : 'See More'
+                            }
+                        </p>
+                        {
+                            showProduct ?  <GoArrowUp className="font-bold lg:text-xl" /> :  <GoArrowDown className="font-bold lg:text-xl" />
+                        }
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

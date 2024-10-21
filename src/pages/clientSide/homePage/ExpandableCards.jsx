@@ -49,7 +49,7 @@ const ExpandableCards = () => {
                             {/* Gradient overlay that appears on hover */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent rounded-b-3xl opacity-0 hover:opacity-100 transition-opacity duration-500">
                                 {/* Test text that becomes visible on hover */}
-                                <Link to={ card.live_link }>
+                                <Link to={ card.live_link } target='_blank'>
                                     <p className="absolute text-4xl text-white w-full text-center bottom-0 transform -translate-y-1/2 hover:text-blue-700">
                                         {card.name}
                                     </p>

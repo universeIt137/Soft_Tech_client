@@ -7,6 +7,7 @@ import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 
 const OurTeamPage = () => {
+  window.scrollTo(0, 0);
   const teammember = [{}, {}, {}, {}, 2, 4, 2, 4];
   const axiosPublic = useAxiosPublic();
   const { data: teams = [] } = useQuery({
