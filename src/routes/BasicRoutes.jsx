@@ -46,6 +46,7 @@ import BlogPage from "../pages/clientSide/blogRelatedPages/BlogPage";
 import Blogdetails from "../pages/clientSide/blogRelatedPages/Blogdetails";
 import BlogUpdatePage from "../pages/adminSide/blog-page/BlogUpdatePage";
 import ProductPage from "../pages/clientSide/productPage/ProductPage";
+import CategoryCreateForm from "../pages/adminSide/category-page/CategoryCreateForm";
 
 
 
@@ -229,6 +230,10 @@ const router = createBrowserRouter([
             {
                 path : "blog-update/:id",
                 element : <BlogUpdatePage></BlogUpdatePage>
+            },
+            {
+                path : "create/category",
+                element: <CategoryCreateForm></CategoryCreateForm>
             }
         ]
     },

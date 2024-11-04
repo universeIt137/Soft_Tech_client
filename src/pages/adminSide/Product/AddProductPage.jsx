@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import productStore from "../../../api-request/product-api/productApi";
 import toast, { Toaster } from "react-hot-toast";
 import { uploadImg } from "../../../uploadImage/UploadImage";
 import { Helmet } from "react-helmet-async";
 import Loader from "../../../components/loder/Loader";
+import categoryStore from "../../../api-request/category-api/categoryApi";
 
 const ProductCreateForm = () => {
   const { createProductApi } = productStore();
   const [loader,setLoader] = useState(false);
+  const {categoryDataListApi,categoryDataList} = categoryStore();
   
   const [extraData, setExtraData] = useState([
     { description_title: "", description_img: "" },
@@ -19,6 +21,12 @@ const ProductCreateForm = () => {
       { description_title: "", description_img: ""},
     ]);
   };
+
+  useEffect(()=>{
+    (async()=>{
+      await categoryDataListApi();
+    })()
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,6 +44,8 @@ const ProductCreateForm = () => {
     const feature_title = e.target.feature_title.value;
     const feature_img = e.target.feature_img.files[0];
     const feature_description = e.target.feature_description.value;
+
+    const category_name = e.target.category_name.value;
 
 
 
@@ -56,6 +66,7 @@ const ProductCreateForm = () => {
 
     // Prepare final payload
     const payload = {
+      category_name,
       nav_logo : navLogoUrl,
       nav_title,
       nav_description,
@@ -70,7 +81,7 @@ const ProductCreateForm = () => {
       extra_data : extraDataWithUrls
     };
 
-    console.log("Payload:", payload);
+    console.log("Payload:", feature_title);
 
     // Simulate API call
     try {
@@ -99,8 +110,26 @@ const ProductCreateForm = () => {
         Add New Product
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-row gap-6 " >
 
+        <div className="flex flex-row gap-6 " >
+          {/* category name */}
+          <div className="mb-4 w-full ">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Category Name
+            </label>
+            <select
+                id="name"
+                name="category_name"
+                className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
+              >
+                <option value="">Select Category Name</option>
+                    {categoryDataList && categoryDataList.map((item) => (
+                      <option key={item._id} value={item._id}>
+                      {item?.name}
+                </option>
+                    ))}
+              </select>
+          </div>
           {/* Nav Logo */}
           <div className="mb-4 w-full ">
             <label className="block text-lg font-medium text-gray-700 mb-2">
