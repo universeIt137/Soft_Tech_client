@@ -101,6 +101,14 @@ const Sidebar = () => {
               )}
             </label>
             <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
+            <li>
+                <NavLink
+                  to="/dashboard/create/category"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Category
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/dashboard/add-product"
