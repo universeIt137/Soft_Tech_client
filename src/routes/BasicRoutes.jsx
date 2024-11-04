@@ -45,6 +45,7 @@ import ManageBlogPage from "../pages/adminSide/blog-page/ManageBlogPage";
 import BlogPage from "../pages/clientSide/blogRelatedPages/BlogPage";
 import Blogdetails from "../pages/clientSide/blogRelatedPages/Blogdetails";
 import BlogUpdatePage from "../pages/adminSide/blog-page/BlogUpdatePage";
+import ProductPage from "../pages/clientSide/productPage/ProductPage";
 
 
 
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
             {
                 path: '/serviceDetails/:id',
                 element: <ServiceDetailsPage></ServiceDetailsPage>
+            },
+            {
+                path: '/products',
+                element: <ProductPage></ProductPage>
             },
             {
                 path: '/productsDetails/:id',

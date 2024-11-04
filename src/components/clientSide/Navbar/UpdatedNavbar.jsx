@@ -98,13 +98,13 @@ const UpdatedNavbar = () => {
 
             {/* Products Dropdown Toggle */}
             <p
-                onClick={handleDropdownToggle}
+                // onClick={handleDropdownToggle}
                 className={`${NavLinkStyle} transition-all duration-300 flex justify-between items-center cursor-pointer`}
             >
-                Products
-                <span className={`transition-all duration-300 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}>
+               <Link to={'/products'}>Products</Link>
+                {/* <span className={`transition-all duration-300 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}>
                     <IoMdArrowDropdown />
-                </span>
+                </span> */}
             </p>
 
             {/* Products Dropdown Menu */}
