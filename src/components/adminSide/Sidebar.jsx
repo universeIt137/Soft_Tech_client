@@ -102,12 +102,7 @@ const Sidebar = () => {
             </label>
             <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
             <li>
-                <NavLink
-                  to="/dashboard/create/category"
-                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                >
-                  Add Category
-                </NavLink>
+                
               </li>
               <li>
                 <NavLink
@@ -123,6 +118,40 @@ const Sidebar = () => {
                   className="p-2 block transition duration-200 hover:bg-white hover:text-black"
                 >
                   Manage Product
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
+          {/* category */}
+          <li>
+            <label
+              onClick={() => handleDropdownToggle("category")}
+              className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+            >
+              <SiPolymerproject size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Category</span>
+              {isSidebarOpen && (
+                <span className="ml-auto">
+                  {activeDropdown === "category" ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
+              )}
+            </label>
+            <ul className={`${activeDropdown === "category" ? "block" : "hidden"} ml-8  `}>
+              <li>
+                <NavLink
+                  to="/dashboard/create/category"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Add Category
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manage-category"
+                  className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                >
+                  Manage Category
                 </NavLink>
               </li>
             </ul>
