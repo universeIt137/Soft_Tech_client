@@ -3,6 +3,7 @@ import categoryStore from '../../../api-request/category-api/categoryApi'
 import { Link } from 'react-router-dom';
 import { deleteAlert } from '../../../helper/deleteHelperAlert';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const ManageCategoryPage = () => {
   const {categoryList,categoryListApi,categoryDeleteApi} = categoryStore();
@@ -38,6 +39,9 @@ const ManageCategoryPage = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Dashboard | Manage Category Page</title>
+      </Helmet>
       <div className="container mx-auto p-6">
         <h1 className='text-center py-5 font-bold text-2xl ' >Category Table</h1>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
