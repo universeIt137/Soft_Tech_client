@@ -39,7 +39,7 @@ const CategoryUpdatePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const name = e.target.category_name.value;
+        const name = e.target.name.value;
         const image = e.target.image.files[0];
 
         let imgUrl = upcomingImg
@@ -60,7 +60,7 @@ const CategoryUpdatePage = () => {
         setLoader(false);
         if (res) {
             setLoader(true);
-            await categoryUpdateApi(id);
+            await singleCategoryDataListApi(id);
             setLoader(false);
             Swal.fire({
                 icon: 'success',
@@ -93,20 +93,18 @@ const CategoryUpdatePage = () => {
                     <label className="block text-lg font-medium text-gray-700 mb-2">
                         Category Name
                     </label>
-                    <select
-                        id="name"
-                        name="category_name"
-                        className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
-                        defaultValue={singleCategoryDataList?.name || ''}
+                    <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Upload Image</label>
+                    <input 
+                        type="text" 
+                        name="name"
+                        defaultValue={singleCategoryDataList?.name}
                         key={Date.now()}
-                    >
-                        <option value="">Select Category Name</option>
-                        {categoryList && categoryList.map((item) => (
-                            <option key={item._id} value={item.name}>
-                                {item.name}
-                            </option>
-                        ))}
-                    </select>
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    />
+                    {/* Image Preview */}
+                    
+                </div>
                 </div>
                 
                 {/* Image Upload Field */}
