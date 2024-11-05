@@ -293,7 +293,7 @@ const ProductCreateForm = () => {
 
 
         {/* Extra Data */}
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Extra Data</h2>
+        <h2 className="text-xl font-semibold text-gray-700 mb-4">Add key points</h2>
         {extraData.map((item, index) => (
           <div key={index} className="mb-4">
             
@@ -339,7 +339,7 @@ const ProductCreateForm = () => {
           onClick={handleAddExtraData}
           className="bg-blue-500 text-white px-4 py-2 rounded-lg"
         >
-          Add Extra Data
+          Add key points
         </button> <br />
 
         {/* Submit Button */}

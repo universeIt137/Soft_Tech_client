@@ -118,7 +118,7 @@ const ProductUpdateForm = () => {
                         ))}
                     </select>
                 </div>
-                {/* <h1 key={Date.now()} >Already selected category : {singleProductData[0]?.category?.name}</h1> */}
+                <h1 key={Date.now()} >Already selected category : {singleProductData[0]?.category?.name}</h1>
 
                 <div className="avatar">
                     <div className="w-12 rounded-full mt-4 ">
