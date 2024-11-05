@@ -106,11 +106,11 @@ const ProductUpdateForm = () => {
                     <select
                         id="name"
                         name="category_name"
-                        defaultValue={singleProductData[0]?.category?.name}
-                        key={Date.now()}
+                        
                         className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
                     >
-                        <option value="">Select Category Name</option>
+                        <option defaultValue={singleProductData[0]?.category?.name}
+                        key={Date.now()} value="">Select Category Name</option>
                         {categoryList && categoryList.map((item) => (
                             <option key={item._id} value={item._id}>
                                 {item?.name}
@@ -118,8 +118,7 @@ const ProductUpdateForm = () => {
                         ))}
                     </select>
                 </div>
-                <h1>Already selected category : {singleProductData[0]?.category?.name}
-                        </h1>
+                {/* <h1 key={Date.now()} >Already selected category : {singleProductData[0]?.category?.name}</h1> */}
 
                 <div className="avatar">
                     <div className="w-12 rounded-full mt-4 ">
@@ -148,6 +147,7 @@ const ProductUpdateForm = () => {
                         <input
                             type="text"
                             defaultValue={singleProductData[0]?.nav_title}
+                            key={Date.now()}
                             name="nav_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         />
@@ -161,6 +161,7 @@ const ProductUpdateForm = () => {
                     </label>
                     <textarea
                         defaultValue={singleProductData[0]?.nav_description}
+                        key={Date.now()}
                         name="nav_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         rows="4"
@@ -182,6 +183,7 @@ const ProductUpdateForm = () => {
                         <input
                             type="text"
                             defaultValue={singleProductData[0]?.banner_title}
+                            key={Date.now()}
                             name="banner_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         />
@@ -208,6 +210,7 @@ const ProductUpdateForm = () => {
                     </label>
                     <textarea
                         defaultValue={singleProductData[0].banner_description}
+                        key={Date.now()}
                         name="banner_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         rows="4"
@@ -223,6 +226,7 @@ const ProductUpdateForm = () => {
                         <input
                             type="text"
                             defaultValue={singleProductData[0]?.live_link}
+                            key={Date.now()}
                             name="live_link"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         />
@@ -235,6 +239,7 @@ const ProductUpdateForm = () => {
                         <input
                             type="text"
                             defaultValue={singleProductData[0]?.proposal_link}
+                            key={Date.now()}
                             name="proposal_link"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         />
@@ -256,6 +261,7 @@ const ProductUpdateForm = () => {
                         <input
                             type="text"
                             defaultValue={singleProductData[0]?.feature_title}
+                            key={Date.now()}
                             name="feature_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         />
@@ -282,6 +288,7 @@ const ProductUpdateForm = () => {
                     </label>
                     <textarea
                         defaultValue={singleProductData[0].feature_description}
+                        key={Date.now()}
                         name="feature_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                         rows="4"
@@ -323,6 +330,7 @@ const ProductUpdateForm = () => {
                                     type="text"
                                     name={`description_title_${i}`}
                                     defaultValue={item.description_title}
+                                    key={Date.now()}
                                     className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                                 />
                             </div>

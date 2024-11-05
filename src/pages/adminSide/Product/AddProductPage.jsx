@@ -7,6 +7,7 @@ import Loader from "../../../components/loder/Loader";
 import categoryStore from "../../../api-request/category-api/categoryApi";
 
 const ProductCreateForm = () => {
+  window.scrollTo(0, 0);
   const { createProductApi } = productStore();
   const [loader,setLoader] = useState(false);
   const {categoryList,categoryListApi} = categoryStore();

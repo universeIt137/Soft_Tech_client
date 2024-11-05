@@ -59,7 +59,7 @@ const productStore = create((set) => ({
 
     try {
       return axiosPublic
-        .put(`/update-product/${id}`, postBody, config)
+        .put(`/update-product/${id}`,postBody, config)
         .then((res) => {
           if (res.data["status"] === "success") {
             return res.data.status;
