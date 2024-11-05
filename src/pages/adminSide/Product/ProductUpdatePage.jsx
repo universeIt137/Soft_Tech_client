@@ -106,10 +106,11 @@ const ProductUpdateForm = () => {
                     <select
                         id="name"
                         name="category_name"
+                        required
                         
                         className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
                     >
-                        <option defaultValue={singleProductData[0]?.category?.name}
+                        <option selected
                         key={Date.now()} value="">Select Category Name</option>
                         {categoryList && categoryList.map((item) => (
                             <option key={item._id} value={item._id}>
