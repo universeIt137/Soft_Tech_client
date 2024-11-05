@@ -18,7 +18,7 @@ const ProductDetailsPage = () => {
         queryFn: async () => {
             const res = await axiosPublic.get(`/single-product/${id}`);
             if (!res.data) throw new Error('No data returned');
-            return res.data.data;
+            return res.data.data[0];
         }
     });
 
