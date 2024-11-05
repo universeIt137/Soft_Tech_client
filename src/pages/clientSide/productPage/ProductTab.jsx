@@ -41,13 +41,7 @@ const ProductTab = () => {
 
 
 
-    // Tab content for each category
-    const tabContent = {
-        Solutions: Array(16).fill({ title: "Shoes!", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
-        Infrastructure: Array(4).fill({ title: "Infrastructure Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
-        Platforms: Array(5).fill({ title: "Platform Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
-        "Friendly Support": Array(3).fill({ title: "Support Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" })
-    };
+   
 
     const buttonStyle = (tabName) =>
         `flex items-center px-4 gap-2 py-4 rounded-lg text-xl my-4 cursor-pointer transition-all duration-300 ${activeTab === tabName ? 'bg-orange-500 text-white' : 'bg-[#004080] text-white hover:bg-text_primari'
@@ -67,6 +61,7 @@ const ProductTab = () => {
                                 }}
                                 className={buttonStyle(`${category?.name}`)}>
                                 <GiGemChain className="text-2xl" /> {category?.name}
+                                {/* <img src = {category?.image} alt="" className='w-8' /> */}
                             </div>
                         </>)
                     }
