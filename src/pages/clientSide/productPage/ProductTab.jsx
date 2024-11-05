@@ -2,242 +2,114 @@ import React, { useState } from 'react';
 import { GiGemChain, GiBrainTentacle } from "react-icons/gi";
 import { FaComputer } from "react-icons/fa6";
 import { IoPersonAdd } from "react-icons/io5";
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const ProductTab = () => {
+    const [activeTab, setActiveTab] = useState('Solutions');
+    const axiosPublic = useAxiosPublic();
+    const [filteredProducts, setFilterProducts] = useState([]);
 
-    const [showingSolutions, setShowingSolutions] = useState('Solutions')
+    const { data: categories = [] } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/category/list');
+            return res.data.data;
+        }
+    })
 
-    const solutionsStyle = (name) => `transition-all duration-300 md:flex items-center gap-10 mt-12  ${showingSolutions === name ? 'opacity-100 z-10' : 'opacity-0'}`
-    const buttonStyle = `flex items-center px-4 gap-2 my-10 ml-[10%] mr-[-70px] py-4 rounded-lg  hover:bg-text_primari transition-all duration-300 active:scale-90 cursor-pointer`
+    const { data: products = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/get-products');
+            return res.data.data;
+        }
+    })
+
+
+
+    const getCategorizedProduct = (id) => {
+        let filterizedProducts = [];
+        console.log(id);
+        filterizedProducts = products.filter(product => product.category_name === id);
+        setFilterProducts(filterizedProducts);
+    }
+
+
+
+
+
+
+    // Tab content for each category
+    const tabContent = {
+        Solutions: Array(16).fill({ title: "Shoes!", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
+        Infrastructure: Array(4).fill({ title: "Infrastructure Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
+        Platforms: Array(5).fill({ title: "Platform Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" }),
+        "Friendly Support": Array(3).fill({ title: "Support Item", img: "https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" })
+    };
+
+    const buttonStyle = (tabName) =>
+        `flex items-center px-4 gap-2 py-4 rounded-lg text-xl my-4 cursor-pointer transition-all duration-300 ${activeTab === tabName ? 'bg-orange-500 text-white' : 'bg-[#004080] text-white hover:bg-text_primari'
+        }`;
 
     return (
-        <div className='w-11/12 grid grid-cols-1 lg:grid-cols-3 mx-auto shadow-2xl  lg:gap-5 p-2 xl:pb-10'>
-            <div className='bg-[#004080]   w-[85%] relative -top-12 -left-6 text-white md:-top-10 md:-left-10 rounded-lg '>
-                <div onClick={() => setShowingSolutions('Solutions')} className={`${buttonStyle} ${showingSolutions === 'Solutions' && 'bg-text_primari'}`}>
-                    <GiGemChain className='text-2xl'></GiGemChain>
-                    <button className='text-xl'>Solutions</button>
+        <div className="container mx-auto my-8 lg:my-16">
+            <div className="flex flex-col lg:flex-row">
+                {/* Sidebar */}
+                <div className="bg-[#004080] text-white w-full lg:w-1/4 rounded-lg p-4 lg:mr-4">
+                    {
+                        categories?.map(category => <>
+                            <div
+                                onClick={() => {
+                                    setActiveTab(category.name); // Set the active tab with the category name
+                                    getCategorizedProduct(category._id); // Fetch products based on the category ID
+                                }}
+                                className={buttonStyle(`${category?.name}`)}>
+                                <GiGemChain className="text-2xl" /> {category?.name}
+                            </div>
+                        </>)
+                    }
+
+
                 </div>
 
-                <div onClick={() => setShowingSolutions('Infrastructure')} className={`${buttonStyle} ${showingSolutions === 'Infrastructure' && 'bg-text_primari'}`}>
-                    <GiBrainTentacle className='text-2xl'></GiBrainTentacle>
-                    <button className='text-xl'>Infrastructure</button>
-                </div>
+                {/* Content Area */}
+                <div className="flex-1 mt-6 lg:mt-0">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-auto max-h-[60vh] p-4 rounded-lg bg-gray-50 shadow-lg">
+                        {
+                            filteredProducts.length > 0 ?
+                                <>
+                                    {filteredProducts?.map((product, index) => (
+                                        <div key={index} className="card bg-white shadow-md rounded-lg overflow-hidden">
+                                            <Link to={`/productsDetails/${product?._id}`}>
+                                                <figure>
+                                                    <img src={product?.banner_img} className="w-full h-48 object-cover" />
+                                                </figure>
+                                            </Link>
+                                            <div className="p-4 flex justify-between">
+                                                <h2 className="text-[14px] font-semibold">{product?.nav_title}</h2>
+                                                <Link to={`${product?.live_link}`} target='_blank'>
+                                                    <button className='bg-bg_btn_primary text-white text-[12px] py-1 px-3 rounded-sm'>Live Link</button>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                                :
+                                <>
+                                    <div className="h-96 col-span-3 ">
+                                        <div className="shadow-xl w-1/2 mx-auto mt-4">
+                                            <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1730780548/Other%20data/vr09k7zqwajfi3xk9sfs.png" alt="" className='' />
+                                        </div>
+                                        <p className="text-xl font-bold text-center mt-4">No category Selected.</p>
 
-                <div onClick={() => setShowingSolutions('Platforms')} className={`${buttonStyle} ${showingSolutions === 'Platforms' && 'bg-text_primari'}`}>
-                    <FaComputer className='text-2xl'></FaComputer>
-                    <button className='text-xl'>Platforms</button>
+                                    </div>
+                                </>
+                        }
+                    </div>
                 </div>
-
-                <div onClick={() => setShowingSolutions('Friendly Support')} className={`${buttonStyle} ${showingSolutions === 'Friendly Support' && 'bg-text_primari'}`}>
-                    <IoPersonAdd className='text-2xl'></IoPersonAdd>
-                    <button className='text-xl text-start'>Friendly Support</button>
-                </div>
-
             </div>
-
-            <div className='md:col-span-2'>
-                <div className={`${solutionsStyle('Solutions')} `}>
-                    <div className="grid grid-cols-3  border">
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={`${solutionsStyle('Infrastructure')} `}>
-                    <div className="grid grid-cols-3  border">
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className={`${solutionsStyle('Platforms')} `}>
-                    <div className="grid grid-cols-3  border">
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={`${solutionsStyle('Friendly Support')} `}>
-                    <div className="grid grid-cols-3  border">
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-
-                        <div className="card bg-base-100  shadow-xl border">
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                            </div>
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes" />
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-
-            </div>
-
         </div>
     );
 };
