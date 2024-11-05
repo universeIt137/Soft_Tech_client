@@ -48,6 +48,7 @@ import BlogUpdatePage from "../pages/adminSide/blog-page/BlogUpdatePage";
 import ProductPage from "../pages/clientSide/productPage/ProductPage";
 import CategoryCreateForm from "../pages/adminSide/category-page/CategoryCreateForm";
 import ManageCategoryPage from './../pages/adminSide/category-page/ManageCategoryPage';
+import CategoryUpdatePage from "../pages/adminSide/category-page/CategoryUpdatePage";
 
 
 
@@ -239,6 +240,10 @@ const router = createBrowserRouter([
             {
                 path : "manage-category",
                 element: <ManageCategoryPage></ManageCategoryPage>
+            },
+            {
+                path : "category-update/:id",
+                element : <CategoryUpdatePage></CategoryUpdatePage>
             }
         ]
     },
@@ -249,7 +254,8 @@ const router = createBrowserRouter([
     {
         path: "/admin-login",
         element: <AdminLoginPage></AdminLoginPage>
-    }
+    },
+    
 ]);
 
 export default router;

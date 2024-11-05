@@ -3,12 +3,12 @@ import categoryStore from '../../../api-request/category-api/categoryApi'
 import { Link } from 'react-router-dom';
 
 const ManageCategoryPage = () => {
-  const {categoryDataList,categoryDataListApi} = categoryStore();
+  const {categoryList,categoryListApi} = categoryStore();
   const [loader,setLoader] = useState(false);
   useEffect(()=>{
     (async()=>{
       setLoader(true);
-      await categoryDataListApi();
+      await categoryListApi();
       setLoader(false);
     })()
   },[])
@@ -26,7 +26,7 @@ const ManageCategoryPage = () => {
         </thead>
         <tbody>
           {
-            categoryDataList && categoryDataList.map((item,i)=>{
+            categoryList && categoryList.map((item,i)=>{
               return(
                 <tr key={i} className="hover:bg-gray-100 text-center">
                   <td className="border border-gray-300 p-4">{item.name}</td>
