@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 const CategoryUpdatePage = () => {
     const { id } = useParams();
-    console.log(`id is ${id}`);
     const {
         singleCategoryDataListApi,
         singleCategoryDataList,
@@ -75,7 +74,6 @@ const CategoryUpdatePage = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            console.log('Error:', res);
         }
         e.target.reset();
     };

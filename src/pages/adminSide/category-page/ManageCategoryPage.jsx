@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import categoryStore from '../../../api-request/category-api/categoryApi'
 import { Link } from 'react-router-dom';
+import { deleteAlert } from '../../../helper/deleteHelperAlert';
+import Swal from 'sweetalert2';
 
 const ManageCategoryPage = () => {
-  const {categoryList,categoryListApi} = categoryStore();
+  const {categoryList,categoryListApi,categoryDeleteApi} = categoryStore();
   const [loader,setLoader] = useState(false);
   useEffect(()=>{
     (async()=>{
@@ -12,6 +14,28 @@ const ManageCategoryPage = () => {
       setLoader(false);
     })()
   },[])
+  const deleteCategory = async (id)=>{
+    const resp = await deleteAlert();
+    if(resp.isConfirmed){
+      setLoader(true);
+      let res = await categoryDeleteApi(id);
+      setLoader(false);
+      if(res){
+        await categoryListApi();
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Category has been deleted successfully.',
+          icon:'success'
+        })
+      }else{
+        Swal.fire({
+          title: 'Failed!',
+          text: 'Failed to delete category.',
+          icon:'error'
+        })
+      }
+    };
+  }
   return (
     <div>
       <div className="container mx-auto p-6">
@@ -37,7 +61,7 @@ const ManageCategoryPage = () => {
                     <button className="py-2 px-4 bg-blue-500 text-white rounded-md">
                       <Link to={`/dashboard/category-update/${item._id}`}>Edit</Link>
                     </button>
-                    <button className="py-2 px-4 bg-red-500 text-white rounded-md ml-2">Delete</button>
+                    <button onClick={()=>deleteCategory(item._id)} className="py-2 px-4 bg-red-500 text-white rounded-md ml-2">Delete</button>
                   </td>
                 </tr>
               )

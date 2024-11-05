@@ -50,6 +50,14 @@ const categoryStore = create((set) => ({
     } else{
       return false;
     }
+  },
+  categoryDeleteApi : async (id) => {
+    let res = await axiosPublic.delete(`/category/delete/${id}`);
+    if(res.data["status"] ==='success'){
+      return true ;
+    } else{
+      return false;
+    }
   }
 }));
 
