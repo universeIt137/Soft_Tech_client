@@ -9,7 +9,7 @@ import categoryStore from "../../../api-request/category-api/categoryApi";
 const ProductCreateForm = () => {
   const { createProductApi } = productStore();
   const [loader,setLoader] = useState(false);
-  const {categoryDataListApi,categoryDataList} = categoryStore();
+  const {categoryList,categoryListApi} = categoryStore();
   
   const [extraData, setExtraData] = useState([
     { description_title: "", description_img: "" },
@@ -24,7 +24,7 @@ const ProductCreateForm = () => {
 
   useEffect(()=>{
     (async()=>{
-      await categoryDataListApi();
+      await categoryListApi();
     })()
   },[])
 
@@ -123,7 +123,7 @@ const ProductCreateForm = () => {
                 className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
               >
                 <option value="">Select Category Name</option>
-                    {categoryDataList && categoryDataList.map((item) => (
+                    {categoryList && categoryList.map((item) => (
                       <option key={item._id} value={item._id}>
                       {item?.name}
                 </option>

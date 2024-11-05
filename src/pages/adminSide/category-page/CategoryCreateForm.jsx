@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { uploadImg } from './../../../uploadImage/UploadImage';
 import categoryStore from '../../../api-request/category-api/categoryApi';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const CategoryCreateForm = () => {
     const [loader, setLoader] = useState(false);
@@ -59,7 +60,12 @@ const CategoryCreateForm = () => {
     };
 
     return (
+        <>
+        <Helmet>
+                <title>Dashboard | Add Category</title>
+            </Helmet>
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-8">
+            
             <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">Add New Category</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
                 
@@ -104,6 +110,7 @@ const CategoryCreateForm = () => {
                 </button>
             </form>
         </div>
+        </>
     );
 };
 

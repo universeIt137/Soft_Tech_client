@@ -3,6 +3,7 @@ import { uploadImg } from './../../../uploadImage/UploadImage';
 import categoryStore from '../../../api-request/category-api/categoryApi';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const CategoryUpdatePage = () => {
     const { id } = useParams();
@@ -79,6 +80,10 @@ const CategoryUpdatePage = () => {
     };
 
     return (
+        <>
+        <Helmet>
+            <title>Dashboard  | Category Update</title>
+        </Helmet>
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-8">
             <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">Update Category</h2>
             <form className="space-y-4" onSubmit={handleSubmit}>
@@ -132,6 +137,7 @@ const CategoryUpdatePage = () => {
                 </button>
             </form>
         </div>
+        </>
     );
 };
 

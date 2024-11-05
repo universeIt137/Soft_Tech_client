@@ -4,16 +4,23 @@ import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { uploadImageToCloudinary } from "../../../uploadImage/UpdateImg";
 import { Helmet } from "react-helmet-async";
+import categoryStore from '../../../api-request/category-api/categoryApi'
 
 const ProductUpdateForm = () => {
   const { id } = useParams();
   const { singleProductData, singleProductDataApi, productUpdateApi } = productStore();
+  const {categoryListApi,categoryList,} = categoryStore();
+
 
   const [navLogo, setNavLogo] = useState(null); // nav_logo state
   const [bannerImg, setBannerImg] = useState(null); // banner_img state
   const [featureImg,setFeatureImg] = useState(null); // feature_img state
   const [descriptionImg, setDescriptionImg] = useState({}); // description_img state
-
+  useEffect(()=>{
+    (async()=>{
+      await categoryListApi()
+    })()
+  },[id])
   // Handle image file changes
   const handleImageChange = (e, setState) => {
     const file = e.target.files[0];
@@ -42,6 +49,7 @@ const ProductUpdateForm = () => {
     // Update form data with image URLs
 
     const formData = {
+      category_name : e.target.category_name.value,
       nav_title: e.target.nav_title.value,
       nav_description: e.target.nav_description.value,
       banner_title : e.target.banner_title.value,
@@ -91,7 +99,24 @@ const ProductUpdateForm = () => {
               <img key={Date.now()} src={singleProductData?.nav_logo} />
             </div>
           </div>
-
+          {/* category name */}
+          <div className="mb-4 w-1/2  ">
+            <label className="block text-lg font-medium text-gray-700 mb-2">
+              Category Name
+            </label>
+            <select
+                id="name"
+                name="category_name"
+                className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
+              >
+                <option value="">Select Category Name</option>
+                    {categoryList && categoryList.map((item) => (
+                      <option key={item._id} value={item._id}>
+                      {item?.name}
+                </option>
+                    ))}
+              </select>
+          </div>
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8">
             <div>
             {/* nav_logo */}
@@ -114,7 +139,7 @@ const ProductUpdateForm = () => {
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData?.nav_title}
+                defaultValue={singleProductData[0]?.nav_title}
                 name="nav_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 key={Date.now()}
@@ -129,7 +154,7 @@ const ProductUpdateForm = () => {
               Nav Description:
             </label>
             <textarea
-              defaultValue={singleProductData.nav_description}
+              defaultValue={singleProductData[0]?.nav_description}
               name="nav_description"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               rows="4"
@@ -139,7 +164,7 @@ const ProductUpdateForm = () => {
 
           <div className="avatar ml-[50%] ">
             <div className="w-12 rounded-full mt-4 ">
-              <img key={Date.now()} src={singleProductData?.banner_img} />
+              <img key={Date.now()} src={singleProductData[0]?.banner_img} />
             </div>
           </div>
 
@@ -152,7 +177,7 @@ const ProductUpdateForm = () => {
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData?.banner_title}
+                defaultValue={singleProductData[0]?.banner_title}
                 name="banner_title"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 key={Date.now()}
@@ -181,7 +206,7 @@ const ProductUpdateForm = () => {
               Banner Description:
             </label>
             <textarea
-              defaultValue={singleProductData.banner_description}
+              defaultValue={singleProductData[0].banner_description}
               name="banner_description"
               className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
               rows="4"
@@ -197,7 +222,7 @@ const ProductUpdateForm = () => {
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData?.live_link}
+                defaultValue={singleProductData[0]?.live_link}
                 name="live_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 key={Date.now()}
@@ -210,7 +235,7 @@ const ProductUpdateForm = () => {
               </label>
               <input
                 type="text"
-                defaultValue={singleProductData?.proposal_link}
+                defaultValue={singleProductData[0]?.proposal_link}
                 name="proposal_link"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 key={Date.now()}
@@ -220,7 +245,7 @@ const ProductUpdateForm = () => {
 
           <div className="avatar">
             <div className="w-12 rounded-full mt-4 ">
-              <img key={Date.now()} src={singleProductData?.feature_img} />
+              <img key={Date.now()} src={singleProductData[0]?.feature_img} />
             </div>
           </div>
 
@@ -249,6 +274,7 @@ const ProductUpdateForm = () => {
                 name="feature_title"
                 type="text"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
+                defaultValue={singleProductData[0]?.feature_title}
                 key={Date.now()}
               />
             </div>
@@ -260,7 +286,7 @@ const ProductUpdateForm = () => {
               Feature Description:
               </label>
               <textarea
-                defaultValue={singleProductData?.feature_description}
+                defaultValue={singleProductData[0]?.feature_description}
                 name="feature_description"
                 className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
                 rows="4"
@@ -278,7 +304,7 @@ const ProductUpdateForm = () => {
                 </div>
                 <div className="flex flex-row gap-6 items-center my-6  " >
                   {
-                    singleProductData?.extra_data && singleProductData?.extra_data.map((item, i) =>{
+                    singleProductData[0]?.extra_data && singleProductData[0]?.extra_data.map((item, i) =>{
                       return (
                         <div key={i} >
                           <div className="avatar">
