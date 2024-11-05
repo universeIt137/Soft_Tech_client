@@ -58,7 +58,7 @@ const ManageCategoryPage = () => {
               return(
                 <tr key={i} className="hover:bg-gray-100 text-center">
                   <td className="border border-gray-300 p-4">{item.name}</td>
-                  <td className="border border-gray-300 p-4">
+                  <td className="border border-gray-300 p-4 bg-black">
                     <img src={item.image||`https://via.placeholder.com/100`} alt={""} className="w-16 h-16 rounded-full block mx-auto " />
                   </td>
                   <td className="border border-gray-300 p-4">

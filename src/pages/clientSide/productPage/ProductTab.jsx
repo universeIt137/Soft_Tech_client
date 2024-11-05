@@ -41,7 +41,7 @@ const ProductTab = () => {
 
 
 
-   
+
 
     const buttonStyle = (tabName) =>
         `flex items-center px-4 gap-2 py-4 rounded-lg text-xl my-4 cursor-pointer transition-all duration-300 ${activeTab === tabName ? 'bg-orange-500 text-white' : 'bg-[#004080] text-white hover:bg-text_primari'
@@ -60,8 +60,8 @@ const ProductTab = () => {
                                     getCategorizedProduct(category._id); // Fetch products based on the category ID
                                 }}
                                 className={buttonStyle(`${category?.name}`)}>
-                                <GiGemChain className="text-2xl" /> {category?.name}
-                                {/* <img src = {category?.image} alt="" className='w-8' /> */}
+                                <img src={category?.image} alt="" className='w-8' />
+                                {category?.name}
                             </div>
                         </>)
                     }
