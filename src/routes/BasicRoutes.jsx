@@ -49,6 +49,12 @@ import ProductPage from "../pages/clientSide/productPage/ProductPage";
 import CategoryCreateForm from "../pages/adminSide/category-page/CategoryCreateForm";
 import ManageCategoryPage from './../pages/adminSide/category-page/ManageCategoryPage';
 import CategoryUpdatePage from "../pages/adminSide/category-page/CategoryUpdatePage";
+import Info from "../pages/adminSide/representativeRelatedPage/info/Info";
+import Client from "../pages/adminSide/representativeRelatedPage/client/Client";
+import PaymentHistory from "../pages/adminSide/representativeRelatedPage/payment/PaymentHistory";
+import ProductVideo from "../pages/adminSide/representativeRelatedPage/productVideo/ProductVideo";
+import Training from "../pages/adminSide/representativeRelatedPage/training/Training";
+import Refers from "../pages/adminSide/representativeRelatedPage/refers/Refers";
 
 
 
@@ -244,6 +250,31 @@ const router = createBrowserRouter([
             {
                 path : "category-update/:id",
                 element : <CategoryUpdatePage></CategoryUpdatePage>
+            },
+            // Rrepresentative related routes 
+            {
+                path: "info",
+                element: <Info></Info>
+            },
+            {
+                path: "client",
+                element: <Client></Client>
+            },
+            {
+                path: "payment",
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: "product-video",
+                element: <ProductVideo></ProductVideo>
+            },
+            {
+                path: "training",
+                element: <Training></Training>
+            },
+            {
+                path: "refers",
+                element: <Refers></Refers>
             }
         ]
     },

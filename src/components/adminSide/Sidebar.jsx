@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { IoMdLogOut } from "react-icons/io";
-import { MdAssessment, MdMenuOpen } from "react-icons/md";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { MdAssessment, MdMenuOpen, MdModelTraining, MdPayments, MdRoomPreferences } from "react-icons/md";
+import { IoCloseCircleOutline, IoVideocam } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiFillFileImage, AiOutlineProduct } from "react-icons/ai";
 import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack } from "react-icons/fa";
@@ -12,6 +12,7 @@ import { SlEnvolopeLetter } from "react-icons/sl";
 import { SiPolymerproject } from "react-icons/si";
 import { FaBlogger } from "react-icons/fa6";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
+import { BsClipboard2DataFill, BsInfoCircleFill } from "react-icons/bs";
 
 const serviceIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png";
 const careerIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png";
@@ -51,13 +52,20 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-blue-800 h-screen text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+      className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
         }`}
     >
       <div className="flex justify-between items-center p-4">
         <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
           <Link to="/">
-            <p>Universe Soft Tech</p>
+            <div>
+              <div className="avatar">
+                <div className="w-12 border border-white border-2 rounded-full">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+              <p className="text-[16px]">ID: 0001</p>
+            </div>
           </Link>
         </div>
         <button onClick={toggleSidebar} className="text-white focus:outline-none">
@@ -70,7 +78,7 @@ const Sidebar = () => {
       </div>
 
       <nav>
-        <ul className="space-y-2">
+        <ul className="text-[12px]">
 
           <li>
             <Link to={'/dashboard'}>
@@ -101,8 +109,8 @@ const Sidebar = () => {
               )}
             </label>
             <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
-            <li>
-                
+              <li>
+
               </li>
               <li>
                 <NavLink
@@ -299,7 +307,7 @@ const Sidebar = () => {
               onClick={() => handleDropdownToggle("application")}
               className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
             >
-              
+
               <AiFillFileImage size={20} />
               <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Application</span>
               {isSidebarOpen && (
@@ -323,15 +331,70 @@ const Sidebar = () => {
           {/* Team Management */}
           <li>
             <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-            <BiLogoMicrosoftTeams size={20} />
+              <BiLogoMicrosoftTeams size={20} />
               <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
             </Link>
           </li>
 
+           {/* Rep information */}
+           <li>
+            <Link to="/dashboard/info" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <BsInfoCircleFill size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Information</span>
+            </Link>
+          </li>
+
+          {/* Rep client list */}
+          <li>
+            <Link to="/dashboard/client" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <BsClipboard2DataFill size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Your Client List</span>
+            </Link>
+          </li>
+
+
+          
+          {/* Rep payment list */}
+          <li>
+            <Link to="/dashboard/payment" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <MdPayments size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Payment History</span>
+            </Link>
+          </li>
+
+
+          {/* Rep Product Video */}
+          <li>
+            <Link to="/dashboard/product-video" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <IoVideocam size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Video</span>
+            </Link>
+          </li>
+
+           {/* Rep Training Session */}
+           <li>
+            <Link to="/dashboard/training" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <MdModelTraining size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Training Session</span>
+            </Link>
+          </li>
+
+
+              {/* Rep refers  */}
+           <li>
+            <Link to="/dashboard/refers" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+              <MdRoomPreferences size={20} />
+              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Refers</span>
+            </Link>
+          </li>
+
+
+
+
           {/* Logout */}
           <li onClick={handleLogout}>
             <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-            <RiLogoutCircleFill size={20} />
+              <RiLogoutCircleFill size={20} />
               <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
             </Link>
           </li>
