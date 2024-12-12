@@ -15,6 +15,7 @@ const ProfileRep = () => {
                 <title>Representative Information</title>
             </Helmet>
             <div className="  gap-11  lg:gap-6 justify-between ">
+                <p className="text-4xl font-bold text-center my-2">Profile Information</p>
                 {managementData?.map(({ id, name, phone, referNo, division, district, upzilla, address, education, email, experience, imgUrl }) => (
                     <div key={id} className="bg-gradient-to-r from-[#302ead] to-[#061a8b] bg-opacity-90 p-1 rounded-lg text-black">
                         <div className="relative bg-gray-100 rounded-md shadow-md">

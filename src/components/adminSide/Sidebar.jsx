@@ -382,7 +382,7 @@ const Sidebar = () => {
 
               {/* Rep refers  */}
            <li>
-            <Link to="/dashboard/refers" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+            <Link to="/dashboard/refers" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600 active:bg-blue-600">
               <MdRoomPreferences size={20} />
               <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Refers</span>
             </Link>

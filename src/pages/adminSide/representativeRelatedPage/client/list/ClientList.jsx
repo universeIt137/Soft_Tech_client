@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-const Refers = () => {
+const ClientList = () => {
     const contents = [
         {
             id: 1,
@@ -99,7 +99,7 @@ const Refers = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
-            <p className="text-2xl font-bold text-center mb-2">Refers List</p>
+            <p className="text-2xl font-bold text-center mb-2">Client List</p>
             <table className="min-w-full bg-white border border-gray-300 text-[12px]">
                 <thead>
                     <tr>
@@ -141,4 +141,4 @@ const Refers = () => {
     );
 };
 
-export default Refers;
+export default ClientList;
