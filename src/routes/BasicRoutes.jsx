@@ -55,6 +55,8 @@ import PaymentHistory from "../pages/adminSide/representativeRelatedPage/payment
 import ProductVideo from "../pages/adminSide/representativeRelatedPage/productVideo/ProductVideo";
 import Training from "../pages/adminSide/representativeRelatedPage/training/Training";
 import Refers from "../pages/adminSide/representativeRelatedPage/refers/Refers";
+import ProfileRep from "../pages/adminSide/representativeRelatedPage/profile/ProfileRep";
+import AccountRep from "../pages/adminSide/representativeRelatedPage/accountsRep/AccountRep";
 
 
 
@@ -275,6 +277,14 @@ const router = createBrowserRouter([
             {
                 path: "refers",
                 element: <Refers></Refers>
+            },
+            {
+                path: "rep-profile",
+                element: <ProfileRep></ProfileRep>
+            },
+            {
+                path: "account-rep",
+                element: <AccountRep></AccountRep>
             }
         ]
     },
