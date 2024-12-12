@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-const Refers = () => {
+const ClientSupport = () => {
     const contents = [
         {
             id: 1,
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -18,6 +20,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -25,6 +29,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -32,6 +38,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -39,6 +47,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -46,6 +56,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -53,6 +65,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         },
         {
@@ -60,6 +74,8 @@ const Refers = () => {
             name: "ashikur",
             company: "Ash Limited",
             address: "Dhaka",
+            due: "2400",
+            support: "deployment problem"
 
         }
     ]
@@ -99,7 +115,7 @@ const Refers = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
-            <p className="text-2xl font-bold text-center mb-2">Refers List</p>
+            <p className="text-2xl font-bold text-center mb-2">Client Support</p>
             <table className="min-w-full bg-white border border-gray-300 text-[12px]">
                 <thead>
                     <tr>
@@ -107,6 +123,7 @@ const Refers = () => {
                         <th className="px-4 py-2 border">Name</th>
                         <th className="px-4 py-2 border">Company</th>
                         <th className="px-4 py-2 border">Address</th>
+                        <th className="px-4 py-2 border">Reason</th>
                         <th className="px-4 py-2 border">Actions</th>
                     </tr>
                 </thead>
@@ -114,10 +131,11 @@ const Refers = () => {
                     {
                         contents?.map((content, index) => (
                             <tr key={content?.id} className="text-center">
-                                <td className="px-4 py-2 border font-semibold">{index+1}</td>
+                                <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.name}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.company}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.address}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.support}</td>
                                 
                                 <td className="px-4 py-2 border">
                                     <button
@@ -141,4 +159,4 @@ const Refers = () => {
     );
 };
 
-export default Refers;
+export default ClientSupport;

@@ -57,6 +57,10 @@ import Training from "../pages/adminSide/representativeRelatedPage/training/Trai
 import Refers from "../pages/adminSide/representativeRelatedPage/refers/Refers";
 import ProfileRep from "../pages/adminSide/representativeRelatedPage/profile/ProfileRep";
 import AccountRep from "../pages/adminSide/representativeRelatedPage/accountsRep/AccountRep";
+import AddClient from "../pages/adminSide/representativeRelatedPage/client/addClient/AddClient";
+import ClientList from "../pages/adminSide/representativeRelatedPage/client/list/ClientList";
+import DueClientList from "../pages/adminSide/representativeRelatedPage/client/list/DueClientList";
+import ClientSupport from "../pages/adminSide/representativeRelatedPage/client/list/ClientSupport";
 
 
 
@@ -285,6 +289,23 @@ const router = createBrowserRouter([
             {
                 path: "account-rep",
                 element: <AccountRep></AccountRep>
+            },
+            // client related routes 
+            {
+                path: "add-client",
+                element: <AddClient></AddClient>
+            },
+            {
+                path: "client-list",
+                element: <ClientList></ClientList>
+            },
+            {
+                path: "due-client-list",
+                element:<DueClientList></DueClientList>
+            },
+            {
+                path: "client-support",
+                element: <ClientSupport></ClientSupport>
             }
         ]
     },

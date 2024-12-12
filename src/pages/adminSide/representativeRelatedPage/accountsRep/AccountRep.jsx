@@ -46,7 +46,9 @@ const AccountRep = () => {
             <Helmet>
                 <title>Amar Thikana | Account Representative</title>
             </Helmet>
+            <p className="text-4xl font-bold text-center my-2">Account Information</p>
             <div className="grid grid-cols-2 justify-center gap-6">
+
                 {bankInfoList.map((item) => (
                     <div key={item.id} className="bg-white rounded-lg shadow-lg p-6 w-full ">
                         {/* Profile Image */}
