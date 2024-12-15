@@ -41,10 +41,10 @@ const RepresentativeLogin = () => {
                     className="lg:w-1/2 w-full p-6"
                 >
                     <div className="bg-custom-gradient p-4 text-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg">
-                        <h2 className="text-3xl font-semibold text-white">Login to your account</h2>
+                        <h2 className="text-2xl font-semibold text-white">Login representative account </h2>
                         <p className="text-white mt-2">
                             Don’t have an account?
-                            <Link to="/register" className="underline pl-1 hover:text-universe_primary">
+                            <Link to="/representative-register" className="underline pl-1 hover:text-universe_primary">
                                 Register
                             </Link>
                         </p>

@@ -119,14 +119,16 @@ const Login = () => {
                   <p>Login Representative </p>
                 </button>
               </Link>
-              <button
-                aria-label="Login with GitHub"
-                type="button"
-                className="flex items-center justify-center w-full p-4 space-x-4 border border-bg_btn_primary rounded-md hover:bg-bg_btn_primary hover:text-white transition duration-300"
-              >
-                
-                <p>Register representative</p>
-              </button>
+              <Link to={`/representative-register`}>
+                <button
+                  aria-label="Login with GitHub"
+                  type="button"
+                  className="flex items-center justify-center w-full p-4 space-x-4 border border-bg_btn_primary rounded-md hover:bg-bg_btn_primary hover:text-white transition duration-300"
+                >
+
+                  <p>Register representative</p>
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>

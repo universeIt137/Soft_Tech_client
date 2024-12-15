@@ -62,6 +62,7 @@ import ClientList from "../pages/adminSide/representativeRelatedPage/client/list
 import DueClientList from "../pages/adminSide/representativeRelatedPage/client/list/DueClientList";
 import ClientSupport from "../pages/adminSide/representativeRelatedPage/client/list/ClientSupport";
 import RepresentativeLogin from "../components/clientSide/Login/RepresentativeLogin";
+import RepresentativeRegister from "../components/clientSide/Register/RepresentativeRegister";
 
 
 
@@ -160,6 +161,13 @@ const router = createBrowserRouter([
             {
                 path : "/representative-login",
                 element : <RepresentativeLogin></RepresentativeLogin>
+            },
+
+            // representative register routes
+
+            {
+                path:"/representative-register",
+                element : <RepresentativeRegister></RepresentativeRegister>
             }
 
 
