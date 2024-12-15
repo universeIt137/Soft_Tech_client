@@ -1,12 +1,58 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { createAlert } from '../../../helper/createAlert';
+import Swal from 'sweetalert2';
 
 const RepresentativeRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
   const [isLoader, setIsLoader] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const phone = e.target.phone.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+    if (password !== confirmPassword) {
+      toast.error("Your password and confirm password  not match. Please try again");
+      return;
+    };
+
+    const payload = {
+      name,
+      phone,
+      password,
+      confirmPassword
+    }
+
+    try {
+      const resp = await createAlert();
+
+
+      if (resp.isConfirmed) {
+        setIsLoader(true);
+        let res = await axiosPublic.post(`/representative/create`, payload);
+        setIsLoader(false);
+        if (res) {
+          navigate("/upload-information")
+        }
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong. Please try again");
+    }
+
+
+
+  }
 
   window.scrollTo(0, 0);
 
@@ -65,7 +111,7 @@ const RepresentativeRegister = () => {
             </p>
           </div>
           <div className="p-6">
-            <form className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* name */}
               <div className="space-y-2">
                 <label htmlFor="name" className="block text-sm text-gray-600">
@@ -117,7 +163,7 @@ const RepresentativeRegister = () => {
               {/* confirm password */}
               <div className="space-y-2 relative">
                 <label htmlFor="confirmPassword" className="block text-sm text-gray-600">
-                Confirm Password
+                  Confirm Password
                 </label>
                 <input
                   id="confirmPassword"
