@@ -61,6 +61,7 @@ import AddClient from "../pages/adminSide/representativeRelatedPage/client/addCl
 import ClientList from "../pages/adminSide/representativeRelatedPage/client/list/ClientList";
 import DueClientList from "../pages/adminSide/representativeRelatedPage/client/list/DueClientList";
 import ClientSupport from "../pages/adminSide/representativeRelatedPage/client/list/ClientSupport";
+import RepresentativeLogin from "../components/clientSide/Login/RepresentativeLogin";
 
 
 
@@ -153,6 +154,13 @@ const router = createBrowserRouter([
                 path: "/blogDetails/:id",
                 element: <Blogdetails></Blogdetails>
             },
+
+            // representative login routes 
+
+            {
+                path : "/representative-login",
+                element : <RepresentativeLogin></RepresentativeLogin>
+            }
 
 
         ]
