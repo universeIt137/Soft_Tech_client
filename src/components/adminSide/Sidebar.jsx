@@ -21,7 +21,6 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {

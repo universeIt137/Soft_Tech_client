@@ -188,9 +188,8 @@ const router = createBrowserRouter([
 
     {
         path: "/dashboard",
-        element: <PrivateRoutes>
-            <DashboardLayout></DashboardLayout>
-        </PrivateRoutes>,
+        element:  <DashboardLayout></DashboardLayout>,
+        
         children: [
             {
                 path:"/dashboard",
@@ -339,10 +338,7 @@ const router = createBrowserRouter([
         path: "/admin-registration",
         element: <AdminRegistration></AdminRegistration>
     },
-    {
-        path: "/admin-login",
-        element: <AdminLoginPage></AdminLoginPage>
-    },
+    
     
 ]);
 

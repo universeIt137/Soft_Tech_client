@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const slideInVariants = {
   hidden: { x: '100%', opacity: 0 },
@@ -11,8 +13,46 @@ const slideInVariants = {
 const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
   window.scrollTo(0, 0);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const contactNumber = e.target.contactNumber.value;
+    const password = e.target.password.value;
+    const payload = {
+      contactNumber,
+      password,
+    }
+
+    const res = await axiosPublic.post(`/adminLogin`,payload);
+    console.log(res);
+
+    try {
+      if(res){
+        Swal.fire({
+          icon:'success',
+          title: 'Login successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        localStorage.setItem("admin_token", res.data.token);
+        localStorage.setItem("user", res.data.data.role );
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Failed to login',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
+
+    
+  }
+
 
   return (
     <div className="py-5 flex items-center justify-center min-h-screen">
@@ -50,14 +90,16 @@ const Login = () => {
             </p>
           </div>
           <div className="p-6">
-            <form className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="email" className="block text-sm text-gray-600">
-                    Email address
+                  <label htmlFor="contactNumber" className="block text-sm text-gray-600">
+                    Phone Number
                   </label>
                   <input
-                    placeholder="info@gmail.com"
+                    placeholder="017-00000000"
+                    id="contactNumber"
+                    name="contactNumber"
                     className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                     required
                   />
@@ -67,18 +109,20 @@ const Login = () => {
                     <label htmlFor="password" className="text-sm text-gray-600">
                       Password
                     </label>
-                    <a
+                    {/* <a
                       rel="noopener noreferrer"
                       href="#"
                       className="text-xs hover:underline text-universe_secendary"
                     >
                       Forgot password?
-                    </a>
+                    </a> */}
                   </div>
                   <input
                     type={showpass ? "text" : "password"}
                     className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                     required
+                    name="password"
+                    id="password"
                     placeholder="Enter your password"
                   />
                   <span

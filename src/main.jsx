@@ -19,13 +19,12 @@ createRoot(document.getElementById('root')).render(
 
     <QueryClientProvider client={queryClient}>
       
-      <AuthProvider> <HelmetProvider>
+       <HelmetProvider>
           <RouterProvider router={router} />
           <ToastContainer position='bottom-center' />
           <Toaster position="top-center" reverseOrder={false}
           />
         </HelmetProvider>
-      </AuthProvider>
      
     </QueryClientProvider>
 
