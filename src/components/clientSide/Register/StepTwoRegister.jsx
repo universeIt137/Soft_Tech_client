@@ -78,7 +78,7 @@ const StepTwoRegister = () => {
         };
 
         try {
-            setIsLoader(true);
+        setIsLoader(true);
         const res = await axiosPublic.put(`/representative/step-two`, payload, config);
         console.log("res is ",res)
         setIsLoader(false);
