@@ -64,6 +64,7 @@ import ClientSupport from "../pages/adminSide/representativeRelatedPage/client/l
 import RepresentativeLogin from "../components/clientSide/Login/RepresentativeLogin";
 import RepresentativeRegister from "../components/clientSide/Register/RepresentativeRegister";
 import StepTwoRegister from "../components/clientSide/Register/StepTwoRegister";
+import StepThreeRegister from "../components/clientSide/Register/StepThreeRegister";
 
 
 
@@ -173,6 +174,10 @@ const router = createBrowserRouter([
             {
                 path : "/upload-information",
                 element : <StepTwoRegister></StepTwoRegister>
+            },
+            {
+                path : "/representative/step-three",
+                element : <StepThreeRegister></StepThreeRegister>
             }
 
 
