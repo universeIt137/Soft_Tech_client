@@ -41,6 +41,9 @@ const RepresentativeRegister = () => {
         let res = await axiosPublic.post(`/representative/create`, payload);
         setIsLoader(false);
         if (res) {
+          console.log(res)
+          localStorage.setItem("repToken", res.data.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data.data.data));
           navigate("/upload-information")
         }
       }

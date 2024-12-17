@@ -63,6 +63,7 @@ import DueClientList from "../pages/adminSide/representativeRelatedPage/client/l
 import ClientSupport from "../pages/adminSide/representativeRelatedPage/client/list/ClientSupport";
 import RepresentativeLogin from "../components/clientSide/Login/RepresentativeLogin";
 import RepresentativeRegister from "../components/clientSide/Register/RepresentativeRegister";
+import StepTwoRegister from "../components/clientSide/Register/StepTwoRegister";
 
 
 
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
             {
                 path:"/representative-register",
                 element : <RepresentativeRegister></RepresentativeRegister>
+            },
+            {
+                path : "/upload-information",
+                element : <StepTwoRegister></StepTwoRegister>
             }
 
 
