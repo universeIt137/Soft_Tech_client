@@ -12,11 +12,8 @@ import {
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../authProvider/AuthProvider";
 
 const DashboardPage = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user)
 
   const data = [
     { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },

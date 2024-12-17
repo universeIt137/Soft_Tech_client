@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const slideInVariants = {
     hidden: { x: '100%', opacity: 0 },
@@ -11,6 +13,48 @@ const slideInVariants = {
 const RepresentativeLogin = () => {
     const [isLoader, setIsLoader] = useState(false);
     const [showpass, setShowPass] = useState(false);
+    const useAxios = useAxiosPublic();
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const phone = e.target.phone.value;
+        const password = e.target.password.value;
+
+        const payload = {
+            phone,
+            password
+        };
+
+        setIsLoader(true);
+        let res = await useAxios.post(`/representative/login`,payload);
+        setIsLoader(false);
+        
+        try {
+            if(res){
+                Swal.fire({
+                    icon:'success',
+                    title: 'Logged In Successfully',
+                    text: 'Redirecting to your dashboard...',
+                    timer: 2000,
+                    showConfirmButton: false
+                })
+                localStorage.setItem('representativeToken',res.data.data.representativeToken);
+                localStorage.setItem("user", res.data.data?.representative.role);
+                window.location.href = '/dashboard';
+                return;
+            }
+        } catch (error) {
+            Swal.fire({
+                icon:'error',
+                title: 'Failed to login',
+                text: 'Please check your credentials and try again',
+                timer: 2000,
+                showConfirmButton: false
+            })
+        }
+        
+    };
 
     window.scrollTo(0, 0);
 
@@ -50,7 +94,7 @@ const RepresentativeLogin = () => {
                         </p>
                     </div>
                     <div className="p-6">
-                        <form className="space-y-8">
+                        <form onSubmit={handleSubmit} className="space-y-8">
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <label htmlFor="phone" className="block text-sm text-gray-600">
