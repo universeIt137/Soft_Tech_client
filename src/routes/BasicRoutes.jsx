@@ -65,8 +65,8 @@ import RepresentativeLogin from "../components/clientSide/Login/RepresentativeLo
 import RepresentativeRegister from "../components/clientSide/Register/RepresentativeRegister";
 import StepTwoRegister from "../components/clientSide/Register/StepTwoRegister";
 import StepThreeRegister from "../components/clientSide/Register/StepThreeRegister";
-
-
+import PrivateRoute from "./PrivateRoutes";
+import RepDashboard from "../components/representative/RepDashboard";
 
 
 
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage></LoginPage>
             },
-           
+
 
             {
                 path: '/register',
@@ -134,9 +134,9 @@ const router = createBrowserRouter([
                 path: '/portfolio',
                 element: <PortfolioPage></PortfolioPage>
             },
-            
 
-           
+
+
             {
                 path: "/our-team",
                 element: <OurTeamPage></OurTeamPage>
@@ -161,23 +161,23 @@ const router = createBrowserRouter([
             // representative login routes 
 
             {
-                path : "/representative-login",
-                element : <RepresentativeLogin></RepresentativeLogin>
+                path: "/representative-login",
+                element: <RepresentativeLogin></RepresentativeLogin>
             },
 
             // representative register routes
 
             {
-                path:"/representative-register",
-                element : <RepresentativeRegister></RepresentativeRegister>
+                path: "/representative-register",
+                element: <RepresentativeRegister></RepresentativeRegister>
             },
             {
-                path : "/upload-information",
-                element : <StepTwoRegister></StepTwoRegister>
+                path: "/upload-information",
+                element: <StepTwoRegister></StepTwoRegister>
             },
             {
-                path : "/representative/step-three",
-                element : <StepThreeRegister></StepThreeRegister>
+                path: "/representative/step-three",
+                element: <StepThreeRegister></StepThreeRegister>
             }
 
 
@@ -188,101 +188,106 @@ const router = createBrowserRouter([
 
     {
         path: "/dashboard",
-        element:  <DashboardLayout></DashboardLayout>,
-        
+        element: <DashboardLayout></DashboardLayout>,
         children: [
             {
-                path:"/dashboard",
-                element:<DashboardPage></DashboardPage>
+                path: "/dashboard",
+                element: <PrivateRoute role={"admin"} ><DashboardPage></DashboardPage></PrivateRoute>
             },
             {
                 path: "add-service",
-                element: <AddServicePage></AddServicePage>
+                element: <PrivateRoute role={"admin"}><AddServicePage></AddServicePage></PrivateRoute>
             },
             {
                 path: "manage-service",
-                element: <ManageServicePage></ManageServicePage>
+                element: <PrivateRoute role={"admin"}> <ManageServicePage></ManageServicePage> </PrivateRoute>
             },
             {
                 path: "update-service/:id",
-                element: <UpdateServicePage></UpdateServicePage>
+                element: <PrivateRoute role={"admin"}> <UpdateServicePage></UpdateServicePage> </PrivateRoute>
             },
             {
                 path: "add-career",
-                element: <AddCareerPage></AddCareerPage>
+                element: <PrivateRoute role={"admin"}> <AddCareerPage></AddCareerPage> </PrivateRoute>
             },
             {
-                path : "career-update/:id",
-                element : <UpdateCareerPage></UpdateCareerPage>
+                path: "career-update/:id",
+                element: <PrivateRoute role={"admin"}><UpdateCareerPage></UpdateCareerPage></PrivateRoute>
             },
             {
                 path: "manage-career",
-                element: <ManageCareerPage></ManageCareerPage>
+                element: <PrivateRoute role={"admin"}><ManageCareerPage></ManageCareerPage> </PrivateRoute>
             },
             {
                 path: "add-product",
-                element: <AddProductPage></AddProductPage>
+                element: <PrivateRoute role={"admin"}> <AddProductPage></AddProductPage> </PrivateRoute>
             },
             {
                 path: "application",
-                element: <AllApplication></AllApplication>
+                element: <PrivateRoute role={"admin"}><AllApplication></AllApplication></PrivateRoute>
             },
             {
                 path: "getSingleApplication/:id",
-                element: <GetSingleApplication></GetSingleApplication>
+                element: <PrivateRoute role={"admin"}><GetSingleApplication></GetSingleApplication></PrivateRoute>
             },
             {
                 path: "manage-product",
-                element: <ManageProductPage></ManageProductPage>
+                element: <PrivateRoute role={"admin"} ><ManageProductPage></ManageProductPage></PrivateRoute>
             },
             {
-                path : "/dashboard/product/update/:id",
-                element : <ProductUpdatePage></ProductUpdatePage>
+                path: "/dashboard/product/update/:id",
+                element: <PrivateRoute role={"admin"} ><ProductUpdatePage></ProductUpdatePage></PrivateRoute>
             },
             {
                 path: "/dashboard/manage-team",
-                element: <ManageTeam></ManageTeam>
+                element: <PrivateRoute role={"admin"}><ManageTeam></ManageTeam></PrivateRoute>
             },
             {
                 path: "/dashboard/update/:id",
-                element: <UpdateMember></UpdateMember>
+                element: <PrivateRoute role={"admin"}><UpdateMember></UpdateMember></PrivateRoute>
             },
             {
-                path : "create-portfolio",
-                element : <CreatePortfolioPage></CreatePortfolioPage>
-            },{
-                path :"manage-portfolio",
-                element : <AllPortfolioPage></AllPortfolioPage>
+                path: "create-portfolio",
+                element: <PrivateRoute role={"admin"}><CreatePortfolioPage></CreatePortfolioPage></PrivateRoute>
+            }, {
+                path: "manage-portfolio",
+                element: <PrivateRoute role={"admin"}><AllPortfolioPage></AllPortfolioPage></PrivateRoute>
             },
             {
-                path :"portfolio-update/:id",
-                element :<UpdatePortfolioPage></UpdatePortfolioPage>
+                path: "portfolio-update/:id",
+                element: <PrivateRoute role={"admin"}><UpdatePortfolioPage></UpdatePortfolioPage></PrivateRoute>
             },
             {
-                path : "add-blog",
-                element : <AddBlogPage></AddBlogPage>
+                path: "add-blog",
+                element: <PrivateRoute role={"admin"} ><AddBlogPage></AddBlogPage></PrivateRoute>
             },
             {
-                path : "manage-blog",
-                element : <ManageBlogPage></ManageBlogPage>
+                path: "manage-blog",
+                element: <PrivateRoute role={"admin"}><ManageBlogPage></ManageBlogPage></PrivateRoute>
             },
             {
-                path : "blog-update/:id",
-                element : <BlogUpdatePage></BlogUpdatePage>
+                path: "blog-update/:id",
+                element: <PrivateRoute role={"admin"}><BlogUpdatePage></BlogUpdatePage></PrivateRoute>
             },
             {
-                path : "create/category",
-                element: <CategoryCreateForm></CategoryCreateForm>
+                path: "create/category",
+                element: <PrivateRoute role={"admin"}><CategoryCreateForm></CategoryCreateForm></PrivateRoute>
             },
             {
-                path : "manage-category",
-                element: <ManageCategoryPage></ManageCategoryPage>
+                path: "manage-category",
+                element: <PrivateRoute role={"admin"}><ManageCategoryPage></ManageCategoryPage></PrivateRoute>
             },
             {
-                path : "category-update/:id",
-                element : <CategoryUpdatePage></CategoryUpdatePage>
+                path: "category-update/:id",
+                element: <PrivateRoute role={"admin"}><CategoryUpdatePage></CategoryUpdatePage></PrivateRoute>
             },
-            // Rrepresentative related routes 
+
+
+            // Rrepresentative related routes
+            {
+                path: "/dashboard",
+                element: <RepDashboard></RepDashboard>
+            },
             {
                 path: "info",
                 element: <Info></Info>
@@ -326,7 +331,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "due-client-list",
-                element:<DueClientList></DueClientList>
+                element: <DueClientList></DueClientList>
             },
             {
                 path: "client-support",
@@ -334,12 +339,18 @@ const router = createBrowserRouter([
             }
         ]
     },
+
+
+
+
+
+
     {
         path: "/admin-registration",
         element: <AdminRegistration></AdminRegistration>
     },
-    
-    
+
+
 ]);
 
 export default router;

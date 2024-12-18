@@ -27,7 +27,10 @@ const Login = () => {
       password,
     }
 
+
+    setIsLoader(true)
     const res = await axiosPublic.post(`/adminLogin`,payload);
+    setIsLoader(false)
     console.log(res);
 
     try {
@@ -40,6 +43,9 @@ const Login = () => {
         });
         localStorage.setItem("admin_token", res.data.token);
         localStorage.setItem("user", res.data.data.role );
+        window.location.href = '/dashboard';
+        e.target.reset()
+        return;
       }
     } catch (error) {
       Swal.fire({
@@ -80,7 +86,7 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="lg:w-1/2 w-full p-6"
         >
-          <div className="bg-custom-gradient p-4 text-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg">
+          <div className="bg-custom-gradient p-4 text-center rounded-lg ">
             <h2 className="text-3xl font-semibold text-white">Login to your account</h2>
             <p className="text-white mt-2">
               Don’t have an account?
