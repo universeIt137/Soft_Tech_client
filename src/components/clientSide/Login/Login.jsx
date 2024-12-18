@@ -44,7 +44,9 @@ const Login = () => {
         });
         localStorage.setItem("admin_token", res.data.token);
         localStorage.setItem("user", res.data.data.role );
-        navigate('/dashboard')
+        window.location.href = '/dashboard';
+        e.target.reset()
+        return;
       }
     } catch (error) {
       Swal.fire({
@@ -70,6 +72,7 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
         >
+          
           <img
             src="https://i.postimg.cc/RFZ24H5Y/11073076-copy.png"
             alt="LoginIllustration"
@@ -86,7 +89,7 @@ const Login = () => {
           className="lg:w-1/2 w-full p-6"
         >
           <div className="bg-custom-gradient p-4 text-center rounded-lg ">
-            <h2 className="text-3xl font-semibold text-white">Login to your account</h2>
+            <h2 className="text-3xl font-semibold text-white">Login to Admin account</h2>
             <p className="text-white mt-2">
               Don’t have an account?
               <Link to="/register" className="underline pl-1 hover:text-universe_primary">

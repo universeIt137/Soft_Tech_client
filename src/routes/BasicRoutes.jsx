@@ -188,11 +188,11 @@ const router = createBrowserRouter([
 
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: "/dashboard",
-                element: <DashboardPage></DashboardPage>
+                element: <PrivateRoute><DashboardPage></DashboardPage></PrivateRoute>
             },
             {
                 path: "add-service",
