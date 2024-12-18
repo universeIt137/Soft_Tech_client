@@ -15,7 +15,7 @@ const RepresentativeLogin = () => {
     const [showpass, setShowPass] = useState(false);
     const useAxios = useAxiosPublic();
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const phone = e.target.phone.value;
@@ -27,33 +27,33 @@ const RepresentativeLogin = () => {
         };
 
         setIsLoader(true);
-        let res = await useAxios.post(`/representative/login`,payload);
+        let res = await useAxios.post(`/representative/login`, payload);
         setIsLoader(false);
-        
+
         try {
-            if(res){
+            if (res) {
                 Swal.fire({
-                    icon:'success',
+                    icon: 'success',
                     title: 'Logged In Successfully',
                     text: 'Redirecting to your dashboard...',
                     timer: 2000,
                     showConfirmButton: false
                 })
-                localStorage.setItem('representativeToken',res.data.data.representativeToken);
+                localStorage.setItem('representativeToken', res.data.data.representativeToken);
                 localStorage.setItem("user", res.data.data?.representative.role);
                 window.location.href = '/dashboard';
                 return;
             }
         } catch (error) {
             Swal.fire({
-                icon:'error',
+                icon: 'error',
                 title: 'Failed to login',
                 text: 'Please check your credentials and try again',
                 timer: 2000,
                 showConfirmButton: false
             })
         }
-        
+
     };
 
     window.scrollTo(0, 0);
@@ -70,7 +70,7 @@ const RepresentativeLogin = () => {
                     className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
                 >
                     <img
-                        src="https://i.postimg.cc/RFZ24H5Y/11073076-copy.png"
+                        src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1734519210/Universe%20Soft%20Tech/Public/iwesgxes2v3tmw8qcih4.png"
                         alt="LoginIllustration"
                         className="max-w-full h-auto"
                     />
@@ -172,8 +172,10 @@ const RepresentativeLogin = () => {
                                 type="button"
                                 className="flex items-center justify-center w-full p-4 space-x-4 border border-bg_btn_primary rounded-md hover:bg-bg_btn_primary hover:text-white transition duration-300"
                             >
-                                
-                                <p>Register Representative</p>
+
+                                <Link to={'/representative-register'}>
+                                    <p>Register Representative</p>
+                                </Link>
                             </button>
                         </div>
                     </div>

@@ -31,6 +31,7 @@ const Sidebar = () => {
     },
   };
   const role = localStorage.getItem("user");
+  console.log(role);
   const adminConfig = {
     headers: {
       Authorization: adminToken,
@@ -91,413 +92,418 @@ const Sidebar = () => {
   return (
     <>
       {
-        role === "admin" ? <>
-          {/* //admin */}
-          <div
-            className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
-              }`}
-          >
-            <div className="flex justify-between items-center p-4">
-              <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
-                <Link to="/">
-                  <div>
-                    <div className="avatar">
-                      <div className="w-12  border-white border-2 rounded-full">
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        role === "admin" ?
+          <>
+            {/* //admin */}
+            <div
+              className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+                }`}
+            >
+              <div className="flex justify-between items-center p-4">
+                <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
+                  <Link to="/">
+                    <div>
+                      <div className="avatar">
+                        <div className="w-12  border-white border-2 rounded-full">
+                          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
+                <button onClick={toggleSidebar} className="text-white focus:outline-none">
+                  {isSidebarOpen ? (
+                    <IoCloseCircleOutline className="text-4xl" />
+                  ) : (
+                    <MdMenuOpen size={20} />
+                  )}
+                </button>
               </div>
-              <button onClick={toggleSidebar} className="text-white focus:outline-none">
-                {isSidebarOpen ? (
-                  <IoCloseCircleOutline className="text-4xl" />
-                ) : (
-                  <MdMenuOpen size={20} />
-                )}
-              </button>
-            </div>
 
-            <nav>
-              <ul className="text-[12px]">
+              <nav>
+                <ul className="text-[12px]">
 
-                <li>
-                  <Link to={'/dashboard'}>
+                  <li>
+                    <Link to={'/dashboard'}>
+                      <label
+
+                        className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                      >
+                        <MdAssessment size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
+
+                      </label>
+                    </Link>
+
+                  </li>
+
+
+                  {/* Product */}
+                  <li>
                     <label
-
+                      onClick={() => handleDropdownToggle("product")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <MdAssessment size={20} />
-                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
-
+                      <AiOutlineProduct size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Products</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "product" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
                     </label>
-                  </Link>
+                    <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
+                      <li>
 
-                </li>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-product"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Product
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-product"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Product
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
+                  {/* category */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("category")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <SiPolymerproject size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Category</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "category" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "category" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/create/category"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Category
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-category"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Category
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                {/* Product */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("product")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <AiOutlineProduct size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Products</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "product" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "product" ? "block" : "hidden"} ml-8  `}>
-                    <li>
+                  {/* Portfolio */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("portfolio")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <SiPolymerproject size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Portfolio projects</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "portfolio" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "portfolio" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/create-portfolio"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Portfolio
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-portfolio"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Portfolio
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/add-product"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Product
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-product"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Product
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
+                  {/* Services */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("service")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaServicestack size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Services</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "service" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "service" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-service"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Service
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-service"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Service
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                {/* category */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("category")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <SiPolymerproject size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Category</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "category" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "category" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/create/category"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Category
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-category"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Category
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
+                  {/* Career */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("career")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBriefcase size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Career</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "career" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "career" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-career"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Career
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-career"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Career
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                {/* Portfolio */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("portfolio")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <SiPolymerproject size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Portfolio projects</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "portfolio" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "portfolio" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/create-portfolio"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Portfolio
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-portfolio"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Portfolio
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
+                  {/* Blog */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("blog")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBloggerB size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Blog</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "blog" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "blog" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-blog"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Blog
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-blog"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Blog
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                {/* Services */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("service")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <FaServicestack size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Services</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "service" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "service" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/add-service"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Service
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-service"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Service
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
+                  {/* Application */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("application")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
 
-                {/* Career */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("career")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <FaBriefcase size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Career</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "career" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "career" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/add-career"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Career
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-career"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Career
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
+                      <AiFillFileImage size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Application</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "application" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "application" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/application"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage Applications
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
 
-                {/* Blog */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("blog")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-                    <FaBloggerB size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Blog</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "blog" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "blog" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/add-blog"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Add Blog
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/dashboard/manage-blog"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Blog
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* Application */}
-                <li>
-                  <label
-                    onClick={() => handleDropdownToggle("application")}
-                    className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                  >
-
-                    <AiFillFileImage size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Application</span>
-                    {isSidebarOpen && (
-                      <span className="ml-auto">
-                        {activeDropdown === "application" ? <FaAngleUp /> : <FaAngleDown />}
-                      </span>
-                    )}
-                  </label>
-                  <ul className={`${activeDropdown === "application" ? "block" : "hidden"} ml-8  `}>
-                    <li>
-                      <NavLink
-                        to="/dashboard/application"
-                        className="p-2 block transition duration-200 hover:bg-white hover:text-black"
-                      >
-                        Manage Applications
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
-
-                {/* Team Management */}
-                <li>
-                  <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <BiLogoMicrosoftTeams size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
-                  </Link>
-                </li>
+                  {/* Team Management */}
+                  <li>
+                    <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                      <BiLogoMicrosoftTeams size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
+                    </Link>
+                  </li>
 
 
-                {/* Logout */}
-                <li onClick={handleLogout}>
-                  <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <RiLogoutCircleFill size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </> : role === "representative" ? <>
-          {/* representative */}
-          <div
-            className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
-              }`}
-          >
-            <div className="flex justify-between items-center p-4">
-              <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
-                <Link to="/">
-                  <div>
-                    <div className="avatar">
-                      <div className="w-12  border-white border-2 rounded-full">
-                        <img src={repData?.image} />
+                  {/* Logout */}
+                  <li onClick={handleLogout}>
+                    <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                      <RiLogoutCircleFill size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </>
+          :
+          role === "representative" ?
+            <>
+              {/* representative */}
+              <div
+                className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+                  }`}
+              >
+                <div className="flex justify-between items-center p-4">
+                  <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
+                    <Link to="/">
+                      <div>
+                        <div className="avatar">
+                          <div className="w-12  border-white border-2 rounded-full">
+                            <img src={repData?.image} />
+                          </div>
+                        </div>
+                        <p className="text-[16px]">ID: {repData?.representative_id} </p>
                       </div>
-                    </div>
-                    <p className="text-[16px]">ID: {repData?.representative_id} </p>
+                    </Link>
                   </div>
-                </Link>
+                  <button onClick={toggleSidebar} className="text-white focus:outline-none">
+                    {isSidebarOpen ? (
+                      <IoCloseCircleOutline className="text-4xl" />
+                    ) : (
+                      <MdMenuOpen size={20} />
+                    )}
+                  </button>
+                </div>
+
+                <nav>
+                  <ul className="text-[12px]">
+
+                    <li>
+                      <Link to={'/dashboard'}>
+                        <label
+
+                          className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                        >
+                          <MdAssessment size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
+
+                        </label>
+                      </Link>
+
+                    </li>
+
+                    {/* Rep information */}
+                    <li>
+                      <Link to="/dashboard/info" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <BsInfoCircleFill size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Information</span>
+                      </Link>
+                    </li>
+
+                    {/* Rep client list */}
+                    <li>
+                      <Link to="/dashboard/client" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <BsClipboard2DataFill size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Your Client List</span>
+                      </Link>
+                    </li>
+
+
+
+                    {/* Rep payment list */}
+                    <li>
+                      <Link to="/dashboard/payment" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <MdPayments size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Payment History</span>
+                      </Link>
+                    </li>
+
+
+                    {/* Rep Product Video */}
+                    <li>
+                      <Link to="/dashboard/product-video" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <IoVideocam size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Video</span>
+                      </Link>
+                    </li>
+
+                    {/* Rep Training Session */}
+                    <li>
+                      <Link to="/dashboard/training" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <MdModelTraining size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Training Session</span>
+                      </Link>
+                    </li>
+
+
+                    {/* Rep refers  */}
+                    <li>
+                      <Link to="/dashboard/refers" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600 active:bg-blue-600">
+                        <MdRoomPreferences size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Refers</span>
+                      </Link>
+                    </li>
+
+
+                    {/* Logout */}
+                    <li onClick={handleLogoutRepresentative}>
+                      <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <RiLogoutCircleFill size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
+                      </Link>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-              <button onClick={toggleSidebar} className="text-white focus:outline-none">
-                {isSidebarOpen ? (
-                  <IoCloseCircleOutline className="text-4xl" />
-                ) : (
-                  <MdMenuOpen size={20} />
-                )}
-              </button>
-            </div>
-
-            <nav>
-              <ul className="text-[12px]">
-
-                <li>
-                  <Link to={'/dashboard'}>
-                    <label
-
-                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
-                    >
-                      <MdAssessment size={20} />
-                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
-
-                    </label>
-                  </Link>
-
-                </li>
-
-                {/* Rep information */}
-                <li>
-                  <Link to="/dashboard/info" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <BsInfoCircleFill size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Information</span>
-                  </Link>
-                </li>
-
-                {/* Rep client list */}
-                <li>
-                  <Link to="/dashboard/client" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <BsClipboard2DataFill size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Your Client List</span>
-                  </Link>
-                </li>
-
-
-
-                {/* Rep payment list */}
-                <li>
-                  <Link to="/dashboard/payment" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <MdPayments size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Payment History</span>
-                  </Link>
-                </li>
-
-
-                {/* Rep Product Video */}
-                <li>
-                  <Link to="/dashboard/product-video" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <IoVideocam size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Video</span>
-                  </Link>
-                </li>
-
-                {/* Rep Training Session */}
-                <li>
-                  <Link to="/dashboard/training" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <MdModelTraining size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Training Session</span>
-                  </Link>
-                </li>
-
-
-                {/* Rep refers  */}
-                <li>
-                  <Link to="/dashboard/refers" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600 active:bg-blue-600">
-                    <MdRoomPreferences size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Refers</span>
-                  </Link>
-                </li>
-
-
-                {/* Logout */}
-                <li onClick={handleLogoutRepresentative}>
-                  <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                    <RiLogoutCircleFill size={20} />
-                    <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </> : <></>
+            </> :
+            <></>
       }
     </>
   );

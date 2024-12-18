@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -14,6 +14,7 @@ const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   window.scrollTo(0, 0);
 
@@ -71,6 +72,7 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
         >
+          
           <img
             src="https://i.postimg.cc/RFZ24H5Y/11073076-copy.png"
             alt="LoginIllustration"
@@ -87,7 +89,7 @@ const Login = () => {
           className="lg:w-1/2 w-full p-6"
         >
           <div className="bg-custom-gradient p-4 text-center rounded-lg ">
-            <h2 className="text-3xl font-semibold text-white">Login to your account</h2>
+            <h2 className="text-3xl font-semibold text-white">Login to Admin account</h2>
             <p className="text-white mt-2">
               Don’t have an account?
               <Link to="/register" className="underline pl-1 hover:text-universe_primary">
