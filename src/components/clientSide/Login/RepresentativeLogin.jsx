@@ -23,37 +23,38 @@ const RepresentativeLogin = () => {
 
         const payload = {
             phone,
-            password
+            password,
         };
 
         setIsLoader(true);
-        let res = await useAxios.post(`/representative/login`, payload);
-        setIsLoader(false);
 
         try {
+            const res = await useAxios.post(`/representative/login`, payload);
+            setIsLoader(false);
+
             if (res) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Logged In Successfully',
                     text: 'Redirecting to your dashboard...',
                     timer: 2000,
-                    showConfirmButton: false
-                })
+                    showConfirmButton: false,
+                });
                 localStorage.setItem('representativeToken', res.data.data.representativeToken);
-                localStorage.setItem("user", res.data.data?.representative.role);
+                localStorage.setItem('user', res.data.data?.representative.role);
                 window.location.href = '/dashboard';
-                return;
             }
         } catch (error) {
+            setIsLoader(false); // Ensure the loader stops even if there's an error
+
             Swal.fire({
                 icon: 'error',
                 title: 'Failed to login',
-                text: 'Please check your credentials and try again',
+                text: error.response?.data?.message || 'Something went wrong. Please try again.',
                 timer: 2000,
-                showConfirmButton: false
-            })
+                showConfirmButton: false,
+            });
         }
-
     };
 
     window.scrollTo(0, 0);

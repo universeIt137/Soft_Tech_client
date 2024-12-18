@@ -372,6 +372,10 @@ const Sidebar = () => {
                     </ul>
                   </li>
 
+
+
+
+
                   {/* Team Management */}
                   <li>
                     <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
@@ -379,6 +383,17 @@ const Sidebar = () => {
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
                     </Link>
                   </li>
+
+
+                  {/* manage representative */}
+
+                  <li>
+                    <Link to="/dashboard/manage-representative" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                      <BiLogoMicrosoftTeams size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Representative</span>
+                    </Link>
+                  </li>
+
 
 
                   {/* Logout */}
