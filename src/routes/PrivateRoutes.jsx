@@ -1,25 +1,24 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../authProvider/AuthProvider';
-import { Navigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
-const PrivateRoutes = ({ children }) => {
-    const { user, loading } = useContext(AuthContext);
+// eslint-disable-next-line react/prop-types
+const PrivateRoute = ({ children, role }) => {
+    const user = localStorage.getItem("user"); // Parse the stored JSON data
+    const location = useLocation();
 
-    if (user) {
-        return children;
+    // Check if the user is not logged in
+    if (!user) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    if (loading) {
-        return <>
-            <div className="min-h-screen flex justify-center">
-                <span className="loading loading-ring w-52 text-blue-600"></span>
-            </div>
-        </>
+    // Check if a role is required and doesn't match the user's role
+    if (role && user.role !== role) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <Navigate to={'/admin-login'}></Navigate>
-
-    
+    // Render the children if all conditions pass
+    return children;
 };
 
-export default PrivateRoutes;
+export default PrivateRoute;

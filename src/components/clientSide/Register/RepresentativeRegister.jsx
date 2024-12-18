@@ -104,7 +104,7 @@ const RepresentativeRegister = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="lg:w-1/2 w-full p-6"
         >
-          <div className="bg-custom-gradient p-4 text-center rounded-t-lg lg:rounded-t-none lg:rounded-r-lg">
+          <div className="bg-custom-gradient p-4 text-center rounded-lg ">
             <h2 className="text-2xl font-semibold text-white">Register representative account</h2>
             <p className="text-white mt-2">
               Already have an account?
