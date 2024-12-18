@@ -192,7 +192,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <PrivateRoute role={"admin"} ><DashboardPage></DashboardPage></PrivateRoute>
+                element: <DashboardPage></DashboardPage>
             },
             {
                 path: "add-service",

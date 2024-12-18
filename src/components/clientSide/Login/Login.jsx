@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -14,6 +14,7 @@ const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showpass, setShowPass] = useState(false);
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   window.scrollTo(0, 0);
 
@@ -43,9 +44,7 @@ const Login = () => {
         });
         localStorage.setItem("admin_token", res.data.token);
         localStorage.setItem("user", res.data.data.role );
-        window.location.href = '/dashboard';
-        e.target.reset()
-        return;
+        navigate('/dashboard')
       }
     } catch (error) {
       Swal.fire({
