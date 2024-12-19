@@ -96,7 +96,7 @@ const Sidebar = () => {
           <>
             {/* //admin */}
             <div
-              className={`bg-blue-800 h-screen  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+              className={`bg-blue-800 h-screen   border-red-700 text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
                 }`}
             >
               <div className="flex justify-between items-center p-4">
@@ -120,7 +120,7 @@ const Sidebar = () => {
                 </button>
               </div>
 
-              <nav>
+              <nav className="" >
                 <ul className="text-[12px]">
 
                   <li>
@@ -392,6 +392,41 @@ const Sidebar = () => {
                       <BiLogoMicrosoftTeams size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Representative</span>
                     </Link>
+                  </li>
+
+
+                  {/* manage user  */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("user-list")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBloggerB size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>User List</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "user-list" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "user-list" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/register"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add User
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-user"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Manage User
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
 
 
