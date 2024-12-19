@@ -387,12 +387,7 @@ const Sidebar = () => {
 
                   {/* manage representative */}
 
-                  <li>
-                    <Link to="/dashboard/manage-representative" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                      <BiLogoMicrosoftTeams size={20} />
-                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Representative</span>
-                    </Link>
-                  </li>
+
 
 
                   {/* manage user  */}
@@ -425,6 +420,39 @@ const Sidebar = () => {
                         >
                           Manage User
                         </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+
+
+                  {/* manage representative  */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("manage-representative")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBloggerB size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Representative List</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "manage-representative" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "manage-representative" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-representative"
+                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          Add Representative
+                        </NavLink>
+                      </li>
+                      <li>
+                        <Link to="/dashboard/manage-representative" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                          <BiLogoMicrosoftTeams size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Representative</span>
+                        </Link>
                       </li>
                     </ul>
                   </li>
