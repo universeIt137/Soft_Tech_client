@@ -24,7 +24,7 @@ const ProfileRep = () => {
                         <div key={id} className="bg-gradient-to-r  from-[#302ead] to-[#061a8b] bg-opacity-90 p-1 rounded-lg text-black">
                             <div className="relative bg-gray-100 rounded-md shadow-md">
                                 <div className="relative">
-                                    <div className="flex gap-1 justify-end items-center">
+                                    <div className="flex gap-1 justify-end items-center p-1">
                                         <img className="h-6 object-cover" src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png" alt="Logo" />
                                     </div>
                                     <div className="h-[120px] relative flex flex-col justify-center items-center gap-5">

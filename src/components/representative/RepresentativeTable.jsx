@@ -15,7 +15,7 @@ const RepresentativeTable = () => {
             Authorization: adminToken,
         },
     };
-    const { data: representativeData = [],refetch,isLoading,isError } = useQuery({
+    const { data: representativeData = [], refetch, isLoading, isError } = useQuery({
         queryKey: ['representativeData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/representative`, config);
@@ -25,7 +25,8 @@ const RepresentativeTable = () => {
     });
     return (
         <div className="overflow-x-auto p-4">
-            <table className="table-auto w-full border-collapse border border-gray-300">
+            <p className="font-bold text-2xl text-center">Manage Representative</p>
+            <table className="table-auto w-full border-collapse border border-gray-300 text-[12px]">
                 <thead className="bg-gray-200">
                     <tr>
                         <th className="border border-gray-300 px-4 py-2">#</th>
@@ -33,7 +34,7 @@ const RepresentativeTable = () => {
                         <th className="border border-gray-300 px-4 py-2">Phone</th>
                         <th className="border border-gray-300 px-4 py-2">Role</th>
                         <th className="border border-gray-300 px-4 py-2">Status</th>
-                        <th className="border border-gray-300 px-4 py-2">Image</th>
+                        <th className="border border-gray-300 px-4 py-2">Action</th>
                         <th className="border border-gray-300 px-4 py-2">Profile</th>
                     </tr>
                 </thead>
@@ -58,17 +59,24 @@ const RepresentativeTable = () => {
                             >
                                 {representative.status ? "Active" : "Inactive"}
                             </td>
-                            <td className="border border-gray-300 px-4 py-2 text-center">
-                                {representative.image ? (
-                                    <img
-                                        src={representative.image}
-                                        alt={`Profile of ${representative.name}`}
-                                        className="w-16 h-16 rounded-full mx-auto"
-                                    />
-                                ) : (
-                                    "No Image"
-                                )}
+
+                            
+
+                            <td className="font-bold border">
+                                <div className="form-control">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <label className="label cursor-pointer">
+                                            <input
+                                                type="checkbox"
+                                                className="toggle toggle-success toggle-sm"
+                                                // checked={content?.representative || false}
+                                                // onChange={() => handleRepresentativeChange(content)}
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
                             </td>
+
                             <td className="border border-gray-300 px-4 py-2 text-center">
                                 <Link
                                     to={`/dashboard/rep-profile/${representative._id}`}
