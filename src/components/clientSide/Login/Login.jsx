@@ -29,26 +29,28 @@ const Login = () => {
     }
 
 
-    setIsLoader(true)
-    const res = await axiosPublic.post(`/adminLogin`,payload);
-    setIsLoader(false)
-    console.log(res);
+
 
     try {
-      if(res){
+      setIsLoader(true)
+      const res = await axiosPublic.post(`/adminLogin`, payload);
+      setIsLoader(false)
+      console.log(res);
+      if (res) {
         Swal.fire({
-          icon:'success',
+          icon: 'success',
           title: 'Login successful',
           showConfirmButton: false,
           timer: 1500,
         });
         localStorage.setItem("admin_token", res.data.token);
-        localStorage.setItem("user", res.data.data.role );
+        localStorage.setItem("user", res.data.data.role);
         window.location.href = '/dashboard';
         e.target.reset()
         return;
       }
     } catch (error) {
+      setIsLoader(false) // Ensure the loader stops even if there's an error
       Swal.fire({
         icon: 'error',
         title: 'Failed to login',
@@ -57,7 +59,7 @@ const Login = () => {
       })
     }
 
-    
+
   }
 
 
@@ -72,7 +74,7 @@ const Login = () => {
           transition={{ duration: 0.5 }}
           className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
         >
-          
+
           <img
             src="https://i.postimg.cc/RFZ24H5Y/11073076-copy.png"
             alt="LoginIllustration"

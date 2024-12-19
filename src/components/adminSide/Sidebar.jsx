@@ -412,7 +412,7 @@ const Sidebar = () => {
                     <ul className={`${activeDropdown === "user-list" ? "block" : "hidden"} ml-8  `}>
                       <li>
                         <NavLink
-                          to="/register"
+                          to="/dashboard/add-admin"
                           className="p-2 block transition duration-200 hover:bg-white hover:text-black"
                         >
                           Add User
