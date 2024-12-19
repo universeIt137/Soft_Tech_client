@@ -62,10 +62,11 @@ const Register = () => {
     };
 
     try {
+
+      const resp = await createAlert();
       setIsLoader(true);
       let res = await axiosPublic.post(`/CreateAdmin`, payload);
       setIsLoader(false);
-      const resp = await createAlert();
       if (resp.isConfirmed) {
         if (res) {
           Swal.fire({
@@ -77,9 +78,11 @@ const Register = () => {
         }
       }
     } catch (error) {
+      console.error(error.response.data.data);
+      setIsLoader(false);
       Swal.fire({
         title: "Failed to register",
-        text: error.response?.data?.message || 'Something went wrong. Please try again.',
+        text: error.response.data.data,
         icon: "error"
       })
     }
