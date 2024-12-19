@@ -29,7 +29,7 @@ const RepresentativeRegister = () => {
       name,
       phone,
       password,
-      confirmPassword
+     
     }
 
     try {
@@ -193,7 +193,7 @@ const RepresentativeRegister = () => {
                     Processing...
                   </span>
                 ) : (
-                  'Register'
+                  'Next'
                 )}
               </button>
             </form>

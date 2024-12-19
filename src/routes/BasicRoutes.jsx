@@ -71,6 +71,7 @@ import RepresentativeTable from "../components/representative/RepresentativeTabl
 import ManageUser from "../pages/adminSide/manage-user/ManageUser";
 import AdminProfile from "../pages/adminSide/manage-user/AdminProfile";
 import AddAdmin from "../pages/adminSide/manage-user/AddAdmin";
+import AddRepresentative from "../pages/adminSide/representativeRelatedPage/addRep/AddRepresentative";
 
 
 
@@ -309,6 +310,11 @@ const router = createBrowserRouter([
 
 
             // Rrepresentative related routes
+            {
+                path: "add-representative",
+                element: <AddRepresentative></AddRepresentative>
+            },
+
             {
                 path: "/dashboard",
                 element: <RepDashboard></RepDashboard>
