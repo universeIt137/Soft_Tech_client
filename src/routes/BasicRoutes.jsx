@@ -68,6 +68,9 @@ import StepThreeRegister from "../components/clientSide/Register/StepThreeRegist
 import PrivateRoute from "./PrivateRoutes";
 import RepDashboard from "../components/representative/RepDashboard";
 import RepresentativeTable from "../components/representative/RepresentativeTable";
+import ManageUser from "../pages/adminSide/manage-user/ManageUser";
+import AdminProfile from "../pages/adminSide/manage-user/AdminProfile";
+import AddAdmin from "../pages/adminSide/manage-user/AddAdmin";
 
 
 
@@ -159,6 +162,7 @@ const router = createBrowserRouter([
                 element: <Blogdetails></Blogdetails>
             },
 
+            
             // representative login routes 
 
             {
@@ -288,6 +292,20 @@ const router = createBrowserRouter([
                 path: "manage-representative",
                 element: <PrivateRoute role={"admin"}><RepresentativeTable></RepresentativeTable></PrivateRoute>
             },
+            {
+                path: "manage-user",
+                element: <PrivateRoute role={"admin"} ><ManageUser></ManageUser></PrivateRoute>
+            },
+            {
+                path: "admin-profile/:id",
+                element: <PrivateRoute role={"admin"} > <AdminProfile></AdminProfile> </PrivateRoute>
+            },
+
+            {
+                path: "add-admin",
+                element: <PrivateRoute role={"admin"} > <AddAdmin></AddAdmin> </PrivateRoute>
+            },
+
 
 
             // Rrepresentative related routes
