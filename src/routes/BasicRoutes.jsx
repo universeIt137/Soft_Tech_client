@@ -67,6 +67,7 @@ import StepTwoRegister from "../components/clientSide/Register/StepTwoRegister";
 import StepThreeRegister from "../components/clientSide/Register/StepThreeRegister";
 import PrivateRoute from "./PrivateRoutes";
 import RepDashboard from "../components/representative/RepDashboard";
+import RepresentativeTable from "../components/representative/RepresentativeTable";
 
 
 
@@ -280,6 +281,11 @@ const router = createBrowserRouter([
             {
                 path: "category-update/:id",
                 element: <PrivateRoute role={"admin"}><CategoryUpdatePage></CategoryUpdatePage></PrivateRoute>
+            },
+
+            {
+                path: "manage-representative",
+                element: <PrivateRoute role={"admin"}><RepresentativeTable></RepresentativeTable></PrivateRoute>
             },
 
 
