@@ -179,7 +179,8 @@ const router = createBrowserRouter([
             {
                 path: "/representative/step-three",
                 element: <StepThreeRegister></StepThreeRegister>
-            }
+            },
+           
 
 
         ]
@@ -319,7 +320,7 @@ const router = createBrowserRouter([
                 element: <Refers></Refers>
             },
             {
-                path: "rep-profile",
+                path: "rep-profile/:id",
                 element: <ProfileRep></ProfileRep>
             },
             {
