@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { createAlert } from '../../../helper/createAlert';
+import Swal from 'sweetalert2';
+import { uploadImg } from '../../../uploadImage/UploadImage';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,26 +15,76 @@ const Register = () => {
 
   const scrollAnimationVariants = {
     hiddenLeft: { opacity: 0, x: -50 },
-    visibleLeft: { 
-        opacity: 1, 
-        x: 0, 
-        transition: { 
-            duration: 0.5,
-            type: "spring", 
-            stiffness: 50 
-        } 
+    visibleLeft: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        stiffness: 50
+      }
     },
     hiddenRight: { opacity: 0, x: 50 },
-    visibleRight: { 
-        opacity: 1, 
-        x: 0, 
-        transition: { 
-            duration: 0.5,
-            type: "spring", 
-            stiffness: 50 
-        } 
+    visibleRight: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        stiffness: 50
+      }
     }
-};
+  };
+
+  const axiosPublic = useAxiosPublic();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const profilePhoto = e.target.profilePhoto.files[0];
+    const contactNumber = e.target.contactNumber.value;
+
+    let imgUrl = "";
+
+    if (!profilePhoto.name) {
+      imgUrl = ""
+    }
+    imgUrl = await uploadImg(profilePhoto);
+
+    const payload = {
+      name,
+      email,
+      password,
+      contactNumber,
+      profilePhoto: imgUrl
+    };
+
+    try {
+      setIsLoader(true);
+      let res = await axiosPublic.post(`/CreateAdmin`, payload);
+      setIsLoader(false);
+      const resp = await createAlert();
+      if (resp.isConfirmed) {
+        if (res) {
+          Swal.fire({
+            title: "Registration Successful!",
+            text: "You have been registered successfully. Please login to continue.",
+            icon: "success"
+          });
+          e.target.reset();
+        }
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Failed to register",
+        text: error.response?.data?.message || 'Something went wrong. Please try again.',
+        icon: "error"
+      })
+    }
+
+  };
 
   return (
     <div className="py-5 flex items-center justify-center min-h-screen">
@@ -64,7 +118,7 @@ const Register = () => {
             </p>
           </div>
           <div className="p-6">
-            <form className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-2">
                 <label htmlFor="name" className="block text-sm text-gray-600">
                   Name
@@ -72,6 +126,7 @@ const Register = () => {
                 <input
                   id="name"
                   type="text"
+                  name='name'
                   placeholder="Your Name"
                   className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                   required
@@ -85,17 +140,32 @@ const Register = () => {
                   id="email"
                   type="email"
                   placeholder="info@gmail.com"
+                  name='email'
+                  className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="number" className="block text-sm text-gray-600">
+                  Phone Number
+                </label>
+                <input
+                  id="number"
+                  type="text"
+                  name='contactNumber'
+                  placeholder="017-00000000"
                   className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                   required
                 />
               </div>
               <div className="space-y-2">
                 <label htmlFor="photourl" className="block text-sm text-gray-600">
-                  Photo URL
+                  Photo
                 </label>
                 <input
                   id="photourl"
-                  type="text"
+                  type="file"
+                  name='profilePhoto'
                   placeholder="Provide Photo URL"
                   className="w-full px-3 py-2 outline-none focus:border-bg_btn_primary focus:outline-none border border-gray-300 rounded-md text-gray-600"
                   required
@@ -133,7 +203,7 @@ const Register = () => {
                 )}
               </button>
             </form>
-            
+
           </div>
         </motion.div>
       </div>
