@@ -96,7 +96,7 @@ const Sidebar = () => {
           <>
             {/* //admin */}
             <div
-              className={`bg-blue-800 overflow-auto   border-red-700 text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+              className={`bg-blue-800 h-screen   border-red-700 text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
                 }`}
             >
               <div className="flex justify-between items-center p-4">
@@ -120,7 +120,7 @@ const Sidebar = () => {
                 </button>
               </div>
 
-              <nav className="overflow-auto" >
+              <nav className="" >
                 <ul className="text-[12px]">
 
                   <li>
