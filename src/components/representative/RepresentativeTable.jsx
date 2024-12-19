@@ -71,7 +71,7 @@ const RepresentativeTable = () => {
                             </td>
                             <td className="border border-gray-300 px-4 py-2 text-center">
                                 <Link
-                                    to={`/profile/${representative._id}`}
+                                    to={`/dashboard/rep-profile/${representative._id}`}
                                     className="text-blue-500 hover:underline"
                                 >
                                     Profile
