@@ -68,6 +68,7 @@ import StepThreeRegister from "../components/clientSide/Register/StepThreeRegist
 import PrivateRoute from "./PrivateRoutes";
 import RepDashboard from "../components/representative/RepDashboard";
 import RepresentativeTable from "../components/representative/RepresentativeTable";
+import ManageUser from "../pages/adminSide/manage-user/ManageUser";
 
 
 
@@ -157,6 +158,11 @@ const router = createBrowserRouter([
             {
                 path: "/blogDetails/:id",
                 element: <Blogdetails></Blogdetails>
+            },
+
+            {
+                path: "/blogDetails/:id",
+                element: <ManageUser></ManageUser>
             },
 
             // representative login routes 

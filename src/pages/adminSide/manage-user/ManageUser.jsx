@@ -6,7 +6,7 @@ const ManageUser = () => {
   return (
     <div>
         <Helmet>
-            <title>Dashboard | Manageuser </title>
+            <title>Dashboard | Manage User </title>
         </Helmet>
       <div>Manage user</div>
     </div>
