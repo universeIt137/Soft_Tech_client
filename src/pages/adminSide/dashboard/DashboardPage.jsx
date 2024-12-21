@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 const DashboardPage = () => {
 
-  
+
 
   const axiosPublic = useAxiosPublic();
   const adminToken = localStorage.getItem("admin_token");
@@ -44,7 +44,7 @@ const DashboardPage = () => {
     }
   });
 
-  const { data: representatives =[] } = useQuery({
+  const { data: representatives = [] } = useQuery({
     queryKey: ['representatives'],
     queryFn: async () => {
       const res = await axiosPublic.get('/representative', config);
@@ -52,7 +52,24 @@ const DashboardPage = () => {
     }
   });
 
-  console.log(representatives);
+  const { data: allUsers = [] } = useQuery({
+    queryKey: ['allUsers'],
+    queryFn: async () => {
+      const res = await axiosPublic.get('/all-users', config);
+      return res.data.data;
+    }
+  });
+
+  const { data: teamMembers = {}, refetch } = useQuery({
+    queryKey: ['teamMembers'],
+    queryFn: async () => {
+      const res = await axiosPublic.get('/member');
+      return res.data.data;
+    }
+  });
+
+  console.log(teamMembers);
+
 
   return (
     <div className="p-4">
@@ -108,9 +125,40 @@ const DashboardPage = () => {
           </Link>
 
 
-
+          {/* total users */}
+          <Link to="/dashboard/manage-representative">
+            <div className="bg-white rounded-lg shadow-md p-3">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-lg text-gray-700">Total Users</h2>
+                  <h1 className="text-2xl text-gray-900">{allUsers?.length}</h1>
+                </div>
+                <span className="p-3 bg-text_blue rounded-full">
+                  <MdOutlineDesignServices className="text-white text-2xl" />
+                </span>
+              </div>
+            </div>
+          </Link>
 
           
+             {/* total Team Members */}
+             <Link to="/dashboard/manage-team">
+            <div className="bg-white rounded-lg shadow-md p-3">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-lg text-gray-700">Total Team Members</h2>
+                  <h1 className="text-2xl text-gray-900">{teamMembers?.length}</h1>
+                </div>
+                <span className="p-3 bg-text_blue rounded-full">
+                  <MdOutlineDesignServices className="text-white text-2xl" />
+                </span>
+              </div>
+            </div>
+          </Link>
+
+
+
+
         </div>
 
         {/* Second Column: Responsive design for extra card */}
