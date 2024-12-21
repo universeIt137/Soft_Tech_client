@@ -382,18 +382,18 @@ const Sidebar = () => {
 
                   <li>
                     <label
-                      onClick={() => handleDropdownToggle("user-list")}
+                      onClick={() => handleDropdownToggle("team")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
                       <FaBloggerB size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
-                          {activeDropdown === "user-list" ? <FaAngleUp /> : <FaAngleDown />}
+                          {activeDropdown === "team" ? <FaAngleUp /> : <FaAngleDown />}
                         </span>
                       )}
                     </label>
-                    <ul className={`${activeDropdown === "user-list" ? "block" : "hidden"} ml-8  `}>
+                    <ul className={`${activeDropdown === "team" ? "block" : "hidden"} ml-8  `}>
                       <li>
                         <NavLink
                           to="/dashboard/add-team"
