@@ -1,26 +1,66 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
+import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
+import Swal from 'sweetalert2';
+import { updateAlert } from '../../../helper/updateAlert';
 
 const ManageUser = () => {
-    const [data, setData] = useState([
-        {
-            name: 'Ishan',
-            email: 'ishanran1a094@gmail.com',
-            profilePhoto: 'https://via.placeholder.com/50', // Example profile photo URL
-            contactNumber: '017511586238',
-            status: 'Active',
+    const axiosPublic = useAxiosPublic();
+
+    const adminToken = localStorage.getItem("admin_token");
+    const config = {
+        headers: {
+            Authorization: adminToken,
         },
-    ]);
+    };
+    const { data: userData = [], refetch, isLoading, isError } = useQuery({
+        queryKey: ['userData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/all-users`, config);
+            return res.data.data;
+        }
+    });
 
 
-    
+
 
     // Handle Delete User
     const handleDelete = (index) => {
         const updatedData = data.filter((_, i) => i !== index);
         setData(updatedData);
     };
+
+    const userRoleUpdate = async (id) => {
+        console.log(id)
+        try {
+            let resp = await updateAlert();
+            if (resp.isConfirmed) {
+                let res = await axiosPublic.put(`/user-status-update/${id}`, {}, config);
+                if (res) {
+                    Swal.fire({
+                        title: "Status Updated",
+                        icon: "success",
+                        confirmButtonText: "Okay"
+                    })
+                    refetch();
+                    return;
+                }
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Failed to update status",
+                icon: "error",
+                confirmButtonText: "Okay"
+            })
+        }
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className=" px-4">
@@ -35,52 +75,63 @@ const ManageUser = () => {
 
                 {/* Table */}
                 <div className="overflow-x-auto">
-                    <table className="w-full text-[12px] table-auto border-collapse">
-                        <thead>
-                            <tr className=" text-gray-700">
-                                <th className="px-4 py-2 border font-semibold">Name</th>
-                                <th className="px-4 py-2 border font-semibold">Email</th>
-                                <th className="px-4 py-2 border font-semibold">See Profile</th>
-                                <th className="px-4 py-2 border font-semibold">Contact Number</th>
-                                <th className="px-4 py-2 border font-semibold">Status</th>
-                                <th className="px-4 py-2 border font-semibold">Actions</th>
+                    <table className="table-auto w-full border-collapse border border-gray-300 text-[12px]">
+                        <thead className="bg-gray-200">
+                            <tr>
+                                <th className="border border-gray-300 px-4 py-2">#</th>
+                                <th className="border border-gray-300 px-4 py-2">Name</th>
+                                <th className="border border-gray-300 px-4 py-2">Phone</th>
+                                <th className="border border-gray-300 px-4 py-2">Role</th>
+                                <th className="border border-gray-300 px-4 py-2">Status</th>
+                                <th className="border border-gray-300 px-4 py-2">Action</th>
+                                <th className="border border-gray-300 px-4 py-2">Profile</th>
                             </tr>
                         </thead>
-                        <tbody className='' >
-                            {data.map((user, index) => (
-                                <tr
-                                    key={index}
-                                    className="text-center  odd:bg-white even:bg-gray-100 hover:bg-blue-100 transition-colors"
-                                >
-                                    <td className="px-4 py-2 border">{user.name}</td>
-                                    <td className="px-4 py-2 border">{user.email}</td>
-                                    <td className="px-4 py-2 border">
-                                        <Link to={`/dashboard/admin-profile/${user?._id}`}>
-                                            <button
-                                                className="px-3 py-1 bg-primary text-white rounded hover:bg-red-600 transition"
-                                            >
-                                                Profile
-                                            </button>
+                        <tbody>
+                            {userData.map((user, index) => (
+                                <tr key={user._id} className="hover:bg-gray-100">
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        {index + 1}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {user.name || "N/A"}
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 text-center py-2">
+                                        {user.contactNumber || "N/A"}
+                                    </td>
+
+                                    <td className="border border-gray-300 text-center px-4 py-2 capitalize">
+                                        {user.role || "N/A"}
+                                    </td>
+                                    <td
+                                        className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
+                                            }`}
+                                    >
+                                        {user.isAdmin ? "Active" : "Inactive"}
+                                    </td>
+                                    <td className="font-bold border">
+                                        <div className="form-control">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button onClick={() => userRoleUpdate(user?._id)} >
+                                                    {
+                                                        user?.role === "admin" ? <>
+                                                            <FaToggleOn className="text-green-500 text-lg " />
+
+                                                        </> : <><FaToggleOff className="text-red-500 text-lg"   /></>
+                                                    }
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        <Link
+                                            to={`/dashboard/user-profile/${user._id}`}
+                                            className="text-blue-500 hover:underline"
+                                        >
+                                            Profile
                                         </Link>
-                                    </td>
-                                    <td className="px-4 py-2 border">{user.contactNumber}</td>
-                                    <td className="px-4 py-2 border">
-                                        <span
-                                            className={`px-2 py-1 text-xs font-semibold rounded-full ${user.status === 'Active'
-                                                ? 'bg-green-100 text-green-700'
-                                                : 'bg-red-100 text-red-700'
-                                                }`}
-                                        >
-                                            {user.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-2 border">
-                                        <button
-                                            onClick={() => handleDelete(index)}
-                                            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                                        >
-                                            Delete
-                                        </button>
                                     </td>
                                 </tr>
                             ))}
