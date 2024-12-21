@@ -15,6 +15,7 @@ import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { BsClipboard2DataFill, BsInfoCircleFill } from "react-icons/bs";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from '@tanstack/react-query';
+import { TiUserAdd } from "react-icons/ti";
 
 const serviceIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png";
 const careerIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png";
@@ -443,9 +444,9 @@ const Sidebar = () => {
                       <li>
                         <NavLink
                           to="/dashboard/add-representative"
-                          className="p-2 block transition duration-200 hover:bg-white hover:text-black"
+                          className="p-2  transition duration-200 hover:bg-white hover:text-black flex items-center gap-3"
                         >
-                          {/* <TiUserAdd size={20} /> */}
+                          <TiUserAdd size={20} />
 
                           <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Representative</span>
                         </NavLink>
