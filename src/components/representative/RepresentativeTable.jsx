@@ -2,6 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
+import { updateAlert } from "../../helper/updateAlert";
+import Swal from "sweetalert2";
+
 
 const representativeData = [
     // Representative data...
@@ -19,10 +23,33 @@ const RepresentativeTable = () => {
         queryKey: ['representativeData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/representative`, config);
-            console.log(res)
             return res.data.data;
         }
     });
+    const representativeRoleUpdate = async (id) => {
+        console.log(id)
+        try {
+            let resp = await updateAlert();
+            if(resp.isConfirmed){
+                let res = await axiosPublic.put(`/representative/status-update/${id}`,{},config);
+                if(res){
+                    Swal.fire({
+                        title: "Status Updated",
+                        icon: "success",
+                        confirmButtonText: "Okay"
+                    })
+                    refetch();
+                    return;
+                }
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Failed to update status",
+                icon: "error",
+                confirmButtonText: "Okay"
+            })
+        }
+    }
     return (
         <div className="overflow-x-auto p-4">
             <p className="font-bold text-2xl text-center">Manage Representative</p>
@@ -59,20 +86,17 @@ const RepresentativeTable = () => {
                             >
                                 {representative.status ? "Active" : "Inactive"}
                             </td>
-
-                            
-
                             <td className="font-bold border">
                                 <div className="form-control">
                                     <div className="flex items-center justify-center gap-2">
-                                        <label className="label cursor-pointer">
-                                            <input
-                                                type="checkbox"
-                                                className="toggle toggle-success toggle-sm"
-                                                // checked={content?.representative || false}
-                                                // onChange={() => handleRepresentativeChange(content)}
-                                            />
-                                        </label>
+                                        <button  onClick={()=>representativeRoleUpdate(representative?._id)} >
+                                            {
+                                                representative?.role ==="representative" ? <>
+                                                <FaToggleOn className="text-green-500 text-lg " />
+
+                                                </> : <><FaToggleOff  className="text-red-500 text-lg "   /></>
+                                            }
+                                        </button>
                                     </div>
                                 </div>
                             </td>
