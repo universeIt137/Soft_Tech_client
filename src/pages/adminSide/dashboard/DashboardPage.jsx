@@ -1,168 +1,96 @@
-import React, { useContext } from "react";
-import { FaArrowRight } from "react-icons/fa";
-import { TfiArrowTopRight } from "react-icons/tfi";
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { MdOutlineDesignServices, MdOutlineShoppingCart } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { BsGraphUpArrow } from "react-icons/bs";
-import { BiDollarCircle } from "react-icons/bi";
-import { RxArrowBottomRight } from "react-icons/rx";
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const DashboardPage = () => {
-
-
-
   const axiosPublic = useAxiosPublic();
   const adminToken = localStorage.getItem("admin_token");
 
-  const config = {
+  const config = useMemo(() => ({
     headers: {
       Authorization: adminToken,
     },
-  };
+  }), [adminToken]);
 
-  // products related data
-  const { data: products = [] } = useQuery({
-    queryKey: ['products'],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['dashboardData'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/get-products');
-      return res.data.data;
-    }
+      const [products, services, representatives, allUsers, teamMembers] = await Promise.all([
+        axiosPublic.get('/get-products'),
+        axiosPublic.get('/get-all-service'),
+        axiosPublic.get('/representative', config),
+        axiosPublic.get('/all-users', config),
+        axiosPublic.get('/member'),
+      ]);
+      return {
+        products: products.data.data,
+        services: services.data.data,
+        representatives: representatives.data.data,
+        allUsers: allUsers.data.data,
+        teamMembers: teamMembers.data.data,
+      };
+    },
   });
 
-  // services related data
-  const { data: services = [] } = useQuery({
-    queryKey: ['services'],
-    queryFn: async () => {
-      const res = await axiosPublic.get('/get-all-service');
-      return res.data.data;
-    }
-  });
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading data</div>;
 
-  const { data: representatives = [] } = useQuery({
-    queryKey: ['representatives'],
-    queryFn: async () => {
-      const res = await axiosPublic.get('/representative', config);
-      return res.data.data;
-    }
-  });
+  const { products, services, representatives, allUsers, teamMembers } = data;
 
-  const { data: allUsers = [] } = useQuery({
-    queryKey: ['allUsers'],
-    queryFn: async () => {
-      const res = await axiosPublic.get('/all-users', config);
-      return res.data.data;
-    }
-  });
-
-  const { data: teamMembers = {}, refetch } = useQuery({
-    queryKey: ['teamMembers'],
-    queryFn: async () => {
-      const res = await axiosPublic.get('/member');
-      return res.data.data;
-    }
-  });
-
-  console.log(teamMembers);
-
+  const cardData = [
+    {
+      title: "Total Products",
+      count: products.length,
+      link: "/dashboard/manage-product",
+      icon: <MdOutlineShoppingCart className="text-white text-2xl" />,
+    },
+    {
+      title: "Total Services",
+      count: services.length,
+      link: "/dashboard/manage-service",
+      icon: <MdOutlineDesignServices className="text-white text-2xl" />,
+    },
+    {
+      title: "Total Representatives",
+      count: representatives.length,
+      link: "/dashboard/manage-representative",
+      icon: <FaUsers className="text-white text-2xl" />,
+    },
+    {
+      title: "Total Users",
+      count: allUsers.length,
+      link: "/dashboard/manage-users",
+      icon: <FaUsers className="text-white text-2xl" />,
+    },
+    {
+      title: "Total Team Members",
+      count: teamMembers.length,
+      link: "/dashboard/manage-team",
+      icon: <FaUsers className="text-white text-2xl" />,
+    },
+  ];
 
   return (
     <div className="p-4">
       <h1 className="text-gray-700 text-2xl my-3">Universe Soft Tech's Dashboard</h1>
 
-      {/* Responsive Grid Layout */}
-      <div className="">
-        {/* First Column: Responsive design for the cards */}
-        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-4 gap-4">
-          {/* Total Product */}
-          <Link to="/dashboard/manage-product">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {cardData.map((card, index) => (
+          <Link to={card.link} key={index}>
             <div className="bg-white rounded-lg shadow-md p-3">
               <div className="flex justify-between items-start">
                 <div>
-                  <h2 className="text-lg text-gray-700">Total Products</h2>
-                  <h1 className="text-2xl text-gray-900">{products?.length}</h1>
+                  <h2 className="text-lg text-gray-700">{card.title}</h2>
+                  <h1 className="text-2xl text-gray-900">{card.count}</h1>
                 </div>
-                <span className="p-3 bg-text_blue rounded-full">
-                  <MdOutlineShoppingCart className="text-white text-2xl" />
-                </span>
+                <span className="p-3 bg-text_blue rounded-full">{card.icon}</span>
               </div>
             </div>
           </Link>
-
-          {/* Total Service */}
-          <Link to="/dashboard/manage-service">
-            <div className="bg-white rounded-lg shadow-md p-3">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg text-gray-700">Total Services</h2>
-                  <h1 className="text-2xl text-gray-900">{services?.length}</h1>
-                </div>
-                <span className="p-3 bg-text_blue rounded-full">
-                  <MdOutlineDesignServices className="text-white text-2xl" />
-                </span>
-              </div>
-            </div>
-          </Link>
-
-          {/* total representative */}
-          <Link to="/dashboard/manage-representative">
-            <div className="bg-white rounded-lg shadow-md p-3">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg text-gray-700">Total Representatives</h2>
-                  <h1 className="text-2xl text-gray-900">{representatives?.length}</h1>
-                </div>
-                <span className="p-3 bg-text_blue rounded-full">
-                  <MdOutlineDesignServices className="text-white text-2xl" />
-                </span>
-              </div>
-            </div>
-          </Link>
-
-
-          {/* total users */}
-          <Link to="/dashboard/manage-representative">
-            <div className="bg-white rounded-lg shadow-md p-3">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg text-gray-700">Total Users</h2>
-                  <h1 className="text-2xl text-gray-900">{allUsers?.length}</h1>
-                </div>
-                <span className="p-3 bg-text_blue rounded-full">
-                  <MdOutlineDesignServices className="text-white text-2xl" />
-                </span>
-              </div>
-            </div>
-          </Link>
-
-          
-             {/* total Team Members */}
-             <Link to="/dashboard/manage-team">
-            <div className="bg-white rounded-lg shadow-md p-3">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-lg text-gray-700">Total Team Members</h2>
-                  <h1 className="text-2xl text-gray-900">{teamMembers?.length}</h1>
-                </div>
-                <span className="p-3 bg-text_blue rounded-full">
-                  <MdOutlineDesignServices className="text-white text-2xl" />
-                </span>
-              </div>
-            </div>
-          </Link>
-
-
-
-
-        </div>
-
-        {/* Second Column: Responsive design for extra card */}
-
+        ))}
       </div>
     </div>
   );
