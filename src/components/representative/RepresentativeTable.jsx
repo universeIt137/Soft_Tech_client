@@ -30,9 +30,9 @@ const RepresentativeTable = () => {
         console.log(id)
         try {
             let resp = await updateAlert();
-            if(resp.isConfirmed){
-                let res = await axiosPublic.put(`/representative/status-update/${id}`,{},config);
-                if(res){
+            if (resp.isConfirmed) {
+                let res = await axiosPublic.put(`/representative/status-update/${id}`, {}, config);
+                if (res) {
                     Swal.fire({
                         title: "Status Updated",
                         icon: "success",
@@ -89,12 +89,13 @@ const RepresentativeTable = () => {
                             <td className="font-bold border">
                                 <div className="form-control">
                                     <div className="flex items-center justify-center gap-2">
-                                        <button  onClick={()=>representativeRoleUpdate(representative?._id)} >
+                                        <button onClick={() => representativeRoleUpdate(representative?._id)} >
                                             {
-                                                representative?.role ==="representative" ? <>
-                                                <FaToggleOn className="text-green-500 text-lg " />
+                                                representative?.role === "representative" ? <>
+                                                    <FaToggleOn className="text-green-500 text-lg " />
 
-                                                </> : <><FaToggleOff  className="text-red-500 text-lg "   /></>
+                                                </> : <><FaToggleOff className="text-red-500 text-lg
+                                            "   /></>
                                             }
                                         </button>
                                     </div>
