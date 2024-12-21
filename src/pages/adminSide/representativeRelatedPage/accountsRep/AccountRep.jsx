@@ -1,85 +1,112 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import { BsBank2 } from 'react-icons/bs';
+import Swal from 'sweetalert2';
 
 const AccountRep = () => {
 
-    // Static data for bank information
-    const bankInfoList = [
-        {
-            id: 1,
-            account_name: 'Bank',
-            account_no: '123-456-7890',
-            bank_name: "Social Islami Bank Ltd",
-            type: "Current Account",
-            branch: "Gazipur",
-            routing: "195090109",
-            address: "Gazipur, Dhaka",
-            education: "B.Sc in Computer Science",
-            email: 'alice@company.com',
-            experience: 15,
-            imgUrl: 'https://static.vecteezy.com/system/resources/thumbnails/013/948/616/small/bank-icon-logo-design-vector.jpg',
+
+
+    const rToken = localStorage.getItem("representativeToken");
+    const axiosPublic = useAxiosPublic();
+
+    const config = useMemo(() => ({
+        headers: {
+            Authorization: rToken,
         },
+    }), [rToken]);
 
-        {
-            id: 1,
-            account_name: 'Nogod',
-            account_no: '123-456-7890',
-            bank_name: "Social Islami Bank Ltd",
-            type: "Current Account",
-            branch: "Gazipur",
-            routing: "195090109",
-            address: "Gazipur, Dhaka",
-            education: "B.Sc in Computer Science",
-            email: 'alice@company.com',
-            experience: 15,
-            imgUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7a/a1/20/7aa12018-ae38-0699-ff38-98f893227f0a/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/1200x600wa.png',
-        },
+    const { data: bankInfoList = [], refetch, isError, isLoading } = useQuery({
+        queryKey: ['bankInfoList'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/rep-bank-info`, config);
 
-        
+            return res.data.data;
+        }
+    });
 
-        
-    ];
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+
+                const res = await axiosPublic.delete(`/rep-bank-info/${id}`, config);
+                if (res) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+               
+            }
+        });
+    }
+
+
+
+
 
     return (
         <div className="w-11/12 mx-auto my-24">
             <Helmet>
-                <title>Amar Thikana | Account Representative</title>
+                <title>Soft Tech | Account Representative</title>
             </Helmet>
             <p className="text-4xl font-bold text-center my-2">Account Information</p>
+            <Link to={'/dashboard/add-rep-account-info'}>
+                <button className="btn btn-primary my-4">Add Information</button>
+            </Link>
             <div className="grid grid-cols-2 justify-center gap-6">
 
-                {bankInfoList.map((item) => (
+                {bankInfoList?.map((item) => (
                     <div key={item.id} className="bg-white rounded-lg shadow-lg p-6 w-full ">
                         {/* Profile Image */}
                         <div className="flex justify-center mb-6">
-                            <img
-                                src={item.imgUrl}
-                                alt={item.account_name}
-                                className="w-24 h-24 rounded-full object-cover"
-                            />
+                            <BsBank2 className='size-20' />
                         </div>
                         {/* Details */}
                         <div className="text-gray-700">
                             <p className="mb-2">
-                                <span className="font-bold">Account Name:</span> {item.account_name}
+                                <span className="font-bold">Account Name:</span> {item.accountName}
                             </p>
                             <p className="mb-2">
-                                <span className="font-bold">Account Number:</span> {item.account_no}
+                                <span className="font-bold">Account Number:</span> {item.accountNumber}
                             </p>
                             <p className="mb-2">
-                                <span className="font-bold">Bank Name:</span> {item.bank_name}
+                                <span className="font-bold">Bank Name:</span> {item.bankName}
                             </p>
                             <p className="mb-2">
-                                <span className="font-bold">Type of Account:</span> {item.type} years
+                                <span className="font-bold">Type of Account:</span> {item.typeOfAccount}
                             </p>
                             <p className="mb-2">
-                                <span className="font-bold">Branch Name:</span> {item.branch}
+                                <span className="font-bold">Branch Name:</span> {item.branchName}
                             </p>
 
                             <p className="mb-2">
-                                <span className="font-bold">Routing Number:</span> {item.routing}
+                                <span className="font-bold">Routing Number:</span> {item.routingNumber}
                             </p>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="">
+                                <Link to={`/dashboard/update-rep-account-info/${item._id}`}>
+                                    <button className="btn btn-primary my-4">Update Information</button>
+                                </Link>
+                            </div>
+                            <div className="">
+                                <button onClick={() => handleDelete(item._id)} className="btn bg-red-600 text-white my-4">Delete Information</button>
+                            </div>
                         </div>
                     </div>
                 ))}

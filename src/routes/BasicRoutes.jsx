@@ -75,6 +75,8 @@ import AddRepresentative from "../pages/adminSide/representativeRelatedPage/addR
 import ManageTeamTable from "../pages/adminSide/teamRelatedPage/manageTeamTable/ManageTeamTable";
 import Profile from "../pages/adminSide/dashboard/DashboardLandingPage";
 import UserProfile from "../pages/adminSide/manage-user/UserProfile";
+import AddAccountInfo from "../pages/adminSide/representativeRelatedPage/accountsRep/AddAccountInfo";
+import UpdateAccountInfoForm from "../pages/adminSide/representativeRelatedPage/accountsRep/UpdateAccountInfoForm";
 
 
 
@@ -369,6 +371,17 @@ const router = createBrowserRouter([
                 path: "account-rep",
                 element: <AccountRep></AccountRep>
             },
+
+            {
+                path: "add-rep-account-info",
+                element: <AddAccountInfo/>
+            },
+
+            {
+                path: "update-rep-account-info/:id",
+                element: <UpdateAccountInfoForm></UpdateAccountInfoForm>
+            },
+
             // client related routes 
             {
                 path: "add-client",
