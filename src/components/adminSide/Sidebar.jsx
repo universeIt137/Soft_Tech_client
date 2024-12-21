@@ -445,7 +445,9 @@ const Sidebar = () => {
                           to="/dashboard/add-representative"
                           className="p-2 block transition duration-200 hover:bg-white hover:text-black"
                         >
-                          Add Representative
+                          {/* <TiUserAdd size={20} /> */}
+
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Representative</span>
                         </NavLink>
                       </li>
                       <li>
