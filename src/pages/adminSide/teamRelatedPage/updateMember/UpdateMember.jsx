@@ -9,10 +9,20 @@ import { uploadImg } from "../../../../uploadImage/UploadImage";
 const UpdateMember = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
+
+    const adminToken = localStorage.getItem("admin_token");
+
+    const config = {
+      headers: {
+        Authorization: adminToken,
+      },
+    };
+  
+
     const { data: member = {}, refetch } = useQuery({
         queryKey: ['member'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/member/${id}`);
+            const res = await axiosPublic.get(`/member/${id}`, config);
             return res.data;
         }
     })
@@ -44,7 +54,7 @@ const UpdateMember = () => {
 
         const formData = { name, designation, contact, email, experience, image };
         // console.log(formData);
-        axiosPublic.put(`/member/${id}`, formData)
+        axiosPublic.put(`/member/${id}`, formData, config)
             .then(res => {
                 if (res) {
                     toast.success("Member updated successfully!!", { id: toastId });

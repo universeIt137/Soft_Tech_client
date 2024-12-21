@@ -72,6 +72,8 @@ import ManageUser from "../pages/adminSide/manage-user/ManageUser";
 import AdminProfile from "../pages/adminSide/manage-user/AdminProfile";
 import AddAdmin from "../pages/adminSide/manage-user/AddAdmin";
 import AddRepresentative from "../pages/adminSide/representativeRelatedPage/addRep/AddRepresentative";
+import ManageTeamTable from "../pages/adminSide/teamRelatedPage/manageTeamTable/ManageTeamTable";
+import Profile from "../pages/adminSide/dashboard/DashboardLandingPage";
 
 
 
@@ -199,7 +201,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <PrivateRoute><DashboardPage></DashboardPage></PrivateRoute>
+                element: <PrivateRoute>
+                    <Profile/>
+                </PrivateRoute>
+            },
+            {
+                path: "admin-dashboard",
+                element: <PrivateRoute role={"admin"}><DashboardPage></DashboardPage></PrivateRoute>
             },
             {
                 path: "add-service",
@@ -246,8 +254,13 @@ const router = createBrowserRouter([
                 element: <PrivateRoute role={"admin"} ><ProductUpdatePage></ProductUpdatePage></PrivateRoute>
             },
             {
-                path: "/dashboard/manage-team",
+                path: "/dashboard/add-team",
                 element: <PrivateRoute role={"admin"}><ManageTeam></ManageTeam></PrivateRoute>
+            },
+
+            {
+                path: "/dashboard/manage-team",
+                element: <PrivateRoute role={"admin"}><ManageTeamTable></ManageTeamTable></PrivateRoute>
             },
             {
                 path: "/dashboard/update/:id",

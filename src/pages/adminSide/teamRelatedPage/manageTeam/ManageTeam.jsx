@@ -54,9 +54,7 @@ const ManageTeam = () => {
                 <title>Dashboard | Manage Team</title>
             </Helmet>
             <UploadDataForm refetch={refetch} />
-            <div className="w-11/12 mx-auto mt-5">
-                <TeamTable teamMembers={teamMembers} handleDelete={handleDelete} />
-            </div>
+            
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { IoMdLogOut } from "react-icons/io";
 import { MdAssessment, MdMenuOpen, MdModelTraining, MdPayments, MdRoomPreferences } from "react-icons/md";
-import { IoCloseCircleOutline, IoVideocam } from "react-icons/io5";
+import { IoCloseCircleOutline, IoPersonAdd, IoVideocam } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiFillFileImage, AiOutlineProduct } from "react-icons/ai";
 import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { RiLogoutCircleFill, RiTeamLine } from "react-icons/ri";
 import { SlEnvolopeLetter } from "react-icons/sl";
-import { SiPolymerproject } from "react-icons/si";
+import { SiGoogletagmanager, SiPolymerproject } from "react-icons/si";
 import { FaBlogger } from "react-icons/fa6";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { BsClipboard2DataFill, BsInfoCircleFill } from "react-icons/bs";
@@ -97,7 +97,7 @@ const Sidebar = () => {
           <>
             {/* //admin */}
             <div
-              className={`bg-blue-800 h-screen   border-red-700 text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+              className={`bg-primary border-red-700 text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
                 }`}
             >
               <div className="flex justify-between items-center p-4">
@@ -125,7 +125,7 @@ const Sidebar = () => {
                 <ul className="text-[12px]">
 
                   <li>
-                    <Link to={'/dashboard'}>
+                    <Link to={'/dashboard/admin-dashboard'}>
                       <label
 
                         className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
@@ -378,11 +378,39 @@ const Sidebar = () => {
 
 
                   {/* Team Management */}
+                 
+
                   <li>
-                    <Link to="/dashboard/manage-team" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                      <BiLogoMicrosoftTeams size={20} />
+                    <label
+                      onClick={() => handleDropdownToggle("user-list")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBloggerB size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
-                    </Link>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "user-list" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "user-list" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-team"
+                          className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                        >
+                         <IoPersonAdd /> Add Team Member
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/dashboard/manage-team"
+                          className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                        >
+                          <SiGoogletagmanager /> Manage Team Member
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
 
 
@@ -478,7 +506,7 @@ const Sidebar = () => {
             <>
               {/* representative */}
               <div
-                className={`bg-blue-800  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+                className={`bg-primary  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
                   }`}
               >
                 <div className="flex justify-between items-center p-4">
@@ -513,7 +541,7 @@ const Sidebar = () => {
                           className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                         >
                           <MdAssessment size={20} />
-                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>My Profile</span>
 
                         </label>
                       </Link>
