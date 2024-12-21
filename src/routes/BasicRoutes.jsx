@@ -74,6 +74,7 @@ import AddAdmin from "../pages/adminSide/manage-user/AddAdmin";
 import AddRepresentative from "../pages/adminSide/representativeRelatedPage/addRep/AddRepresentative";
 import ManageTeamTable from "../pages/adminSide/teamRelatedPage/manageTeamTable/ManageTeamTable";
 import Profile from "../pages/adminSide/dashboard/DashboardLandingPage";
+import UserProfile from "../pages/adminSide/manage-user/UserProfile";
 
 
 
@@ -318,6 +319,10 @@ const router = createBrowserRouter([
             {
                 path: "add-admin",
                 element: <PrivateRoute role={"admin"} > <AddAdmin></AddAdmin> </PrivateRoute>
+            },
+            {
+                path : "user-profile/:id",
+                element : <PrivateRoute role={"admin"} > <UserProfile></UserProfile> </PrivateRoute>
             },
 
 
