@@ -3,9 +3,11 @@ import { Helmet } from 'react-helmet-async';
 import DataTab from './DataTab';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 
 const ProfileRep = () => {
     const { id } = useParams();
+    const axiosPublic = useAxiosPublic();
     // const managementData = [
     //     { id: 1, name: 'Alice Johnson', phone: '123-456-7890', referNo: "AL-0012", division: "Dhaka", district: "Gazipur", upzilla: "Gazipur", address: "Gazipur, Dhaka", education: "B.Sc in Computer Science", email: 'alice@company.com', experience: 15, imgUrl: 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp' },
     // ];
@@ -17,14 +19,19 @@ const ProfileRep = () => {
         },
     };
 
-    const { data: managementData = {}, refetch, isError, isLoading } = useQuery({
-        queryKey: ['managementData'],
+    const { data: repData = [], refetch, isError, isLoading } = useQuery({
+        queryKey: ['repData'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/single-representative/${id}`, config);
-            console.log(res.data.data)
             return res.data.data;
         }
     });
+
+
+
+    console.log(repData);
+
+    const { address, distic, division, education, image, name, phone, referNumber, referUserId, referenceId, representative_id, role, status, upazila } = repData;
 
     return (
         <div className='' >
@@ -48,7 +55,7 @@ const ProfileRep = () => {
                                     <div className="bg-primary/70 size-16 rounded-full relative overflow-hidden">
                                         <img
                                             className="w-full rounded-full object-cover p-1"
-                                            src={imgUrl}
+                                            src={image}
                                             alt={name}
                                         />
                                     </div>
@@ -61,10 +68,10 @@ const ProfileRep = () => {
 
                                         <h2 className=""><span className="font-bold">Phone: </span>{phone}</h2>
                                         <h2 className=""><span className="font-bold">Division: </span>{division}</h2>
-                                        <h2 className=""><span className="font-bold">District: </span>{district}</h2>
-                                        <h2 className=""><span className="font-bold">Upzilla: </span>{upzilla}</h2>
+                                        <h2 className=""><span className="font-bold">District: </span>{distic}</h2>
+                                        <h2 className=""><span className="font-bold">Upzilla: </span>{upazila}</h2>
                                         <h2 className=""><span className="font-bold">Address: </span>{address}</h2>
-                                        <h2 className=""><span className="font-bold">Education: </span>{education}</h2>
+                                        {/* <h2 className=""><span className="font-bold">Education: </span>{education}</h2> */}
 
                                     </div>
 
@@ -75,7 +82,7 @@ const ProfileRep = () => {
                                 </div>
                                 <div className="pb-7">
                                     <div className="bg-gradient-to-r from-primary to-primary/70 w-[55%] text-white font-semibold mt-5 ml-auto py-2 text-[12px] pl-5">
-                                        <p>Refer No: {referNo}</p>
+                                        <p>Refer No: {referNumber}</p>
                                     </div>
                                 </div>
                             </div>
