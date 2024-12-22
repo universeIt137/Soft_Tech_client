@@ -29,7 +29,7 @@ const RepresentativeRegister = () => {
       name,
       phone,
       password,
-     
+      confirmPassword
     }
 
     try {
@@ -198,7 +198,7 @@ const RepresentativeRegister = () => {
                 )}
               </button>
             </form>
-           
+
           </div>
         </motion.div>
       </div>
