@@ -54,7 +54,7 @@ const ProfileRep = () => {
                                 <div className="h-[120px] relative flex flex-col justify-center items-center gap-5">
                                     <div className="bg-primary/70 size-16 rounded-full relative overflow-hidden">
                                         <img
-                                            className="w-full rounded-full object-cover p-1"
+                                            className="h-full rounded-full object-cover p-1"
                                             src={image}
                                             alt={name}
                                         />

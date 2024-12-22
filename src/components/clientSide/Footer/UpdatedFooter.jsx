@@ -34,7 +34,7 @@ const UpdatedFooter = () => {
     return (
         <div>
             <footer className="bg-universe_secondary body-font">
-                <div className="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+                <div className="container px-5 pt-9 text-[14px] mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                     {/* Company Info */}
                     <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
                         <Link to='/' className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
