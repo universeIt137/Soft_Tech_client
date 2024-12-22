@@ -81,7 +81,7 @@ const UpdatedNavbar = () => {
 
 
 
-    const logo = 'https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png';
+    const logo = 'https://res.cloudinary.com/dxvacpgrv/image/upload/v1734868184/UniverseSoftTech/Image/htnalzbw4rj4jigwrckj.png';
 
     const NavLinkStyle =
         'text-universe_secondary hover:text-text_primari text-xl py-[5px] hover:px-[10px] lg:px-[10px] transition-all duration-300 font-medium';

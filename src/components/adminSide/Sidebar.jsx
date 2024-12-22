@@ -1,21 +1,23 @@
 import React, { useState, useContext } from "react";
-import { IoMdLogOut } from "react-icons/io";
+import { IoIosAddCircle, IoMdLogOut } from "react-icons/io";
 import { MdAssessment, MdMenuOpen, MdModelTraining, MdPayments, MdRoomPreferences } from "react-icons/md";
 import { IoCloseCircleOutline, IoPersonAdd, IoVideocam } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AiFillFileImage, AiOutlineProduct } from "react-icons/ai";
+import { AiFillFileImage, AiFillProduct, AiOutlineProduct } from "react-icons/ai";
 import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack } from "react-icons/fa";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { RiLogoutCircleFill, RiTeamLine } from "react-icons/ri";
+import { RiLogoutCircleFill, RiMoneyDollarCircleLine, RiTeamLine } from "react-icons/ri";
 import { SlEnvolopeLetter } from "react-icons/sl";
-import { SiGoogletagmanager, SiPolymerproject } from "react-icons/si";
+import { SiAirplayvideo, SiGoogletagmanager, SiNginxproxymanager, SiPolymerproject } from "react-icons/si";
 import { FaBlogger } from "react-icons/fa6";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { BsClipboard2DataFill, BsInfoCircleFill } from "react-icons/bs";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from '@tanstack/react-query';
 import { TiUserAdd } from "react-icons/ti";
+import { CiMoneyCheck1 } from "react-icons/ci";
+import { PiVideoBold } from "react-icons/pi";
 
 const serviceIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726402300/Universe%20Soft%20Tech/Dashboard/x155sspatxgeqkwi123r.png";
 const careerIcon = "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1726403537/Universe%20Soft%20Tech/Dashboard/wnjexwdigwbe6psfgbkz.png";
@@ -378,7 +380,7 @@ const Sidebar = () => {
 
 
                   {/* Team Management */}
-                 
+
 
                   <li>
                     <label
@@ -399,7 +401,7 @@ const Sidebar = () => {
                           to="/dashboard/add-team"
                           className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
                         >
-                         <IoPersonAdd /> Add Team Member
+                          <IoPersonAdd /> Add Team Member
                         </NavLink>
                       </li>
                       <li>
@@ -611,8 +613,179 @@ const Sidebar = () => {
                   </ul>
                 </nav>
               </div>
-            </> :
-            <></>
+
+
+            </>
+
+            :
+            role === "client" ?
+              <>
+                {/* client */}
+                <div
+                  className={`bg-primary  text-gray-200 transition-all duration-300 ${isSidebarOpen ? "w-64" : "w-12"
+                    }`}
+                >
+                  <div className="flex justify-between items-center p-4">
+                    <div className={`text-xl font-bold ${!isSidebarOpen && "hidden"}`}>
+                      <Link to="/">
+                        <div>
+                          <div className="avatar">
+                            <div className="w-12  border-white border-2 rounded-full">
+                              <img src={repData?.image} />
+                            </div>
+                          </div>
+                          <p className="text-[16px]">ID: {repData?.representative_id} </p>
+                        </div>
+                      </Link>
+                    </div>
+                    <button onClick={toggleSidebar} className="text-white focus:outline-none">
+                      {isSidebarOpen ? (
+                        <IoCloseCircleOutline className="text-4xl" />
+                      ) : (
+                        <MdMenuOpen size={20} />
+                      )}
+                    </button>
+                  </div>
+
+                  <nav>
+                    <ul className="text-[12px]">
+
+                      <li>
+                        <Link to={'/dashboard'}>
+                          <label
+
+                            className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                          >
+                            <MdAssessment size={20} />
+                            <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Dashboard</span>
+
+                          </label>
+                        </Link>
+
+                      </li>
+
+                      {/* Product list  */}
+                      <li>
+                        <Link to={'/dashboard'}>
+                          <label
+
+                            className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                          >
+                            <AiFillProduct size={20} />
+                            <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product List</span>
+
+                          </label>
+                        </Link>
+
+                      </li>
+
+
+                      {/* Ticket */}
+                      <li>
+                        <label
+                          onClick={() => handleDropdownToggle("client")}
+                          className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                        >
+                          <CiMoneyCheck1 size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Tickets</span>
+                          {isSidebarOpen && (
+                            <span className="ml-auto">
+                              {activeDropdown === "client" ? <FaAngleUp /> : <FaAngleDown />}
+                            </span>
+                          )}
+                        </label>
+                        <ul className={`${activeDropdown === "client" ? "block" : "hidden"} ml-8  `}>
+                          <li>
+
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/dashboard/add-product"
+                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                            >
+                              <IoIosAddCircle size={20} /> Raise Ticket
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/dashboard/manage-product"
+                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                            >
+                              <SiNginxproxymanager size={20} />Manage Ticket
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+
+                      {/* Video */}
+                      <li>
+                        <label
+                          onClick={() => handleDropdownToggle("video")}
+                          className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                        >
+                          <AiOutlineProduct size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Video</span>
+                          {isSidebarOpen && (
+                            <span className="ml-auto">
+                              {activeDropdown === "video" ? <FaAngleUp /> : <FaAngleDown />}
+                            </span>
+                          )}
+                        </label>
+                        <ul className={`${activeDropdown === "video" ? "block" : "hidden"} ml-8  `}>
+                          <li>
+
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/dashboard/add-product"
+                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                            >
+                              <SiAirplayvideo size={20} />
+                              Product Video
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/dashboard/manage-product"
+                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
+                            >
+                              <PiVideoBold size={20} />
+                              Training Session
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+
+                      {/* Transaction list  */}
+                      <li>
+                        <Link to={'/dashboard'}>
+                          <label
+
+                            className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                          >
+                            <RiMoneyDollarCircleLine size={20} />
+                            <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Transaction List</span>
+
+                          </label>
+                        </Link>
+
+                      </li>
+
+
+
+                      {/* Logout */}
+                      <li onClick={handleLogoutRepresentative}>
+                        <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                          <RiLogoutCircleFill size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Logout</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </>
+              :
+              <></>
       }
     </>
   );
