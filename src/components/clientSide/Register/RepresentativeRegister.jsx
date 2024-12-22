@@ -29,7 +29,7 @@ const RepresentativeRegister = () => {
       name,
       phone,
       password,
-     
+      confirmPassword
     }
 
     try {
@@ -49,6 +49,7 @@ const RepresentativeRegister = () => {
       }
 
     } catch (error) {
+      setIsLoader(false);
       console.log(error);
       toast.error("Something went wrong. Please try again");
     }
@@ -197,7 +198,7 @@ const RepresentativeRegister = () => {
                 )}
               </button>
             </form>
-           
+
           </div>
         </motion.div>
       </div>
