@@ -24,7 +24,7 @@ const ProductUpdateForm = () => {
         })();
     }, [id]);
 
-    console.log(singleProductData)
+    console.log(singleProductData?.nav_description)
 
     // Handle image file changes
     const handleImageChange = (e, setState) => {
@@ -85,7 +85,7 @@ const ProductUpdateForm = () => {
     }, [id]);
 
     // Check for loading state and data availability
-    if (!singleProductData || singleProductData.length === 0 || !singleProductData[0]) {
+    if (!singleProductData || singleProductData.length === 0 || !singleProductData) {
         return <h1>Data loading...</h1>;
     }
 
@@ -121,11 +121,11 @@ const ProductUpdateForm = () => {
                         ))}
                     </select>
                 </div>
-                <h1 key={Date.now()} >Already selected category : {singleProductData[0]?.category?.name}</h1>
+                <h1 key={Date.now()} >Already selected category : {singleProductData?.category?.name}</h1>
 
                 <div className="avatar">
                     <div className="w-12 rounded-full mt-4 ">
-                        <img key={Date.now()} src={singleProductData[0]?.nav_logo} alt="Nav Logo" />
+                        <img key={Date.now()} src={singleProductData?.nav_logo} alt="Nav Logo" />
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@ const ProductUpdateForm = () => {
                         </label>
                         <input
                             type="text"
-                            defaultValue={singleProductData[0]?.nav_title}
+                            defaultValue={singleProductData?.nav_title}
                             key={Date.now()}
                             name="nav_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -163,7 +163,7 @@ const ProductUpdateForm = () => {
                         Nav Description:
                     </label>
                     <textarea
-                        defaultValue={singleProductData[0]?.nav_description}
+                        defaultValue={singleProductData?.nav_description}
                         key={Date.now()}
                         name="nav_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -173,7 +173,7 @@ const ProductUpdateForm = () => {
 
                 <div className="avatar ml-[50%]">
                     <div className="w-12 rounded-full mt-4 ">
-                        <img key={Date.now()} src={singleProductData[0]?.banner_img} alt="Banner" />
+                        <img key={Date.now()} src={singleProductData?.banner_img} alt="Banner" />
                     </div>
                 </div>
 
@@ -185,7 +185,7 @@ const ProductUpdateForm = () => {
                         </label>
                         <input
                             type="text"
-                            defaultValue={singleProductData[0]?.banner_title}
+                            defaultValue={singleProductData?.banner_title}
                             key={Date.now()}
                             name="banner_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -212,7 +212,7 @@ const ProductUpdateForm = () => {
                         Banner Description:
                     </label>
                     <textarea
-                        defaultValue={singleProductData[0].banner_description}
+                        defaultValue={singleProductData?.banner_description}
                         key={Date.now()}
                         name="banner_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -228,7 +228,7 @@ const ProductUpdateForm = () => {
                         </label>
                         <input
                             type="text"
-                            defaultValue={singleProductData[0]?.live_link}
+                            defaultValue={singleProductData?.live_link}
                             key={Date.now()}
                             name="live_link"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -241,7 +241,7 @@ const ProductUpdateForm = () => {
                         </label>
                         <input
                             type="text"
-                            defaultValue={singleProductData[0]?.proposal_link}
+                            defaultValue={singleProductData?.proposal_link}
                             key={Date.now()}
                             name="proposal_link"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -251,7 +251,7 @@ const ProductUpdateForm = () => {
 
                 <div className="avatar">
                     <div className="w-12 rounded-full mt-4 ">
-                        <img key={Date.now()} src={singleProductData[0]?.feature_img} alt="Feature" />
+                        <img key={Date.now()} src={singleProductData?.feature_img} alt="Feature" />
                     </div>
                 </div>
 
@@ -263,7 +263,7 @@ const ProductUpdateForm = () => {
                         </label>
                         <input
                             type="text"
-                            defaultValue={singleProductData[0]?.feature_title}
+                            defaultValue={singleProductData?.feature_title}
                             key={Date.now()}
                             name="feature_title"
                             className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -290,7 +290,7 @@ const ProductUpdateForm = () => {
                         Feature Description:
                     </label>
                     <textarea
-                        defaultValue={singleProductData[0].feature_description}
+                        defaultValue={singleProductData.feature_description}
                         key={Date.now()}
                         name="feature_description"
                         className="w-full px-4 py-2 rounded-lg border-2 border-gray-300"
@@ -299,7 +299,7 @@ const ProductUpdateForm = () => {
                 </div>
 
                 {/* Extra Data Handling */}
-                {singleProductData[0]?.extra_data && singleProductData[0].extra_data.length > 0 && singleProductData[0].extra_data.map((item, i) => (
+                {singleProductData[0]?.extra_data && singleProductData.extra_data.length > 0 && singleProductData.extra_data.map((item, i) => (
                     <div className="my-10" key={i}>
                         <div className="my-4">
                             <div className="flex flex-row gap-6 items-center my-6">
