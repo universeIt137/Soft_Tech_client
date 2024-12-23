@@ -416,11 +416,6 @@ const Sidebar = () => {
                   </li>
 
 
-                  {/* manage representative */}
-
-
-
-
                   {/* manage user  */}
                   <li>
                     <label
@@ -489,6 +484,42 @@ const Sidebar = () => {
                       </li>
                     </ul>
                   </li>
+
+
+                  {/* admin client manage  */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("manage-admin-client")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaBloggerB size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Admin Client List</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "manage-admin-client" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "manage-admin-client" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-client-admin"
+                          className="p-2  transition duration-200 hover:bg-white hover:text-black flex items-center gap-3"
+                        >
+                          <TiUserAdd size={20} />
+
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Client</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <Link to="/dashboard/manage-client" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                          <BiLogoMicrosoftTeams size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Client</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
 
 
 
