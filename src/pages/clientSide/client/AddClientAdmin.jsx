@@ -221,7 +221,9 @@ const AddClientAdmin = () => {
                     </div>
                 </div>
                 <div className='my-3' >
-                    <button className='px-5 py-2 rounded-md shadow-md block mx-auto bg-[#4A00FF] text-white ' >Submit</button>
+                    <button className='px-5 py-2 rounded-md shadow-md block mx-auto bg-[#4A00FF] text-white ' > {
+                        loading ? "Submitting..." : "Submit"
+                    } </button>
                 </div>
             </form>
         </div>
