@@ -126,12 +126,14 @@ const AllClientAdmin = () => {
                             <td className="px-4 py-2 border-b">
                                 <div className='flex justify-center items-center gap-3 ' >
                                     <div>
-                                        <button
-                                            onClick={() => onEdit(item)}
-                                            className="text-blue-500 hover:text-blue-700"
-                                        >
-                                            <FaEdit />
-                                        </button>
+                                        <Link to={`/dashboard/update-client-admin/${item?._id}`}>
+                                            <button
+                                                onClick={() => onEdit(item)}
+                                                className="text-blue-500 hover:text-blue-700"
+                                            >
+                                                <FaEdit />
+                                            </button>
+                                        </Link>
                                     </div>
                                     <div>
                                         <button onClick={() => deleteClient(item?._id)} className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
