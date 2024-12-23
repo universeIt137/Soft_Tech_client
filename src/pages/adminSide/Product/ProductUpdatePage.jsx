@@ -24,6 +24,8 @@ const ProductUpdateForm = () => {
         })();
     }, [id]);
 
+    console.log(singleProductData)
+
     // Handle image file changes
     const handleImageChange = (e, setState) => {
         const file = e.target.files[0];
