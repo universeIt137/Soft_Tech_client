@@ -77,6 +77,7 @@ import Profile from "../pages/adminSide/dashboard/DashboardLandingPage";
 import UserProfile from "../pages/adminSide/manage-user/UserProfile";
 import AddAccountInfo from "../pages/adminSide/representativeRelatedPage/accountsRep/AddAccountInfo";
 import UpdateAccountInfoForm from "../pages/adminSide/representativeRelatedPage/accountsRep/UpdateAccountInfoForm";
+import AddClientAdmin from "../pages/clientSide/client/AddClientAdmin";
 
 
 
@@ -326,6 +327,12 @@ const router = createBrowserRouter([
                 path : "user-profile/:id",
                 element : <PrivateRoute role={"admin"} > <UserProfile></UserProfile> </PrivateRoute>
             },
+
+            {
+                path : "add-client-admin",
+                element : <PrivateRoute role={"admin"} > <AddClientAdmin></AddClientAdmin> </PrivateRoute>
+            },
+            
 
 
 
