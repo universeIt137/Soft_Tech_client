@@ -41,7 +41,7 @@ const AllinOne = () => {
                             &quot;</p>
                         {/* author */}
                         <div className="flex gap-5 items-center">
-                            <img className="w-[70px] rounded-full" src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1725692414/Universe%20Soft%20Tech/Homepage/h1tkdbwomcfjwqzhz1tg.jpg" alt="" />
+                            <img className="w-[70px] rounded-full" src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1734868951/UniverseSoftTech/Image/fcybr3s74j9fhwnver6c.jpg" alt="" />
                             <div className="space-y-2">
                                 <p>ENGR. MD. GOLAM KIBRIYA</p>
                                 <p>CEO</p>
