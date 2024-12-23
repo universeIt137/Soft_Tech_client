@@ -25,7 +25,7 @@ const Banner = () => {
             </div>
 
             <div className='flex-1 sm:mt-16 sm:mb-32 mx-6 pb-10  lg:pb-0 '>
-                <img className='w-full hidden lg:block lg:w-10/12' src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png" alt="" />
+                <img className='w-full hidden lg:block lg:w-10/12' src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955887/universeIT/pe58phdzwrp8rdo0qqwo.png" alt="" />
             </div>
         </div>
     );

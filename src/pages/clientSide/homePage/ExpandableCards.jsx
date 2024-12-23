@@ -8,28 +8,28 @@ const ExpandableCards = () => {
     const cards = [
         {
             name: "LMS",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498702/Universe%20Soft%20Tech/Homepage/nkgavootdezpwkdrum3b.png",
+            image: "https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955460/universeIT/pz2loz2grcwialjgq3w3.png",
             live_link: "https://learning-management-syst-f5df8.web.app/"
         },
         {
             name: "Eranian",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498716/Universe%20Soft%20Tech/Homepage/ck8op8zhfrdfpllovh1k.png",
+            image: "https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955507/universeIT/fmvc4v6lqbfnkl2l6eph.png",
             live_link: "https://eranian.onrender.com/"
         },
         {
             name: "Bideshgami",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498703/Universe%20Soft%20Tech/Homepage/u5f2ggzughqk2oyjd2bm.png",
+            image: "https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955396/universeIT/lfzvmamqkhl5ssvoyz3j.png",
             live_link: "https://bideshgami-a638b.web.app/"
         },
         {
             name: "Quantum",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498708/Universe%20Soft%20Tech/Homepage/yxxgwuzeelcvwtpsgdne.png",
+            image: "https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955548/universeIT/q6dipomgknvwij5wmozs.png",
             live_link: "https://quantum-builders.onrender.com"
 
         },
         {
             name: "Abinash Foundation",
-            image: "https://res.cloudinary.com/dnvmj9pvk/image/upload/v1729498723/Universe%20Soft%20Tech/Homepage/z2ehfg1tdw9u8r0cexlg.png",
+            image: "https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955584/universeIT/t2f7vac7djwa6c0counr.png",
             live_link: "http://abinashfoundation.com"
         },
     ];
