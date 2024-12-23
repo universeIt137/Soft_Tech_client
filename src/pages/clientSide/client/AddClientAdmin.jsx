@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { uploadImageToCloudinary } from '../../../uploadImage/UpdateImg';
 import { createAlert } from '../../../helper/createAlert';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { uploadImg } from '../../../uploadImage/UploadImage';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const AddClientAdmin = () => {
 
@@ -27,17 +29,17 @@ const AddClientAdmin = () => {
         const password = e.target.password.value;
         const confirmPassword = e.target.confirmPassword.value;
         const address = e.target.address.value;
-        const clientImage = e.target.clientImage.value;
+        const clientImage = e.target.clientImage.files[0];
         const businessType = e.target.businessType.value;
         const productType = e.target.productType.value;
 
-        let uploadImg = "";
+        let images = "";
 
         if (!clientImage?.name) {
-            uploadImg = ""
+            images = ""
         }
 
-        uploadImg = await uploadImageToCloudinary(clientImage);
+        images = await uploadImg(clientImage);
 
         const payload = {
             name,
@@ -45,7 +47,7 @@ const AddClientAdmin = () => {
             password,
             confirmPassword,
             address,
-            clientImage: uploadImg,
+            clientImage: images,
             businessType,
             productType
         };
@@ -61,15 +63,26 @@ const AddClientAdmin = () => {
                 setLoading(true);
                 const res = await axiosPublic.post('/client-create-admin', payload,config);
                 setLoading(false);
-                if (res) {
-                    toast.success("Client added successfully");
-                    e.target.reset();
+                if(res){
+                    Swal.fire({
+                        icon:'success',
+                        title: 'Client registered successfully',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
                 }
             }
         } catch (error) {
             setLoading(false);
+            Swal.fire({
+                icon: 'error',
+                title: `${error.response?.data?.msg}`,
+                showConfirmButton: false,
+                timer: 1500,
+            })
             console.error("Error creating client:", error);
         }
+        e.target.reset();
 
 
     }
