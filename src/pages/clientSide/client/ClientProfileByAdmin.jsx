@@ -29,7 +29,7 @@ const ClientProfileByAdmin = () => {
 
     console.log(clientData);
 
-    const { address, distic, division, education, image, name, phone, referNumber, referUserId, referenceId, representative_id, role, status, upazila } = clientData;
+    const { name,phone,address,clientImage,businessType,role,productType } = clientData;
 
     return (
         <div className='' >
@@ -53,7 +53,7 @@ const ClientProfileByAdmin = () => {
                                     <div className="bg-primary/70 size-16 rounded-full relative overflow-hidden">
                                         <img
                                             className="h-full rounded-full object-cover p-1"
-                                            src={image}
+                                            src={clientImage}
                                             alt={name}
                                         />
                                     </div>
@@ -65,12 +65,9 @@ const ClientProfileByAdmin = () => {
                                         <h2 className=" font-bold capitalize">Name: {name}</h2>
 
                                         <h2 className=""><span className="font-bold">Phone: </span>{phone}</h2>
-                                        <h2 className=""><span className="font-bold">Division: </span>{division}</h2>
-                                        <h2 className=""><span className="font-bold">District: </span>{distic}</h2>
-                                        <h2 className=""><span className="font-bold">Upzilla: </span>{upazila}</h2>
-                                        <h2 className=""><span className="font-bold">Address: </span>{address}</h2>
-                                        {/* <h2 className=""><span className="font-bold">Education: </span>{education}</h2> */}
-
+                                        <h2 className=""><span className="font-bold">Business Type: </span>{businessType}</h2>
+                                        <h2 className=""><span className="font-bold">Product: </span>{productType}</h2>
+                                        <h2 className=""><span className="font-bold">Address: </span>{address}</h2> 
                                     </div>
 
 
@@ -80,7 +77,7 @@ const ClientProfileByAdmin = () => {
                                 </div>
                                 <div className="pb-7">
                                     <div className="bg-gradient-to-r from-primary to-primary/70 w-[55%] text-white font-semibold mt-5 ml-auto py-2 text-[12px] pl-5">
-                                        <p>Refer No: {referNumber}</p>
+                                        <p>Status: {role}</p>
                                     </div>
                                 </div>
                             </div>
