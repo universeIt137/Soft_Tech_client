@@ -25,7 +25,7 @@ const OurProductsSection = ({ products }) => {
     // console.log(products);
 
     const bgImg = {
-        backgroundImage: 'url("https://res.cloudinary.com/dnvmj9pvk/image/upload/v1728379917/Universe%20Soft%20Tech/Homepage/nckwvzqztdcowr9ac2fk.png")',
+        backgroundImage: 'url("https://res.cloudinary.com/dxvacpgrv/image/upload/v1734869083/UniverseSoftTech/Image/rsthap3lzzhgnjnzdynn.png")',
         backgroundSize: 'cover',
         borderRadius: '10px',
         overflow: 'hidden',
