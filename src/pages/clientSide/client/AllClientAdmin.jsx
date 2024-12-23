@@ -7,6 +7,7 @@ import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { updateAlert } from '../../../helper/updateAlert';
 import Swal from 'sweetalert2';
+import { deleteAlert } from '../../../helper/deleteHelperAlert';
 
 const AllClientAdmin = () => {
     const axiosPublic = useAxiosPublic();
@@ -25,12 +26,12 @@ const AllClientAdmin = () => {
         }
     });
 
-    const clientRoleUpdate = async (id)=>{
+    const clientRoleUpdate = async (id) => {
         try {
             let resp = await updateAlert();
-            if(resp.isConfirmed){
+            if (resp.isConfirmed) {
                 let res = await axiosPublic.post(`/client-role-update/${id}`, {}, config);
-                if(res){
+                if (res) {
                     Swal.fire({
                         title: "Status Updated",
                         icon: "success",
@@ -46,7 +47,33 @@ const AllClientAdmin = () => {
 
     const onEdit = (client) => {
         // Implement the edit functionality here
+        console.log('Edit client:', client);
     };
+
+    const deleteClient = async (id) => {
+        try {
+            let resp = await deleteAlert();
+            if (resp.isConfirmed) {
+                let res = await axiosPublic.delete(`/client-delete-admin/${id}`, config);
+                if (res) {
+                    Swal.fire({
+                        title: "Client Deleted",
+                        icon: "success",
+                        confirmButtonText: "Okay"
+                    });
+                    refetch();
+                }
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error Occurred",
+                text: "Failed to delete client",
+                icon: "error",
+                confirmButtonText: "Okay"
+            })
+            console.log(error);
+        }
+    }
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -107,7 +134,7 @@ const AllClientAdmin = () => {
                                         </button>
                                     </div>
                                     <div>
-                                        <button className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
+                                        <button onClick={() => deleteClient(item?._id)} className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
                                     </div>
                                 </div>
                             </td>
