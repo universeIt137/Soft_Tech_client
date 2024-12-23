@@ -79,6 +79,8 @@ import AddAccountInfo from "../pages/adminSide/representativeRelatedPage/account
 import UpdateAccountInfoForm from "../pages/adminSide/representativeRelatedPage/accountsRep/UpdateAccountInfoForm";
 import AddClientAdmin from "../pages/clientSide/client/AddClientAdmin";
 import AllClientAdmin from "../pages/clientSide/client/AllClientAdmin";
+import UpdateClientAdmin from "../pages/clientSide/client/UpdateClientAdmin";
+import ClientProfileByAdmin from "../pages/clientSide/client/ClientProfileByAdmin";
 
 
 
@@ -170,7 +172,7 @@ const router = createBrowserRouter([
                 element: <Blogdetails></Blogdetails>
             },
 
-            
+
             // representative login routes 
 
             {
@@ -192,7 +194,7 @@ const router = createBrowserRouter([
                 path: "/representative/step-three",
                 element: <StepThreeRegister></StepThreeRegister>
             },
-           
+
 
 
         ]
@@ -207,7 +209,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <PrivateRoute>
-                    <Profile/>
+                    <Profile />
                 </PrivateRoute>
             },
             {
@@ -325,21 +327,32 @@ const router = createBrowserRouter([
                 element: <PrivateRoute role={"admin"} > <AddAdmin></AddAdmin> </PrivateRoute>
             },
             {
-                path : "user-profile/:id",
-                element : <PrivateRoute role={"admin"} > <UserProfile></UserProfile> </PrivateRoute>
+                path: "user-profile/:id",
+                element: <PrivateRoute role={"admin"} > <UserProfile></UserProfile> </PrivateRoute>
             },
 
             {
-                path : "add-client-admin",
-                element : <PrivateRoute role={"admin"} > <AddClientAdmin></AddClientAdmin> </PrivateRoute>
+                path: "add-client-admin",
+                element: <PrivateRoute role={"admin"} > <AddClientAdmin></AddClientAdmin> </PrivateRoute>
             },
 
             {
-                path : "manage-client",
-                element : <PrivateRoute role={"admin"} > <AllClientAdmin></AllClientAdmin> </PrivateRoute>
+                path: "manage-client",
+                element: <PrivateRoute role={"admin"} > <AllClientAdmin></AllClientAdmin> </PrivateRoute>
             },
-            
-            
+
+            {
+                path: "update-client-admin/:id",
+                element: <PrivateRoute role={"admin"} > <UpdateClientAdmin></UpdateClientAdmin> </PrivateRoute>
+            },
+
+            {
+                path: "client-profile/:id",
+                element: <PrivateRoute role={"admin"} > <ClientProfileByAdmin></ClientProfileByAdmin> </PrivateRoute>
+            },
+
+
+
 
 
 
@@ -388,7 +401,7 @@ const router = createBrowserRouter([
 
             {
                 path: "add-rep-account-info",
-                element: <AddAccountInfo/>
+                element: <AddAccountInfo />
             },
 
             {
