@@ -99,6 +99,7 @@ const UpdatedFooter = () => {
                                 <li><Link to='/company-profile' className="hover:text-gray-800">Compony Profile</Link></li>
                                 <li><Link to='/our-team' className="hover:text-gray-800">Our Team</Link></li>
                                 <li><Link to='/blogs' className="hover:text-gray-800">Blogs</Link></li>
+                                <li><Link to='/representative-login' className="hover:text-gray-800">Representative Login</Link></li>
                             </nav>
                         </div>
                     </div>

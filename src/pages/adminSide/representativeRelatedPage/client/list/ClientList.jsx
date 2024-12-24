@@ -2,67 +2,31 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../../../hooks/useAxiosPublic';
 
 
 const ClientList = () => {
-    const contents = [
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
 
+
+    
+    const getToken = localStorage.getItem("representativeToken");
+    const axiosPublic = useAxiosPublic();
+
+    const config = {
+        headers: {
+            Authorization: getToken
         },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
+    };
 
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
-        },
-        {
-            id: 1,
-            name: "ashikur",
-            company: "Ash Limited",
-            address: "Dhaka",
-
+    const { data: contents2 = [] } = useQuery({
+        queryKey: ['contents2'],
+        queryFn: async() => {
+            const res = await axiosPublic.get('/allClientByRepresentative', config);
+            return res.data.data;
         }
-    ]
+    })
+
+    // console.log(contents2)
     
     const handleDelete = (id) => {
         Swal.fire({
@@ -105,21 +69,21 @@ const ClientList = () => {
                     <tr>
                         <th className="px-4 py-2 border">#</th>
                         <th className="px-4 py-2 border">Name</th>
-                        <th className="px-4 py-2 border">Company</th>
+                        <th className="px-4 py-2 border">Phone</th>
                         <th className="px-4 py-2 border">Address</th>
-                        <th className="px-4 py-2 border">Actions</th>
+                        {/* <th className="px-4 py-2 border">Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        contents?.map((content, index) => (
-                            <tr key={content?.id} className="text-center">
+                        contents2?.map((content, index) => (
+                            <tr key={content?._id} className="text-center">
                                 <td className="px-4 py-2 border font-semibold">{index+1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.name}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.company}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.phone}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.address}</td>
                                 
-                                <td className="px-4 py-2 border">
+                                {/* <td className="px-4 py-2 border">
                                     <button
                                        
                                         className="px-2 py-1 bg-blue-500 text-white rounded mr-2"
@@ -132,7 +96,7 @@ const ClientList = () => {
                                     >
                                         Delete
                                     </button>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                 </tbody>
