@@ -37,13 +37,13 @@ const ProductUpdateForm = () => {
         e.preventDefault();
 
         // Upload navLogo and featureLogo to Cloudinary
-        let navLogoUrl = navLogo ? await uploadImageToCloudinary(navLogo) : singleProductData[0].nav_logo;
-        let bannerImgUrl = bannerImg ? await uploadImageToCloudinary(bannerImg) : singleProductData[0].banner_img;
-        let featureImgUrl = featureImg ? await uploadImageToCloudinary(featureImg) : singleProductData[0].feature_img;
+        let navLogoUrl = navLogo ? await uploadImageToCloudinary(navLogo) : singleProductData.nav_logo;
+        let bannerImgUrl = bannerImg ? await uploadImageToCloudinary(bannerImg) : singleProductData.banner_img;
+        let featureImgUrl = featureImg ? await uploadImageToCloudinary(featureImg) : singleProductData.feature_img;
 
         // Prepare extra_data with image uploads for extra description images
         const updatedExtraData = await Promise.all(
-            singleProductData[0].extra_data.map(async (item, i) => ({
+            singleProductData.extra_data.map(async (item, i) => ({
                 description_title: e.target[`description_title_${i}`].value,
                 description_img: descriptionImg[i] 
                     ? await uploadImageToCloudinary(descriptionImg[i]) 
@@ -299,7 +299,7 @@ const ProductUpdateForm = () => {
                 </div>
 
                 {/* Extra Data Handling */}
-                {singleProductData[0]?.extra_data && singleProductData.extra_data.length > 0 && singleProductData.extra_data.map((item, i) => (
+                {singleProductData?.extra_data && singleProductData.extra_data.length > 0 && singleProductData.extra_data.map((item, i) => (
                     <div className="my-10" key={i}>
                         <div className="my-4">
                             <div className="flex flex-row gap-6 items-center my-6">
