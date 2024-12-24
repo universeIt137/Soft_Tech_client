@@ -114,6 +114,9 @@ const Sidebar = () => {
                     </div>
                   </Link>
                 </div>
+                <div className="">
+                  Admin Pannel
+                </div>
                 <button onClick={toggleSidebar} className="text-white focus:outline-none">
                   {isSidebarOpen ? (
                     <IoCloseCircleOutline className="text-4xl" />
@@ -493,7 +496,7 @@ const Sidebar = () => {
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
                       <FaBloggerB size={20} />
-                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Admin Client List</span>
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Client List</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
                           {activeDropdown === "manage-admin-client" ? <FaAngleUp /> : <FaAngleDown />}
@@ -554,6 +557,7 @@ const Sidebar = () => {
                         <p className="text-[16px]">ID: {repData?.representative_id} </p>
                       </div>
                     </Link>
+                    <div className=" text-[12px]">Representative Pannel</div>
                   </div>
                   <button onClick={toggleSidebar} className="text-white focus:outline-none">
                     {isSidebarOpen ? (
