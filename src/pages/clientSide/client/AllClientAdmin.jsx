@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaEdit, FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
@@ -26,6 +26,25 @@ const AllClientAdmin = () => {
         }
     });
 
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const filteredClients = clientData.filter((client) => {
+        const name = client.name?.toLowerCase() || ""; // Safe access with default value
+        const phone = client.phone?.toLowerCase() || "";
+        const productType = client.productType?.toLowerCase() || "";
+        const role = client.role?.toLowerCase() || "";
+        const status = client.role === "client" ? "active" : "inactive"; // Example status logic
+
+        const search = searchTerm.toLowerCase();
+        return (
+            name.includes(search) ||
+            phone.includes(search) ||
+            productType.includes(search) ||
+            role.includes(search) ||
+            status.includes(search)
+        );
+    });
+
     const clientRoleUpdate = async (id) => {
         try {
             let resp = await updateAlert();
@@ -43,10 +62,9 @@ const AllClientAdmin = () => {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const onEdit = (client) => {
-        // Implement the edit functionality here
         console.log('Edit client:', client);
     };
 
@@ -70,13 +88,17 @@ const AllClientAdmin = () => {
                 text: "Failed to delete client",
                 icon: "error",
                 confirmButtonText: "Okay"
-            })
+            });
             console.log(error);
         }
-    }
+    };
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error loading clients</div>;
     }
 
     return (
@@ -85,6 +107,15 @@ const AllClientAdmin = () => {
                 <title>Dashboard | All Client List</title>
             </Helmet>
             <h1 className='text-3xl text-center font-bold my-4'>All Client List</h1>
+            <div className="my-4">
+                <input
+                    type="text"
+                    placeholder="Search clients..."
+                    className="border rounded px-4 py-2"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
             <table className="min-w-full text-sm table-auto">
                 <thead>
                     <tr>
@@ -98,7 +129,7 @@ const AllClientAdmin = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clientData.map((item, index) => (
+                    {filteredClients.map((item, index) => (
                         <tr key={index} className="hover:bg-gray-100 text-center">
                             <td className="px-4 py-2 border-b">{item.name}</td>
                             <td className="px-4 py-2 border-b">{item.phone}</td>
@@ -110,34 +141,30 @@ const AllClientAdmin = () => {
                             </td>
                             <td className="px-4 py-2 border-b">{item.role}</td>
                             <td className="font-bold border">
-                                <div className="form-control">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <button onClick={() => clientRoleUpdate(item?._id)} >
-                                            {
-                                                item?.role === "client" ? <>
-                                                    <FaToggleOn className="text-green-500 text-lg " />
-
-                                                </> : <><FaToggleOff className="text-red-500 text-lg" /></>
-                                            }
-                                        </button>
-                                    </div>
-                                </div>
+                                <button onClick={() => clientRoleUpdate(item._id)}>
+                                    {item.role === "client" ? (
+                                        <FaToggleOn className="text-green-500 text-lg" />
+                                    ) : (
+                                        <FaToggleOff className="text-red-500 text-lg" />
+                                    )}
+                                </button>
                             </td>
                             <td className="px-4 py-2 border-b">
-                                <div className='flex justify-center items-center gap-3 ' >
-                                    <div>
-                                        <Link to={`/dashboard/update-client-admin/${item?._id}`}>
-                                            <button
-                                                onClick={() => onEdit(item)}
-                                                className="text-blue-500 hover:text-blue-700"
-                                            >
-                                                <FaEdit />
-                                            </button>
-                                        </Link>
-                                    </div>
-                                    <div>
-                                        <button onClick={() => deleteClient(item?._id)} className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
-                                    </div>
+                                <div className='flex justify-center items-center gap-3'>
+                                    <Link to={`/dashboard/update-client-admin/${item._id}`}>
+                                        <button
+                                            onClick={() => onEdit(item)}
+                                            className="text-blue-500 hover:text-blue-700"
+                                        >
+                                            <FaEdit />
+                                        </button>
+                                    </Link>
+                                    <button
+                                        onClick={() => deleteClient(item._id)}
+                                        className="text-blue-500 hover:text-blue-700"
+                                    >
+                                        <MdDelete />
+                                    </button>
                                 </div>
                             </td>
                         </tr>
