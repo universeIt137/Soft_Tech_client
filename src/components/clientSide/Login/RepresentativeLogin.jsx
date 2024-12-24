@@ -50,7 +50,7 @@ const RepresentativeLogin = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Failed to login',
-                text: error.response?.data?.message || 'Something went wrong. Please try again.',
+                text: error.response?.data?.msg || 'Something went wrong. Please try again.',
                 timer: 2000,
                 showConfirmButton: false,
             });
