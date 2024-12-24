@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import formatDateTime from '../../../../hooks/useDateTime';
 
 const Refers = () => {
     const getToken = localStorage.getItem("representativeToken");
@@ -53,12 +54,7 @@ const Refers = () => {
         });
     };
 
-    const formatDateTime = (createdAt) => {
-        const dateObj = new Date(createdAt);
-        const date = dateObj.toLocaleDateString();
-        const time = dateObj.toLocaleTimeString();
-        return { date, time };
-    };
+    
 
     return (
         <div className="overflow-x-auto w-full my-5">

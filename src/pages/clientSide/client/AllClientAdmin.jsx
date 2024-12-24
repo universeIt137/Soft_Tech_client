@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { updateAlert } from '../../../helper/updateAlert';
 import Swal from 'sweetalert2';
 import { deleteAlert } from '../../../helper/deleteHelperAlert';
+import formatDateTime from '../../../hooks/useDateTime';
 
 const AllClientAdmin = () => {
     const axiosPublic = useAxiosPublic();
@@ -87,61 +88,71 @@ const AllClientAdmin = () => {
             <h1 className='text-3xl text-center font-bold my-4'>All Client List</h1>
             <table className="min-w-full text-sm table-auto">
                 <thead>
-                    <tr>
+                    <tr className='bg-gray-200 rounded-t-lg'>
+                        <th className="px-4 py-2 border-b">#</th>
                         <th className="px-4 py-2 border-b">Name</th>
                         <th className="px-4 py-2 border-b">Phone</th>
                         <th className="px-4 py-2 border-b">Product Type</th>
                         <th className="px-4 py-2 border-b">Profile</th>
                         <th className="px-4 py-2 border-b">Role</th>
+                        <th className="px-4 py-2 border-b">Joining Date</th>
+                        <th className="px-4 py-2 border-b">Joining Time</th>
                         <th className="px-4 py-2 border-b">Status</th>
                         <th className="px-4 py-2 border-b">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {clientData.map((item, index) => (
-                        <tr key={index} className="hover:bg-gray-100 text-center">
-                            <td className="px-4 py-2 border-b">{item.name}</td>
-                            <td className="px-4 py-2 border-b">{item.phone}</td>
-                            <td className="px-4 py-2 border-b">{item.productType}</td>
-                            <td className="px-4 py-2 border-b">
-                                <Link to={`/dashboard/client-profile/${item._id}`}>
-                                    View Profile
-                                </Link>
-                            </td>
-                            <td className="px-4 py-2 border-b">{item.role}</td>
-                            <td className="font-bold border">
-                                <div className="form-control">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <button onClick={() => clientRoleUpdate(item?._id)} >
-                                            {
-                                                item?.role === "client" ? <>
-                                                    <FaToggleOn className="text-green-500 text-lg " />
+                    {clientData.map((item, index) => {
+                        const { date, time } = formatDateTime(item?.createdAt);
+                        return (
+                            <tr key={index} className="hover:bg-gray-100 text-center">
+                                <td className="px-4 py-2 border-b">{index+1}</td>
+                                <td className="px-4 py-2 border-b">{item.name}</td>
+                                <td className="px-4 py-2 border-b">{item.phone}</td>
+                                <td className="px-4 py-2 border-b">{item.productType}</td>
+                                <td className="px-4 py-2 border-b">
+                                    <Link to={`/dashboard/client-profile/${item._id}`}>
+                                        View Profile
+                                    </Link>
+                                </td>
+                                <td className="px-4 py-2 border-b">{item.role}</td>
+                                <td className="px-4 py-2 border-b">{date}</td>
+                                <td className="px-4 py-2 border-b">{time}</td>
+                                <td className="font-bold border">
+                                    <div className="form-control">
+                                        <div className="flex items-center justify-center gap-2">
+                                            <button onClick={() => clientRoleUpdate(item?._id)} >
+                                                {
+                                                    item?.role === "client" ? <>
+                                                        <FaToggleOn className="text-green-500 text-lg " />
 
-                                                </> : <><FaToggleOff className="text-red-500 text-lg" /></>
-                                            }
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="px-4 py-2 border-b">
-                                <div className='flex justify-center items-center gap-3 ' >
-                                    <div>
-                                        <Link to={`/dashboard/update-client-admin/${item?._id}`}>
-                                            <button
-                                                onClick={() => onEdit(item)}
-                                                className="text-blue-500 hover:text-blue-700"
-                                            >
-                                                <FaEdit />
+                                                    </> : <><FaToggleOff className="text-red-500 text-lg" /></>
+                                                }
                                             </button>
-                                        </Link>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <button onClick={() => deleteClient(item?._id)} className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
+                                </td>
+                                <td className="px-4 py-2 border-b">
+                                    <div className='flex justify-center items-center gap-3 ' >
+                                        <div>
+                                            <Link to={`/dashboard/update-client-admin/${item?._id}`}>
+                                                <button
+                                                    onClick={() => onEdit(item)}
+                                                    className="text-blue-500 hover:text-blue-700"
+                                                >
+                                                    <FaEdit />
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <button onClick={() => deleteClient(item?._id)} className="text-blue-500 hover:text-blue-700" ><MdDelete /> </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
+                                </td>
+                            </tr>
+                        )
+                    }
+                    )}
                 </tbody>
             </table>
         </div>
