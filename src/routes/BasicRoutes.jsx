@@ -83,6 +83,9 @@ import ClientProfileByAdmin from "../pages/clientSide/client/ClientProfileByAdmi
 import ClientLogin from "../pages/clientSide/client/ClientLogin";
 import AddSessionVideo from "../pages/adminSide/sessionVideo/AddSessionVideo";
 import AddProductVideo from "../pages/adminSide/productVideo/AddProductVideo";
+import ProductVideoUpdate from "../pages/adminSide/productVideo/ProductVideoUpdate";
+import SessionVideoTable from "../pages/adminSide/sessionVideo/SessionVideoTable";
+import SessionUpdateVideo from "../pages/adminSide/sessionVideo/SessionUpdateVideo";
 
 
 
@@ -356,6 +359,14 @@ const router = createBrowserRouter([
             {
                 path: "add-product-video",
                 element: <PrivateRoute role={"admin"} > <AddProductVideo/></PrivateRoute>
+            },
+            {
+                path : "product-video-update/:id",
+                element : <PrivateRoute role={"admin"} > <ProductVideoUpdate></ProductVideoUpdate> </PrivateRoute>
+            },
+            {
+                path : "session-video-update/:id",
+                element : <PrivateRoute role={"admin"} > <SessionUpdateVideo></SessionUpdateVideo> </PrivateRoute>
             },
 
             {

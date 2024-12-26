@@ -163,7 +163,7 @@ const AddSessionVideo = () => {
 
             </div>
             <div className="my-14" >
-                <SessionVideoTable productVideoData={productVideoData}  />
+                <SessionVideoTable productVideoData={productVideoData} refetch={refetch}  />
             </div>
         </>
     );
