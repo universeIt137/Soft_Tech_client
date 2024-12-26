@@ -8,7 +8,9 @@ import ProductVideoTable from "./ProductVideoTable";
 
 const AddProductVideo = () => {
     const [loader, setLoader] = useState(false);
+    
     const axiosPublic = useAxiosPublic();
+
     const adminToken = localStorage.getItem("admin_token");
     const adminConfig = {
         headers: {
@@ -20,6 +22,7 @@ const AddProductVideo = () => {
         e.preventDefault();
         const videoUrl = e.target.videoUrl.files[0];
         const title = e.target.title.value;
+        const youtubeUrl = e.target.youtubeUrl.value;
 
         if (!videoUrl || !title) {
             Swal.fire({
@@ -38,6 +41,7 @@ const AddProductVideo = () => {
             const payload = {
                 videoUrl: uploadVideo,
                 title: title,
+                youtubeUrl
             };
 
             let resp = await videoAlert();
@@ -95,7 +99,6 @@ const AddProductVideo = () => {
                             name="videoUrl"
                             accept="video/*"
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            required
                         />
                     </div>
 
@@ -113,7 +116,23 @@ const AddProductVideo = () => {
                             name="title"
                             placeholder="Enter title"
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            required
+                        />
+                    </div>
+
+                    {/* Youtube url Field */}
+                    <div className="mb-4">
+                        <label
+                            htmlFor="youtubeUrl"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Youtube Url
+                        </label>
+                        <input
+                            type="url"
+                            id="youtubeUrl"
+                            name="youtubeUrl"
+                            placeholder="Enter youtubeUrl"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
                     </div>
 
