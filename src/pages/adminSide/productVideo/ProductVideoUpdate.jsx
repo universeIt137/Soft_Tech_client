@@ -13,6 +13,11 @@ const ProductVideoUpdate = () => {
     const axiosPublic = useAxiosPublic();
     const adminToken = localStorage.getItem("admin_token");
 
+    const config = {
+        headers: {
+            Authorization: adminToken,
+        },
+    };
     const { data: singleProductVideo = {}, refetch, isError, isLoading } = useQuery({
         queryKey: ["singleProductVideo"],
         queryFn: async () => {
@@ -48,6 +53,7 @@ const ProductVideoUpdate = () => {
             if (resp.isConfirmed) {
                 setLoader(true);
                 let res = await axiosPublic.put(`/product-video-update/${id}`, payload, config);
+
                 setLoader(false);
                 if (res) {
                     Swal.fire({
@@ -60,6 +66,7 @@ const ProductVideoUpdate = () => {
                 }
             }
         } catch (error) {
+            console.log(error);
             setLoader(false);
             Swal.fire({
                 title: "Failed to update video",
