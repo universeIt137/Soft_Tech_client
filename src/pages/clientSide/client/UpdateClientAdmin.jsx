@@ -32,7 +32,7 @@ const UpdateClientAdmin = () => {
         }
     });
 
-    const { clientImage: upcommingImg } = singleData;
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,22 +40,22 @@ const UpdateClientAdmin = () => {
         const name = e.target.name.value;
         const phone = e.target.phone.value;
         const address = e.target.address.value;
-        const clientImage = e.target.clientImage.files[0];
+        const image = e.target.clientImage.files[0];
         const businessType = e.target.businessType.value;
         const productType = e.target.productType.value;
 
-        let images = upcommingImg;
+        let clientImage = singleData?.clientImage;
 
-        if (clientImage) {
-            images = await uploadImg(clientImage)
+        if (image) {
+            clientImage = await uploadImg(image)
         } else {
-            images = upcommingImg
+            clientImage = singleData?.clientImage;
         }
         const payload = {
             name,
             phone,
             address,
-            clientImage: images,
+            clientImage,
             businessType,
             productType
         };
@@ -75,6 +75,7 @@ const UpdateClientAdmin = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     })
+                    refetch();
                 }
             }
         } catch (error) {

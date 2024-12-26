@@ -40,8 +40,8 @@ const ClientLogin = () => {
                     timer: 1500,
                 });
                 localStorage.setItem("clientToken", res.data?.data?.clientToken);
-                localStorage.setItem("role", res.data?.data?.client?.role);
-                // window.location.href = '/dashboard';
+                localStorage.setItem("user", res.data?.data?.client?.role);
+                window.location.href = '/dashboard';
                 // e.target.reset()
                 return;
             }

@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import Swal from 'sweetalert2';
 import { updateAlert } from '../../../helper/updateAlert';
+import formatDateTime from '../../../hooks/useDateTime';
 
 const ManageUser = () => {
     const axiosPublic = useAxiosPublic();
@@ -84,57 +85,73 @@ const ManageUser = () => {
                                 <th className="border border-gray-300 px-4 py-2">Role</th>
                                 <th className="border border-gray-300 px-4 py-2">Status</th>
                                 <th className="border border-gray-300 px-4 py-2">Action</th>
+                                <th className="border border-gray-300 px-4 py-2">Joining Date</th>
+                                <th className="border border-gray-300 px-4 py-2">Joining Time</th>
                                 <th className="border border-gray-300 px-4 py-2">Profile</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {userData.map((user, index) => (
-                                <tr key={user._id} className="hover:bg-gray-100">
-                                    <td className="border border-gray-300 px-4 py-2 text-center">
-                                        {index + 1}
-                                    </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {user.name || "N/A"}
-                                    </td>
-
-                                    <td className="border border-gray-300 px-4 text-center py-2">
-                                        {user.contactNumber || "N/A"}
-                                    </td>
-
-                                    <td className="border border-gray-300 text-center px-4 py-2 capitalize">
-                                        {user.role || "N/A"}
-                                    </td>
-                                    <td
-                                        className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
-                                            }`}
-                                    >
-                                        {user.isAdmin ? "Active" : "Inactive"}
-                                    </td>
-                                    <td className="font-bold border">
-                                        <div className="form-control">
-                                            <div className="flex items-center justify-center gap-2">
-                                                <button onClick={() => userRoleUpdate(user?._id)} >
-                                                    {
-                                                        user?.role === "admin" ? <>
-                                                            <FaToggleOn className="text-green-500 text-lg " />
-
-                                                        </> : <><FaToggleOff className="text-red-500 text-lg"   /></>
-                                                    }
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td className="border border-gray-300 px-4 py-2 text-center">
-                                        <Link
-                                            to={`/dashboard/user-profile/${user._id}`}
-                                            className="text-blue-500 hover:underline"
+                            {userData.map((user, index) => {
+                                const { date, time } = formatDateTime(user?.createdAt);
+                                return (
+                                    <tr key={user._id} className="hover:bg-gray-100">
+                                        <td className="border border-gray-300 px-4 py-2 text-center">
+                                            {index + 1}
+                                        </td>
+                                        <td className="border border-gray-300 px-4 py-2">
+                                            {user.name || "N/A"}
+                                        </td>
+    
+                                        <td className="border border-gray-300 px-4 text-center py-2">
+                                            {user.contactNumber || "N/A"}
+                                        </td>
+    
+                                        <td className="border border-gray-300 text-center px-4 py-2 capitalize">
+                                            {user.role || "N/A"}
+                                        </td>
+                                        <td
+                                            className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
+                                                }`}
                                         >
-                                            Profile
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                                            {user.isAdmin ? "Active" : "Inactive"}
+                                        </td>
+                                        <td className="font-bold border">
+                                            <div className="form-control">
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <button onClick={() => userRoleUpdate(user?._id)} >
+                                                        {
+                                                            user?.role === "admin" ? <>
+                                                                <FaToggleOn className="text-green-500 text-lg " />
+    
+                                                            </> : <><FaToggleOff className="text-red-500 text-lg"   /></>
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td className="border border-gray-300 px-4 text-center py-2">
+                                            {date}
+                                        </td>
+
+                                        <td className="border border-gray-300 px-4 text-center py-2">
+                                            {time}
+                                        </td>
+    
+    
+                                        <td className="border border-gray-300 px-4 py-2 text-center">
+                                            <Link
+                                                to={`/dashboard/user-profile/${user._id}`}
+                                                className="text-blue-500 hover:underline"
+                                            >
+                                                Profile
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                            
+                            )}
                         </tbody>
                     </table>
                 </div>

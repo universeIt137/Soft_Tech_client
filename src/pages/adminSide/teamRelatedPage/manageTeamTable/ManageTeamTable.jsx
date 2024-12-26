@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import formatDateTime from "../../../../hooks/useDateTime";
 
 const ManageTeamTable = () => {
     const axiosPublic = useAxiosPublic();
@@ -63,39 +64,51 @@ const ManageTeamTable = () => {
             <table className="min-w-full bg-white hidden md:table shadow-lg">
                 <thead>
                     <tr className="bg-gray-200 text-gray-700 uppercase text-sm">
+                        <th className="py-3 px-6 text-left">#</th>
                         <th className="py-3 px-6 text-left">Name</th>
                         <th className="py-3 px-6 text-left">Designation</th>
                         <th className="py-3 px-6 text-left">Contact</th>
                         <th className="py-3 px-6 text-left">Experience</th>
+                        <th className="py-3 px-6 text-left">Joining Date</th>
+                        <th className="py-3 px-6 text-left">Joining Time</th>
                         <th className="py-3 px-6 text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {teamMembers.data?.map((member) => (
-                        <tr key={member._id} className="border-b hover:bg-gray-50">
-                            <td className="py-4 px-6">{member.name}</td>
-                            <td className="py-4 px-6">{member.designation}</td>
-                            <td className="py-4 px-6">{member.contact}</td>
+                    {teamMembers.data?.map((member, index) =>
+                    {
+                        const { date, time } = formatDateTime(member?.createdAt);
+                        return (
+                            <tr key={member._id} className="border-b hover:bg-gray-50">
+                                <td className="py-4 px-6">{index+1}</td>
+                                <td className="py-4 px-6">{member.name}</td>
+                                <td className="py-4 px-6">{member.designation}</td>
+                                <td className="py-4 px-6">{member.contact}</td>
+    
+                                <td className="py-4 px-6">{member.experience}</td>
+                                <td className="py-4 px-6">{date}</td>
+                                <td className="py-4 px-6">{time}</td>
 
-                            <td className="py-4 px-6">{member.experience}</td>
-                            <td className="py-4 px-6 text-center flex justify-center space-x-2">
-                                <Link to={`/dashboard/update/${member._id}`}>
+                                <td className="py-4 px-6 text-center flex justify-center space-x-2">
+                                    <Link to={`/dashboard/update/${member._id}`}>
+                                        <button
+                                            className="bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-600"
+                                        >
+                                            <FaEdit className="inline-block text-lg" />
+                                        </button>
+                                    </Link>
+    
                                     <button
-                                        className="bg-blue-500 text-white py-1 px-3 rounded-md hover:bg-blue-600"
+                                        onClick={() => handleDelete(member._id)}
+                                        className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
                                     >
-                                        <FaEdit className="inline-block text-lg" />
+                                        <FaTrashAlt className="inline-block text-lg" />
                                     </button>
-                                </Link>
-
-                                <button
-                                    onClick={() => handleDelete(member._id)}
-                                    className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
-                                >
-                                    <FaTrashAlt className="inline-block text-lg" />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
+                                </td>
+                            </tr>
+                        )
+                    }
+                    )}
                 </tbody>
             </table>
 
