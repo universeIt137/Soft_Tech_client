@@ -80,6 +80,7 @@ import AddClientAdmin from "../pages/clientSide/client/AddClientAdmin";
 import AllClientAdmin from "../pages/clientSide/client/AllClientAdmin";
 import UpdateClientAdmin from "../pages/clientSide/client/UpdateClientAdmin";
 import ClientProfileByAdmin from "../pages/clientSide/client/ClientProfileByAdmin";
+import ClientLogin from "../pages/clientSide/client/ClientLogin";
 import AddSessionVideo from "../pages/adminSide/sessionVideo/AddSessionVideo";
 import AddProductVideo from "../pages/adminSide/productVideo/AddProductVideo";
 
@@ -447,6 +448,14 @@ const router = createBrowserRouter([
         path: "/admin-registration",
         element: <AdminRegistration></AdminRegistration>
     },
+
+
+    // client login routes
+
+    {
+        path : "/client-login",
+        element : <ClientLogin></ClientLogin>
+    }
 
 
 ]);
