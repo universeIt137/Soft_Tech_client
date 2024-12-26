@@ -116,6 +116,7 @@ const Sidebar = () => {
                 </div>
                 <div className="">
                   Admin Pannel
+                  
                 </div>
                 <button onClick={toggleSidebar} className="text-white focus:outline-none">
                   {isSidebarOpen ? (
