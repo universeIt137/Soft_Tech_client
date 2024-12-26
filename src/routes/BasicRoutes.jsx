@@ -353,6 +353,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute role={"admin"} > <ClientProfileByAdmin></ClientProfileByAdmin> </PrivateRoute>
             },
 
+            {
+                path: "add-product-video",
+                element: <PrivateRoute role={"admin"} > <AddProductVideo/></PrivateRoute>
+            },
+
 
 
 
@@ -428,10 +433,7 @@ const router = createBrowserRouter([
                 path: "client-support",
                 element: <ClientSupport></ClientSupport>
             },
-            {
-                path: "add-product-video",
-                element: <AddProductVideo/>
-            },
+            
             {
                 path: "add-session-video",
                 element: <AddSessionVideo/>
