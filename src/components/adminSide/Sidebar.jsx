@@ -4,13 +4,13 @@ import { MdAssessment, MdMenuOpen, MdModelTraining, MdPayments, MdRoomPreference
 import { IoCloseCircleOutline, IoPersonAdd, IoVideocam } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiFillFileImage, AiFillProduct, AiOutlineProduct } from "react-icons/ai";
-import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack, FaUserAstronaut, FaUserCircle, FaUsers } from "react-icons/fa";
 import { AuthContext } from "../../authProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { RiLogoutCircleFill, RiMoneyDollarCircleLine, RiTeamLine } from "react-icons/ri";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { SiAirplayvideo, SiGoogletagmanager, SiNginxproxymanager, SiPolymerproject } from "react-icons/si";
-import { FaBlogger } from "react-icons/fa6";
+import { FaBlogger, FaUserGroup } from "react-icons/fa6";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { BsClipboard2DataFill, BsInfoCircleFill } from "react-icons/bs";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -390,7 +390,7 @@ const Sidebar = () => {
                       onClick={() => handleDropdownToggle("team")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <FaBloggerB size={20} />
+                      <FaUserGroup size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Team</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
@@ -425,7 +425,7 @@ const Sidebar = () => {
                       onClick={() => handleDropdownToggle("user-list")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <FaBloggerB size={20} />
+                      <FaUsers  size={20}/>
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>User List</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
@@ -460,7 +460,7 @@ const Sidebar = () => {
                       onClick={() => handleDropdownToggle("manage-representative")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <FaBloggerB size={20} />
+                      <FaUserAstronaut size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Representative List</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
@@ -489,13 +489,48 @@ const Sidebar = () => {
                   </li>
 
 
+                   {/* manage video  */}
+                   <li>
+                    <label
+                      onClick={() => handleDropdownToggle("manage-video")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <IoVideocam size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Videos</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "manage-representative" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "manage-video" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/add-product-video"
+                          className="p-2  transition duration-200 hover:bg-white hover:text-black flex items-center gap-3"
+                        >
+                          <TiUserAdd size={20} />
+
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Product Video</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <Link to="/dashboard/add-session-video" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                          <BiLogoMicrosoftTeams size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Session Video </span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
+
                   {/* admin client manage  */}
                   <li>
                     <label
                       onClick={() => handleDropdownToggle("manage-admin-client")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <FaBloggerB size={20} />
+                      <FaUserCircle size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Client List</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">

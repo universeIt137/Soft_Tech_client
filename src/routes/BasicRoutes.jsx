@@ -52,7 +52,6 @@ import CategoryUpdatePage from "../pages/adminSide/category-page/CategoryUpdateP
 import Info from "../pages/adminSide/representativeRelatedPage/info/Info";
 import Client from "../pages/adminSide/representativeRelatedPage/client/Client";
 import PaymentHistory from "../pages/adminSide/representativeRelatedPage/payment/PaymentHistory";
-import ProductVideo from "../pages/adminSide/representativeRelatedPage/productVideo/ProductVideo";
 import Training from "../pages/adminSide/representativeRelatedPage/training/Training";
 import Refers from "../pages/adminSide/representativeRelatedPage/refers/Refers";
 import ProfileRep from "../pages/adminSide/representativeRelatedPage/profile/ProfileRep";
@@ -81,6 +80,8 @@ import AddClientAdmin from "../pages/clientSide/client/AddClientAdmin";
 import AllClientAdmin from "../pages/clientSide/client/AllClientAdmin";
 import UpdateClientAdmin from "../pages/clientSide/client/UpdateClientAdmin";
 import ClientProfileByAdmin from "../pages/clientSide/client/ClientProfileByAdmin";
+import AddSessionVideo from "../pages/adminSide/sessionVideo/AddSessionVideo";
+import AddProductVideo from "../pages/adminSide/productVideo/AddProductVideo";
 
 
 
@@ -380,7 +381,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "product-video",
-                element: <ProductVideo></ProductVideo>
+                element: <AddProductVideo></AddProductVideo>
             },
             {
                 path: "training",
@@ -425,6 +426,14 @@ const router = createBrowserRouter([
             {
                 path: "client-support",
                 element: <ClientSupport></ClientSupport>
+            },
+            {
+                path: "add-product-video",
+                element: <AddProductVideo/>
+            },
+            {
+                path: "add-session-video",
+                element: <AddSessionVideo/>
             }
         ]
     },
