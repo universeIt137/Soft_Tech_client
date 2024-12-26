@@ -71,7 +71,7 @@ const RepresentativeLogin = () => {
                     className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
                 >
                     <img
-                        src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1734519210/Universe%20Soft%20Tech/Public/iwesgxes2v3tmw8qcih4.png"
+                        src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1735213918/UniverseSoftTech/Image/gxl7luvix8m2kyavyerx.svg"
                         alt="LoginIllustration"
                         className="max-w-full h-auto"
                     />
