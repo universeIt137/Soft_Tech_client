@@ -86,6 +86,7 @@ import AddProductVideo from "../pages/adminSide/productVideo/AddProductVideo";
 import ProductVideoUpdate from "../pages/adminSide/productVideo/ProductVideoUpdate";
 import SessionVideoTable from "../pages/adminSide/sessionVideo/SessionVideoTable";
 import SessionUpdateVideo from "../pages/adminSide/sessionVideo/SessionUpdateVideo";
+import SendUpportMsg from "../pages/clientSide/support/SendUpportMsg";
 
 
 
@@ -358,25 +359,21 @@ const router = createBrowserRouter([
 
             {
                 path: "add-product-video",
-                element: <PrivateRoute role={"admin"} > <AddProductVideo/></PrivateRoute>
+                element: <PrivateRoute role={"admin"} > <AddProductVideo /></PrivateRoute>
             },
             {
-                path : "product-video-update/:id",
-                element : <PrivateRoute role={"admin"} > <ProductVideoUpdate></ProductVideoUpdate> </PrivateRoute>
+                path: "product-video-update/:id",
+                element: <PrivateRoute role={"admin"} > <ProductVideoUpdate></ProductVideoUpdate> </PrivateRoute>
             },
             {
-                path : "session-video-update/:id",
-                element : <PrivateRoute role={"admin"} > <SessionUpdateVideo></SessionUpdateVideo> </PrivateRoute>
+                path: "session-video-update/:id",
+                element: <PrivateRoute role={"admin"} > <SessionUpdateVideo></SessionUpdateVideo> </PrivateRoute>
             },
 
             {
                 path: "add-session-video",
-                element: <PrivateRoute role={"admin"} ><AddSessionVideo/></PrivateRoute> 
+                element: <PrivateRoute role={"admin"} ><AddSessionVideo /></PrivateRoute>
             },
-
-
-
-
 
 
             // Rrepresentative related routes
@@ -449,8 +446,11 @@ const router = createBrowserRouter([
                 path: "client-support",
                 element: <ClientSupport></ClientSupport>
             },
-            
-            
+
+            {
+                path: "send-message",
+                element: <SendUpportMsg></SendUpportMsg>
+            }
         ]
     },
 
@@ -468,8 +468,8 @@ const router = createBrowserRouter([
     // client login routes
 
     {
-        path : "/client-login",
-        element : <ClientLogin></ClientLogin>
+        path: "/client-login",
+        element: <ClientLogin></ClientLogin>
     }
 
 
