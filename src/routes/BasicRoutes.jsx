@@ -86,7 +86,11 @@ import AddProductVideo from "../pages/adminSide/productVideo/AddProductVideo";
 import ProductVideoUpdate from "../pages/adminSide/productVideo/ProductVideoUpdate";
 import SessionVideoTable from "../pages/adminSide/sessionVideo/SessionVideoTable";
 import SessionUpdateVideo from "../pages/adminSide/sessionVideo/SessionUpdateVideo";
+import ProductVideoTable from "../pages/adminSide/productVideo/ProductVideoTable";
+import ProductVideo from "../pages/adminSide/representativeRelatedPage/productVideo/ProductVideo";
 import SendUpportMsg from "../pages/clientSide/support/SendUpportMsg";
+import ShowAllMessages from "../pages/clientSide/support/ShowAllMessages";
+import MessageDetails from "../pages/clientSide/support/MessageDetails";
 
 
 
@@ -403,6 +407,10 @@ const router = createBrowserRouter([
                 element: <AddProductVideo></AddProductVideo>
             },
             {
+                path: "show-product-video",
+                element: <ProductVideo/>
+            },
+            {
                 path: "training",
                 element: <Training></Training>
             },
@@ -450,6 +458,14 @@ const router = createBrowserRouter([
             {
                 path: "send-message",
                 element: <SendUpportMsg></SendUpportMsg>
+            },
+            {
+                path: "show-supporting-message",
+                element: <ShowAllMessages/>
+            },
+            {
+                path: "message-details/:id",
+                element: <MessageDetails></MessageDetails>
             }
         ]
     },

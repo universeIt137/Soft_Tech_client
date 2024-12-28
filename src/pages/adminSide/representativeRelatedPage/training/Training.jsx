@@ -7,38 +7,23 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa";
 import ReactPlayer from 'react-player';
 import { IoPlayCircleSharp } from 'react-icons/io5';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const Training = () => {
     window.scrollTo(0, 0);
 
-    const productVideos = [
-        {
-            videoUrl: "https://www.youtube.com/watch?v=TgE71N0q5yI&list=PLNCevxogE3fgy0pAzVccadWKaQp9iHspz&index=14",
-            session_name : "Session 1"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=7xLa8r6Wmts",
-            session_name : "Session 2"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=JmOBM160jZ0",
-            session_name : "Session 3"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=JmOBM160jZ0",
-            session_name : "Session 4"
-        },
+    const axiosPublic = useAxiosPublic();
 
-        {
-            videoUrl: "https://www.youtube.com/watch?v=Na_-33eKHek&list=PLImJ3umGjxdAuARwziklrT2QEELizOMtr",
-            session_name : "Session 5"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=TgE71N0q5yI&list=PLNCevxogE3fgy0pAzVccadWKaQp9iHspz&index=14",
-            session_name : "Session 6"
-        },
+    const { data: sessionVideos = [] } = useQuery({
+        queryKey: ['sessionVideos'],
+        queryFn: async (req, res) => {
+            res = await axiosPublic.get('/getAllSessionVideo');
+            return res.data.data;
+        }
+    })
 
-    ]
+   
     return (
         <div>
             <p className="text-4xl font-bold text-center my-2">Training Session</p>
@@ -47,9 +32,9 @@ const Training = () => {
                 {/* Card 1 */}
 
                 {
-                    productVideos?.map((product)=><div className="bg-white rounded-lg shadow-md pb-10  border">
+                    sessionVideos?.map((product)=><div className="bg-white rounded-lg shadow-md pb-10  border">
                     <ReactPlayer
-                        url={`${product.videoUrl}`}
+                        url={`${product?.youtube_url}`}
                         width="100%"
                         height="100%"
                         playIcon={<IoPlayCircleSharp className="text-7xl text-red-600" />} // Custom play button

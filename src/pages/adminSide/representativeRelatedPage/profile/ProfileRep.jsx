@@ -28,8 +28,17 @@ const ProfileRep = () => {
     });
 
 
+    const { data: repClients = [] } = useQuery({
+        queryKey: ['repClients'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/getAllClientbyRepresentativeId/${id}`);
+            return res.data.data;
+        }
+    });
 
-    console.log(repData);
+
+
+    console.log(repClients);
 
     const { address, distic, division, education, image, name, phone, referNumber, referUserId, referenceId, representative_id, role, status, upazila } = repData;
 
@@ -40,7 +49,7 @@ const ProfileRep = () => {
             </Helmet>
             <div className="flex gap-3 justify-between">
                 <div className="lg:w-3/4">
-                    <DataTab></DataTab>
+                    <DataTab repClients={repClients}></DataTab>
                 </div>
                 <div className="lg:w-1/4 justify-between">
 
@@ -49,7 +58,7 @@ const ProfileRep = () => {
                         <div className="relative bg-gray-100 rounded-md shadow-md">
                             <div className="relative">
                                 <div className="flex gap-1 justify-end items-center p-1">
-                                    <img className="h-6 object-cover" src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png" alt="Logo" />
+                                    <img className="h-6 object-cover" src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1734868184/UniverseSoftTech/Image/htnalzbw4rj4jigwrckj.png" alt="Logo" />
                                 </div>
                                 <div className="h-[120px] relative flex flex-col justify-center items-center gap-5">
                                     <div className="bg-primary/70 size-16 rounded-full relative overflow-hidden">

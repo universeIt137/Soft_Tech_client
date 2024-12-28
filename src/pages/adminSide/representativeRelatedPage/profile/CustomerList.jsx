@@ -1,6 +1,7 @@
 import React from "react";
+import formatDateTime from "../../../../hooks/useDateTime";
 
-const CustomerList = () => {
+const CustomerList = ({ repClients }) => {
   // Dummy customer data
   const customers = [
     { id: 1, name: "John Doe", email: "john.doe@example.com", contact: "123-456-7890" },
@@ -16,21 +17,33 @@ const CustomerList = () => {
         <table className="table-auto w-full bg-white shadow-md rounded-lg text-[12px]">
           <thead className="bg-blue-600 text-white">
             <tr>
-              <th className="px-4 py-2 text-left">ID</th>
+              <th className="px-4 py-2 text-left">#</th>
               <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Bussiness Type</th>
               <th className="px-4 py-2 text-left">Contact</th>
+              <th className="px-4 py-2 text-left">Created Date</th>
+              <th className="px-4 py-2 text-left">Created Time</th>
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer) => (
-              <tr key={customer.id} className="border-b hover:bg-gray-100">
-                <td className="px-4 py-2">{customer.id}</td>
-                <td className="px-4 py-2">{customer.name}</td>
-                <td className="px-4 py-2">{customer.email}</td>
-                <td className="px-4 py-2">{customer.contact}</td>
-              </tr>
-            ))}
+            {
+              repClients?.map((item, index) => {
+                const { date, time } = formatDateTime(item.createdAt);
+                return (
+                  <tr key={index} className="hover:bg-gray-100">
+                    <td className="px-4 py-2 border-b">{index + 1}</td>
+                    <td className="px-4 py-2 border-b">{item.name}</td>
+                    <td className="px-4 py-2 border-b">{item.businessType}</td>
+                    <td className="px-4 py-2 border-b">{item.phone}</td>
+                    <td className="px-4 py-2 border-b">{date}</td>
+                    <td className="px-4 py-2 border-b">{time}</td>
+                    
+                  </tr>
+                  )
+              }
+                
+              )
+            }
           </tbody>
         </table>
       </div>
