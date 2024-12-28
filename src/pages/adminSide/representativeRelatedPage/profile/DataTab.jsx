@@ -3,7 +3,7 @@ import CustomerList from "./CustomerList";
 import PaymentList from "./PaymentList";
 import ProductList from "./ProductList";
 
-const DataTab = () => {
+const DataTab = ({repClients}) => {
     const [activeTab, setActiveTab] = useState("customer");
 
     const handleTabClick = (tab) => {
@@ -53,7 +53,7 @@ const DataTab = () => {
             <div className="p-5">
                 {activeTab === "customer" && (
                     <div>
-                        <CustomerList/>
+                        <CustomerList repClients={repClients} />
                     </div>
                 )}
 

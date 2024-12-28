@@ -28,8 +28,17 @@ const ProfileRep = () => {
     });
 
 
+    const { data: repClients = [] } = useQuery({
+        queryKey: ['repClients'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/getAllClientbyRepresentativeId/${id}`);
+            return res.data.data;
+        }
+    });
 
-    console.log(repData);
+
+
+    console.log(repClients);
 
     const { address, distic, division, education, image, name, phone, referNumber, referUserId, referenceId, representative_id, role, status, upazila } = repData;
 
@@ -40,7 +49,7 @@ const ProfileRep = () => {
             </Helmet>
             <div className="flex gap-3 justify-between">
                 <div className="lg:w-3/4">
-                    <DataTab></DataTab>
+                    <DataTab repClients={repClients}></DataTab>
                 </div>
                 <div className="lg:w-1/4 justify-between">
 
