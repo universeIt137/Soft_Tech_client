@@ -7,38 +7,24 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa";
 import ReactPlayer from 'react-player';
 import { IoPlayCircleSharp } from 'react-icons/io5';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import axios from 'axios';
 
 const ProductVideo = () => {
     window.scrollTo(0, 0);
+    const axiosPublic = useAxiosPublic();
 
-    const productVideos = [
-        {
-            videoUrl: "https://www.youtube.com/watch?v=Na_-33eKHek&list=PLImJ3umGjxdAuARwziklrT2QEELizOMtr",
-            project_name: "Ecommerce"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=TgE71N0q5yI&list=PLNCevxogE3fgy0pAzVccadWKaQp9iHspz&index=14",
-            project_name: "Movie App"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=Na_-33eKHek&list=PLImJ3umGjxdAuARwziklrT2QEELizOMtr",
-            project_name: "Ecommerce"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=TgE71N0q5yI&list=PLNCevxogE3fgy0pAzVccadWKaQp9iHspz&index=14",
-            project_name: "Movie App"
-        },
+    const { data: productVideos = [] } = useQuery({
+        queryKey: ['productVideos'],
+        queryFn: async (req, res) => {
+            res = await axiosPublic.get('/product-all-videos');
+            return res.data.data;
+        }
+    })
 
-        {
-            videoUrl: "https://www.youtube.com/watch?v=Na_-33eKHek&list=PLImJ3umGjxdAuARwziklrT2QEELizOMtr",
-            project_name: "Ecommerce"
-        },
-        {
-            videoUrl: "https://www.youtube.com/watch?v=TgE71N0q5yI&list=PLNCevxogE3fgy0pAzVccadWKaQp9iHspz&index=14",
-            project_name: "Movie App"
-        },
 
-    ]
+
     return (
         <div>
             <p className="text-4xl font-bold text-center my-2">Product Video</p>
@@ -54,7 +40,7 @@ const ProductVideo = () => {
                             height="100%"
                             playIcon={<IoPlayCircleSharp className="text-7xl text-red-600" />} // Custom play button
                         />
-                        <p className="font-bold text-center my-2">{product?.project_name}</p>
+                        <p className="font-bold text-center my-2">{product?.title}</p>
 
                     </div>)
                 }

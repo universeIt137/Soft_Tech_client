@@ -58,7 +58,7 @@ const ProfileRep = () => {
                         <div className="relative bg-gray-100 rounded-md shadow-md">
                             <div className="relative">
                                 <div className="flex gap-1 justify-end items-center p-1">
-                                    <img className="h-6 object-cover" src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png" alt="Logo" />
+                                    <img className="h-6 object-cover" src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1734868184/UniverseSoftTech/Image/htnalzbw4rj4jigwrckj.png" alt="Logo" />
                                 </div>
                                 <div className="h-[120px] relative flex flex-col justify-center items-center gap-5">
                                     <div className="bg-primary/70 size-16 rounded-full relative overflow-hidden">

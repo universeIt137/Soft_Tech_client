@@ -1,4 +1,5 @@
 import React from "react";
+import formatDateTime from "../../../../hooks/useDateTime";
 
 const CustomerList = ({ repClients }) => {
   // Dummy customer data
@@ -18,19 +19,24 @@ const CustomerList = ({ repClients }) => {
             <tr>
               <th className="px-4 py-2 text-left">#</th>
               <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Bussiness Type</th>
               <th className="px-4 py-2 text-left">Contact</th>
+              <th className="px-4 py-2 text-left">Created Date</th>
+              <th className="px-4 py-2 text-left">Created Time</th>
             </tr>
           </thead>
           <tbody>
             {
               repClients?.map((item, index) => {
+                const { date, time } = formatDateTime(item.createdAt);
                 return (
                   <tr key={index} className="hover:bg-gray-100">
                     <td className="px-4 py-2 border-b">{index + 1}</td>
                     <td className="px-4 py-2 border-b">{item.name}</td>
                     <td className="px-4 py-2 border-b">{item.businessType}</td>
                     <td className="px-4 py-2 border-b">{item.phone}</td>
+                    <td className="px-4 py-2 border-b">{date}</td>
+                    <td className="px-4 py-2 border-b">{time}</td>
                     
                   </tr>
                   )
