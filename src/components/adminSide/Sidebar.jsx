@@ -560,6 +560,20 @@ const Sidebar = () => {
                     </ul>
                   </li>
 
+                  <li>
+                    <Link to={'/dashboard/show-supporting-message'}>
+                      <label
+
+                        className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                      >
+                        <MdAssessment size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Support Messages</span>
+
+                      </label>
+                    </Link>
+
+                  </li>
+
 
 
 
