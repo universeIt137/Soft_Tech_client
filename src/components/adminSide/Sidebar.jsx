@@ -114,7 +114,7 @@ const Sidebar = () => {
                     </div>
                   </Link>
                 </div>
-                <div className="">
+                <div className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>
                   Admin Pannel
                   
                 </div>
@@ -593,7 +593,7 @@ const Sidebar = () => {
                         <p className="text-[16px]">ID: {repData?.representative_id} </p>
                       </div>
                     </Link>
-                    <div className=" text-[12px]">Representative Pannel</div>
+                    <div className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Representative Pannel</div>
                   </div>
                   <button onClick={toggleSidebar} className="text-white focus:outline-none">
                     {isSidebarOpen ? (
@@ -708,6 +708,7 @@ const Sidebar = () => {
                           <p className="text-[16px]">ID: {repData?.representative_id} </p>
                         </div>
                       </Link>
+                      <div className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Client Pannel</div>
                     </div>
                     <button onClick={toggleSidebar} className="text-white focus:outline-none">
                       {isSidebarOpen ? (
