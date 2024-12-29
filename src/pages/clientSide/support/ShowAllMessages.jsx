@@ -13,7 +13,7 @@ const ShowAllMessages = () => {
     };
 
     const axiosPublic = useAxiosPublic();
-    const { data: allMessages = [] } = useQuery({
+    const { data: allMessages = [] ,isLoading,refetch} = useQuery({
         queryKey: ['allMessages'],
         queryFn: async (req, res) => {
             res = await axiosPublic.get('/support', config);
@@ -25,7 +25,7 @@ const ShowAllMessages = () => {
     return (
         <div>
             This is all message
-            <MessageTable allMessages={allMessages}></MessageTable>
+            <MessageTable refetch = {refetch} isLoading = {isLoading} allMessages={allMessages}></MessageTable>
         </div>
     );
 };
