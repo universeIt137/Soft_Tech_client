@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import formatDateTime from '../../../../hooks/useDateTime';
 
-const MyProductRequest = () => {
-
-    const getToken = localStorage.getItem("representativeToken");
+const ClientProductList = () => {
+    const getToken = localStorage.getItem("clientToken");
     const axiosPublic = useAxiosPublic();
-    const [loading, setLoading] = useState(false);
 
     const config = {
         headers: {
@@ -15,11 +13,18 @@ const MyProductRequest = () => {
         },
     };
 
-    const { data: requests = [] } = useQuery({
+    const { data: requests = [], refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/GetAllRequestInfo', config);
+            const res = await axiosPublic.get('/GetAllProductRequestForClient', config);
             return res.data.data;
+        }
+    })
+
+    const { data: proudcts = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = axiosPublic.get('')
         }
     })
 
@@ -31,6 +36,7 @@ const MyProductRequest = () => {
                     <tr>
                         <th className="px-4 py-2 border">#</th>
                         <th className="px-4 py-2 border">Client Name</th>
+                        <th className="px-4 py-2 border">Representative Name</th>
                         <th className="px-4 py-2 border">Product</th>
                         <th className="px-4 py-2 border">Duration (months)</th>
                         <th className="px-4 py-2 border">Status</th>
@@ -47,18 +53,22 @@ const MyProductRequest = () => {
                             <tr key={content?._id} className="text-center">
                                 <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.client_id?.name}</td>
+                                <td className="px-4 py-2 border font-semibold">
+                                    <p>{content?.representative_id?.name}</p>
+                                    <p>{content?.representative_id?.phone}</p>
+                                </td>
                                 <td className="px-4 py-2 border font-semibold">{content?.product_id?.nav_title}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.month}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.status ? "Approved" : "Pending"}</td>
                                 <td className="px-4 py-2 border font-semibold">{date}</td>
                                 {/* <td className="px-4 py-2 border">
-                                <button
-                                    onClick={() => handleDelete(content?._id)}
-                                    className="px-2 py-1 bg-red-500 text-white rounded"
-                                >
-                                    Delete
-                                </button>
-                            </td> */}
+                            <button
+                                onClick={() => handleDelete(content?._id)}
+                                className="px-2 py-1 bg-red-500 text-white rounded"
+                            >
+                                Delete
+                            </button>
+                        </td> */}
                             </tr>
                         );
                     })}
@@ -68,4 +78,4 @@ const MyProductRequest = () => {
     );
 };
 
-export default MyProductRequest;
+export default ClientProductList;
