@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductList = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -6,56 +9,77 @@ const ProductList = () => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
-    const products = [
-        {
-            id: 1,
-            name: "E-commerce Platform",
-            description: "A platform for online stores",
-            paymentStatus: "Paid",
-            nextPayment: "2024-12-20",
-        },
-        {
-            id: 2,
-            name: "POS System",
-            description: "Point of Sale system",
-            paymentStatus: "Due",
-            nextPayment: "2025-01-15",
-        },
-        {
-            id: 3,
-            name: "HR Management Software",
-            description: "Manage HR processes",
-            paymentStatus: "Partial",
-            nextPayment: "2024-12-25",
-        },
-    ];
 
-    const handleClearFilters = () => {
-        setSearchQuery("");
-        setPaymentStatus("");
-        setStartDate("");
-        setEndDate("");
+    const { id } = useParams();
+    console.log(id);
+
+    const axiosPublic = useAxiosPublic();
+
+    const adminToken = localStorage.getItem("admin_token");
+    const config = {
+        headers: {
+            Authorization: adminToken,
+        },
     };
 
-    const filteredProducts = products.filter((product) => {
-        const matchesSearchQuery =
-            product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            product.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const { data: products = [] } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/SellingProdutByRep/${id}`, config);
+            return res.data.data;
+        }
+    })
 
-        const matchesPaymentStatus =
-            paymentStatus === "" || product.paymentStatus === paymentStatus;
+    // const products = [
+    //     {
+    //         id: 1,
+    //         name: "E-commerce Platform",
+    //         description: "A platform for online stores",
+    //         paymentStatus: "Paid",
+    //         nextPayment: "2024-12-20",
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "POS System",
+    //         description: "Point of Sale system",
+    //         paymentStatus: "Due",
+    //         nextPayment: "2025-01-15",
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "HR Management Software",
+    //         description: "Manage HR processes",
+    //         paymentStatus: "Partial",
+    //         nextPayment: "2024-12-25",
+    //     },
+    // ];
 
-        const matchesDateRange =
-            (!startDate || new Date(product.nextPayment) >= new Date(startDate)) &&
-            (!endDate || new Date(product.nextPayment) <= new Date(endDate));
+    // const handleClearFilters = () => {
+    //     setSearchQuery("");
+    //     setPaymentStatus("");
+    //     setStartDate("");
+    //     setEndDate("");
+    // };
 
-        return matchesSearchQuery && matchesPaymentStatus && matchesDateRange;
-    });
+    // const filteredProducts = products.filter((product) => {
+    //     const matchesSearchQuery =
+    //         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    //         product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    //     const matchesPaymentStatus =
+    //         paymentStatus === "" || product.paymentStatus === paymentStatus;
+
+    //     const matchesDateRange =
+    //         (!startDate || new Date(product.nextPayment) >= new Date(startDate)) &&
+    //         (!endDate || new Date(product.nextPayment) <= new Date(endDate));
+
+    //     return matchesSearchQuery && matchesPaymentStatus && matchesDateRange;
+    // });
 
     return (
         <div className="p-4">
             <h1 className="text-xl font-bold mb-4">Product List</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-[12px]">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-[12px]">
                 <input
                     type="text"
                     value={searchQuery}
@@ -92,8 +116,8 @@ const ProductList = () => {
                 className="mb-4 px-4 py-2 bg-blue-600 text-white text-[12px] hover:bg-gray-300 rounded"
             >
                 Clear Filters
-            </button>
-            {filteredProducts.length > 0 ? (
+            </button> */}
+            {products.length > 0 ? (
                 <table className="min-w-full bg-white border border-gray-200 text-[12px]">
                     <thead>
                         <tr>
@@ -104,12 +128,12 @@ const ProductList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td className="py-2 px-4 border-b">{product.name}</td>
-                                <td className="py-2 px-4 border-b">{product.description}</td>
-                                <td className="py-2 px-4 border-b">{product.paymentStatus}</td>
-                                <td className="py-2 px-4 border-b">{product.nextPayment}</td>
+                        {products.map((item) => (
+                            <tr key={item?._id}>
+                                <td className="py-2 px-4 border-b">{item?.product_id?.nav_title}</td>
+                                <td className="py-2 px-4 border-b">{item?.description}</td>
+                                <td className="py-2 px-4 border-b">{item?.paymentStatus}</td>
+                                <td className="py-2 px-4 border-b">{item?.nextPayment}</td>
                             </tr>
                         ))}
                     </tbody>

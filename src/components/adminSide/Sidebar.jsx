@@ -575,11 +575,11 @@ const Sidebar = () => {
                   </li>
 
                   <li>
-                      <Link to="/dashboard/all-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
-                        <FaProductHunt size={20} />
-                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>All Product Requests</span>
-                      </Link>
-                    </li>
+                    <Link to="/dashboard/all-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                      <FaProductHunt size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>All Product Requests</span>
+                    </Link>
+                  </li>
 
 
 
@@ -780,7 +780,7 @@ const Sidebar = () => {
 
                       {/* Product list  */}
                       <li>
-                        <Link to={'/dashboard'}>
+                        <Link to={'/dashboard/client-product-list'}>
                           <label
 
                             className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
@@ -846,26 +846,20 @@ const Sidebar = () => {
                           )}
                         </label>
                         <ul className={`${activeDropdown === "video" ? "block" : "hidden"} ml-8  `}>
+                          {/* Rep Product Video */}
                           <li>
+                            <Link to="/dashboard/show-product-video" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                              <IoVideocam size={20} />
+                              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Video</span>
+                            </Link>
+                          </li>
 
-                          </li>
+                          {/* Rep Training Session */}
                           <li>
-                            <NavLink
-                              to="/dashboard/add-product"
-                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
-                            >
-                              <SiAirplayvideo size={20} />
-                              Product Video
-                            </NavLink>
-                          </li>
-                          <li>
-                            <NavLink
-                              to="/dashboard/manage-product"
-                              className="p-2 flex items-center gap-2 transition duration-200 hover:bg-white hover:text-black"
-                            >
-                              <PiVideoBold size={20} />
-                              Training Session
-                            </NavLink>
+                            <Link to="/dashboard/training" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                              <MdModelTraining size={20} />
+                              <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Training Session</span>
+                            </Link>
                           </li>
                         </ul>
                       </li>

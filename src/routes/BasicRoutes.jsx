@@ -95,6 +95,7 @@ import CEOSpeech from "../pages/clientSide/ceoSpeech/CEOSpeech";
 import AddProductRequest from "../pages/adminSide/representativeRelatedPage/productRequest/AddProductRequest";
 import MyProductRequest from "../pages/adminSide/representativeRelatedPage/productRequest/MyProductRequest";
 import AllProductRequest from "../pages/adminSide/productRequest/AllProductRequest";
+import ClientProductList from "../pages/adminSide/clientRelatedPages/productList/ClientProductList";
 
 
 
@@ -489,6 +490,11 @@ const router = createBrowserRouter([
             {
                 path: "all-product-reqeust",
                 element: <AllProductRequest/>
+            },
+            // Client dashboard related routes 
+            {
+                path: "client-product-list",
+                element: <ClientProductList/>
             }
         ]
     },
