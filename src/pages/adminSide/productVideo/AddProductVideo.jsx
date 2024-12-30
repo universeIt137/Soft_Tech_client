@@ -22,17 +22,11 @@ const AddProductVideo = () => {
         e.preventDefault();
         const videoUrl = e.target.videoUrl.files[0];
         const title = e.target.title.value;
+        const type = e.target.prodduct_type.value;
+        const description = e.target.product_desc.value;
         const youtubeUrl = e.target.youtubeUrl.value;
 
-        if (!videoUrl || !title) {
-            Swal.fire({
-                icon: "warning",
-                title: "Please fill in all fields",
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            return;
-        }
+       
 
         let uploadVideo = "";
         try {
@@ -41,7 +35,9 @@ const AddProductVideo = () => {
             const payload = {
                 videoUrl: uploadVideo,
                 title: title,
-                youtubeUrl
+                youtubeUrl,
+                type,
+                description
             };
 
             let resp = await videoAlert();
@@ -134,6 +130,36 @@ const AddProductVideo = () => {
                             placeholder="Enter youtubeUrl"
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         />
+                    </div>
+
+
+                     {/* Product Type Field */}
+                     <div className="mb-4">
+                        <label
+                            htmlFor="youtubeUrl"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Product Type
+                        </label>
+                        <input
+                            type="text"
+                            id="prodduct_type"
+                            name="prodduct_type"
+                            placeholder="Enter prodduct Type"
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        />
+                    </div>
+
+
+                    {/* Product Description Field */}
+                    <div className="mb-4">
+                        <label
+                            htmlFor="description"
+                            className="block text-sm font-medium text-gray-700"
+                        >
+                            Product Description
+                        </label>
+                        <textarea name="product_desc" className="mt-1 textarea w-full textarea-accent" placeholder="Product Description"></textarea>
                     </div>
 
                     {/* Submit Button */}
