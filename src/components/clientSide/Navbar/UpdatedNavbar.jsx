@@ -187,9 +187,14 @@ const UpdatedNavbar = () => {
             <div
                 className={`absolute border mx-auto top-10 left-[470px] rounded-md bg-white transition-all origin-top duration-300 ${isGetInTouchOpen ? 'block scale-y-100 p-2' : 'scale-y-0 h-0'
                     }`}
-                style={{ width: '80px', minWidth: '150px', maxWidth: '150px' }} // Adjust width if needed
+                style={{ width: '80px', minWidth: '200px', maxWidth: '150px' }} // Adjust width if needed
             >
                 <div className='flex flex-col items-center justify-center'>
+
+                <NavLink to="/ceo-speech" className={`${NavLinkStyle} text-left w-full`}>
+                        CEO Speech
+                    </NavLink>
+
                     <NavLink to="/about-us" className={`${NavLinkStyle} text-left w-full`}>
                         About Us
                     </NavLink>

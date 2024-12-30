@@ -91,6 +91,7 @@ import ProductVideo from "../pages/adminSide/representativeRelatedPage/productVi
 import SendUpportMsg from "../pages/clientSide/support/SendUpportMsg";
 import ShowAllMessages from "../pages/clientSide/support/ShowAllMessages";
 import MessageDetails from "../pages/clientSide/support/MessageDetails";
+import CEOSpeech from "../pages/clientSide/ceoSpeech/CEOSpeech";
 
 
 
@@ -115,6 +116,11 @@ const router = createBrowserRouter([
                 path: '/contact-us',
                 element: <ContactUsPage></ContactUsPage>
             },
+            {
+                path: '/ceo-speech',
+                element: <CEOSpeech/>
+            },
+
             {
                 path: '/career',
                 element: <CareerPage></CareerPage>
