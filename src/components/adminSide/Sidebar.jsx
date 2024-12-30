@@ -4,7 +4,7 @@ import { MdAssessment, MdMenuOpen, MdModelTraining, MdPayments, MdRoomPreference
 import { IoCloseCircleOutline, IoPersonAdd, IoVideocam } from "react-icons/io5";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AiFillFileImage, AiFillProduct, AiOutlineProduct } from "react-icons/ai";
-import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaServicestack, FaUserAstronaut, FaUserCircle, FaUsers } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaBloggerB, FaBriefcase, FaProductHunt, FaServicestack, FaUserAstronaut, FaUserCircle, FaUsers } from "react-icons/fa";
 import { AuthContext } from "../../authProvider/AuthProvider";
 
 import Swal from "sweetalert2";
@@ -574,6 +574,14 @@ const Sidebar = () => {
 
                   </li>
 
+                  <li>
+                      <Link to="/dashboard/all-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <FaProductHunt size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>All Product Requests</span>
+                      </Link>
+                    </li>
+
+
 
 
 
@@ -678,6 +686,21 @@ const Sidebar = () => {
                       <Link to="/dashboard/training" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
                         <MdModelTraining size={20} />
                         <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Training Session</span>
+                      </Link>
+                    </li>
+
+
+                    <li>
+                      <Link to="/dashboard/add-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <FaProductHunt size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Requests</span>
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to="/dashboard/my-product-request" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                        <FaProductHunt size={20} />
+                        <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>My Requests</span>
                       </Link>
                     </li>
 

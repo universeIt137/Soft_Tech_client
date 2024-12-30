@@ -92,6 +92,9 @@ import SendUpportMsg from "../pages/clientSide/support/SendUpportMsg";
 import ShowAllMessages from "../pages/clientSide/support/ShowAllMessages";
 import MessageDetails from "../pages/clientSide/support/MessageDetails";
 import CEOSpeech from "../pages/clientSide/ceoSpeech/CEOSpeech";
+import AddProductRequest from "../pages/adminSide/representativeRelatedPage/productRequest/AddProductRequest";
+import MyProductRequest from "../pages/adminSide/representativeRelatedPage/productRequest/MyProductRequest";
+import AllProductRequest from "../pages/adminSide/productRequest/AllProductRequest";
 
 
 
@@ -472,6 +475,20 @@ const router = createBrowserRouter([
             {
                 path: "message-details/:id",
                 element: <MessageDetails></MessageDetails>
+            },
+            // product request related routes
+            {
+                path: "add-product-reqeust",
+                element: <AddProductRequest/>
+            },
+            {
+                path: "my-product-request",
+                element: <MyProductRequest/>
+            },
+            // For admin side 
+            {
+                path: "all-product-reqeust",
+                element: <AllProductRequest/>
             }
         ]
     },
