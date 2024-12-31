@@ -96,6 +96,8 @@ import AddProductRequest from "../pages/adminSide/representativeRelatedPage/prod
 import MyProductRequest from "../pages/adminSide/representativeRelatedPage/productRequest/MyProductRequest";
 import AllProductRequest from "../pages/adminSide/productRequest/AllProductRequest";
 import ClientProductList from "../pages/adminSide/clientRelatedPages/productList/ClientProductList";
+import Payment from "../pages/adminSide/clientRelatedPages/payment/Payment";
+import TransactionList from "../pages/adminSide/clientRelatedPages/transaction/TransactionList";
 
 
 
@@ -495,6 +497,14 @@ const router = createBrowserRouter([
             {
                 path: "client-product-list",
                 element: <ClientProductList/>
+            },
+            {
+                path: "payment/:id",
+                element: <Payment/>
+            },
+            {
+                path: "transaction",
+                element: <TransactionList/>
             }
         ]
     },

@@ -582,6 +582,14 @@ const Sidebar = () => {
                   </li>
 
 
+                  <li>
+                    <Link to="/dashboard/all-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                      <FaProductHunt size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>All Payments</span>
+                    </Link>
+                  </li>
+
+
 
 
 
@@ -866,7 +874,7 @@ const Sidebar = () => {
 
                       {/* Transaction list  */}
                       <li>
-                        <Link to={'/dashboard'}>
+                        <Link to={'/dashboard/transaction'}>
                           <label
 
                             className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
