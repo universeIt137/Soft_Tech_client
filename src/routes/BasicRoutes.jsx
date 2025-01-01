@@ -98,6 +98,7 @@ import AllProductRequest from "../pages/adminSide/productRequest/AllProductReque
 import ClientProductList from "../pages/adminSide/clientRelatedPages/productList/ClientProductList";
 import Payment from "../pages/adminSide/clientRelatedPages/payment/Payment";
 import TransactionList from "../pages/adminSide/clientRelatedPages/transaction/TransactionList";
+import TransactionTableAdmin from "../pages/adminSide/payment/TransactionTableAdmin";
 
 
 
@@ -479,6 +480,10 @@ const router = createBrowserRouter([
                 path: "message-details/:id",
                 element: <MessageDetails></MessageDetails>
             },
+            {
+                path: "client-transaction",
+                element: <TransactionList/>
+            },
             // product request related routes
             {
                 path: "add-product-reqeust",
@@ -503,8 +508,8 @@ const router = createBrowserRouter([
                 element: <Payment/>
             },
             {
-                path: "transaction",
-                element: <TransactionList/>
+                path: "transaction-table-admin",
+                element: <TransactionTableAdmin/>
             }
         ]
     },

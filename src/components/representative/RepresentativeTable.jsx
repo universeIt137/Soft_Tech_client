@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
@@ -15,6 +15,10 @@ const representativeData = [
 const RepresentativeTable = () => {
     const axiosPublic = useAxiosPublic();
     const adminToken = localStorage.getItem("admin_token");
+
+    const [searchText, setSearchText] = useState('');
+    const [filteredPayments, setFilteredPayments] = useState([]); // Initially empty
+
     const config = {
         headers: {
             Authorization: adminToken,
@@ -51,9 +55,52 @@ const RepresentativeTable = () => {
             })
         }
     }
+
+    // Filter function triggered by button click
+    const handleFilter = () => {
+        if (!searchText.trim()) {
+            setFilteredPayments(payments); // Show all data if search text is empty
+            return;
+        }
+
+        const filtered = representativeData.filter((payment) => {
+            const representativeName = payment?.name?.toLowerCase() || '';
+            const clientName = payment?.role?.toLowerCase() || '';
+            return (
+                representativeName.includes(searchText.toLowerCase()) ||
+                clientName.includes(searchText.toLowerCase())
+            );
+        });
+        setFilteredPayments(filtered);
+    };
+
     return (
         <div className="overflow-x-auto p-4">
             <p className="font-bold text-2xl text-center">Manage Representative</p>
+            <div className="flex items-center gap-4 mb-4">
+                <input
+                    type="text"
+                    placeholder="Search by Representative Name or Role"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    className="flex-grow p-2 border border-gray-300 rounded"
+                />
+                <button
+                    onClick={handleFilter}
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                    Filter
+                </button>
+                <button
+                    onClick={() => {
+                        setSearchText('');
+                        setFilteredPayments(representativeData);
+                    }}
+                    className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                >
+                    Clear
+                </button>
+            </div>
             <table className="table-auto w-full border-collapse border border-gray-300 text-[12px]">
                 <thead className="bg-gray-200">
                     <tr>
@@ -69,66 +116,133 @@ const RepresentativeTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {representativeData.map((representative, index) => {
 
-                        const { date, time } = formatDateTime(representative?.createdAt);
+                    {filteredPayments.length > 0 ? (
+                        filteredPayments.map((representative, index) => {
 
-                        return (
-                            <tr key={representative._id} className="hover:bg-gray-100">
-                                <td className="border border-gray-300 px-4 py-2 text-center">
-                                    {index + 1}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {representative.name || "N/A"}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {representative.phone || "N/A"}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2 capitalize">
-                                    {representative.role || "N/A"}
-                                </td>
-                                <td
-                                    className={`border border-gray-300 px-4 py-2 text-center ${representative.status ? "text-green-600" : "text-red-600"
-                                        }`}
-                                >
-                                    {representative.status ? "Active" : "Inactive"}
-                                </td>
+                            const { date, time } = formatDateTime(representative?.createdAt);
 
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {date}
-                                </td>
-                                <td className="border border-gray-300 px-4 py-2">
-                                    {time}
-                                </td>
-
-                                <td className="font-bold border">
-                                    <div className="form-control">
-                                        <div className="flex items-center justify-center gap-2">
-                                            <button onClick={() => representativeRoleUpdate(representative?._id)} >
-                                                {
-                                                    representative?.role === "representative" ? <>
-                                                        <FaToggleOn className="text-green-500 text-lg " />
-    
-                                                    </> : <><FaToggleOff className="text-red-500 text-lg
-                                                "   /></>
-                                                }
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-    
-                                <td className="border border-gray-300 px-4 py-2 text-center">
-                                    <Link
-                                        to={`/dashboard/rep-profile/${representative._id}`}
-                                        className="text-blue-500 hover:underline"
+                            return (
+                                <tr key={representative._id} className="hover:bg-gray-100">
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        {index + 1}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {representative.name || "N/A"}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {representative.phone || "N/A"}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2 capitalize">
+                                        {representative.role || "N/A"}
+                                    </td>
+                                    <td
+                                        className={`border border-gray-300 px-4 py-2 text-center ${representative.status ? "text-green-600" : "text-red-600"
+                                            }`}
                                     >
-                                        Profile
-                                    </Link>
-                                </td>
-                            </tr>
+                                        {representative.status ? "Active" : "Inactive"}
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {date}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {time}
+                                    </td>
+
+                                    <td className="font-bold border">
+                                        <div className="form-control">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button onClick={() => representativeRoleUpdate(representative?._id)} >
+                                                    {
+                                                        representative?.role === "representative" ? <>
+                                                            <FaToggleOn className="text-green-500 text-lg " />
+
+                                                        </> : <><FaToggleOff className="text-red-500 text-lg
+                                                        "   /></>
+                                                    }
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        <Link
+                                            to={`/dashboard/rep-profile/${representative._id}`}
+                                            className="text-blue-500 hover:underline"
+                                        >
+                                            Profile
+                                        </Link>
+                                    </td>
+                                </tr>
+                            )
+                        }
                         )
-                    }
+                    ) : (
+                        representativeData.map((representative, index) => {
+
+                            const { date, time } = formatDateTime(representative?.createdAt);
+
+                            return (
+                                <tr key={representative._id} className="hover:bg-gray-100">
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        {index + 1}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {representative.name || "N/A"}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {representative.phone || "N/A"}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2 capitalize">
+                                        {representative.role || "N/A"}
+                                    </td>
+                                    <td
+                                        className={`border border-gray-300 px-4 py-2 text-center ${representative.status ? "text-green-600" : "text-red-600"
+                                            }`}
+                                    >
+                                        {representative.status ? "Active" : "Inactive"}
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {date}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        {time}
+                                    </td>
+
+                                    <td className="font-bold border">
+                                        <div className="form-control">
+                                            <div className="flex items-center justify-center gap-2">
+                                                <button onClick={() => representativeRoleUpdate(representative?._id)} >
+                                                    {
+                                                        representative?.role === "representative" ? <>
+                                                            <FaToggleOn className="text-green-500 text-lg " />
+
+                                                        </> : <><FaToggleOff className="text-red-500 text-lg
+                                                        "   /></>
+                                                    }
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td className="border border-gray-300 px-4 py-2 text-center">
+                                        <Link
+                                            to={`/dashboard/rep-profile/${representative._id}`}
+                                            className="text-blue-500 hover:underline"
+                                        >
+                                            Profile
+                                        </Link>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                        )
                     )}
+
+
+
                 </tbody>
             </table>
         </div>

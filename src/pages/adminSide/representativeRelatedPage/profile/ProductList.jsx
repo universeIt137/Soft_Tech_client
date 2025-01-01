@@ -11,7 +11,7 @@ const ProductList = () => {
 
 
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
 
     const axiosPublic = useAxiosPublic();
 
@@ -123,17 +123,17 @@ const ProductList = () => {
                         <tr>
                             <th className="py-2 px-4 border-b">Name</th>
                             <th className="py-2 px-4 border-b">Description</th>
+                            <th className="py-2 px-4 border-b">Duration</th>
                             <th className="py-2 px-4 border-b">Payment Status</th>
-                            <th className="py-2 px-4 border-b">Next Payment</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map((item) => (
                             <tr key={item?._id}>
                                 <td className="py-2 px-4 border-b">{item?.product_id?.nav_title}</td>
-                                <td className="py-2 px-4 border-b">{item?.description}</td>
-                                <td className="py-2 px-4 border-b">{item?.paymentStatus}</td>
-                                <td className="py-2 px-4 border-b">{item?.nextPayment}</td>
+                                <td className="py-2 px-4 border-b">{item?.product_id?.banner_title}</td>
+                                <td className="py-2 px-4 border-b">{item?.month}</td>
+                                <td className="py-2 px-4 border-b">{item?.status ? "Paid": "Due"}</td>
                             </tr>
                         ))}
                     </tbody>

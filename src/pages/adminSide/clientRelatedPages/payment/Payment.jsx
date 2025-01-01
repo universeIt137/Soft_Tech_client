@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const Payment = () => {
 
     const { id } = useParams();
     const getToken = localStorage.getItem("clientToken");
     const axiosPublic = useAxiosPublic();
+    const { message, setMessage } = useState(false);
 
     const config = {
         headers: {
@@ -48,13 +50,8 @@ const Payment = () => {
             axiosPublic.post(`/MakePayments`, payload, config)
                 .then(res => {
                     if (res) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Data has been saved",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                       
+                        toast.success("Payment Successful")
 
                     }
                 })
@@ -143,6 +140,7 @@ const Payment = () => {
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_4" className="modal">
                     <div className="modal-box w-11/12 max-w-5xl">
+                        
 
                         <section>
                             <div className=' text-white px-10 '>
