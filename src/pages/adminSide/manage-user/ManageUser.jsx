@@ -11,6 +11,9 @@ import formatDateTime from '../../../hooks/useDateTime';
 const ManageUser = () => {
     const axiosPublic = useAxiosPublic();
 
+    const [searchText, setSearchText] = useState('');
+    const [filteredPayments, setFilteredPayments] = useState([]); // Initially empty
+
     const adminToken = localStorage.getItem("admin_token");
     const config = {
         headers: {
@@ -63,6 +66,24 @@ const ManageUser = () => {
         return <div>Loading...</div>
     }
 
+    // Filter function triggered by button click
+    const handleFilter = () => {
+        if (!searchText.trim()) {
+            setFilteredPayments(userData); // Show all data if search text is empty
+            return;
+        }
+
+        const filtered = userData.filter((payment) => {
+            const representativeName = payment?.name?.toLowerCase() || '';
+            const clientName = payment?.role?.toLowerCase() || '';
+            return (
+                representativeName.includes(searchText.toLowerCase()) ||
+                clientName.includes(searchText.toLowerCase())
+            );
+        });
+        setFilteredPayments(filtered);
+    };
+
     return (
         <div className=" px-4">
             <Helmet>
@@ -72,6 +93,31 @@ const ManageUser = () => {
                 {/* Header */}
                 <div className="text-black text-center">
                     <h2 className="text-2xl font-bold mb-5 ">User Information</h2>
+                </div>
+
+                <div className="flex items-center gap-4 mb-4">
+                    <input
+                        type="text"
+                        placeholder="Search by Admin Name or Role"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="flex-grow p-2 border border-gray-300 rounded"
+                    />
+                    <button
+                        onClick={handleFilter}
+                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Filter
+                    </button>
+                    <button
+                        onClick={() => {
+                            setSearchText('');
+                            setFilteredPayments(userData);
+                        }}
+                        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                    >
+                        Clear
+                    </button>
                 </div>
 
                 {/* Table */}
@@ -91,67 +137,135 @@ const ManageUser = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userData.map((user, index) => {
-                                const { date, time } = formatDateTime(user?.createdAt);
-                                return (
-                                    <tr key={user._id} className="hover:bg-gray-100">
-                                        <td className="border border-gray-300 px-4 py-2 text-center">
-                                            {index + 1}
-                                        </td>
-                                        <td className="border border-gray-300 px-4 py-2">
-                                            {user.name || "N/A"}
-                                        </td>
-    
-                                        <td className="border border-gray-300 px-4 text-center py-2">
-                                            {user.contactNumber || "N/A"}
-                                        </td>
-    
-                                        <td className="border border-gray-300 text-center px-4 py-2 capitalize">
-                                            {user.role || "N/A"}
-                                        </td>
-                                        <td
-                                            className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
-                                                }`}
-                                        >
-                                            {user.isAdmin ? "Active" : "Inactive"}
-                                        </td>
-                                        <td className="font-bold border">
-                                            <div className="form-control">
-                                                <div className="flex items-center justify-center gap-2">
-                                                    <button onClick={() => userRoleUpdate(user?._id)} >
-                                                        {
-                                                            user?.role === "admin" ? <>
-                                                                <FaToggleOn className="text-green-500 text-lg " />
-    
-                                                            </> : <><FaToggleOff className="text-red-500 text-lg"   /></>
-                                                        }
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </td>
 
-                                        <td className="border border-gray-300 px-4 text-center py-2">
-                                            {date}
-                                        </td>
+                            {filteredPayments.length > 0 ? (
+                                filteredPayments.map((user, index) => {
+                                    const { date, time } = formatDateTime(user?.createdAt);
+                                    return (
+                                        <tr key={user._id} className="hover:bg-gray-100">
+                                            <td className="border border-gray-300 px-4 py-2 text-center">
+                                                {index + 1}
+                                            </td>
+                                            <td className="border border-gray-300 px-4 py-2">
+                                                {user.name || "N/A"}
+                                            </td>
 
-                                        <td className="border border-gray-300 px-4 text-center py-2">
-                                            {time}
-                                        </td>
-    
-    
-                                        <td className="border border-gray-300 px-4 py-2 text-center">
-                                            <Link
-                                                to={`/dashboard/user-profile/${user._id}`}
-                                                className="text-blue-500 hover:underline"
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {user.contactNumber || "N/A"}
+                                            </td>
+
+                                            <td className="border border-gray-300 text-center px-4 py-2 capitalize">
+                                                {user.role || "N/A"}
+                                            </td>
+                                            <td
+                                                className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
+                                                    }`}
                                             >
-                                                Profile
-                                            </Link>
-                                        </td>
-                                    </tr>
+                                                {user.isAdmin ? "Active" : "Inactive"}
+                                            </td>
+                                            <td className="font-bold border">
+                                                <div className="form-control">
+                                                    <div className="flex items-center justify-center gap-2">
+                                                        <button onClick={() => userRoleUpdate(user?._id)} >
+                                                            {
+                                                                user?.role === "admin" ? <>
+                                                                    <FaToggleOn className="text-green-500 text-lg " />
+
+                                                                </> : <><FaToggleOff className="text-red-500 text-lg" /></>
+                                                            }
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {date}
+                                            </td>
+
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {time}
+                                            </td>
+
+
+                                            <td className="border border-gray-300 px-4 py-2 text-center">
+                                                <Link
+                                                    to={`/dashboard/user-profile/${user._id}`}
+                                                    className="text-blue-500 hover:underline"
+                                                >
+                                                    Profile
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+
                                 )
-                            }
-                            
+                            ) : (
+                                userData.map((user, index) => {
+                                    const { date, time } = formatDateTime(user?.createdAt);
+                                    return (
+                                        <tr key={user._id} className="hover:bg-gray-100">
+                                            <td className="border border-gray-300 px-4 py-2 text-center">
+                                                {index + 1}
+                                            </td>
+                                            <td className="border border-gray-300 px-4 py-2">
+                                                {user.name || "N/A"}
+                                            </td>
+
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {user.contactNumber || "N/A"}
+                                            </td>
+
+                                            <td className="border border-gray-300 text-center px-4 py-2 capitalize">
+                                                {user.role || "N/A"}
+                                            </td>
+                                            <td
+                                                className={`border border-gray-300 px-4 py-2 text-center ${user.isAdmin ? "text-green-600" : "text-red-600"
+                                                    }`}
+                                            >
+                                                {user.isAdmin ? "Active" : "Inactive"}
+                                            </td>
+                                            <td className="font-bold border">
+                                                <div className="form-control">
+                                                    <div className="flex items-center justify-center gap-2">
+                                                        <button onClick={() => userRoleUpdate(user?._id)} >
+                                                            {
+                                                                user?.role === "admin" ? <>
+                                                                    <FaToggleOn className="text-green-500 text-lg " />
+
+                                                                </> : <><FaToggleOff className="text-red-500 text-lg" /></>
+                                                            }
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {date}
+                                            </td>
+
+                                            <td className="border border-gray-300 px-4 text-center py-2">
+                                                {time}
+                                            </td>
+
+
+                                            <td className="border border-gray-300 px-4 py-2 text-center">
+                                                <Link
+                                                    to={`/dashboard/user-profile/${user._id}`}
+                                                    className="text-blue-500 hover:underline"
+                                                >
+                                                    Profile
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+
+                                )
                             )}
+
+
+                           
                         </tbody>
                     </table>
                 </div>

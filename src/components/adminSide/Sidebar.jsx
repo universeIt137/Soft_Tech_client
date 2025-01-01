@@ -583,7 +583,7 @@ const Sidebar = () => {
 
 
                   <li>
-                    <Link to="/dashboard/all-product-reqeust" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                    <Link to="/dashboard/transaction-table-admin" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
                       <FaProductHunt size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>All Payments</span>
                     </Link>
@@ -803,7 +803,7 @@ const Sidebar = () => {
 
 
                       {/* Ticket */}
-                      <li>
+                      {/* <li>
                         <label
                           onClick={() => handleDropdownToggle("client")}
                           className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
@@ -837,7 +837,7 @@ const Sidebar = () => {
                             </NavLink>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
 
                       {/* Video */}
                       <li>
@@ -874,7 +874,7 @@ const Sidebar = () => {
 
                       {/* Transaction list  */}
                       <li>
-                        <Link to={'/dashboard/transaction'}>
+                        <Link to={'/dashboard/client-transaction'}>
                           <label
 
                             className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
