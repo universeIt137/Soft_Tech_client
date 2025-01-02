@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import formatDateTime from "../../../../hooks/useDateTime";
 
 const ProductList = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -78,7 +79,7 @@ const ProductList = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-xl font-bold mb-4">Product List</h1>
+            <h1 className="text-xl font-bold mb-4">Representative's Product List</h1>
             {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-[12px]">
                 <input
                     type="text"
@@ -121,21 +122,30 @@ const ProductList = () => {
                 <table className="min-w-full bg-white border border-gray-200 text-[12px]">
                     <thead>
                         <tr>
+                            <th className="py-2 px-4 border-b">#</th>
                             <th className="py-2 px-4 border-b">Name</th>
                             <th className="py-2 px-4 border-b">Description</th>
                             <th className="py-2 px-4 border-b">Duration</th>
                             <th className="py-2 px-4 border-b">Payment Status</th>
+                            <th className="py-2 px-4 border-b">Payment Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((item) => (
-                            <tr key={item?._id}>
+                        {products.map((item, index) => {
+                            const { date, time } = formatDateTime(item.createdAt);
+                            return  (<tr className="text-center" key={item?._id}>
+                                <td className="py-2 px-4 border-b">{index+1}</td>
                                 <td className="py-2 px-4 border-b">{item?.product_id?.nav_title}</td>
                                 <td className="py-2 px-4 border-b">{item?.product_id?.banner_title}</td>
                                 <td className="py-2 px-4 border-b">{item?.month}</td>
                                 <td className="py-2 px-4 border-b">{item?.status ? "Paid": "Due"}</td>
+                                <td className="py-2 px-4 border-b">{date}</td>
                             </tr>
-                        ))}
+                        )
+                        }
+                            
+                        )
+                        }
                     </tbody>
                 </table>
             ) : (
