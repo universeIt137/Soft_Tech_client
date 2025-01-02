@@ -114,7 +114,7 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '700px', maxWidth: '700px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-3 gap-4 ">
-                    {allProducts.map((product) => (
+                    {allProducts?.map((product) => (
                         <NavLink
 
                             key={product._id}
@@ -151,7 +151,7 @@ const UpdatedNavbar = () => {
                 style={{ width: '200px', minWidth: '700px', maxWidth: '700px' }} // Adjust width if needed
             >
                 <div className="grid grid-cols-3 gap-4 ">
-                    {allservices.map((service) => (
+                    {allservices?.map((service) => (
                         <NavLink
                             key={service._id}
                             to={`/serviceDetails/${service._id}`}

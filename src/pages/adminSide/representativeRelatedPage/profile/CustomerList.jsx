@@ -6,7 +6,7 @@ const CustomerList = ({ repClients }) => {
  
   return (
     <div className="p-6  ">
-      <h1 className="text-2xl font-bold mb-4">Customer List</h1>
+      <h1 className="text-2xl font-bold mb-4">Representative's Customer List</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full bg-white shadow-md rounded-lg text-[12px]">
           <thead className="bg-blue-600 text-white">

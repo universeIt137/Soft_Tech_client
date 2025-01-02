@@ -56,7 +56,7 @@ const PaymentList = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Payment List</h1>
+            <h1 className="text-2xl font-bold mb-4">Representative's  Payment List</h1>
 
             <div className="flex items-center gap-4 mb-4">
                 <input

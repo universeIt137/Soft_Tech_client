@@ -141,7 +141,7 @@ const AllClientAdmin = () => {
                                 <td className="px-4 py-2 border-b">{item.name}</td>
                                 <td className="px-4 py-2 border-b">{item.phone}</td>
                                 <td className="px-4 py-2 border-b">{item.productType}</td>
-                                <td className="px-4 py-2 border-b">
+                                <td className="px-4 py-2 border-b text-blue-600">
                                     <Link to={`/dashboard/client-profile/${item._id}`}>
                                         View Profile
                                     </Link>
