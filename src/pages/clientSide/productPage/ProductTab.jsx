@@ -95,7 +95,7 @@ const ProductTab = () => {
                                 <>
                                     <div className="h-96 col-span-3 ">
                                         <div className="shadow-xl w-1/2 mx-auto mt-4">
-                                            <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1730780548/Other%20data/vr09k7zqwajfi3xk9sfs.png" alt="" className='' />
+                                            {/* <img src="https://res.cloudinary.com/dnvmj9pvk/image/upload/v1730780548/Other%20data/vr09k7zqwajfi3xk9sfs.png" alt="" className='' /> */}
                                         </div>
                                         <p className="text-xl font-bold text-center mt-4">No category Selected.</p>
 

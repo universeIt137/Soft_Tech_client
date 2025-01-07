@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const AddClientAdmin = () => {
 
-
+    window.scrollTo(0,0)
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);

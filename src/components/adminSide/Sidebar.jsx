@@ -581,6 +581,40 @@ const Sidebar = () => {
                     </Link>
                   </li>
 
+                  {/* product category manage  */}
+                  <li>
+                    <label
+                      onClick={() => handleDropdownToggle("prodeuct-category-manage")}
+                      className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
+                    >
+                      <FaUserCircle size={20} />
+                      <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Category List</span>
+                      {isSidebarOpen && (
+                        <span className="ml-auto">
+                          {activeDropdown === "prodeuct-category-manage" ? <FaAngleUp /> : <FaAngleDown />}
+                        </span>
+                      )}
+                    </label>
+                    <ul className={`${activeDropdown === "prodeuct-category-manage" ? "block" : "hidden"} ml-8  `}>
+                      <li>
+                        <NavLink
+                          to="/dashboard/product-category-add"
+                          className="p-2  transition duration-200 hover:bg-white hover:text-black flex items-center gap-3"
+                        >
+                          <TiUserAdd size={20} />
+
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Add Product Category</span>
+                        </NavLink>
+                      </li>
+                      <li>
+                        <Link to="/dashboard/manage-product-category" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
+                          <BiLogoMicrosoftTeams size={20} />
+                          <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Manage Product</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+
 
                   <li>
                     <Link to="/dashboard/transaction-table-admin" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
@@ -589,12 +623,7 @@ const Sidebar = () => {
                     </Link>
                   </li>
 
-
-
-
-
-
-
+                  
                   {/* Logout */}
                   <li onClick={handleLogout}>
                     <Link to="#" className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600">
