@@ -14,7 +14,7 @@ import { MdCall } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
 import careerStore from './../../../api-request/carrer-api/carrerApi';
 const CareerDetailsPage = () => {
-    const company_logo = `https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png`
+    // const company_logo = `https://res.cloudinary.com/dnvmj9pvk/image/upload/v1723544696/UniverseIT/Logo/xvlfi7xrapeoabxyzjji.png`
     const {SingleCareerData,SingleCareerDataApi} =  careerStore();
     
     const { id } = useParams();

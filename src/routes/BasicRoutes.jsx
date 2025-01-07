@@ -99,6 +99,7 @@ import ClientProductList from "../pages/adminSide/clientRelatedPages/productList
 import Payment from "../pages/adminSide/clientRelatedPages/payment/Payment";
 import TransactionList from "../pages/adminSide/clientRelatedPages/transaction/TransactionList";
 import TransactionTableAdmin from "../pages/adminSide/payment/TransactionTableAdmin";
+import ProductCategoryAdd from "../components/adminSide/product-category/ProductCategoryAdd";
 
 
 
@@ -391,6 +392,12 @@ const router = createBrowserRouter([
                 path: "add-session-video",
                 element: <PrivateRoute role={"admin"} ><AddSessionVideo /></PrivateRoute>
             },
+            // product category add
+
+            {
+                path : "product-category-add",
+                element : <PrivateRoute role={"admin"}><ProductCategoryAdd></ProductCategoryAdd></PrivateRoute>
+            },
 
 
             // Rrepresentative related routes
@@ -449,6 +456,7 @@ const router = createBrowserRouter([
                 path: "update-rep-account-info/:id",
                 element: <UpdateAccountInfoForm></UpdateAccountInfoForm>
             },
+            
 
             // client related routes 
             {
