@@ -8,30 +8,7 @@ import { MdDelete } from 'react-icons/md';
 
 const ProductCategoryManage = () => {
     const axiosPublic = useAxiosPublic();
-    // Static product data for demonstration
-    // const productData = [
-    //     {
-    //         id: 1,
-    //         productName: "Digital Marketing Campaign",
-    //         price: "2000 USD",
-    //         representativePercentange: "10%",
-    //         createdAt: "2025-01-07",
-    //     },
-    //     {
-    //         id: 2,
-    //         productName: "Web Development Package",
-    //         price: "5000 USD",
-    //         representativePercentange: "12%",
-    //         createdAt: "2025-01-05",
-    //     },
-    //     {
-    //         id: 3,
-    //         productName: "SEO Optimization Service",
-    //         price: "1500 USD",
-    //         representativePercentange: "8%",
-    //         createdAt: "2025-01-02",
-    //     },
-    // ];
+    
 
     const adminToken = localStorage.getItem("admin_token");
     const config = {
@@ -86,7 +63,7 @@ const ProductCategoryManage = () => {
                                 <td className="border border-gray-200 px-4 py-2">
                                     <div className='flex justify-center items-center gap-x-4 ' >
                                         <div>
-                                            <Link to={""}>
+                                            <Link to={`/dashboard/product-price-update/${product?._id}`}>
                                             <span> <FaEdit /> </span>
                                             </Link>
                                         </div>
