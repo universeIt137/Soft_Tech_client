@@ -25,7 +25,8 @@ const AllProductRequest = () => {
     const { data: requests = [], refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/GetAllRequestInfoByAdmin', config);
+            const res = await axiosPublic.get('/product-purchase-admin', config);
+            console.log(res.data?.data?.product_id)
             return res.data.data;
         }
     })
@@ -36,7 +37,7 @@ const AllProductRequest = () => {
             let resp = await updateAlert();
             if (resp.isConfirmed) {
                 console.log("hello")
-                let res = await axiosPublic.get(`/UpdateRequestStatus/${id}`, config);
+                let res = await axiosPublic.put(`/product-status-update/${id}`,{}, config);
                 console.log("hello2")
 
                 if (res) {
@@ -134,21 +135,23 @@ const AllProductRequest = () => {
                                             <Link className='text-blue-600' to={`/dashboard/rep-profile/${content?.representative_id?._id}`}>
                                                 {content?.representative_id?.name}
                                             </Link>
-                                            <p>{content?.representative_id?.phone}</p>
+                                            <p>{content?.representative_id?.phone} asdfsdas </p>
 
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link className='text-blue-600' to={`/dashboard/client-profile/${content?.client_id?._id}`}>
                                                 <p>{content?.client_id?.name}</p>
+                                                
                                             </Link>
 
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
-                                                {content?.product_id?.nav_title}
+                                                
                                             </Link>
+                                            <h1 className='text-black' >rana</h1>
                                         </td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.month}</td>
+                                        <td className="px-4 py-2 border text-black font-semibold">dskaslfjdsa</td>
                                         <td className="font-bold border">
                                             <div className="form-control">
                                                 <div className="flex items-center justify-center gap-2">
@@ -192,15 +195,16 @@ const AllProductRequest = () => {
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link className='text-blue-600' to={`/dashboard/client-profile/${content?.client_id?._id}`}>
                                                 <p>{content?.client_id?.name}</p>
+                                                
                                             </Link>
 
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
-                                                {content?.product_id?.nav_title}
+                                                {content?.product_id?.productName}
                                             </Link>
                                         </td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.month}</td>
+                                        <td className="px-4 py-2 border font-semibold">{content?.duraction}</td>
                                         <td className="font-bold border">
                                             <div className="form-control">
                                                 <div className="flex items-center justify-center gap-2">
