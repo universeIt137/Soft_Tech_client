@@ -20,7 +20,7 @@ const ProductCategoryManage = () => {
     const { data: productData = [], refetch, isError, isLoading } = useQuery({
         queryKey: ['productCategoryData'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/all-product-category`, config);
+            const res = await axiosPublic.get(`/all-product-category`);
             
             return res.data.data;
         }
