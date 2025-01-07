@@ -75,6 +75,13 @@ const ProductCategoryAdd = () => {
             showConfirmButton: false,
             timer: 1500
           });
+          setFormData({
+            productName: '',
+            package: [{ totalPage: '', features: '', deliveryTime: '' }],
+            price: '',
+            representativePercentange: ''
+          });
+          return;
         }
       }
     } catch (error) {

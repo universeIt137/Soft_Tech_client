@@ -587,7 +587,7 @@ const Sidebar = () => {
                       onClick={() => handleDropdownToggle("prodeuct-category-manage")}
                       className="flex items-center space-x-3 p-3 cursor-pointer transition duration-200 hover:bg-blue-600"
                     >
-                      <FaUserCircle size={20} />
+                      <AiFillProduct size={20} />
                       <span className={`${isSidebarOpen ? "block" : "hidden"} font-semibold`}>Product Category List</span>
                       {isSidebarOpen && (
                         <span className="ml-auto">
@@ -614,6 +614,8 @@ const Sidebar = () => {
                       </li>
                     </ul>
                   </li>
+                  
+                  
 
 
                   <li>
