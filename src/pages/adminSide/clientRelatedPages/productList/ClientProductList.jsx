@@ -3,6 +3,7 @@ import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import formatDateTime from '../../../../hooks/useDateTime';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ClientProductList = () => {
     const getToken = localStorage.getItem("clientToken");
@@ -31,6 +32,9 @@ const ClientProductList = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | Client Product Request List</title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">My Request List</p>
             <table className="min-w-full bg-white border border-gray-300 text-[12px]">
                 <thead>
@@ -59,8 +63,8 @@ const ClientProductList = () => {
                                     <p>{content?.representative_id?.name}</p>
                                     <p>{content?.representative_id?.phone}</p>
                                 </td>
-                                <td className="px-4 py-2 border font-semibold">{content?.product_id?.nav_title}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.month}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.product_id?.productName}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.duraction}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.status ? "Approved" : "Pending"}</td>
                                 <td className="px-4 py-2 border font-semibold">
 
