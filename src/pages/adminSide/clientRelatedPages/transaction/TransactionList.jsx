@@ -35,7 +35,7 @@ const TransactionList = () => {
         }
 
         const filtered = payments.filter((payment) => {
-            const representativeName = payment?.product?.nav_title?.toLowerCase() || '';
+            const representativeName = payment?.product?.productName?.toLowerCase() || '';
             const clientName = payment?.transaction_id?.toLowerCase() || '';
             return (
                 representativeName.includes(searchText.toLowerCase()) ||
@@ -95,7 +95,7 @@ const TransactionList = () => {
                                 return (
                                     <tr key={content?._id} className="text-center">
                                         <td className="px-4 py-2 border font-semibold">{index + 1}</td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                        <td className="px-4 py-2 border font-semibold">{content?.productName}</td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <p>{content?.transaction_id}</p>
                                         </td>
@@ -122,7 +122,7 @@ const TransactionList = () => {
                                 return (
                                     <tr key={content?._id} className="text-center">
                                         <td className="px-4 py-2 border font-semibold">{index + 1}</td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                        <td className="px-4 py-2 border font-semibold">{content?.productName}</td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <p>{content?.transaction_id}</p>
                                         </td>

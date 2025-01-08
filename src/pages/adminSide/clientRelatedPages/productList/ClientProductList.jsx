@@ -15,7 +15,7 @@ const ClientProductList = () => {
         },
     };
 
-    const { data: requests = [], refetch } = useQuery({
+    const { data: requests = [], refetch,isLoading } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
             const res = await axiosPublic.get('/product-request-by-client', config);
@@ -29,6 +29,14 @@ const ClientProductList = () => {
             const res = axiosPublic.get('')
         }
     })
+
+    if(isLoading){
+        return (
+            <div className='flex flex-col justify-center h-screen items-center  ' >
+                <h1>Loading</h1>
+            </div>
+        )
+    }
 
     return (
         <div className="overflow-x-auto w-full my-5">

@@ -65,10 +65,6 @@ const Info = () => {
           </div>
         </Link>
 
-
-
-
-
       </div>
     </div>
   );

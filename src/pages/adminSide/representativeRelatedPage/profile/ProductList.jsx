@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import formatDateTime from "../../../../hooks/useDateTime";
+import { Helmet } from "react-helmet-async";
 
 const ProductList = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -79,6 +80,9 @@ const ProductList = () => {
 
     return (
         <div className="p-4">
+            <Helmet>
+                <title>Dashboard | Representative's Product List</title>
+            </Helmet>
             <h1 className="text-xl font-bold mb-4">Representative's Product List</h1>
             {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-[12px]">
                 <input
@@ -133,17 +137,19 @@ const ProductList = () => {
                     <tbody>
                         {products.map((item, index) => {
                             const { date, time } = formatDateTime(item.createdAt);
-                            return  (<tr className="text-center" key={item?._id}>
-                                <td className="py-2 px-4 border-b">{index+1}</td>
-                                <td className="py-2 px-4 border-b">{item?.product_id?.nav_title}</td>
-                                <td className="py-2 px-4 border-b">{item?.product_id?.banner_title}</td>
-                                <td className="py-2 px-4 border-b">{item?.month}</td>
-                                <td className="py-2 px-4 border-b">{item?.status ? "Paid": "Due"}</td>
+                            return (<tr className="text-center" key={item?._id}>
+                                <td className="py-2 px-4 border-b">{index + 1}</td>
+                                <td className="py-2 px-4 border-b">{item?.product_id?.productName}</td>
+                                <td className="py-2 px-4 border-b">
+                                    <div dangerouslySetInnerHTML={{ __html: item?.productExtraDes.slice(0,20) }} />
+                                </td>                                
+                                <td className="py-2 px-4 border-b">{item?.duraction}</td>
+                                <td className="py-2 px-4 border-b">{item?.status ? "Paid" : "Due"}</td>
                                 <td className="py-2 px-4 border-b">{date}</td>
                             </tr>
-                        )
+                            )
                         }
-                            
+
                         )
                         }
                     </tbody>

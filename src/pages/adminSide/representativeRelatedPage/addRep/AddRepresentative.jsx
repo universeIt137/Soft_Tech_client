@@ -6,8 +6,10 @@ import { uploadImg } from '../../../../uploadImage/UploadImage';
 import toast from 'react-hot-toast';
 import { createAlert } from '../../../../helper/createAlert';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AddRepresentative = () => {
+    window.scrollTo(0, 0);
 
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword1, setShowPassword1] = useState(false);
@@ -91,6 +93,9 @@ const AddRepresentative = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | Add Representative</title>
+            </Helmet>
             <div className="p-6 border ">
                 <form onSubmit={handleSubmit} className="space-y-8 ">
 

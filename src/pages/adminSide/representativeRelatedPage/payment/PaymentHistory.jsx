@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 
 
 const PaymentHistory = () => {
+    window.scrollTo(0, 0);
     const getToken = localStorage.getItem("representativeToken");
 
     const [searchText, setSearchText] = useState('');
@@ -70,7 +72,7 @@ const PaymentHistory = () => {
 
         const filtered = contents.filter((payment) => {
             const representativeName = payment?.client?.name?.toLowerCase() || '';
-            const clientName = payment?.product?.nav_title?.toLowerCase() || '';
+            const clientName = payment?.product?.productName?.toLowerCase() || '';
             return (
                 representativeName.includes(searchText.toLowerCase()) ||
                 clientName.includes(searchText.toLowerCase())
@@ -82,6 +84,9 @@ const PaymentHistory = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | Payment history </title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">My Client's Payment History</p>
             <div className="flex items-center gap-4 mb-4">
                 <input
@@ -125,7 +130,7 @@ const PaymentHistory = () => {
                             <tr key={content?.id} className="text-center">
                                 <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.client?.name}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.product?.productName}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.paidAmount}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.dueAmount}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.duration}</td>
@@ -138,7 +143,7 @@ const PaymentHistory = () => {
                             <tr key={content?.id} className="text-center">
                                 <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.client?.name}</td>
-                                <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                <td className="px-4 py-2 border font-semibold">{content?.product?.productName}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.paidAmount}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.dueAmount}</td>
                                 <td className="px-4 py-2 border font-semibold">{content?.duration}</td>

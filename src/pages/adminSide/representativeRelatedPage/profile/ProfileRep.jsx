@@ -84,10 +84,6 @@ const ProfileRep = () => {
 
                                     </div>
 
-
-
-
-
                                 </div>
                                 <div className="pb-7">
                                     <div className="bg-gradient-to-r from-primary to-primary/70 w-[55%] text-white font-semibold mt-5 ml-auto py-2 text-[12px] pl-5">

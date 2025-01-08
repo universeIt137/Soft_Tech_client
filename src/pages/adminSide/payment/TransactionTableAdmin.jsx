@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import formatDateTime from '../../../hooks/useDateTime';
+import { Helmet } from 'react-helmet-async';
 
 const TransactionTableAdmin = () => {
+    window.scrollTo(0, 0);
     const getToken = localStorage.getItem("admin_token");
     const axiosPublic = useAxiosPublic();
 
@@ -16,7 +18,7 @@ const TransactionTableAdmin = () => {
         },
     };
 
-    const { data: payments = [] } = useQuery({
+    const { data: payments = [],isLoading } = useQuery({
         queryKey: ['payments'],
         queryFn: async () => {
             const res = await axiosPublic.get('/GetAllPaymentListByAdmin', config);
@@ -45,8 +47,19 @@ const TransactionTableAdmin = () => {
         setFilteredPayments(filtered);
     };
 
+    if(isLoading){
+        return (
+            <div>
+                <p className='h-screen flex flex-col justify-center items-center ' >Loading</p>
+            </div>
+        )
+    }
+
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | All Payment List</title>
+            </Helmet>
             <div className="my-5">
                 <p className="text-2xl font-bold text-center mb-2">All Payment List</p>
                 <div className="flex items-center gap-4 mb-4">
@@ -104,7 +117,7 @@ const TransactionTableAdmin = () => {
                                                 {content?.client?.name}
                                             </td>
                                             <td className="px-4 py-2 border font-semibold">
-                                                {content?.product?.nav_title}
+                                                {content?.product?.productName}
                                             </td>
                                             <td className="px-4 py-2 border font-semibold">
                                                 {content?.transaction_id}
@@ -134,7 +147,7 @@ const TransactionTableAdmin = () => {
                                                 {content?.client?.name}
                                             </td>
                                             <td className="px-4 py-2 border font-semibold">
-                                                {content?.product?.nav_title}
+                                                {content?.product?.productName}
                                             </td>
                                             <td className="px-4 py-2 border font-semibold">
                                                 {content?.transaction_id}
