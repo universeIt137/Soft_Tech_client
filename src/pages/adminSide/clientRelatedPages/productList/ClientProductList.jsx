@@ -17,7 +17,7 @@ const ClientProductList = () => {
     const { data: requests = [], refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/GetAllProductRequestForClient', config);
+            const res = await axiosPublic.get('/product-request-by-client', config);
             return res.data.data;
         }
     })
