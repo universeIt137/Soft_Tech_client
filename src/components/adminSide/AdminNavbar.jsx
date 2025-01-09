@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 const AdminNavbar = () => {
-    return (
-        <div>
-            <div className="flex justify-between items-center bg-white shadow p-4">
+    const [toggleNavbar, setToggleNavbar] = useState(false);
 
-                <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+    const showHideNavbar = () => {
+        setToggleNavbar(!toggleNavbar);
+    }
+
+    return (
+        <div className="navbar bg-base-100">
+            <div className="flex-1">
+                <a className="btn btn-ghost text-xl">Dashboard</a>
+            </div>
+            <div className="flex-none">
+                <div className="dropdown dropdown-end">
+                    
+                    
                 </div>
+                
             </div>
         </div>
     );

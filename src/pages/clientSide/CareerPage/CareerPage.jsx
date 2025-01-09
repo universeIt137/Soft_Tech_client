@@ -1,13 +1,12 @@
 
-import { Helmet } from 'react-helmet-async';
+
 import Career from '../../../components/clientSide/CareerComponent/Career/Career';
 
 const CareerPage = () => {
+    window.scrollTo(0, 0);
     return (
-        <div className='mt-12'>
-             <Helmet>
-                <title>Soft Tech | Career</title>
-            </Helmet>
+        <div className='my-10'>
+        
             <Career></Career>
             
         </div>

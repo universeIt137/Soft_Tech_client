@@ -3,8 +3,9 @@ import ContactUs from "../../../components/clientSide/ContactUsComponent/Contact
 
 
 const ContactUsPage = () => {
+    window.scrollTo(0, 0);
     return (
-        <div className="mt-12">
+        <div className="">
             <Helmet>
                 <title>Soft Tech | Contact Us</title>
             </Helmet>

@@ -19,13 +19,13 @@ const Banner = () => {
                     }}
                     className='text-xl md:text-2xl mt-8 text-wrap mb-8'
                 >
-                    Alpha Net is a USA based Enterprise IT Solutions Company in Bangladesh. Alpha Net maintains a high-quality infrastructure worldwide. Main objective is to give the best possible service to customers.
+                    Universe Soft Tech is a Bangladesh based Enterprise IT Solutions Company in Bangladesh. Universe Soft Tech maintains a high-quality infrastructure worldwide. Main objective is to give the best possible service to customers.
                 </p>
 
             </div>
 
             <div className='flex-1 sm:mt-16 sm:mb-32 mx-6 pb-10  lg:pb-0 '>
-                <img className='w-full hidden lg:block lg:w-10/12' src="https://res.cloudinary.com/dgamcpb88/image/upload/v1723384932/osmakhycmfw6zjklnxuy.jpg" alt="" />
+                <img className='w-full hidden lg:block lg:w-10/12' src="https://res.cloudinary.com/dxvacpgrv/image/upload/v1734955887/universeIT/pe58phdzwrp8rdo0qqwo.png" alt="" />
             </div>
         </div>
     );
