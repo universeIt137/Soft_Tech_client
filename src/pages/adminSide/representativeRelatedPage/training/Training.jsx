@@ -9,6 +9,7 @@ import ReactPlayer from 'react-player';
 import { IoPlayCircleSharp } from 'react-icons/io5';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const Training = () => {
     window.scrollTo(0, 0);
@@ -26,6 +27,9 @@ const Training = () => {
    
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | Training Session </title>
+            </Helmet>
             <p className="text-4xl font-bold text-center my-2">Training Session</p>
 
             <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 ">

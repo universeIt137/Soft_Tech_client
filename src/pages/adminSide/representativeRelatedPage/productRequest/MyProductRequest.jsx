@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import formatDateTime from '../../../../hooks/useDateTime';
+import { Helmet } from 'react-helmet-async';
 
 const MyProductRequest = () => {
     const getToken = localStorage.getItem("representativeToken");
@@ -56,6 +57,9 @@ const MyProductRequest = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | My Product Request List</title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">My Product Request List</p>
             <div className="flex items-center gap-4 mb-4">
                 <input

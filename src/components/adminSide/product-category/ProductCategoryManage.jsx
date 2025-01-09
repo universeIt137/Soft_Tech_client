@@ -7,6 +7,7 @@ import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
 const ProductCategoryManage = () => {
+    window.scrollTo(0, 0);
     const axiosPublic = useAxiosPublic();
     
 
@@ -41,9 +42,9 @@ const ProductCategoryManage = () => {
             </Helmet>
             <h2 className="text-2xl font-semibold text-center mb-6">Product Information Table</h2>
             <div className="overflow-x-auto">
-                <table className="min-w-full border-collapse border text-center border-gray-200">
+                <table className="min-w-full border-collapse border text-[10px] font-bold text-center border-gray-200">
                     <thead className="bg-gray-100">
-                        <tr>
+                        <tr className='' >
                             <th className="border border-gray-200 px-4 py-2 text-center font-medium text-gray-700">#</th>
                             <th className="border border-gray-200 px-4 py-2 text-center font-medium text-gray-700">Product Name</th>
                             <th className="border border-gray-200 px-4 py-2 text-center font-medium text-gray-700">Price</th>

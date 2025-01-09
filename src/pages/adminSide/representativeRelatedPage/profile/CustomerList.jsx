@@ -1,11 +1,15 @@
 import React from "react";
 import formatDateTime from "../../../../hooks/useDateTime";
+import { Helmet } from "react-helmet-async";
 
 const CustomerList = ({ repClients }) => {
   // Dummy customer data
  
   return (
     <div className="p-6  ">
+      <Helmet>
+        <title>Dashboard | Representative's Customer List</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Representative's Customer List</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full bg-white shadow-md rounded-lg text-[12px]">

@@ -10,6 +10,7 @@ import formatDateTime from '../../../hooks/useDateTime';
 
 const ManageUser = () => {
     const axiosPublic = useAxiosPublic();
+    window.scrollTo(0, 0);
 
     const [searchText, setSearchText] = useState('');
     const [filteredPayments, setFilteredPayments] = useState([]); // Initially empty

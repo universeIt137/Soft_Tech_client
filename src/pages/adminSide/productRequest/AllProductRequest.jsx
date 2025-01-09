@@ -6,8 +6,10 @@ import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { updateAlert } from '../../../helper/updateAlert';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AllProductRequest = () => {
+    window.scrollTo(0, 0);
 
     const getToken = localStorage.getItem("admin_token");
     const axiosPublic = useAxiosPublic();
@@ -79,6 +81,9 @@ const AllProductRequest = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | All Product Request List</title>
+            </Helmet>
 
             <p className="text-2xl font-bold text-center mb-2">All Product Request List</p>
 
