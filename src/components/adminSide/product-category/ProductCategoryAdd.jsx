@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { createAlert } from '../../../helper/createAlert';
 import Swal from 'sweetalert2';
+import { Editor } from '@tinymce/tinymce-react';
 
 const ProductCategoryAdd = () => {
   const axiosPublic = useAxiosPublic();
@@ -14,10 +15,8 @@ const ProductCategoryAdd = () => {
     },
   };
   const [formData, setFormData] = useState({
-    productName: '',
-    package: [{ totalPage: '', features: '', deliveryTime: '' }],
-    price: '',
-    representativePercentange: ''
+    categoryName: '',
+    package: [{ totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: '' }],
   });
 
   // Handle general input change
@@ -40,11 +39,21 @@ const ProductCategoryAdd = () => {
     }));
   };
 
+  // Handle TinyMCE change for features
+  const handleFeaturesChange = (index, content) => {
+    const updatedPackage = [...formData.package];
+    updatedPackage[index].features = content;
+    setFormData((prev) => ({
+      ...prev,
+      package: updatedPackage
+    }));
+  };
+
   // Add new package
   const handleAddPackage = () => {
     setFormData((prev) => ({
       ...prev,
-      package: [...prev.package, { totalPage: '', features: '', deliveryTime: '' }]
+      package: [...prev.package, { totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: '' }]
     }));
   };
 
@@ -64,9 +73,9 @@ const ProductCategoryAdd = () => {
     let resp = await createAlert();
     try {
       if (resp.isConfirmed) {
-        setLoading(true)
+        setLoading(true);
         let res = await axiosPublic.post(`/create-product-category`, formData, config);
-        setLoading(false)
+        setLoading(false);
         if (res) {
           Swal.fire({
             position: "top-end",
@@ -76,69 +85,42 @@ const ProductCategoryAdd = () => {
             timer: 1500
           });
           setFormData({
-            productName: '',
-            package: [{ totalPage: '', features: '', deliveryTime: '' }],
-            price: '',
-            representativePercentange: ''
+            categoryName: '',
+            package: [{ totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: "" }],
           });
           return;
         }
       }
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       Swal.fire({
         position: "top-end",
-        icon: "fail",
-        title: "Product upload fail.",
+        icon: "error",
+        title: "Product upload failed.",
         showConfirmButton: false,
         timer: 1500
-      })
+      });
     }
   };
 
   return (
-    <div className=" mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="mx-auto p-6 bg-white rounded-lg shadow-md">
       <Helmet>
         <title>Dashboard | Product Category Add </title>
       </Helmet>
       <h2 className="text-xl font-semibold text-center mb-4">Product Category Form</h2>
       <form onSubmit={handleSubmit}>
-        <div className='grid lg:grid-cols-2 gap-4 ' >
-          {/* Product Name */}
+        <div className="grid lg:grid-cols-2 gap-4">
+          {/* Category Name */}
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Product Name</label>
+            <label className="block text-gray-700 font-medium mb-2">Category Name</label>
             <input
               type="text"
-              name="productName"
-              value={formData.productName}
+              name="categoryName"
+              value={formData.categoryName}
               onChange={handleInputChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Enter product name"
-            />
-          </div>
-          {/* Price */}
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Price</label>
-            <input
-              type="text"
-              name="price"
-              value={formData.price}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Enter price"
-            />
-          </div>
-
-          {/* Representative Percentage */}
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Representative Percentage</label>
-            <input
-              type="text"
-              name="representativePercentange"
-              value={formData.representativePercentange}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Enter representative percentage"
+              placeholder="Enter category name"
             />
           </div>
         </div>
@@ -148,10 +130,22 @@ const ProductCategoryAdd = () => {
           <h3 className="text-gray-700 font-medium mb-2">Package Details</h3>
           {formData.package.map((pkg, index) => (
             <div key={index} className="mb-4 p-4 border rounded-lg relative">
-              <div className='grid lg:grid-cols-2  gap-x-4 ' >
+              <div className="grid lg:grid-cols-2 gap-x-4">
+                {/* Price */}
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-medium mb-2">Price</label>
+                  <input
+                    type="text"
+                    name="price"
+                    value={pkg.price}
+                    onChange={(e) => handlePackageChange(index, e)}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+                    placeholder="Enter price"
+                  />
+                </div>
                 {/* Total Page */}
-                <div className="mb-2">
-                  <label className="block text-gray-700 font-medium mb-1">Total Page</label>
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-medium mb-2">Total Page</label>
                   <input
                     type="text"
                     name="totalPage"
@@ -161,12 +155,9 @@ const ProductCategoryAdd = () => {
                     placeholder="Enter total page"
                   />
                 </div>
-
-
-
                 {/* Delivery Time */}
-                <div clssName="mb-2">
-                  <label className="block text-gray-700 font-medium mb-1">Delivery Time</label>
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-medium mb-2">Delivery Time</label>
                   <input
                     type="text"
                     name="deliveryTime"
@@ -176,18 +167,37 @@ const ProductCategoryAdd = () => {
                     placeholder="Enter delivery time"
                   />
                 </div>
-                {/* Features */}
-                <div className="mb-2">
-                  <label className="block text-gray-700 font-medium mb-1">Features</label>
-                  <textarea
-                    name="features"
-                    value={pkg.features}
-                    rows={5}
+                {/* Representative Percentage */}
+                <div className="mb-4">
+                  <label className="block text-gray-700 font-medium mb-2">Representative Percentage</label>
+                  <input
+                    type="text"
+                    name="representativePercentange"
+                    value={pkg.representativePercentange}
                     onChange={(e) => handlePackageChange(index, e)}
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
-                    placeholder="Enter features"
+                    placeholder="Enter representative percentage"
                   />
                 </div>
+
+
+              </div>
+              {/* Features */}
+              <div className="mb-4 w-full">
+                <label className="block text-gray-700 font-medium mb-2">Features</label>
+                
+                <Editor
+                  apiKey="atnary0we9a0nuqjzgtnpxyd0arpbwud7ocxkjxqjtaab3nm" // Add your TinyMCE API key here (if needed)
+                  value={pkg.features}
+                  init={{
+                    height: 400,
+                    menubar: false,
+                    plugins: ['advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'wordcount'],
+                    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code | fontsizeselect | h1 h2 h3 h4 h5 h6',
+                    block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+                  }}
+                  onEditorChange={(content) => handleFeaturesChange(index, content)}
+                />
               </div>
 
               {/* Remove Button */}
@@ -213,8 +223,6 @@ const ProductCategoryAdd = () => {
           </button>
         </div>
 
-
-
         {/* Submit Button */}
         <div className="text-center">
           <button
@@ -223,33 +231,7 @@ const ProductCategoryAdd = () => {
             className={`px-6 py-2 rounded-lg text-white ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
               }`}
           >
-            {loading ? (
-              <div className="flex items-center justify-center">
-                <svg
-                  className="animate-spin h-5 w-5 mr-2 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v8H4z"
-                  ></path>
-                </svg>
-                Submitting...
-              </div>
-            ) : (
-              'Submit'
-            )}
+            {loading ? 'Submitting...' : 'Submit'}
           </button>
         </div>
       </form>
