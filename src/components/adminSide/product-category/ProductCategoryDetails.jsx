@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosPublic from './../../../hooks/useAxiosPublic';
 
 const ProductCategoryDetails = () => {
@@ -36,15 +36,15 @@ const ProductCategoryDetails = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: singleCategoryData = {}, refetch, isError, isLoading } = useQuery({
-        queryKey: ['singleCategoryData',id],
+        queryKey: ['singleCategoryData', id],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/single-product-category/${id}`,config);
+            const res = await axiosPublic.get(`/single-product-category/${id}`, config);
 
             return res.data.data;
         }
     });
 
-    if(isLoading){
+    if (isLoading) {
         return <div className="flex flex-col justify-center h-screen items-center " >Loading...</div>
     }
 
@@ -53,7 +53,11 @@ const ProductCategoryDetails = () => {
             <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
                 {/* Category Name */}
                 <h1 className="text-3xl font-bold text-gray-800 mb-4">{singleCategoryData.categoryName}</h1>
-
+                <h2 className="text-xl font-semibold text-gray-700">
+                    Live link : <Link to={`${singleCategoryData?.link}`}>
+                        {singleCategoryData?.link}
+                    </Link>
+                </h2>
 
                 {/* Packages */}
                 <div className="space-y-6">
@@ -65,6 +69,7 @@ const ProductCategoryDetails = () => {
                             <h2 className="text-xl font-semibold text-gray-700">
                                 Package {index + 1}
                             </h2>
+
                             <p className="text-gray-600 mt-2">
                                 <span className="font-semibold">Total Pages:</span> {pkg.totalPage}
                             </p>
