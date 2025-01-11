@@ -102,6 +102,7 @@ import TransactionTableAdmin from "../pages/adminSide/payment/TransactionTableAd
 import ProductCategoryAdd from "../components/adminSide/product-category/ProductCategoryAdd";
 import ProductCategoryManage from "../components/adminSide/product-category/ProductCategoryManage";
 import PriceUpdate from "../components/adminSide/product-category/PriceUpdate";
+import ProductCategoryDetails from "../components/adminSide/product-category/ProductCategoryDetails";
 
 
 
@@ -407,6 +408,10 @@ const router = createBrowserRouter([
             {
                 path : "product-price-update/:id",
                 element : <PrivateRoute role={"admin"}> <PriceUpdate></PriceUpdate> </PrivateRoute>
+            },
+            {
+                path : "category-details/:id",
+                element : <PrivateRoute role={"admin"}> <ProductCategoryDetails></ProductCategoryDetails> </PrivateRoute>
             },
 
 
