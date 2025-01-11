@@ -63,7 +63,7 @@ const ManageCategoryPage = () => {
                   </td>
                   <td className="border border-gray-300 p-4">
                     <button className="py-2 px-4 bg-blue-500 text-white rounded-md">
-                      <Link to={`/dashboard/category-update/${item._id}`}>Edit</Link>
+                      <Link to={`/dashboard/product-category-update/${item._id}`}>Edit</Link>
                     </button>
                     <button onClick={()=>deleteCategory(item._id)} className="py-2 px-4 bg-red-500 text-white rounded-md ml-2">Delete</button>
                   </td>

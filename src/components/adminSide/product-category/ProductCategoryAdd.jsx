@@ -8,7 +8,7 @@ import { Editor } from '@tinymce/tinymce-react';
 const ProductCategoryAdd = () => {
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(false);
-  const adminToken = localStorage.getItem("admin_token");
+  const adminToken = localStorage.getItem('admin_token');
   const config = {
     headers: {
       Authorization: adminToken,
@@ -16,7 +16,18 @@ const ProductCategoryAdd = () => {
   };
   const [formData, setFormData] = useState({
     categoryName: '',
-    package: [{ totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: '' }],
+    img: '',
+    video: '',
+    link: '',
+    package: [
+      {
+        totalPage: '',
+        features: '',
+        deliveryTime: '',
+        price: '',
+        representativePercentange: '',
+      },
+    ],
   });
 
   // Handle general input change
@@ -24,7 +35,7 @@ const ProductCategoryAdd = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -35,7 +46,7 @@ const ProductCategoryAdd = () => {
     updatedPackage[index][name] = value;
     setFormData((prev) => ({
       ...prev,
-      package: updatedPackage
+      package: updatedPackage,
     }));
   };
 
@@ -45,7 +56,7 @@ const ProductCategoryAdd = () => {
     updatedPackage[index].features = content;
     setFormData((prev) => ({
       ...prev,
-      package: updatedPackage
+      package: updatedPackage,
     }));
   };
 
@@ -53,7 +64,16 @@ const ProductCategoryAdd = () => {
   const handleAddPackage = () => {
     setFormData((prev) => ({
       ...prev,
-      package: [...prev.package, { totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: '' }]
+      package: [
+        ...prev.package,
+        {
+          totalPage: '',
+          features: '',
+          deliveryTime: '',
+          price: '',
+          representativePercentange: '',
+        },
+      ],
     }));
   };
 
@@ -62,14 +82,53 @@ const ProductCategoryAdd = () => {
     const updatedPackage = formData.package.filter((_, i) => i !== index);
     setFormData((prev) => ({
       ...prev,
-      package: updatedPackage
+      package: updatedPackage,
     }));
+  };
+
+  // Handle image upload to Cloudinary
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append("upload_preset", "imageUpload"); // Replace with your Cloudinary upload preset
+
+    try {
+      setLoading(true);
+      const res = await fetch('https://api.cloudinary.com/v1_1/dxvacpgrv/image/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      setFormData((prev) => ({
+        ...prev,
+        img: data.secure_url,
+      }));
+      setLoading(false);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Image uploaded successfully.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      setLoading(false);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Image upload failed.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Data:', formData);
     let resp = await createAlert();
     try {
       if (resp.isConfirmed) {
@@ -78,15 +137,26 @@ const ProductCategoryAdd = () => {
         setLoading(false);
         if (res) {
           Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Product upload successfully.",
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product category uploaded successfully.',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           });
           setFormData({
             categoryName: '',
-            package: [{ totalPage: '', features: '', deliveryTime: '', price: "", representativePercentange: "" }],
+            img: '',
+            video: '',
+            link: '',
+            package: [
+              {
+                totalPage: '',
+                features: '',
+                deliveryTime: '',
+                price: '',
+                representativePercentange: '',
+              },
+            ],
           });
           return;
         }
@@ -94,11 +164,11 @@ const ProductCategoryAdd = () => {
     } catch (error) {
       setLoading(false);
       Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Product upload failed.",
+        position: 'top-end',
+        icon: 'error',
+        title: 'Product category upload failed.',
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
     }
   };
@@ -106,7 +176,7 @@ const ProductCategoryAdd = () => {
   return (
     <div className="mx-auto p-6 bg-white rounded-lg shadow-md">
       <Helmet>
-        <title>Dashboard | Product Category Add </title>
+        <title>Dashboard | Product Category Add</title>
       </Helmet>
       <h2 className="text-xl font-semibold text-center mb-4">Product Category Form</h2>
       <form onSubmit={handleSubmit}>
@@ -121,6 +191,39 @@ const ProductCategoryAdd = () => {
               onChange={handleInputChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Enter category name"
+            />
+          </div>
+          {/* video */}
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-2">Video Url</label>
+            <input
+              type="url"
+              name="video"
+              value={formData.video}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Product video url"
+            />
+          </div>
+          {/* video */}
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-2">Live Link</label>
+            <input
+              type="url"
+              name="link"
+              value={formData.link}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Product live link"
+            />
+          </div>
+          {/* Image Upload */}
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-2">Category Image</label>
+            <input
+              type="file"
+              onChange={handleImageUpload}
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
             />
           </div>
         </div>
@@ -179,27 +282,25 @@ const ProductCategoryAdd = () => {
                     placeholder="Enter representative percentage"
                   />
                 </div>
-
-
               </div>
               {/* Features */}
               <div className="mb-4 w-full">
                 <label className="block text-gray-700 font-medium mb-2">Features</label>
-                
                 <Editor
-                  apiKey="atnary0we9a0nuqjzgtnpxyd0arpbwud7ocxkjxqjtaab3nm" // Add your TinyMCE API key here (if needed)
+                  apiKey="atnary0we9a0nuqjzgtnpxyd0arpbwud7ocxkjxqjtaab3nm"
                   value={pkg.features}
                   init={{
                     height: 400,
                     menubar: false,
-                    plugins: ['advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'wordcount'],
-                    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code | fontsizeselect | h1 h2 h3 h4 h5 h6',
-                    block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6',
+                    plugins: [
+                      'advlist autolink lists link image charmap preview anchor searchreplace wordcount',
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code | fontsizeselect',
                   }}
                   onEditorChange={(content) => handleFeaturesChange(index, content)}
                 />
               </div>
-
               {/* Remove Button */}
               {formData.package.length > 1 && (
                 <button
@@ -212,7 +313,6 @@ const ProductCategoryAdd = () => {
               )}
             </div>
           ))}
-
           {/* Add Package Button */}
           <button
             type="button"

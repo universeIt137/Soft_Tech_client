@@ -103,6 +103,7 @@ import ProductCategoryAdd from "../components/adminSide/product-category/Product
 import ProductCategoryManage from "../components/adminSide/product-category/ProductCategoryManage";
 import PriceUpdate from "../components/adminSide/product-category/PriceUpdate";
 import ProductCategoryDetails from "../components/adminSide/product-category/ProductCategoryDetails";
+import ProductCategoryUpdate from "../components/adminSide/product-category/ProductCategoryUpdate";
 
 
 
@@ -406,8 +407,8 @@ const router = createBrowserRouter([
                 element : <PrivateRoute role={"admin"}> <ProductCategoryManage></ProductCategoryManage> </PrivateRoute>
             },
             {
-                path : "product-price-update/:id",
-                element : <PrivateRoute role={"admin"}> <PriceUpdate></PriceUpdate> </PrivateRoute>
+                path : "product-category-update/:id",
+                element : <PrivateRoute role={"admin"}> <ProductCategoryUpdate></ProductCategoryUpdate> </PrivateRoute>
             },
             {
                 path : "category-details/:id",
