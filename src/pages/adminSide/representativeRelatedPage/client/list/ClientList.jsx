@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../../hooks/useAxiosPublic';
 import formatDateTime from '../../../../../hooks/useDateTime';
+import { Helmet } from 'react-helmet-async';
 
 
 
 const ClientList = () => {
 
-
+    window.scrollTo(0, 0);
 
     const getToken = localStorage.getItem("representativeToken");
     const axiosPublic = useAxiosPublic();
@@ -86,6 +87,9 @@ const ClientList = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | Client List</title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">Client List</p>
             <div className="flex items-center gap-4 mb-4">
                 <input

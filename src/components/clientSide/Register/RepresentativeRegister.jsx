@@ -94,7 +94,7 @@ const RepresentativeRegister = () => {
           viewport={{ once: true, amount: 0.2 }}
           className="hidden lg:flex lg:w-1/2 items-center justify-center p-6"
         >
-          <img src='https://res.cloudinary.com/dnvmj9pvk/image/upload/v1734519210/Universe%20Soft%20Tech/Public/iwesgxes2v3tmw8qcih4.png' alt="RegisterIllustration" className="max-w-full h-auto" />
+          {/* <img src='https://res.cloudinary.com/dnvmj9pvk/image/upload/v1734519210/Universe%20Soft%20Tech/Public/iwesgxes2v3tmw8qcih4.png' alt="RegisterIllustration" className="max-w-full h-auto" /> */}
         </motion.div>
 
         {/* Right side with form */}

@@ -11,6 +11,7 @@ import { deleteAlert } from '../../../helper/deleteHelperAlert';
 import formatDateTime from '../../../hooks/useDateTime';
 
 const AllClientAdmin = () => {
+    window.scrollTo(0,0)
     const axiosPublic = useAxiosPublic();
     const adminToken = localStorage.getItem("admin_token");
     const config = {

@@ -6,8 +6,10 @@ import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { updateAlert } from '../../../helper/updateAlert';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AllProductRequest = () => {
+    window.scrollTo(0, 0);
 
     const getToken = localStorage.getItem("admin_token");
     const axiosPublic = useAxiosPublic();
@@ -25,7 +27,8 @@ const AllProductRequest = () => {
     const { data: requests = [], refetch } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/GetAllRequestInfoByAdmin', config);
+            const res = await axiosPublic.get('/product-purchase-admin', config);
+            console.log(res.data?.data?.product_id)
             return res.data.data;
         }
     })
@@ -36,7 +39,7 @@ const AllProductRequest = () => {
             let resp = await updateAlert();
             if (resp.isConfirmed) {
                 console.log("hello")
-                let res = await axiosPublic.get(`/UpdateRequestStatus/${id}`, config);
+                let res = await axiosPublic.put(`/product-status-update/${id}`,{}, config);
                 console.log("hello2")
 
                 if (res) {
@@ -78,6 +81,9 @@ const AllProductRequest = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | All Product Request List</title>
+            </Helmet>
 
             <p className="text-2xl font-bold text-center mb-2">All Product Request List</p>
 
@@ -134,12 +140,13 @@ const AllProductRequest = () => {
                                             <Link className='text-blue-600' to={`/dashboard/rep-profile/${content?.representative_id?._id}`}>
                                                 {content?.representative_id?.name}
                                             </Link>
-                                            <p>{content?.representative_id?.phone}</p>
+                                            <p>{content?.representative_id?.phone} asdfsdas </p>
 
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link className='text-blue-600' to={`/dashboard/client-profile/${content?.client_id?._id}`}>
                                                 <p>{content?.client_id?.name}</p>
+                                                
                                             </Link>
 
                                         </td>
@@ -147,9 +154,10 @@ const AllProductRequest = () => {
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
                                                 {content?.product_id?.nav_title}
                                                 Ashikur Rahman
-                                            </Link>
+                                                                                            </Link>
+                                            <h1 className='text-black' >rana</h1>
                                         </td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.month}</td>
+                                        <td className="px-4 py-2 border text-black font-semibold">dskaslfjdsa</td>
                                         <td className="font-bold border">
                                             <div className="form-control">
                                                 <div className="flex items-center justify-center gap-2">
@@ -193,15 +201,16 @@ const AllProductRequest = () => {
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link className='text-blue-600' to={`/dashboard/client-profile/${content?.client_id?._id}`}>
                                                 <p>{content?.client_id?.name}</p>
+                                                
                                             </Link>
 
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
-                                                {content?.product_id?.nav_title}
+                                                {content?.product_id?.productName}
                                             </Link>
                                         </td>
-                                        <td className="px-4 py-2 border font-semibold">{content?.month}</td>
+                                        <td className="px-4 py-2 border font-semibold">{content?.duraction}</td>
                                         <td className="font-bold border">
                                             <div className="form-control">
                                                 <div className="flex items-center justify-center gap-2">

@@ -12,6 +12,7 @@ const Payment = () => {
     const getToken = localStorage.getItem("clientToken");
     const axiosPublic = useAxiosPublic();
     const { message, setMessage } = useState(false);
+    const [loader, setLoader] = useState(false);
 
     const config = {
         headers: {
@@ -21,7 +22,7 @@ const Payment = () => {
     const { data: request = [] } = useQuery({
         queryKey: ['request'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/GetSingleRequestInfoByClient/${id}`, config);
+            const res = await axiosPublic.get(`/single-product-requested/${id}`, config);
             return res.data.data;
         }
     })
@@ -33,40 +34,44 @@ const Payment = () => {
         const form = e.target;
 
 
+        const productName = request.product_id?.productName;
+        console.log('product_name', productName)
         const client = request.client_id?._id;
         const representative = request?.representative_id?._id;
         const product = request?.product_id?._id;
 
-        const duration = request?.month;
+        const duration = request?.duraction;
         const transaction_id = form.transaction_id.value;
         const paidAmount = form.paid_amount.value;
-        const dueAmount = (parseInt(request?.month || 0, 10) * 3000) - paidAmount;
+        const dueAmount = (parseInt(request?.duraction) * parseInt(request?.product_id?.price)) - paidAmount;
 
-        const payload = { client, representative, product, duration, transaction_id, paidAmount, dueAmount };
-        console.log(payload);
+
+        const payload = { client, representative, product, duration, transaction_id, paidAmount, dueAmount, productName };
 
         try {
-
-            axiosPublic.post(`/MakePayments`, payload, config)
-                .then(res => {
-                    if (res) {
-                       
-                        toast.success("Payment Successful")
-
-                    }
-                })
-
+            setLoader(true);
+            let res = await axiosPublic.post(`/MakePayments`, payload, config);
+            setLoader(false);
+            if (res) {
+                Swal.fire({
+                    title: 'Payment Successful',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                form.reset();
+                return;
+            }
         } catch (error) {
-            // console.error("Error submitting form:", error.message);
+            setLoader(false);
             Swal.fire({
-                position: "center",
-                icon: "error",
-                title:  error.message,
+                icon: 'error',
+                title: 'Failed to make payment',
                 showConfirmButton: false,
-                timer: 1500
-            });
-
+                timer: 1500,
+            })
         }
+
     }
 
     return (
@@ -140,7 +145,7 @@ const Payment = () => {
                 {/* You can open the modal using document.getElementById('ID').showModal() method */}
                 <dialog id="my_modal_4" className="modal">
                     <div className="modal-box w-11/12 max-w-5xl">
-                        
+
 
                         <section>
                             <div className=' text-white px-10 '>
@@ -181,7 +186,7 @@ const Payment = () => {
                                                                 <div className="p-2 w-full">
                                                                     <div className="relative">
                                                                         <label className="leading-7 text-[12px] lg:text-sm text-gray-600">Duration</label>
-                                                                        <input required type="text" readOnly value={request?.month} id="payment_number" name="payment_number" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                                        <input required type="text" readOnly value={request?.duraction} id="payment_number" name="payment_number" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                                                     </div>
                                                                 </div>
 
@@ -210,14 +215,47 @@ const Payment = () => {
 
                                                         <div className="">
                                                             <p className="text-4xl font-bold">
-                                                                Total: {parseInt(request?.month || 0, 10) * 3000}
+                                                                Total: {parseInt(request?.duraction) * parseInt(request?.product_id?.price)}
                                                             </p>
                                                         </div>
 
                                                         {/* website  */}
 
                                                         <div className="p-2 flex justify-center items-center mx-auto">
-                                                            <button className='btn bg-primary text-white'>Submit</button>
+                                                            <button
+                                                                type="submit"
+                                                                className={`w-full p-2 text-white rounded ${loader ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+                                                                    }`}
+                                                                disabled={loader}
+                                                            >
+                                                                {loader ? (
+                                                                    <div className="flex items-center justify-center">
+                                                                        <svg
+                                                                            className="w-5 h-5 mr-2 text-white animate-spin"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none"
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <circle
+                                                                                className="opacity-25"
+                                                                                cx="12"
+                                                                                cy="12"
+                                                                                r="10"
+                                                                                stroke="currentColor"
+                                                                                strokeWidth="4"
+                                                                            ></circle>
+                                                                            <path
+                                                                                className="opacity-75"
+                                                                                fill="currentColor"
+                                                                                d="M4 12a8 8 0 018-8v8H4z"
+                                                                            ></path>
+                                                                        </svg>
+                                                                        Processing...
+                                                                    </div>
+                                                                ) : (
+                                                                    "Submit"
+                                                                )}
+                                                            </button>
                                                         </div>
                                                     </form>
 

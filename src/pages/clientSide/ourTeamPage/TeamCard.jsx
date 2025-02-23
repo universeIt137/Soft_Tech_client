@@ -7,7 +7,7 @@ const TeamCard = ({ member }) => {
             <div className=" relative bg-gray-100 min-h-full">
                 <div className='relative'>
                     <div className='flex gap-1 justify-end p-3 sm:p-5 pb-3 items-center'>
-                        <img className='h-3 lg:h-6 object-cover' src={"https://res.cloudinary.com/dnvmj9pvk/image/upload/v1728452527/Universe%20Soft%20Tech/Homepage/dssjxou15png9ffjdvku.png"} alt="" />
+                        {/* <img className='h-3 lg:h-6 object-cover' src={"https://res.cloudinary.com/dnvmj9pvk/image/upload/v1728452527/Universe%20Soft%20Tech/Homepage/dssjxou15png9ffjdvku.png"} alt="" /> */}
                         {/* <h2 className='font-bold text-xs'>Universe IT <br /> Institute</h2> */}
     
     

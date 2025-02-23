@@ -6,6 +6,7 @@ import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { updateAlert } from "../../helper/updateAlert";
 import Swal from "sweetalert2";
 import formatDateTime from "../../hooks/useDateTime";
+import { Helmet } from "react-helmet-async";
 
 
 const representativeData = [
@@ -13,6 +14,7 @@ const representativeData = [
 ];
 
 const RepresentativeTable = () => {
+    window.scrollTo(0, 0);
     const axiosPublic = useAxiosPublic();
     const adminToken = localStorage.getItem("admin_token");
 
@@ -78,6 +80,9 @@ const RepresentativeTable = () => {
 
     return (
         <div className="overflow-x-auto p-4">
+            <Helmet>
+                <title>Dashboard | Manage Representative</title>
+            </Helmet>
             <p className="font-bold text-2xl text-center">Manage Representative</p>
             <div className="flex items-center gap-4 mb-4">
                 <input

@@ -1,52 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import formatDateTime from '../../../../hooks/useDateTime';
+import { Helmet } from 'react-helmet-async';
 
 const MyProductRequest = () => {
-
     const getToken = localStorage.getItem("representativeToken");
     const axiosPublic = useAxiosPublic();
-    const [loading, setLoading] = useState(false);
-
     const [searchText, setSearchText] = useState('');
-    const [filteredPayments, setFilteredPayments] = useState([]); // Initially empty
+    const [filteredPayments, setFilteredPayments] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const config = {
         headers: {
-            Authorization: getToken
+            Authorization: getToken,
         },
     };
 
-    const { data: requests = [] } = useQuery({
+    const { data: requests = [], isLoading, isError } = useQuery({
         queryKey: ['requests'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/GetAllRequestInfo', config);
+            setLoading(true);
+            const res = await axiosPublic.get('/product-purchase-request-representative', config);
+            setLoading(false);
             return res.data.data;
-        }
-    })
+        },
+        onError: () => setLoading(false),
+    });
 
+    useEffect(() => {
+        setFilteredPayments(requests); // Initialize with all requests
+    }, [requests]);
 
-    // Filter function triggered by button click
     const handleFilter = () => {
-        if (!searchText.trim()) {
-            setFilteredPayments(requests); // Show all data if search text is empty
+        const search = searchText.trim().toLowerCase();
+        if (!search) {
+            setFilteredPayments(requests);
             return;
         }
 
         const filtered = requests.filter((payment) => {
             const representativeName = payment?.client_id?.name?.toLowerCase() || '';
-            const clientName = payment?.role?.toLowerCase() || '';
-            return (
-                representativeName.includes(searchText.toLowerCase()) ||
-                clientName.includes(searchText.toLowerCase())
-            );
+            const clientRole = payment?.role?.toLowerCase() || '';
+            return representativeName.includes(search) || clientRole.includes(search);
         });
+
         setFilteredPayments(filtered);
     };
 
+    if (isLoading || loading) return (
+        <div className='flex flex-col justify-center items-center h-screen ' >
+            <p>Loading...</p>
+        </div>
+    );
+    if (isError) return <p>Error loading data. Please try again later.</p>;
+
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | My Product Request List</title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">My Product Request List</p>
             <div className="flex items-center gap-4 mb-4">
                 <input
@@ -73,7 +86,6 @@ const MyProductRequest = () => {
                 </button>
             </div>
 
-            
             <table className="min-w-full bg-white border border-gray-300 text-[12px]">
                 <thead>
                     <tr>
@@ -83,60 +95,32 @@ const MyProductRequest = () => {
                         <th className="px-4 py-2 border">Duration (months)</th>
                         <th className="px-4 py-2 border">Status</th>
                         <th className="px-4 py-2 border">Requested Date</th>
-                        {/* <th className="px-4 py-2 border">Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
-
-
                     {filteredPayments.length > 0 ? (
-                        filteredPayments?.map((content, index) => {
-                            const { date, time } = formatDateTime(content?.createdAt);
+                        filteredPayments.map((content, index) => {
+                            const { date } = formatDateTime(content?.createdAt);
                             return (
                                 <tr key={content?._id} className="text-center">
                                     <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.client_id?.name}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.product_id?.nav_title}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.month}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.status ? "Approved" : "Pending"}</td>
+                                    <td className="px-4 py-2 border font-semibold">{content?.product_id?.productName}</td>
+                                    <td className="px-4 py-2 border font-semibold">{content?.duraction}</td>
+                                    <td className="px-4 py-2 border font-semibold">
+                                        {content?.status ? 'Approved' : 'Pending'}
+                                    </td>
                                     <td className="px-4 py-2 border font-semibold">{date}</td>
-                                    {/* <td className="px-4 py-2 border">
-                                    <button
-                                        onClick={() => handleDelete(content?._id)}
-                                        className="px-2 py-1 bg-red-500 text-white rounded"
-                                    >
-                                        Delete
-                                    </button>
-                                </td> */}
                                 </tr>
                             );
                         })
                     ) : (
-                        requests?.map((content, index) => {
-                            const { date, time } = formatDateTime(content?.createdAt);
-                            return (
-                                <tr key={content?._id} className="text-center">
-                                    <td className="px-4 py-2 border font-semibold">{index + 1}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.client_id?.name}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.product_id?.nav_title}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.month}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.status ? "Approved" : "Pending"}</td>
-                                    <td className="px-4 py-2 border font-semibold">{date}</td>
-                                    {/* <td className="px-4 py-2 border">
-                                    <button
-                                        onClick={() => handleDelete(content?._id)}
-                                        className="px-2 py-1 bg-red-500 text-white rounded"
-                                    >
-                                        Delete
-                                    </button>
-                                </td> */}
-                                </tr>
-                            );
-                        })
+                        <tr>
+                            <td colSpan="6" className="text-center py-4">
+                                No requests found.
+                            </td>
+                        </tr>
                     )}
-
-
-
                 </tbody>
             </table>
         </div>

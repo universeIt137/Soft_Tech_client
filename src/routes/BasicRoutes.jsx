@@ -99,6 +99,10 @@ import ClientProductList from "../pages/adminSide/clientRelatedPages/productList
 import Payment from "../pages/adminSide/clientRelatedPages/payment/Payment";
 import TransactionList from "../pages/adminSide/clientRelatedPages/transaction/TransactionList";
 import TransactionTableAdmin from "../pages/adminSide/payment/TransactionTableAdmin";
+import ProductCategoryAdd from "../components/adminSide/product-category/ProductCategoryAdd";
+import ProductCategoryManage from "../components/adminSide/product-category/ProductCategoryManage";
+import PriceUpdate from "../components/adminSide/product-category/PriceUpdate";
+import ProductCategoryDetails from "../components/adminSide/product-category/ProductCategoryDetails";
 
 
 
@@ -391,6 +395,24 @@ const router = createBrowserRouter([
                 path: "add-session-video",
                 element: <PrivateRoute role={"admin"} ><AddSessionVideo /></PrivateRoute>
             },
+            // product category add
+
+            {
+                path : "product-category-add",
+                element : <PrivateRoute role={"admin"}><ProductCategoryAdd></ProductCategoryAdd></PrivateRoute>
+            },
+            {
+                path : "manage-product-category",
+                element : <PrivateRoute role={"admin"}> <ProductCategoryManage></ProductCategoryManage> </PrivateRoute>
+            },
+            {
+                path : "product-price-update/:id",
+                element : <PrivateRoute role={"admin"}> <PriceUpdate></PriceUpdate> </PrivateRoute>
+            },
+            {
+                path : "category-details/:id",
+                element : <PrivateRoute role={"admin"}> <ProductCategoryDetails></ProductCategoryDetails> </PrivateRoute>
+            },
 
 
             // Rrepresentative related routes
@@ -449,6 +471,7 @@ const router = createBrowserRouter([
                 path: "update-rep-account-info/:id",
                 element: <UpdateAccountInfoForm></UpdateAccountInfoForm>
             },
+            
 
             // client related routes 
             {

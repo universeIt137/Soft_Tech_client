@@ -10,6 +10,7 @@ import { IoPlayCircleSharp } from 'react-icons/io5';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const ProductVideo = () => {
     window.scrollTo(0, 0);
@@ -23,10 +24,15 @@ const ProductVideo = () => {
         }
     })
 
+    window.scrollTo(0, 0);
+
 
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | Product Video </title>
+            </Helmet>
             <p className="text-4xl font-bold text-center my-2">Product Video</p>
 
             <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 ">

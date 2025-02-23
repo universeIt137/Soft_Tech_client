@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const PaymentList = () => {
     const { id } = useParams();
@@ -56,6 +57,9 @@ const PaymentList = () => {
 
     return (
         <div className="p-4">
+            <Helmet>
+                <title>Dashboard | Representative's Payment List</title>
+            </Helmet>
             <h1 className="text-2xl font-bold mb-4">Representative's  Payment List</h1>
 
             <div className="flex items-center gap-4 mb-4">
@@ -103,7 +107,7 @@ const PaymentList = () => {
                                 <tr key={content?.id} className="text-center">
                                     <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.client?.name}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                    <td className="px-4 py-2 border font-semibold">{content?.product?.productName}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.paidAmount}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.dueAmount}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.duration}</td>
@@ -116,7 +120,7 @@ const PaymentList = () => {
                                 <tr key={content?.id} className="text-center">
                                     <td className="px-4 py-2 border font-semibold">{index + 1}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.client?.name}</td>
-                                    <td className="px-4 py-2 border font-semibold">{content?.product?.nav_title}</td>
+                                    <td className="px-4 py-2 border font-semibold">{content?.product?.productName}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.paidAmount}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.dueAmount}</td>
                                     <td className="px-4 py-2 border font-semibold">{content?.duration}</td>

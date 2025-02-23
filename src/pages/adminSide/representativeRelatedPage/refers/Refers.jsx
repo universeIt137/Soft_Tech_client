@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import formatDateTime from '../../../../hooks/useDateTime';
+import { Helmet } from 'react-helmet-async';
 
 const Refers = () => {
     const getToken = localStorage.getItem("representativeToken");
@@ -58,6 +59,8 @@ const Refers = () => {
         });
     };
 
+    window.scrollTo(0, 0);
+
 
     // Filter function triggered by button click
     const handleFilter = () => {
@@ -80,6 +83,9 @@ const Refers = () => {
 
     return (
         <div className="overflow-x-auto w-full my-5">
+            <Helmet>
+                <title>Dashboard | Refers List</title>
+            </Helmet>
             <p className="text-2xl font-bold text-center mb-2">Refers List</p>
             <div className="flex items-center gap-4 mb-4">
                 <input
