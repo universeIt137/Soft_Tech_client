@@ -112,7 +112,7 @@ const AllClientAdmin = () => {
                 <input
                     type="text"
                     placeholder="Search clients..."
-                    className="border rounded px-4 py-2"
+                    className="border focus:outline-0 rounded px-4 py-2"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -133,7 +133,7 @@ const AllClientAdmin = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clientData.map((item, index) => {
+                    {filteredClients.map((item, index) => {
                         const { date, time } = formatDateTime(item?.createdAt);
                         return (
                             <tr key={index} className="hover:bg-gray-100 text-center">

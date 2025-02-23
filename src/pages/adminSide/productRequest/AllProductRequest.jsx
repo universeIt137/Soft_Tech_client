@@ -146,6 +146,7 @@ const AllProductRequest = () => {
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
                                                 {content?.product_id?.nav_title}
+                                                Ashikur Rahman
                                             </Link>
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">{content?.month}</td>
