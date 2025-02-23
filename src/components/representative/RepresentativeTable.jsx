@@ -67,10 +67,12 @@ const RepresentativeTable = () => {
 
         const filtered = representativeData.filter((payment) => {
             const representativeName = payment?.name?.toLowerCase() || '';
+            const representativePhone = payment?.phone?.toLowerCase() || '';
             const clientName = payment?.role?.toLowerCase() || '';
             return (
                 representativeName.includes(searchText.toLowerCase()) ||
-                clientName.includes(searchText.toLowerCase())
+                clientName.includes(searchText.toLowerCase()) ||
+                representativePhone.includes(searchText.toLowerCase())
             );
         });
         setFilteredPayments(filtered);
@@ -88,7 +90,7 @@ const RepresentativeTable = () => {
                     placeholder="Search by Representative Name or Role"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    className="flex-grow p-2 border border-gray-300 rounded"
+                    className="flex-grow p-2 focus:outline-0 my-3 border border-gray-300 rounded"
                 />
                 <button
                     onClick={handleFilter}

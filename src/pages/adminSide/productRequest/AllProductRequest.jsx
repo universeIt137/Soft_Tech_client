@@ -152,8 +152,9 @@ const AllProductRequest = () => {
                                         </td>
                                         <td className="px-4 py-2 border font-semibold">
                                             <Link to={`/productsDetails/${content?.product_id?._id}`}>
-                                                
-                                            </Link>
+                                                {content?.product_id?.nav_title}
+                                                Ashikur Rahman
+                                                                                            </Link>
                                             <h1 className='text-black' >rana</h1>
                                         </td>
                                         <td className="px-4 py-2 border text-black font-semibold">dskaslfjdsa</td>
